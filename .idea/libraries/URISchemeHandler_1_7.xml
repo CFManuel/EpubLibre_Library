@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="URISchemeHandler-1.7">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/URISchemeHandler-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/URISchemeHandler-1.7.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
