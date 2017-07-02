@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="380.0" minWidth="600.0" prefHeight="390" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.controllers.MainTableViewController">
+   <children>
+      <VBox fx:id="vBox" prefHeight="390" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="30.0">
+               <children>
+                  <TextField fx:id="tfSearch" onAction="#searchBtn" prefHeight="25.0" prefWidth="209.0">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#searchBtn" text="Buscar" />
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </HBox>
+            <TableView fx:id="bookTableView" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="titleColumn" prefWidth="200.0" text="Titulo" />
+                <TableColumn fx:id="autorColumn" prefWidth="150.0" text="Autor" />
+                  <TableColumn fx:id="linkColumn" prefWidth="100.0" text="Link" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
