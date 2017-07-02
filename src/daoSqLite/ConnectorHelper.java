@@ -12,6 +12,7 @@ public class ConnectorHelper {
 
     /**
      * Realiza la conexión con la base de datos, autoCommit off.
+     *
      * @throws ClassNotFoundException
      * @throws IllegalAccessException
      * @throws InstantiationException
@@ -26,11 +27,13 @@ public class ConnectorHelper {
         this.conn = conn;
 
     }
+
     public void limpiarTabla() throws SQLException {
         String sql = "delete from libros";
         Statement st = conn.createStatement();
         st.execute(sql);
     }
+
     /**
      * Crea la tabla que poseera los libros
      */
@@ -52,7 +55,7 @@ public class ConnectorHelper {
                     "  publicado   TEXT,\n" +
                     "  estado      TEXT,\n" +
                     "  valoracion  REAL,\n" +
-                    "n_votos NUMERIC,\n" +
+                    "   n_votos NUMERIC,\n" +
                     "  enlaces     TEXT," +
                     "CONSTRAINT lib_titAut PRIMARY KEY (titulo, autor))";
             Statement st = conn.createStatement();
@@ -73,6 +76,7 @@ public class ConnectorHelper {
 
     /**
      * Cierra la base de datos y realiza el commit de la transacción.
+     *
      * @throws SQLException
      */
     public void desconectar() throws SQLException {
@@ -81,6 +85,7 @@ public class ConnectorHelper {
             conn.close();
         }
     }
+
     public void rollBack() throws SQLException {
         conn.rollback();
     }

@@ -22,8 +22,8 @@ public class Rss {
     static InsertDatas insertDatas = new InsertDatas();
     public static void importXML(File xmlFile) throws FileNotFoundException, XMLStreamException {
         try{
-            insertDatas.conectar();
             insertDatas.crearTabla();
+            insertDatas.conectar();
             insertDatas.limpiarTabla();
             Libro libro = new Libro();
             XMLReader reader = XMLReaderFactory.createXMLReader();

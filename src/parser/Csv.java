@@ -24,9 +24,9 @@ public class Csv {
         String[] items;
 
         try {
+            idatas.crearTabla();
             it.nextLine();
             idatas.conectar();
-            idatas.crearTabla();
             idatas.limpiarTabla();
             while (it.hasNext()) {
                 line = it.nextLine();
