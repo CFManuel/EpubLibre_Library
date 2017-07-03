@@ -55,8 +55,9 @@ public class ConnectorHelper {
                     "  publicado   TEXT,\n" +
                     "  estado      TEXT,\n" +
                     "  valoracion  REAL,\n" +
-                    "   n_votos NUMERIC,\n" +
+                    "  n_votos     NUMERIC,\n" +
                     "  enlaces     TEXT," +
+                    "  imgDir      TEXT," +
                     "CONSTRAINT lib_titAut PRIMARY KEY (titulo, autor))";
             Statement st = conn.createStatement();
             st.execute(tabla);

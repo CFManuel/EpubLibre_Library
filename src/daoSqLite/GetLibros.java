@@ -36,7 +36,8 @@ public class GetLibros extends ConnectorHelper {
                     .setEstado(rst.getString("estado"))
                     .setValoracion(rst.getDouble("valoracion"))
                     .setN_votos(rst.getInt("n_votos"))
-                    .setEnlaces(rst.getString("enlaces"));
+                    .setEnlaces(rst.getString("enlaces"))
+                    .setImgURI(rst.getString("imgdir"));
             libros.add(libro);
         }
         super.desconectar();

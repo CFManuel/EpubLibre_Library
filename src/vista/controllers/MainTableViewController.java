@@ -60,7 +60,7 @@ public class MainTableViewController {
     private void configTable() {
         titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
         autorColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAutor()));
-        linkColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEnlaces()));
+        linkColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getImgURI()));
         bookTableView.setEditable(false);
         bookTableView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 if(event.getClickCount() > 1){

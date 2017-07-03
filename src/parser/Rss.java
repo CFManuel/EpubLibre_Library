@@ -14,14 +14,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by david on 02/07/2017.
  */
 public class Rss {
     static InsertDatas insertDatas = new InsertDatas();
+
     public static void importXML(File xmlFile) throws FileNotFoundException, XMLStreamException {
-        try{
+        try {
             insertDatas.crearTabla();
             insertDatas.conectar();
             insertDatas.limpiarTabla();
@@ -35,7 +38,7 @@ public class Rss {
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-        }finally {
+        } finally {
             try {
                 insertDatas.desconectar();
             } catch (SQLException e) {
@@ -56,24 +59,31 @@ class MyHandler extends DefaultHandler {
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         valor = "";
-        if (localName.equalsIgnoreCase("item")){
+        if (localName.equalsIgnoreCase("item")) {
             libro = new Libro();
         }
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if(localName.equalsIgnoreCase("title")){
+        if (localName.equalsIgnoreCase("title")) {
             libro.setTitulo(valor);
-        }else if(localName.equalsIgnoreCase("autor")){
+        } else if (localName.equalsIgnoreCase("autor")) {
             libro.setAutor(valor);
-        }else if (localName.equalsIgnoreCase("rev")){
+        } else if (localName.equalsIgnoreCase("rev")) {
             libro.setRevision(Double.parseDouble(valor));
-        }else if (localName.equalsIgnoreCase("link")){
+        } else if (localName.equalsIgnoreCase("link")) {
             libro.setEnlaces(valor);
-        }else if(localName.equalsIgnoreCase("pubdate")){
+        } else if (localName.equalsIgnoreCase("pubdate")) {
             libro.setPublicado(valor);
-        }else if(localName.equalsIgnoreCase("item")){
+        } else if (localName.equalsIgnoreCase("description")) {
+            String dir = "";
+            Matcher matcher =    Pattern.compile("src=\\\"(.+?)\\\"", Pattern.CASE_INSENSITIVE).matcher(valor);
+            if (matcher.find()) {
+                dir = matcher.group(1);
+                libro.setImgURI(dir);
+            }
+        } else if (localName.equalsIgnoreCase("item")) {
             try {
                 Rss.insertDatas.insertarLibros(libro);
             } catch (Exception e) {

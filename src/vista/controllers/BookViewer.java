@@ -2,13 +2,20 @@ package vista.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.ImageViewBuilder;
 import javafx.stage.Stage;
 import modelos.Libro;
 import uriSchemeHandler.CouldNotOpenUriSchemeHandler;
 import uriSchemeHandler.URISchemeHandler;
 
+import javax.imageio.ImageIO;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * Created by david on 02/07/2017.
@@ -30,7 +37,8 @@ public class BookViewer {
     private Label tfIdioma;
     @FXML
     private Label tfSinopsis;
-
+    @FXML
+    private ImageView imgView;
     public BookViewer(Libro libro) {
         this.libro = libro;
     }
@@ -45,6 +53,10 @@ public class BookViewer {
         tfRevision.setText(String.valueOf(libro.getRevision()));
         tfIdioma.setText(libro.getIdioma());
         tfSinopsis.setText(libro.getSinopsis());
+        try{
+            Image image = new Image(libro.getImgURI(),true);
+            imgView.setImage(image);
+        }catch (Exception e){e.printStackTrace();}
     }
 
     @FXML

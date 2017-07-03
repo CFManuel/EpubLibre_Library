@@ -21,6 +21,16 @@ public class Libro {
     private Double valoracion = 0.0;
     private int n_votos = 0;
     private String enlaces = "";
+    private String imgURI = "";
+
+    public String getImgURI() {
+        return imgURI;
+    }
+
+    public Libro setImgURI(String imgURI) {
+        this.imgURI = imgURI;
+        return this;
+    }
 
     public int getEpl_id() {
         return epl_id;
