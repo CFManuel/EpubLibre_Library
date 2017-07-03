@@ -1,7 +1,7 @@
 package modelos;
 
 /**
- * Created by david on 02/07/2017.
+ * JavaBean con los datos de cada libro.
  */
 public class Libro {
 

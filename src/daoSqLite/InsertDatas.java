@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class InsertDatas extends ConnectorHelper {
-    public void insertarLibros(Libro libro) throws SQLException, IllegalAccessException, InstantiationException, ClassNotFoundException {
+    public void insertarLibros(Libro libro) {
         String sql = "INSERT INTO libros(epl_id, titulo, autor, generos, coleccion, volumen, fecha_publi, " +
                 " sinopsis, paginas, revision, idioma, publicado, estado, valoracion," +
                 " n_votos, enlaces, imgdir)" +
@@ -37,5 +37,19 @@ public class InsertDatas extends ConnectorHelper {
         }
 
 
+    }
+
+    /**
+     * Actualiza la fecha de la última actualización de la db.
+     *
+     * @throws ClassNotFoundException Driver no encontrado.
+     * @throws IllegalAccessException Faltan permisos de escritura.
+     * @throws InstantiationException Error al instanciar el driver.
+     * @throws SQLException           Error al generar la conexión.
+     */
+    public void updateDate() throws ClassNotFoundException, SQLException {
+        conectar();
+
+        desconectar();
     }
 }

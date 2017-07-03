@@ -4,18 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.ImageViewBuilder;
 import javafx.stage.Stage;
 import modelos.Libro;
 import uriSchemeHandler.CouldNotOpenUriSchemeHandler;
 import uriSchemeHandler.URISchemeHandler;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 /**
  * Created by david on 02/07/2017.
@@ -43,6 +38,9 @@ public class BookViewer {
         this.libro = libro;
     }
 
+    /**
+     * Carga los datos en sus respectivos componentes.
+     */
     @FXML
     private void initialize() {
         tfSinopsis.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -56,14 +54,22 @@ public class BookViewer {
         try{
             Image image = new Image(libro.getImgURI(),true);
             imgView.setImage(image);
-        }catch (Exception e){e.printStackTrace();}
+        } catch (Exception e) {
+            //Lanza error si no existe link.
+        }
     }
 
+    /**
+     * Cierra el dialogo al pulsar el boton "OK".
+     */
     @FXML
     private void ok() {
         dialogStage.close();
     }
 
+    /**
+     * Abre el URISchema correspondiente al magnetLink.
+     */
     @FXML
     private void download() {
         try {
@@ -78,13 +84,11 @@ public class BookViewer {
         }
     }
 
-    public BookViewer setLibro(Libro libro) {
+    public void setLibro(Libro libro) {
         this.libro = libro;
-        return this;
     }
 
-    public BookViewer setDialogStage(Stage dialogStage) {
+    public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
-        return this;
     }
 }

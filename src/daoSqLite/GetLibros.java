@@ -11,7 +11,17 @@ import java.util.ArrayList;
  * Created by david on 02/07/2017.
  */
 public class GetLibros extends ConnectorHelper {
-    public ArrayList<Libro> getLibros(String busqueda) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    /**
+     * Devuelve un listado de libros, según los parametros de busqueda.
+     *
+     * @param busqueda Nombre parcial o total del libro o autor deseado.
+     * @return ArrayList<Libro> con los libros coincidentes.
+     * @throws ClassNotFoundException Driver no encontrado.
+     * @throws IllegalAccessException Faltan permisos de escritura.
+     * @throws InstantiationException Error al instanciar el driver.
+     * @throws SQLException           Error al generar la conexión.
+     */
+    public ArrayList<Libro> getLibros(String busqueda) throws ClassNotFoundException, SQLException {
         String sql = "SELECT * FROM LIBROS WHERE lower(titulo) LIKE lower(?) OR lower(autor) like lower(?)";
         ArrayList<Libro> libros = new ArrayList<>();
         busqueda = String.format("%%%s%%", busqueda);

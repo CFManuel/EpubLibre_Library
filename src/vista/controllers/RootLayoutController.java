@@ -26,6 +26,11 @@ public class RootLayoutController {
         RootLayoutController.main = main;
     }
 
+    /**
+     * Abre la pestaña de importación de ficheros.
+     * Lanza un FileChooser para archivos .csv y .rss.
+     * Según el tipo de fichero abre su parser correspondiente.
+     */
     @FXML
     private void importDataSource() {
         FileChooser fileChooser = new FileChooser();
@@ -44,11 +49,7 @@ public class RootLayoutController {
                         return null;
                     }
                 };
-                importar.setOnSucceeded(e -> {
-                    Alert fin = new Alert(Alert.AlertType.INFORMATION);
-                    fin.setContentText("Actualizacion finalizada.");
-                    fin.showAndWait();
-                });
+                importar.setOnSucceeded(e -> alertOK());
                 new Thread(importar).start();
 
             } else if (datos.getName().endsWith("rss")) {
@@ -61,11 +62,7 @@ public class RootLayoutController {
                         return null;
                     }
                 };
-                importar.setOnSucceeded(e -> {
-                    Alert fin = new Alert(Alert.AlertType.INFORMATION);
-                    fin.setContentText("Actualizacion finalizada.");
-                    fin.showAndWait();
-                });
+                importar.setOnSucceeded(e -> alertOK());
                 new Thread(importar).start();
 
             }
@@ -77,7 +74,7 @@ public class RootLayoutController {
     @FXML
     private void help() {
         Alert informacion = new Alert(Alert.AlertType.INFORMATION);
-        informacion.setTitle("EpubLibrary v0.1.");
+        informacion.setTitle("EpubLibrary v0.4.");
         informacion.setHeaderText("Created by and for EpubLibre.");
         informacion.setContentText("Created by ladaga on 02/07/17.");
         informacion.show();
@@ -91,4 +88,13 @@ public class RootLayoutController {
         //do Something.
     }
 
+    /**
+     * Alerta de fin de carga de datos.
+     */
+    private void alertOK() {
+        Alert fin = new Alert(Alert.AlertType.INFORMATION);
+        fin.setHeaderText("Se han cargado los libros con exito.");
+        fin.setContentText("Actualizacion finalizada.");
+        fin.showAndWait();
+    }
 }

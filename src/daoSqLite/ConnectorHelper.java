@@ -1,11 +1,12 @@
 package daoSqLite;
 
-import org.sqlite.SQLiteConfig;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
- * Created by david on 30/06/2017.
+ * Clase con las utilidades de conexión a base de datos
  */
 public class ConnectorHelper {
     Connection conn = null;
@@ -13,12 +14,12 @@ public class ConnectorHelper {
     /**
      * Realiza la conexión con la base de datos, autoCommit off.
      *
-     * @throws ClassNotFoundException
-     * @throws IllegalAccessException
-     * @throws InstantiationException
-     * @throws SQLException
+     * @throws ClassNotFoundException Driver no encontrado.
+     * @throws IllegalAccessException Faltan permisos de escritura.
+     * @throws InstantiationException Error al instanciar el driver.
+     * @throws SQLException           Error al generar la conexión.
      */
-    public void conectar() throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
+    public void conectar() throws ClassNotFoundException, SQLException {
         Connection conn = null;
         String driver = "org.my";
         Class.forName("org.sqlite.JDBC");
@@ -28,6 +29,11 @@ public class ConnectorHelper {
 
     }
 
+    /**
+     * Elimina todos los libros de la db para evitar duplicados.
+     *
+     * @throws SQLException Error al borrar la tabla.
+     */
     public void limpiarTabla() throws SQLException {
         String sql = "delete from libros";
         Statement st = conn.createStatement();
@@ -35,12 +41,12 @@ public class ConnectorHelper {
     }
 
     /**
-     * Crea la tabla que poseera los libros
+     * Crea las tablas necesarias para trabajar.
      */
     public void crearTabla() {
         try {
             conectar();
-            String tabla = "CREATE TABLE IF NOT EXISTS libros (\n" +
+            String tablaLibros = "CREATE TABLE IF NOT EXISTS libros (\n" +
                     "  epl_id      NUMERIC,\n" +
                     "  titulo      TEXT,\n" +
                     "  autor       TEXT,\n" +
@@ -59,8 +65,13 @@ public class ConnectorHelper {
                     "  enlaces     TEXT," +
                     "  imgDir      TEXT," +
                     "CONSTRAINT lib_titAut PRIMARY KEY (titulo, autor))";
+            String tablaConfig = "CREATE TABLE IF NOT EXISTS CONFIG (\n" +
+                    "  TEXT_ID TEXT PRIMARY KEY ,\n" +
+                    "  DATASTRING TEXT)";
             Statement st = conn.createStatement();
-            st.execute(tabla);
+            st.execute(tablaLibros);
+            st.execute(tablaConfig);
+
         } catch (Exception e) {
             //System.err.println(e.getCause());
             e.printStackTrace();
@@ -78,7 +89,7 @@ public class ConnectorHelper {
     /**
      * Cierra la base de datos y realiza el commit de la transacción.
      *
-     * @throws SQLException
+     * @throws SQLException Error al realizar el commit.
      */
     public void desconectar() throws SQLException {
         if (conn != null) {
@@ -87,6 +98,11 @@ public class ConnectorHelper {
         }
     }
 
+    /**
+     * Devuelve la db al estado del último commit.
+     *
+     * @throws SQLException Error al realizar el rollback.
+     */
     public void rollBack() throws SQLException {
         conn.rollback();
     }

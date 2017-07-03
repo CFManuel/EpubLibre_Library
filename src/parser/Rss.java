@@ -1,7 +1,7 @@
 package parser;
 
-import modelos.Libro;
 import daoSqLite.InsertDatas;
+import modelos.Libro;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -21,9 +21,16 @@ import java.util.regex.Pattern;
  * Created by david on 02/07/2017.
  */
 public class Rss {
-    static InsertDatas insertDatas = new InsertDatas();
+    static final InsertDatas insertDatas = new InsertDatas();
 
-    public static void importXML(File xmlFile) throws FileNotFoundException, XMLStreamException {
+    /**
+     * Importa los libros a la db desde un archivo XML (.rss).
+     *
+     * @param xmlFile Fichero XML.
+     * @throws FileNotFoundException Error al abrir el fichero.
+     * @throws XMLStreamException    Error al realizar el stream.
+     */
+    public static void importXML(File xmlFile) {
         try {
             insertDatas.crearTabla();
             insertDatas.conectar();
@@ -48,6 +55,9 @@ public class Rss {
     }
 }
 
+/**
+ * Handler SAX para la lectura del XML (rss total).
+ */
 class MyHandler extends DefaultHandler {
     private String valor = "";
     private Libro libro;
@@ -56,6 +66,15 @@ class MyHandler extends DefaultHandler {
         this.libro = libro;
     }
 
+    /**
+     * Acciones en la etiqueta de apertura.
+     *
+     * @param uri
+     * @param localName  Nombre de la etiqueta
+     * @param qName
+     * @param attributes Atributos pertenecientes a la etiqueta.
+     * @throws SAXException Error en eventos de SAX.
+     */
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         valor = "";
@@ -64,6 +83,14 @@ class MyHandler extends DefaultHandler {
         }
     }
 
+    /**
+     * Acciones al cierre de la etiqueta, en este caso guardar el valor.
+     *
+     * @param uri
+     * @param localName Nombre de la etiqueta
+     * @param qName
+     * @throws SAXException Error en eventos de SAX.
+     */
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if (localName.equalsIgnoreCase("title")) {
@@ -78,13 +105,14 @@ class MyHandler extends DefaultHandler {
             libro.setPublicado(valor);
         } else if (localName.equalsIgnoreCase("description")) {
             String dir = "";
-            Matcher matcher =    Pattern.compile("src=\\\"(.+?)\\\"", Pattern.CASE_INSENSITIVE).matcher(valor);
+            Matcher matcher = Pattern.compile("src=\"(.+?)\"", Pattern.CASE_INSENSITIVE).matcher(valor);
             if (matcher.find()) {
                 dir = matcher.group(1);
                 libro.setImgURI(dir);
             }
         } else if (localName.equalsIgnoreCase("item")) {
             try {
+                //Inserta datos al final de la lectura de un libro.
                 Rss.insertDatas.insertarLibros(libro);
             } catch (Exception e) {
                 //nada
@@ -92,6 +120,14 @@ class MyHandler extends DefaultHandler {
         }
     }
 
+    /**
+     * Guarda el valor dentro de las etiquetas xml.
+     *
+     * @param ch     Caracteres en la etiqueta.
+     * @param start  Posición de inicio.
+     * @param length Longitud del texto.
+     * @throws SAXException Error en eventos de SAX.
+     */
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         valor = new String(ch, start, length);

@@ -1,7 +1,7 @@
 package parser;
 
-import modelos.Libro;
 import daoSqLite.InsertDatas;
+import modelos.Libro;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 
@@ -11,7 +11,8 @@ import java.sql.SQLException;
 
 public class Csv {
     /**
-     * Abre el csv, lo lee linea a linea e inserta los datos en la base.
+     * Abre el csv, lo lee linea a linea e inserta los datos en la base
+     * en forma de transacción.
      *
      * @param csvFile Archivo csv con los datos completos.
      * @throws IOException
@@ -81,31 +82,30 @@ public class Csv {
     }
 
     /**
-     * Obtiene
+     * Obtiene un libro a partir de una linea del csv.
      *
-     * @param items
-     * @return
+     * @param items Array de parametros del csv.
+     * @return Libro con los datos cargados.
      */
     private Libro generarLibro(String[] items) {
         Libro lib = new Libro();
         try {
-            if (items[1].equalsIgnoreCase("") == false) lib.setEpl_id(Integer.parseInt(items[1]));
+            if (!items[1].equalsIgnoreCase("")) lib.setEpl_id(Integer.parseInt(items[1]));
             lib.setTitulo(items[2]);
             lib.setAutor(items[3]);
             lib.setGeneros(items[4]);
             lib.setColeccion(items[5]);
-            if (items[6].equalsIgnoreCase("") == false) lib.setVolumen(Double.parseDouble(items[6]));
-            if (items[7].equalsIgnoreCase("") == false) lib.setFecha_publi(Integer.parseInt(items[7]));
-            if (items[8].equalsIgnoreCase("") == false) lib.setSinopsis(items[8]);
-            if (items[9].equalsIgnoreCase("") == false) lib.setPaginas(Integer.parseInt(items[9]));
-            if (items[10].equalsIgnoreCase("") == false) lib.setRevision(Double.parseDouble(items[10]));
+            if (!items[6].equalsIgnoreCase("")) lib.setVolumen(Double.parseDouble(items[6]));
+            if (!items[7].equalsIgnoreCase("")) lib.setFecha_publi(Integer.parseInt(items[7]));
+            if (!items[8].equalsIgnoreCase("")) lib.setSinopsis(items[8]);
+            if (!items[9].equalsIgnoreCase("")) lib.setPaginas(Integer.parseInt(items[9]));
+            if (!items[10].equalsIgnoreCase("")) lib.setRevision(Double.parseDouble(items[10]));
             lib.setIdioma(items[11]);
             lib.setPublicado(items[12]);
             lib.setEstado(items[13]);
-            if (items[14].equalsIgnoreCase("") == false) lib.setValoracion(Double.parseDouble(items[14]));
-            if (items[15].equalsIgnoreCase("") == false) lib.setN_votos(Integer.parseInt(items[15]));
+            if (!items[14].equalsIgnoreCase("")) lib.setValoracion(Double.parseDouble(items[14]));
+            if (!items[15].equalsIgnoreCase("")) lib.setN_votos(Integer.parseInt(items[15]));
             try {
-
                 lib.setEnlaces("magnet:?xt=urn:btih:" + items[16]);
             } catch (Exception e) {
             }
