@@ -112,7 +112,7 @@ public class Main extends Application implements CommonStrings {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("EpubLibre Library " + VERSION);
+        this.primaryStage.setTitle("ePubLibre Library " + VERSION);
         this.primaryStage.getIcons().add(new Image("vista/resources/EPL_Portadas_NEGRO.png"));
         this.main = this;
         initRootLayout();

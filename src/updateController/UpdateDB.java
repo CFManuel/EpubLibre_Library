@@ -74,11 +74,11 @@ public final class UpdateDB implements CommonStrings {
     public static void updateDataBase() {
         System.out.println("Descargando fichero...");
         File zip = Utils.downloadCSV();
+        System.out.println("Descargado.");
         try {
             int zipSize = (int) zip.length() / 2048; //Tamaño del fichero en Mb.
-            System.out.println("Descargado.");
             if (zipSize < 10) {
-                throw new IOException("Archivo no válido");
+                throw new IOException("Archivo no válido.");
             } else {
                 System.out.println("Descomprimiendo fichero...");
                 Utils.unZip(zip);

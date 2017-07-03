@@ -60,7 +60,7 @@ public class Utils implements CommonStrings {
     public static void unZip(File zip) {
         try {
             ZipFile zipFile = new ZipFile(zip);
-            zipFile.extractAll(zip.getParent());
+            zipFile.extractAll(zip.getParent() + "/");
         } catch (ZipException e) {
             e.printStackTrace();
         }

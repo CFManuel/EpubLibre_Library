@@ -108,7 +108,6 @@ public class RootLayoutController implements CommonStrings {
         sure.setHeaderText("La actualización puede tardar unos minutos, dependiendo de tu conexión a internet.");
         sure.setContentText("¿Está seguro que desea continuar?");
         Optional<ButtonType> boton = sure.showAndWait();
-        System.out.println(boton.get());
         if (boton.get() == ButtonType.OK) {
             UpdateDB.updateDataBase();
         }
@@ -140,9 +139,9 @@ public class RootLayoutController implements CommonStrings {
     private void help() {
         Alert informacion = new Alert(Alert.AlertType.INFORMATION);
         informacion.setTitle("EpubLibrary " + VERSION);
-        informacion.setHeaderText("Created by and for EpubLibre.");
+        informacion.setHeaderText("Created by and for ePubLibre.");
         informacion.setContentText("Created by ladaga on 02/07/17.\n" +
-                "Distribuida bajo GNU GPL v3.");
+                "Distributed under GNU GPL v3.");
         informacion.show();
     }
 
