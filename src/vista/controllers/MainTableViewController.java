@@ -24,6 +24,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,6 +34,7 @@ import modelos.Libro;
 import vista.Main;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created by david on 02/07/2017.
@@ -75,14 +77,17 @@ public class MainTableViewController {
     private void searchBtn() {
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         GetLibros getLibros = new GetLibros();
+        ArrayList<Libro> libros = new ArrayList<>();
         try {
-            main.setLibros(getLibros.getLibros(tfSearch.getText()));
+            libros = getLibros.getLibros(tfSearch.getText());
+            main.setLibros(libros);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
+        alertLibrosFound(libros.size());
     }
 
     /**
@@ -114,5 +119,12 @@ public class MainTableViewController {
     public void setMain(Main main) {
         this.main = main;
         bookTableView.setItems(main.getLibros());
+    }
+
+    private void alertLibrosFound(int count) {
+        Alert resultado = new Alert(Alert.AlertType.INFORMATION);
+        resultado.setHeaderText("Busqueda realizada.");
+        resultado.setContentText("Se han encontrado " + count + " libros.");
+        resultado.show();
     }
 }
