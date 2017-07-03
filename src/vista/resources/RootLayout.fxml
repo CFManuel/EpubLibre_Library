@@ -21,7 +21,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0"
-            minWidth="590" prefHeight="400" prefWidth="660" xmlns="http://javafx.com/javafx/8"
+            minWidth="590" prefHeight="400" prefWidth="660" xmlns="http://javafx.com/javafx/8.0.112"
             fx:controller="vista.controllers.RootLayoutController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
@@ -32,6 +32,7 @@
                </items></Menu>
             <Menu mnemonicParsing="false" text="Help">
                <items>
+                   <MenuItem mnemonicParsing="false" onAction="#getLastUpdate" text="DB Info"/>
                   <MenuItem mnemonicParsing="false" onAction="#help" text="About" />
                </items></Menu>
         </menus>

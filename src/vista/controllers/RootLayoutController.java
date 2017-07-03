@@ -18,6 +18,7 @@
 
 package vista.controllers;
 
+import daoSqLite.GetDatas;
 import daoSqLite.InsertDatas;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -96,6 +97,25 @@ public class RootLayoutController implements CommonStrings {
             new Thread(importar).start();
         }
 
+    }
+
+    @FXML
+    private void getLastUpdate() {
+        try {
+            GetDatas getDatas = new GetDatas();
+            String fecha = getDatas.getLastUpdate();
+            int libros = getDatas.countBooks();
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setHeaderText("Información de actualización de la base de datos:");
+            info.setContentText(String.format("La base de datos se actualizo por ultima vez en %s. %n" +
+                    "Actualmente contiene %d libros.", fecha, libros));
+            info.show();
+        } catch (Exception e) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setHeaderText("Ha habido un error al realizar consultar los datos");
+            error.setContentText("Me avergüenza decir, que algo no ha salido bien...");
+            error.show();
+        }
     }
 
     @FXML
