@@ -55,6 +55,7 @@ public class Main extends Application implements CommonStrings {
 
     /**
      * Modo sin GUI para actualizar la db en segundo plano y lanzamiento sin Args para uso de GUI.
+     * El lanzamiento normal incluye la actualización automática de la db.
      *
      * @param args Argumentos recibidos por linea de comandos.
      */
@@ -95,6 +96,7 @@ public class Main extends Application implements CommonStrings {
             }
         } else {
             new Thread(() -> {
+                new ConnectorHelper().crearTabla();
                 UpdateDB.timeToUpdate();
             }).start();
             launch(args);
@@ -113,7 +115,6 @@ public class Main extends Application implements CommonStrings {
         this.primaryStage.setTitle("EpubLibre Library " + VERSION);
         this.primaryStage.getIcons().add(new Image("vista/resources/EPL_Portadas_NEGRO.png"));
         this.main = this;
-        new ConnectorHelper().crearTabla();
         initRootLayout();
         initMainTableView();
     }

@@ -36,8 +36,12 @@ import java.sql.SQLException;
  * Created by david on 03/07/2017.
  */
 public final class UpdateDB implements CommonStrings {
-    private static int DATA_OLD = 0;
+    private static int DATA_OLD = 0; //fixme: poner fecha correcta tras las pruebas.
 
+    /**
+     * Comprueba si existe fecha en la base de datos, sino, la inserta.
+     * Comprueba cuantos dias han pasado desde la última actualización y realiza las acciones necesarias.
+     */
     public static void timeToUpdate() {
         try {
             GetDatas getDatas = new GetDatas(); //Optiene la fecha de la base
@@ -62,10 +66,15 @@ public final class UpdateDB implements CommonStrings {
         }
     }
 
+    /**
+     * Inicia el proceso de actualización, descarga el fichero .csv, comprueba que pesa al menos 30mb, sino descarta el proceso.
+     * Importa el .csv y actualiza la fecha en la base de datos.
+     */
     private static void updateDataBase() {
+        File zip = Utils.downloadCSV();
         try {
-            File zip = Utils.downloadCSV();
-            if (zip.length() / 2048 < 30) {
+            int zipSize = (int) zip.length() / 2048; //Tamaño del fichero en Mb.
+            if (zipSize < 30) {
                 throw new IOException("Archivo no válido");
             } else {
                 Utils.unZip(zip);
@@ -75,9 +84,14 @@ public final class UpdateDB implements CommonStrings {
             updateDate();
         } catch (IOException e) {
             System.err.println(e.getMessage());
+        } finally {
+            Utils.deleteZip(zip);
         }
     }
 
+    /**
+     * Inserta en la base de datos la fecha actual.
+     */
     public static void updateDate() {
         try {
             InsertDatas insertDatas = new InsertDatas();

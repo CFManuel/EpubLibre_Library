@@ -32,6 +32,11 @@ import java.net.URL;
  * Created by david on 03/07/2017.
  */
 public class Utils implements CommonStrings {
+    /**
+     * Descarga el .zip de la página oficial de EpubLibre
+     *
+     * @return File con el .zip.
+     */
     public static File downloadCSV() {
         File destino = null;
         try {
@@ -47,6 +52,11 @@ public class Utils implements CommonStrings {
         return destino;
     }
 
+    /**
+     * Recibe un archivo zip y lo descomprime en el directorio junto al jar.
+     *
+     * @param zip Fichero a descomprimir
+     */
     public static void unZip(File zip) {
         try {
             ZipFile zipFile = new ZipFile(zip);
@@ -54,5 +64,16 @@ public class Utils implements CommonStrings {
         } catch (ZipException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Borra el fichero .zip.
+     *
+     * @param zip Fichero a borrar.
+     */
+    public static void deleteZip(File zip) {
+
+        zip.delete();
+
     }
 }
