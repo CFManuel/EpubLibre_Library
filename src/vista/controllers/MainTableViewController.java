@@ -38,6 +38,10 @@ import java.util.ArrayList;
  * Created by david on 02/07/2017.
  */
 public class MainTableViewController {
+    private static String OPT_TITAUT = "Titulo y Autor";
+    private static String OPT_GENDER = "Géneros";
+    private static String OPT_LANGUAGE = "Idioma";
+
     private Main main;
     @FXML
     private TextField tfSearch;
@@ -86,11 +90,11 @@ public class MainTableViewController {
         GetLibros getLibros = new GetLibros();
         ArrayList<Libro> libros = new ArrayList<>();
         try {
-            if (option.equalsIgnoreCase("Titulo y Autor")) {
+            if (option.equalsIgnoreCase(OPT_TITAUT)) {
                 libros = getLibros.getLibrosTitAut(search);
-            } else if (option.equalsIgnoreCase("Géneros")) {
+            } else if (option.equalsIgnoreCase(OPT_GENDER)) {
                 libros = getLibros.getLibros(search, GetLibros.GENDER);
-            } else if (option.equalsIgnoreCase("Idioma")) {
+            } else if (option.equalsIgnoreCase(OPT_LANGUAGE)) {
                 libros = getLibros.getLibros(search, GetLibros.LANGUAGE);
             }
             main.setLibros(libros);
@@ -128,8 +132,8 @@ public class MainTableViewController {
     }
 
     private void configChoiceBox() {
-        choiceBoxSearch.setItems(FXCollections.observableArrayList("Titulo y Autor", "Géneros", "Idioma"));
-        choiceBoxSearch.setValue("Titulo y Autor");
+        choiceBoxSearch.setItems(FXCollections.observableArrayList(OPT_TITAUT, OPT_GENDER, OPT_LANGUAGE));
+        choiceBoxSearch.setValue(OPT_TITAUT);
     }
 
     public Main getMain() {
