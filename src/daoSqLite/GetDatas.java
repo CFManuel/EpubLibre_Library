@@ -26,7 +26,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by david on 02/07/2017.
@@ -89,13 +88,17 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         return libro;
     }
 
-    public Date getLastUpdate() throws SQLException, ClassNotFoundException {
-        String sql = String.format("SELECT TEXT_ID FROM CONFIG WHERE upper(text_id) = upper(%s)", LAST_UPDATE);
+    public String getLastUpdate() throws SQLException, ClassNotFoundException {
+        String sql = String.format("SELECT datastring FROM CONFIG WHERE upper(text_id) = upper('%s')", LAST_UPDATE);
+        String fecha = "";
         super.conectar();
-        Date date = new Date();
-        date.getTime();
+        Statement st = conn.createStatement();
+        ResultSet rst = st.executeQuery(sql);
+        while (rst.next()) {
+            fecha = rst.getString("datastring");
+        }
         super.desconectar();
-        return null;
+        return fecha;
     }
 
     public int countBooks() throws SQLException, ClassNotFoundException {

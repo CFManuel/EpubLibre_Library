@@ -18,17 +18,21 @@
 
 package daoSqLite;
 
+import modelos.CommonStrings;
 import modelos.Libro;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InsertDatas extends ConnectorHelper {
+public class InsertDatas extends ConnectorHelper implements CommonStrings {
     public void insertarLibros(Libro libro) {
         String sql = "INSERT INTO libros(epl_id, titulo, autor, generos, coleccion, volumen, fecha_publi, " +
                 " sinopsis, paginas, revision, idioma, publicado, estado, valoracion," +
                 " n_votos, enlaces, imgdir)" +
-                " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, libro.getEpl_id());
@@ -66,8 +70,15 @@ public class InsertDatas extends ConnectorHelper {
      * @throws SQLException           Error al generar la conexión.
      */
     public void updateDate() throws ClassNotFoundException, SQLException {
-        conectar();
+        String sql = "REPLACE INTO CONFIG(TEXT_ID, DATASTRING) VALUES(?,?)";
+        DateTime now = new DateTime();
+        DateTimeFormatter format = DateTimeFormat.forPattern("dd/MM/yyyy");
 
-        desconectar();
+        super.conectar();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, LAST_UPDATE);
+        ps.setString(2, format.print(now));
+        ps.execute();
+        super.desconectar();
     }
 }

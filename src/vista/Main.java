@@ -34,6 +34,7 @@ import modelos.Libro;
 import org.apache.commons.cli.*;
 import parser.Csv;
 import parser.Rss;
+import updateController.UpdateDB;
 import vista.controllers.BookViewer;
 import vista.controllers.MainTableViewController;
 import vista.controllers.RootLayoutController;
@@ -82,6 +83,7 @@ public class Main extends Application implements CommonStrings {
                     } else {
                         throw new ParseException("No es un fichero valido");
                     }
+                    UpdateDB.updateDate(); //Actualiza la fecha en la db.
                 } else {
                     throw new ParseException("No existe ese fichero");
                 }
@@ -92,6 +94,9 @@ public class Main extends Application implements CommonStrings {
                 System.exit(1);
             }
         } else {
+            new Thread(() -> {
+                UpdateDB.timeToUpdate();
+            }).start();
             launch(args);
         }
     }

@@ -18,6 +18,7 @@
 
 package vista.controllers;
 
+import daoSqLite.InsertDatas;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -29,6 +30,7 @@ import parser.Rss;
 import vista.Main;
 
 import java.io.File;
+import java.sql.SQLException;
 
 /**
  * Controlador de la vista principal y el MenuBar asignado
@@ -53,13 +55,14 @@ public class RootLayoutController implements CommonStrings {
     @FXML
     private void importDataSource() {
         FileChooser fileChooser = new FileChooser();
+        Task importar = null;
         fileChooser.setTitle("Open source file.");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("EpubLibrary", "*.csv", "*.rss"));
         final File datos = fileChooser.showOpenDialog(main.getPrimaryStage());
         if (datos != null) {
             if (datos.getName().endsWith("csv")) {
-                Task importar = new Task() {
+                importar = new Task() {
                     @Override
                     protected Object call() throws Exception {
                         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
@@ -68,11 +71,8 @@ public class RootLayoutController implements CommonStrings {
                         return null;
                     }
                 };
-                importar.setOnSucceeded(e -> alertOK());
-                new Thread(importar).start();
-
             } else if (datos.getName().endsWith("rss")) {
-                Task importar = new Task() {
+                importar = new Task() {
                     @Override
                     protected Object call() throws Exception {
                         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
@@ -81,11 +81,19 @@ public class RootLayoutController implements CommonStrings {
                         return null;
                     }
                 };
-                importar.setOnSucceeded(e -> alertOK());
-                new Thread(importar).start();
-
             }
-
+            importar.setOnSucceeded(e -> {
+                InsertDatas insertDatas = new InsertDatas();
+                try {
+                    insertDatas.updateDate();
+                } catch (ClassNotFoundException e1) {
+                    e1.printStackTrace();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                alertOK();
+            });
+            new Thread(importar).start();
         }
 
     }
