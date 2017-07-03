@@ -19,6 +19,8 @@
 package vista.controllers;
 
 import daoSqLite.GetLibros;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -46,7 +48,17 @@ public class MainTableViewController {
     @FXML
     private TableColumn<Libro, String> autorColumn;
     @FXML
-    private TableColumn<Libro, String> linkColumn;
+    private TableColumn<Libro, String> colColumn;
+    @FXML
+    private TableColumn<Libro, Number> volColumn;
+    @FXML
+    private TableColumn<Libro, Number> revColumn;
+    @FXML
+    private TableColumn<Libro, String> idiomaColumn;
+    @FXML
+    private TableColumn<Libro, Number> pagColumn;
+    @FXML
+    private TableColumn<Libro, Number> valColumn;
     @FXML
     private VBox vBox;
 
@@ -79,8 +91,15 @@ public class MainTableViewController {
     private void configTable() {
         titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
         autorColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAutor()));
-        linkColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getImgURI()));
+        colColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getColeccion()));
+        volColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getVolumen()));
+        revColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getRevision()));
+        idiomaColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdioma()));
+        pagColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPaginas()));
+        valColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getValoracion()));
+
         bookTableView.setEditable(false);
+        bookTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         bookTableView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if(event.getClickCount() > 1){
                 main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
