@@ -32,7 +32,6 @@ public class RootLayoutController {
         fileChooser.setTitle("Open source file.");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("EpubLibrary", "*.csv", "*.rss"));
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home"), "Desktop"));
         final File datos = fileChooser.showOpenDialog(main.getPrimaryStage());
         if (datos != null) {
             if (datos.getName().endsWith("csv")) {

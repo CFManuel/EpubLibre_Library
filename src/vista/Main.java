@@ -35,7 +35,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("EpubLibre Library v0.1.");
+        this.primaryStage.setTitle("EpubLibre Library v0.3.");
         this.primaryStage.getIcons().add(new Image("vista/resources/EPL_Portadas_NEGRO.png"));
         this.main = this;
         new ConnectorHelper().crearTabla();
