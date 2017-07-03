@@ -29,11 +29,12 @@
          <children>
             <HBox alignment="CENTER_LEFT" spacing="30.0">
                <children>
-                   <TextField fx:id="tfSearch" onAction="#searchBtn" prefHeight="25.0" prefWidth="242.0">
+                   <TextField fx:id="tfSearch" onAction="#searchBtn" prefHeight="25.0" prefWidth="180.0">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
                   </TextField>
+                   <ChoiceBox fx:id="choiceBoxSearch" prefHeight="25.0" prefWidth="128.0"/>
                   <Button mnemonicParsing="false" onAction="#searchBtn" text="Buscar" />
                </children>
                <padding>
@@ -46,8 +47,9 @@
                   <TableColumn fx:id="autorColumn" prefWidth="109.0" text="Autor"/>
                   <TableColumn fx:id="colColumn" prefWidth="107.0" text="Colección"/>
                   <TableColumn fx:id="volColumn" prefWidth="41.0" text="Volumen"/>
-                  <TableColumn fx:id="revColumn" prefWidth="36.0" resizable="false" text="Rev"/>
+                  <TableColumn fx:id="generosColumn" prefWidth="75.0" text="Géneros"/>
                   <TableColumn fx:id="idiomaColumn" prefWidth="73.0" text="Idioma"/>
+                  <TableColumn fx:id="revColumn" prefWidth="36.0" resizable="false" text="Rev"/>
                   <TableColumn fx:id="pagColumn" prefWidth="54.0" text="Paginas"/>
                   <TableColumn fx:id="valColumn" prefWidth="70.0" text="Valoración"/>
               </columns>

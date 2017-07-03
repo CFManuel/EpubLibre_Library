@@ -22,12 +22,10 @@ import daoSqLite.GetLibros;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import modelos.Libro;
@@ -43,6 +41,9 @@ public class MainTableViewController {
     private Main main;
     @FXML
     private TextField tfSearch;
+    @FXML
+    private ChoiceBox<String> choiceBoxSearch;
+
     @FXML
     private TableView<Libro> bookTableView;
     @FXML
@@ -62,11 +63,15 @@ public class MainTableViewController {
     @FXML
     private TableColumn<Libro, Number> valColumn;
     @FXML
+    private TableColumn<Libro, String> generosColumn;
+    @FXML
     private VBox vBox;
 
     @FXML
     private void initialize() {
         configTable();
+        configChoiceBox();
+
     }
 
     /**
@@ -76,16 +81,25 @@ public class MainTableViewController {
     @FXML
     private void searchBtn() {
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
+        String search = tfSearch.getText();
+        String option = choiceBoxSearch.getValue();
         GetLibros getLibros = new GetLibros();
         ArrayList<Libro> libros = new ArrayList<>();
         try {
-            libros = getLibros.getLibros(tfSearch.getText());
+            if (option.equalsIgnoreCase("Titulo y Autor")) {
+                libros = getLibros.getLibrosTitAut(search);
+            } else if (option.equalsIgnoreCase("Géneros")) {
+                libros = getLibros.getLibros(search, GetLibros.GENDER);
+            } else if (option.equalsIgnoreCase("Idioma")) {
+                libros = getLibros.getLibros(search, GetLibros.LANGUAGE);
+            }
             main.setLibros(libros);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
         alertLibrosFound(libros.size());
     }
@@ -98,6 +112,7 @@ public class MainTableViewController {
         autorColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAutor()));
         colColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getColeccion()));
         volColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getVolumen()));
+        generosColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGeneros()));
         revColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getRevision()));
         idiomaColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdioma()));
         pagColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPaginas()));
@@ -106,10 +121,15 @@ public class MainTableViewController {
         bookTableView.setEditable(false);
         bookTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         bookTableView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            if(event.getClickCount() > 1){
+            if (event.getClickCount() > 1) {
                 main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
             }
         });
+    }
+
+    private void configChoiceBox() {
+        choiceBoxSearch.setItems(FXCollections.observableArrayList("Titulo y Autor", "Géneros", "Idioma"));
+        choiceBoxSearch.setValue("Titulo y Autor");
     }
 
     public Main getMain() {
