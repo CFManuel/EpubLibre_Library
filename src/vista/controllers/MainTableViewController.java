@@ -18,7 +18,7 @@
 
 package vista.controllers;
 
-import daoSqLite.GetLibros;
+import daoSqLite.GetDatas;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -38,7 +38,8 @@ import java.util.ArrayList;
  * Created by david on 02/07/2017.
  */
 public class MainTableViewController {
-    private static String OPT_TITAUT = "Titulo y Autor";
+    private static String OPT_TITLE = "Título";
+    private static String OPT_AUTHOR = "Autor";
     private static String OPT_GENDER = "Géneros";
     private static String OPT_LANGUAGE = "Idioma";
 
@@ -87,15 +88,17 @@ public class MainTableViewController {
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         String search = tfSearch.getText();
         String option = choiceBoxSearch.getValue();
-        GetLibros getLibros = new GetLibros();
+        GetDatas getDatas = new GetDatas();
         ArrayList<Libro> libros = new ArrayList<>();
         try {
-            if (option.equalsIgnoreCase(OPT_TITAUT)) {
-                libros = getLibros.getLibrosTitAut(search);
+            if (option.equalsIgnoreCase(OPT_TITLE)) {
+                libros = getDatas.getLibros(search, GetDatas.TITLE);
+            } else if (option.equalsIgnoreCase(OPT_AUTHOR)) {
+                libros = getDatas.getLibros(search, GetDatas.AUTHOR);
             } else if (option.equalsIgnoreCase(OPT_GENDER)) {
-                libros = getLibros.getLibros(search, GetLibros.GENDER);
+                libros = getDatas.getLibros(search, GetDatas.GENDER);
             } else if (option.equalsIgnoreCase(OPT_LANGUAGE)) {
-                libros = getLibros.getLibros(search, GetLibros.LANGUAGE);
+                libros = getDatas.getLibros(search, GetDatas.LANGUAGE);
             }
             main.setLibros(libros);
         } catch (ClassNotFoundException e) {
@@ -132,8 +135,8 @@ public class MainTableViewController {
     }
 
     private void configChoiceBox() {
-        choiceBoxSearch.setItems(FXCollections.observableArrayList(OPT_TITAUT, OPT_GENDER, OPT_LANGUAGE));
-        choiceBoxSearch.setValue(OPT_TITAUT);
+        choiceBoxSearch.setItems(FXCollections.observableArrayList(OPT_TITLE, OPT_AUTHOR, OPT_GENDER, OPT_LANGUAGE));
+        choiceBoxSearch.setValue(OPT_TITLE);
     }
 
     public Main getMain() {

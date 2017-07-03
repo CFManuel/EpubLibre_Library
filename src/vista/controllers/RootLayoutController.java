@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
+import modelos.CommonStrings;
 import parser.Csv;
 import parser.Rss;
 import vista.Main;
@@ -32,7 +33,7 @@ import java.io.File;
 /**
  * Controlador de la vista principal y el MenuBar asignado
  */
-public class RootLayoutController {
+public class RootLayoutController implements CommonStrings {
     private static Main main;
 
     /**
@@ -92,7 +93,7 @@ public class RootLayoutController {
     @FXML
     private void help() {
         Alert informacion = new Alert(Alert.AlertType.INFORMATION);
-        informacion.setTitle("EpubLibrary v0.4.");
+        informacion.setTitle("EpubLibrary " + VERSION);
         informacion.setHeaderText("Created by and for EpubLibre.");
         informacion.setContentText("Created by ladaga on 02/07/17.");
         informacion.show();

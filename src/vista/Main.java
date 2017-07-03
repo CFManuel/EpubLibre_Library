@@ -29,6 +29,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import modelos.CommonStrings;
 import modelos.Libro;
 import org.apache.commons.cli.*;
 import parser.Csv;
@@ -43,7 +44,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class Main extends Application {
+public class Main extends Application implements CommonStrings {
     //ArrayList con los datos que se muestran en la tabla.
     private final ObservableList<Libro> libros = FXCollections.observableArrayList();
     @SuppressWarnings("FieldCanBeLocal")
@@ -104,7 +105,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("EpubLibre Library v0.4.");
+        this.primaryStage.setTitle("EpubLibre Library " + VERSION);
         this.primaryStage.getIcons().add(new Image("vista/resources/EPL_Portadas_NEGRO.png"));
         this.main = this;
         new ConnectorHelper().crearTabla();

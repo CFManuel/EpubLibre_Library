@@ -18,6 +18,7 @@
 
 package daoSqLite;
 
+import modelos.CommonStrings;
 import modelos.Libro;
 
 import java.sql.PreparedStatement;
@@ -25,47 +26,35 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by david on 02/07/2017.
  */
-public class GetLibros extends ConnectorHelper {
-    public static int GENDER = 1;
-    public static int LANGUAGE = 2;
-    /**
-     * Devuelve un listado de libros, según los parametros de busqueda.
-     *
-     * @param busqueda Nombre parcial o total del libro o autor deseado.
-     * @return ArrayList<Libro> con los libros coincidentes.
-     * @throws ClassNotFoundException Driver no encontrado.
-     * @throws IllegalAccessException Faltan permisos de escritura.
-     * @throws InstantiationException Error al instanciar el driver.
-     * @throws SQLException           Error al generar la conexión.
-     */
-    public ArrayList<Libro> getLibrosTitAut(String busqueda) throws ClassNotFoundException, SQLException {
-        String sql = "SELECT * FROM LIBROS WHERE lower(titulo) LIKE lower(?) OR lower(autor) like lower(?)";
-        ArrayList<Libro> libros = new ArrayList<>();
-        busqueda = String.format("%%%s%%", busqueda);
-        super.conectar();
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, busqueda);
-        ps.setString(2, busqueda);
-        ResultSet rst = ps.executeQuery();
-        while (rst.next()) {
-            libros.add(crearLibro(rst));
-        }
-        super.desconectar();
-        return libros;
-    }
+public class GetDatas extends ConnectorHelper implements CommonStrings {
+    public static int TITLE = 1;
+    public static int AUTHOR = 2;
+    public static int GENDER = 3;
+    public static int LANGUAGE = 4;
 
+    /**
+     * @param busqueda Palabra que se desea buscar en la db.
+     * @param tipo     Campo sobre el que se desea realizar la busqueda.
+     * @return
+     * @throws SQLException           Error al generar la conexión.
+     * @throws ClassNotFoundException Driver no encontrado.
+     */
     public ArrayList<Libro> getLibros(String busqueda, int tipo) throws SQLException, ClassNotFoundException {
         String sql = "";
-        if (tipo == GENDER) {
+        if (tipo == TITLE) {
+            sql = "SELECT * FROM LIBROS WHERE lower(titulo) LIKE lower(?)";
+        } else if (tipo == AUTHOR) {
+            sql = "SELECT * FROM LIBROS WHERE lower(autor) LIKE lower(?)";
+        } else if (tipo == GENDER) {
             sql = "SELECT * FROM LIBROS WHERE lower(generos) LIKE lower(?)";
         } else if (tipo == LANGUAGE) {
-            sql = "SELECT * FROM LIBROS WHERE lower(idoma) LIKE lower(?)";
+            sql = "SELECT * FROM LIBROS WHERE lower(idioma) LIKE lower(?)";
         }
-        //String sql = (tipo == 1) ? "SELECT * FROM LIBROS WHERE lower(generos) LIKE lower(?)" : "SELECT * FROM LIBROS WHERE lower(idoma) LIKE lower(?)";
         ArrayList<Libro> libros = new ArrayList<>();
         busqueda = String.format("%%%s%%", busqueda);
         super.conectar();
@@ -98,6 +87,15 @@ public class GetLibros extends ConnectorHelper {
                 .setEnlaces(rst.getString("enlaces"))
                 .setImgURI(rst.getString("imgdir"));
         return libro;
+    }
+
+    public Date getLastUpdate() throws SQLException, ClassNotFoundException {
+        String sql = String.format("SELECT TEXT_ID FROM CONFIG WHERE upper(text_id) = upper(%s)", LAST_UPDATE);
+        super.conectar();
+        Date date = new Date();
+        date.getTime();
+        super.desconectar();
+        return null;
     }
 
     public int countBooks() throws SQLException, ClassNotFoundException {
