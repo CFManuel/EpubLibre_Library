@@ -48,6 +48,7 @@ public final class UpdateDB implements CommonStrings {
             String lastDate = getDatas.getLastUpdate();
             if (lastDate.equalsIgnoreCase("")) {
                 updateDate();
+                updateDataBase();
             } else {
                 //Marca el dia de actual.
                 DateTime now = new DateTime();
@@ -70,15 +71,20 @@ public final class UpdateDB implements CommonStrings {
      * Inicia el proceso de actualización, descarga el fichero .csv, comprueba que pesa al menos 30mb, sino descarta el proceso.
      * Importa el .csv y actualiza la fecha en la base de datos.
      */
-    private static void updateDataBase() {
+    public static void updateDataBase() {
+        System.out.println("Descargando fichero...");
         File zip = Utils.downloadCSV();
         try {
             int zipSize = (int) zip.length() / 2048; //Tamaño del fichero en Mb.
-            if (zipSize < 30) {
+            System.out.println("Descargado.");
+            if (zipSize < 10) {
                 throw new IOException("Archivo no válido");
             } else {
+                System.out.println("Descomprimiendo fichero...");
                 Utils.unZip(zip);
+                System.out.println("Descomprimido.");
             }
+            System.out.println("Iniciando importacion de csv...");
             Csv csv = new Csv();
             csv.importCSV(new File(CSV_NAME));
             updateDate();

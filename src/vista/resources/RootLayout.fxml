@@ -29,6 +29,7 @@
           <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#importDataSource" text="Importar datos" />
+                   <MenuItem mnemonicParsing="false" onAction="#epubLibreImport" text="Importar datos desde ePubLibre"/>
                </items></Menu>
             <Menu mnemonicParsing="false" text="Help">
                <items>

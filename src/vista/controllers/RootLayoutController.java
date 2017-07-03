@@ -24,14 +24,17 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import modelos.CommonStrings;
 import parser.Csv;
 import parser.Rss;
+import updateController.UpdateDB;
 import vista.Main;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.util.Optional;
 
 /**
  * Controlador de la vista principal y el MenuBar asignado
@@ -100,6 +103,18 @@ public class RootLayoutController implements CommonStrings {
     }
 
     @FXML
+    private void epubLibreImport() {
+        Alert sure = new Alert(Alert.AlertType.CONFIRMATION);
+        sure.setHeaderText("La actualización puede tardar unos minutos, dependiendo de tu conexión a internet.");
+        sure.setContentText("¿Está seguro que desea continuar?");
+        Optional<ButtonType> boton = sure.showAndWait();
+        System.out.println(boton.get());
+        if (boton.get() == ButtonType.OK) {
+            UpdateDB.updateDataBase();
+        }
+    }
+
+    @FXML
     private void getLastUpdate() {
         try {
             GetDatas getDatas = new GetDatas();
@@ -118,12 +133,16 @@ public class RootLayoutController implements CommonStrings {
         }
     }
 
+    /**
+     * Información sobre la aplicación.
+     */
     @FXML
     private void help() {
         Alert informacion = new Alert(Alert.AlertType.INFORMATION);
         informacion.setTitle("EpubLibrary " + VERSION);
         informacion.setHeaderText("Created by and for EpubLibre.");
-        informacion.setContentText("Created by ladaga on 02/07/17.");
+        informacion.setContentText("Created by ladaga on 02/07/17.\n" +
+                "Distribuida bajo GNU GPL v3.");
         informacion.show();
     }
 
