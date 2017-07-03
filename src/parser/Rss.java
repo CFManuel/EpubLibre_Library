@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017.
+ * Copyright (c) 2017. Ladaga.
  * This file is part of EpubLibre_Library.
  *
  *     EpubLibre_Library is free software: you can redistribute it and/or modify
