@@ -36,7 +36,7 @@ import java.sql.SQLException;
  * Created by david on 03/07/2017.
  */
 public final class UpdateDB implements CommonStrings {
-    private static int DATA_OLD = 0; //fixme: poner fecha correcta tras las pruebas.
+    private static int DATA_OLD = 4; //fixme: poner fecha correcta tras las pruebas.
 
     /**
      * Comprueba si existe fecha en la base de datos, sino, la inserta.
@@ -86,7 +86,7 @@ public final class UpdateDB implements CommonStrings {
             }
             System.out.println("Iniciando importacion de csv...");
             Csv csv = new Csv();
-            csv.importCSV(new File(CSV_NAME));
+            csv.importCSV(new File(CSV_DEST + CSV_NAME));
             updateDate();
         } catch (IOException e) {
             System.err.println(e.getMessage());

@@ -41,7 +41,8 @@ public class ConnectorHelper {
         Connection conn = null;
         String driver = "org.my";
         Class.forName("org.sqlite.JDBC");
-        conn = DriverManager.getConnection("jdbc:sqlite:epubLibre.db");
+
+        conn = DriverManager.getConnection("jdbc:sqlite:epl/epubLibre.db");
         conn.setAutoCommit(false);
         this.conn = conn;
 

@@ -41,7 +41,7 @@ public class Utils implements CommonStrings {
         File destino = null;
         try {
             URL url = new URL(CSV_URL);
-            destino = new File("epub.zip");
+            destino = new File(CSV_DEST + "epub.zip");
             FileUtils.copyURLToFile(url, destino);
 
         } catch (MalformedURLException e) {
@@ -72,8 +72,13 @@ public class Utils implements CommonStrings {
      * @param zip Fichero a borrar.
      */
     public static void deleteZip(File zip) {
-
         zip.delete();
+    }
 
+    public static void crearEPL() {
+        File carpeta = new File(CSV_DEST);
+        if (carpeta.exists() == false) {
+            carpeta.mkdir();
+        }
     }
 }

@@ -19,6 +19,7 @@
 package vista;
 
 import daoSqLite.ConnectorHelper;
+import files.Utils;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -96,6 +97,7 @@ public class Main extends Application implements CommonStrings {
             }
         } else {
             new Thread(() -> {
+                Utils.crearEPL();
                 new ConnectorHelper().crearTabla();
                 UpdateDB.timeToUpdate();
             }).start();
@@ -180,7 +182,7 @@ public class Main extends Application implements CommonStrings {
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(this.primaryStage);
             dialogStage.setScene(scene);
-
+            dialogStage.getIcons().add(new Image("vista/resources/EPL_Portadas_NEGRO.png"));
             controller.setDialogStage(dialogStage);
             controller.setLibro(libro);
             dialogStage.showAndWait();

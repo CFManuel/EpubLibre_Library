@@ -26,5 +26,5 @@ public interface CommonStrings {
     String LAST_UPDATE = "LAST_UPDATE";
     String CSV_URL = "https://epublibre.org/rssweb/csv";
     String CSV_DEST = "epl/";
-    String CSV_NAME = "epl/epublibre.csv";
+    String CSV_NAME = "epublibre.csv";
 }
