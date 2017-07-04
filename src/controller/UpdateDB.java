@@ -16,11 +16,13 @@
  *     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package updateController;
+package controller;
 
 import daoSqLite.GetDatas;
 import daoSqLite.InsertDatas;
+import exceptions.NoValidCSVFile;
 import files.Utils;
+import javafx.concurrent.Task;
 import modelos.CommonStrings;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
@@ -32,17 +34,20 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static controller.Alertas.alertUpdateFail;
+import static controller.Alertas.alertUpdateOK;
+
 /**
  * Created by david on 03/07/2017.
  */
 public final class UpdateDB implements CommonStrings {
-    private static int DATA_OLD = 4; //fixme: poner fecha correcta tras las pruebas.
+
 
     /**
      * Comprueba si existe fecha en la base de datos, sino, la inserta.
      * Comprueba cuantos dias han pasado desde la última actualización y realiza las acciones necesarias.
      */
-    public static void timeToUpdate() {
+    public static void timeToUpdate() throws NoValidCSVFile {
         try {
             GetDatas getDatas = new GetDatas(); //Optiene la fecha de la base
             String lastDate = getDatas.getLastUpdate();
@@ -72,27 +77,47 @@ public final class UpdateDB implements CommonStrings {
      * Importa el .csv y actualiza la fecha en la base de datos.
      */
     public static void updateDataBase() {
-        System.out.println("Descargando fichero...");
-        File zip = Utils.downloadCSV();
-        System.out.println("Descargado.");
-        try {
-            int zipSize = (int) zip.length() / 2048; //Tamaño del fichero en Mb.
-            if (zipSize < 10) {
-                throw new IOException("Archivo no válido.");
-            } else {
-                System.out.println("Descomprimiendo fichero...");
-                Utils.unZip(zip);
-                System.out.println("Descomprimido.");
+        Task importar = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                System.out.println("Descargando fichero...");
+                File zip = Utils.downloadCSV();
+                System.out.println("Descargado.");
+                try {
+                    int zipSize = (int) zip.length() / 2048; //Tamaño del fichero en Mb.
+                    if (zipSize < 10) {
+                        throw new NoValidCSVFile("Archivo no válido.");
+                    } else {
+                        System.out.println("Descomprimiendo fichero...");
+                        Utils.unZip(zip);
+                        System.out.println("Descomprimido.");
+                    }
+                    System.out.println("Iniciando importacion de csv...");
+                    Csv csv = new Csv();
+                    csv.importCSV(new File(CSV_DEST + CSV_NAME));
+                    updateDate();
+                } catch (NoValidCSVFile noValidCSVFile) {
+                    System.err.println("error");
+
+                    throw noValidCSVFile;
+                } catch (IOException e) {
+
+                    throw e;
+                } finally {
+                    Utils.deleteZip(zip);
+                }
+                return null;
             }
-            System.out.println("Iniciando importacion de csv...");
-            Csv csv = new Csv();
-            csv.importCSV(new File(CSV_DEST + CSV_NAME));
-            updateDate();
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        } finally {
-            Utils.deleteZip(zip);
-        }
+        };
+        importar.setOnSucceeded(e -> {
+            System.err.println("ok");
+            alertUpdateOK();
+        });
+        importar.setOnFailed(e -> {
+            System.err.println("error");
+            alertUpdateFail();
+        });
+        new Thread(importar).start();
     }
 
     /**
@@ -108,4 +133,5 @@ public final class UpdateDB implements CommonStrings {
             e.printStackTrace();
         }
     }
+
 }

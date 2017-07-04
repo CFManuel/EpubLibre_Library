@@ -18,6 +18,7 @@
 
 package vista.controllers;
 
+import controller.UpdateDB;
 import daoSqLite.GetDatas;
 import daoSqLite.InsertDatas;
 import javafx.concurrent.Task;
@@ -29,12 +30,13 @@ import javafx.stage.FileChooser;
 import modelos.CommonStrings;
 import parser.Csv;
 import parser.Rss;
-import updateController.UpdateDB;
 import vista.Main;
 
 import java.io.File;
 import java.sql.SQLException;
 import java.util.Optional;
+
+import static controller.Alertas.*;
 
 /**
  * Controlador de la vista principal y el MenuBar asignado
@@ -95,8 +97,9 @@ public class RootLayoutController implements CommonStrings {
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
-                alertOK();
+                alertUpdateOK();
             });
+            importar.setOnFailed(e -> alertUpdateFail());
             new Thread(importar).start();
         }
 
@@ -119,16 +122,9 @@ public class RootLayoutController implements CommonStrings {
             GetDatas getDatas = new GetDatas();
             String fecha = getDatas.getLastUpdate();
             int libros = getDatas.countBooks();
-            Alert info = new Alert(Alert.AlertType.INFORMATION);
-            info.setHeaderText("Información de actualización de la base de datos:");
-            info.setContentText(String.format("La base de datos se actualizo por ultima vez en %s. %n" +
-                    "Actualmente contiene %d libros.", fecha, libros));
-            info.show();
+            alertDBInformation(fecha, libros);
         } catch (Exception e) {
-            Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setHeaderText("Ha habido un error al realizar consultar los datos");
-            error.setContentText("Me avergüenza decir, que algo no ha salido bien...");
-            error.show();
+            alertDBError();
         }
     }
 
@@ -137,12 +133,7 @@ public class RootLayoutController implements CommonStrings {
      */
     @FXML
     private void help() {
-        Alert informacion = new Alert(Alert.AlertType.INFORMATION);
-        informacion.setTitle("EpubLibrary " + VERSION);
-        informacion.setHeaderText("Created by and for ePubLibre.");
-        informacion.setContentText("Created by ladaga on 02/07/17.\n" +
-                "Distributed under GNU GPL v3.");
-        informacion.show();
+        aplicationInfo();
     }
 
     /**
@@ -153,13 +144,5 @@ public class RootLayoutController implements CommonStrings {
         //do Something.
     }
 
-    /**
-     * Alerta de fin de carga de datos.
-     */
-    private void alertOK() {
-        Alert fin = new Alert(Alert.AlertType.INFORMATION);
-        fin.setHeaderText("Se han cargado los libros con exito.");
-        fin.setContentText("Actualizacion finalizada.");
-        fin.showAndWait();
-    }
+
 }

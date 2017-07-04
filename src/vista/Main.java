@@ -18,12 +18,14 @@
 
 package vista;
 
+import controller.UpdateDB;
 import daoSqLite.ConnectorHelper;
 import files.Utils;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -35,7 +37,6 @@ import modelos.Libro;
 import org.apache.commons.cli.*;
 import parser.Csv;
 import parser.Rss;
-import updateController.UpdateDB;
 import vista.controllers.BookViewer;
 import vista.controllers.MainTableViewController;
 import vista.controllers.RootLayoutController;
@@ -96,11 +97,7 @@ public class Main extends Application implements CommonStrings {
                 System.exit(1);
             }
         } else {
-            new Thread(() -> {
-                Utils.crearEPL();
-                new ConnectorHelper().crearTabla();
-                UpdateDB.timeToUpdate();
-            }).start();
+
             launch(args);
         }
     }
@@ -117,8 +114,15 @@ public class Main extends Application implements CommonStrings {
         this.primaryStage.setTitle("ePubLibre Library " + VERSION);
         this.primaryStage.getIcons().add(new Image("vista/resources/EPL_Portadas_NEGRO.png"));
         this.main = this;
+
         initRootLayout();
         initMainTableView();
+
+        main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
+        Utils.crearEPL();
+        new ConnectorHelper().crearTabla();
+        UpdateDB.timeToUpdate();
+        main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
     }
 
     /**
