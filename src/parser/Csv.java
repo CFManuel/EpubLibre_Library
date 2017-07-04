@@ -41,7 +41,6 @@ public class Csv {
         InsertDatas idatas = new InsertDatas();
         String line;
         String[] items;
-
         try {
             idatas.crearTabla();
             it.nextLine();

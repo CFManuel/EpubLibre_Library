@@ -23,6 +23,14 @@ import daoSqLite.InsertDatas;
 import exceptions.NoValidCSVFile;
 import files.Utils;
 import javafx.concurrent.Task;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelos.CommonStrings;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
@@ -31,7 +39,6 @@ import org.joda.time.format.DateTimeFormatter;
 import parser.Csv;
 
 import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
 
 import static controller.Alertas.alertUpdateFail;
@@ -41,7 +48,7 @@ import static controller.Alertas.alertUpdateOK;
  * Created by david on 03/07/2017.
  */
 public final class UpdateDB implements CommonStrings {
-
+    private static int TOTAL_PROGRESS = 7;
 
     /**
      * Comprueba si existe fecha en la base de datos, sino, la inserta.
@@ -77,39 +84,60 @@ public final class UpdateDB implements CommonStrings {
      * Importa el .csv y actualiza la fecha en la base de datos.
      */
     public static void updateDataBase() {
+        ProgressForm progressForm = new ProgressForm();
         Task importar = new Task() {
             @Override
             protected Object call() throws Exception {
-                System.out.println("Descargando fichero...");
+                updateProgress(0, TOTAL_PROGRESS);
+                updateMessage("Iniciando descarga de csv...");
+
+                updateMessage("Descargando csv...");
+                updateProgress(1, TOTAL_PROGRESS);
                 File zip = Utils.downloadCSV();
-                System.out.println("Descargado.");
+                //File zip = new File(CSV_DEST + "epub.zip");
+
+                updateProgress(3, TOTAL_PROGRESS);
+                updateMessage("CSV Descargado.");
+
                 try {
+                    updateMessage("Comprobando validez...");
                     int zipSize = (int) zip.length() / 2048; //Tamaño del fichero en Mb.
                     if (zipSize < 10) {
                         throw new NoValidCSVFile("Archivo no válido.");
                     } else {
-                        System.out.println("Descomprimiendo fichero...");
                         Utils.unZip(zip);
-                        System.out.println("Descomprimido.");
                     }
-                    System.out.println("Iniciando importacion de csv...");
+                    updateProgress(4, TOTAL_PROGRESS);
+                    updateMessage("CSV válido.");
+
                     Csv csv = new Csv();
+                    updateMessage("Importando CSV...");
                     csv.importCSV(new File(CSV_DEST + CSV_NAME));
+                    updateMessage("CSV importado.");
+
+                    updateProgress(5, TOTAL_PROGRESS);
+                    updateMessage("Actualizando fecha...");
                     updateDate();
+                    updateMessage("Fecha actualizada...");
+                    updateProgress(6, TOTAL_PROGRESS);
                 } catch (NoValidCSVFile noValidCSVFile) {
-
                     throw noValidCSVFile;
-                } catch (IOException e) {
-
-                    throw e;
                 } finally {
                     Utils.deleteZip(zip);
+                    updateProgress(TOTAL_PROGRESS, TOTAL_PROGRESS);
                 }
                 return null;
             }
         };
-        importar.setOnSucceeded(e -> alertUpdateOK());
-        importar.setOnFailed(e -> alertUpdateFail());
+        progressForm.activateProgressBar(importar);
+        importar.setOnSucceeded(e -> {
+            progressForm.getDialogStage().close();
+            alertUpdateOK();
+        });
+        importar.setOnFailed(e -> {
+            progressForm.getDialogStage().close();
+            alertUpdateFail();
+        });
         new Thread(importar).start();
     }
 
@@ -127,4 +155,44 @@ public final class UpdateDB implements CommonStrings {
         }
     }
 
+
+    public static class ProgressForm {
+        private final Stage dialogStage;
+        private final ProgressBar pb = new ProgressBar();
+        private final Label label = new Label();
+
+        public ProgressForm() {
+            dialogStage = new Stage();
+            dialogStage.initStyle(StageStyle.UTILITY);
+            dialogStage.setResizable(false);
+            dialogStage.setTitle("Actualización en curso.");
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+
+            // PROGRESS BAR
+            label.setText("alerto");
+
+            pb.setProgress(-1F);
+            // pb.setProgress(10);
+            pb.setPrefWidth(200);
+
+            final VBox vb = new VBox();
+            vb.setSpacing(5);
+            vb.setAlignment(Pos.CENTER_LEFT);
+            vb.getChildren().addAll(label, pb);
+
+            Scene scene = new Scene(vb);
+            dialogStage.setScene(scene);
+        }
+
+        public void activateProgressBar(final Task<?> task) {
+            pb.progressProperty().bind(task.progressProperty());
+            label.textProperty().bind(task.messageProperty());
+
+            dialogStage.show();
+        }
+
+        public Stage getDialogStage() {
+            return dialogStage;
+        }
+    }
 }

@@ -33,15 +33,16 @@ public class Alertas implements CommonStrings {
         fin.setHeaderText("Se han cargado los libros con exito.");
         fin.setContentText("Actualizacion finalizada.");
         fin.show();
+
     }
 
     /**
      * Alerta de error en carga de datos.
      */
     public static void alertUpdateFail() {
-        Alert fin = new Alert(Alert.AlertType.INFORMATION);
+        Alert fin = new Alert(Alert.AlertType.ERROR);
         fin.setHeaderText("No se han podido actualizar los libros.");
-        fin.setContentText("Me avergüenza decir, que algo no ha salido bien...");
+        fin.setContentText("Me avergüenza decirlo, pero algo no ha salido bien...");
         fin.show();
     }
 
@@ -65,7 +66,7 @@ public class Alertas implements CommonStrings {
     public static void alertDBError() {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setHeaderText("Ha habido un error al realizar consultar los datos");
-        error.setContentText("Me avergüenza decir, que algo no ha salido bien...");
+        error.setContentText("Me avergüenza decirlo, pero algo no ha salido bien...");
         error.show();
     }
 
