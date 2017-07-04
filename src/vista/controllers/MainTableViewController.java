@@ -47,6 +47,7 @@ import static controller.Alertas.alertLibrosFound;
 public class MainTableViewController {
     private static String OPT_TITLE = "Título";
     private static String OPT_AUTHOR = "Autor";
+    private static String OPT_COLLECTIONS = "Colecciones";
     private static String OPT_GENDER = "Géneros";
     private static String OPT_LANGUAGE = "Idioma";
 
@@ -102,6 +103,8 @@ public class MainTableViewController {
                 libros = getDatas.getLibros(search, GetDatas.TITLE);
             } else if (option.equalsIgnoreCase(OPT_AUTHOR)) {
                 libros = getDatas.getLibros(search, GetDatas.AUTHOR);
+            } else if (option.equalsIgnoreCase(OPT_COLLECTIONS)) {
+                libros = getDatas.getLibros(search, GetDatas.COLLECTIONS);
             } else if (option.equalsIgnoreCase(OPT_GENDER)) {
                 libros = getDatas.getLibros(search, GetDatas.GENDER);
             } else if (option.equalsIgnoreCase(OPT_LANGUAGE)) {
@@ -151,7 +154,7 @@ public class MainTableViewController {
      * Configura las opciones del ChoiceBox de busquedas.
      */
     private void configChoiceBox() {
-        choiceBoxSearch.setItems(FXCollections.observableArrayList(OPT_TITLE, OPT_AUTHOR, OPT_GENDER, OPT_LANGUAGE));
+        choiceBoxSearch.setItems(FXCollections.observableArrayList(OPT_TITLE, OPT_AUTHOR, OPT_COLLECTIONS, OPT_GENDER, OPT_LANGUAGE));
         choiceBoxSearch.setValue(OPT_TITLE);
     }
 

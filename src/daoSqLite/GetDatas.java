@@ -27,14 +27,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- * Created by david on 02/07/2017.
- */
 public class GetDatas extends ConnectorHelper implements CommonStrings {
     public static int TITLE = 1;
     public static int AUTHOR = 2;
-    public static int GENDER = 3;
-    public static int LANGUAGE = 4;
+    public static int COLLECTIONS = 3;
+    public static int GENDER = 4;
+    public static int LANGUAGE = 5;
 
     /**
      * @param busqueda Palabra que se desea buscar en la db.
@@ -49,6 +47,8 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
             sql = "SELECT * FROM LIBROS WHERE lower(titulo) LIKE lower(?)";
         } else if (tipo == AUTHOR) {
             sql = "SELECT * FROM LIBROS WHERE lower(autor) LIKE lower(?)";
+        } else if (tipo == COLLECTIONS) {
+            sql = "SELECT * FROM LIBROS WHERE lower(coleccion) LIKE lower(?)";
         } else if (tipo == GENDER) {
             sql = "SELECT * FROM LIBROS WHERE lower(generos) LIKE lower(?)";
         } else if (tipo == LANGUAGE) {
