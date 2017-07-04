@@ -97,7 +97,6 @@ public final class UpdateDB implements CommonStrings {
                     csv.importCSV(new File(CSV_DEST + CSV_NAME));
                     updateDate();
                 } catch (NoValidCSVFile noValidCSVFile) {
-                    System.err.println("error");
 
                     throw noValidCSVFile;
                 } catch (IOException e) {
@@ -109,14 +108,8 @@ public final class UpdateDB implements CommonStrings {
                 return null;
             }
         };
-        importar.setOnSucceeded(e -> {
-            System.err.println("ok");
-            alertUpdateOK();
-        });
-        importar.setOnFailed(e -> {
-            System.err.println("error");
-            alertUpdateFail();
-        });
+        importar.setOnSucceeded(e -> alertUpdateOK());
+        importar.setOnFailed(e -> alertUpdateFail());
         new Thread(importar).start();
     }
 
