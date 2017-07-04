@@ -43,22 +43,24 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      */
     public ArrayList<Libro> getLibros(String busqueda, int tipo) throws SQLException, ClassNotFoundException {
         String sql = "";
+        //todo: Busqueda en columnas normalizadas.
         if (tipo == TITLE) {
-            sql = "SELECT * FROM LIBROS WHERE lower(titulo) LIKE lower(?)";
+            sql = "SELECT * FROM LIBROS WHERE lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?)";
         } else if (tipo == AUTHOR) {
-            sql = "SELECT * FROM LIBROS WHERE lower(autor) LIKE lower(?)";
+            sql = "SELECT * FROM LIBROS WHERE lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?)";
         } else if (tipo == COLLECTIONS) {
-            sql = "SELECT * FROM LIBROS WHERE lower(coleccion) LIKE lower(?)  ORDER BY coleccion, volumen";
+            sql = "SELECT * FROM LIBROS WHERE lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?)  ORDER BY coleccion, volumen";
         } else if (tipo == GENDER) {
-            sql = "SELECT * FROM LIBROS WHERE lower(generos) LIKE lower(?)";
+            sql = "SELECT * FROM LIBROS WHERE lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?)";
         } else if (tipo == LANGUAGE) {
-            sql = "SELECT * FROM LIBROS WHERE lower(idioma) LIKE lower(?)";
+            sql = "SELECT * FROM LIBROS WHERE lower(idioma) LIKE lower(?) OR lower(idisense) LIKE lower(?)";
         }
         ArrayList<Libro> libros = new ArrayList<>();
         busqueda = String.format("%%%s%%", busqueda);
         super.conectar();
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, busqueda);
+        ps.setString(2, busqueda);
         ResultSet rst = ps.executeQuery();
         while (rst.next()) {
             libros.add(crearLibro(rst));

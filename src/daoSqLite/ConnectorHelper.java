@@ -54,7 +54,7 @@ public class ConnectorHelper {
      * @throws SQLException Error al borrar la tabla.
      */
     public void limpiarTabla() throws SQLException {
-        String sql = "delete from libros";
+        String sql = "DELETE FROM libros";
         Statement st = conn.createStatement();
         st.execute(sql);
     }
@@ -68,22 +68,27 @@ public class ConnectorHelper {
             String tablaLibros = "CREATE TABLE IF NOT EXISTS libros (\n" +
                     "  epl_id      NUMERIC,\n" +
                     "  titulo      TEXT,\n" +
+                    "  titsense    TEXT,\n" +
                     "  autor       TEXT,\n" +
+                    "  autsense    TEXT,\n" +
                     "  generos     TEXT,\n" +
+                    "  gensense    TEXT,\n" +
                     "  coleccion   TEXT,\n" +
+                    "  colsense    TEXT,\n" +
                     "  volumen     NUMERIC,\n" +
                     "  fecha_publi NUMERIC,\n" +
                     "  sinopsis    TEXT,\n" +
                     "  paginas     NUMERIC,\n" +
                     "  revision    REAL,\n" +
                     "  idioma      TEXT,\n" +
+                    "  idisense    TEXT,\n" +
                     "  publicado   TEXT,\n" +
                     "  estado      TEXT,\n" +
                     "  valoracion  REAL,\n" +
                     "  n_votos     NUMERIC,\n" +
-                    "  enlaces     TEXT," +
-                    "  imgDir      TEXT" +
-                    ", CONSTRAINT lib_titAut PRIMARY KEY (epl_id)" +
+                    "  enlaces     TEXT,\n" +
+                    "  imgDir      TEXT,\n" +
+                    "  CONSTRAINT lib_titAut PRIMARY KEY (epl_id)\n" +
                     ")";
             String tablaConfig = "CREATE TABLE IF NOT EXISTS CONFIG (\n" +
                     "  TEXT_ID TEXT PRIMARY KEY ,\n" +

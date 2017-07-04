@@ -25,5 +25,10 @@ public interface CommonStrings {
     String RSS_URL = "http://epublibre.org/rssweb/rss/completo"; //Compacto
     String CSV_DEST = "epl/";
     String CSV_NAME = "epublibre.csv";
+    String PATTERN_A = "[àáâä]";
+    String PATTERN_E = "[èéêë]";
+    String PATTERN_I = "[îíìï]";
+    String PATTERN_O = "[ôöóò]";
+    String PATTERN_U = "[úùûü]";
     int DATA_OLD = 4;
 }
