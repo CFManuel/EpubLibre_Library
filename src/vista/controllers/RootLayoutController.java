@@ -24,7 +24,6 @@ import daoSqLite.InsertDatas;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import modelos.CommonStrings;
@@ -105,17 +104,20 @@ public class RootLayoutController implements CommonStrings {
 
     }
 
+    /**
+     * Confirma si el usuario desea actualizar.
+     */
     @FXML
     private void epubLibreImport() {
-        Alert sure = new Alert(Alert.AlertType.CONFIRMATION);
-        sure.setHeaderText("La actualización puede tardar unos minutos, dependiendo de tu conexión a internet.");
-        sure.setContentText("¿Está seguro que desea continuar?");
-        Optional<ButtonType> boton = sure.showAndWait();
+        Optional<ButtonType> boton = updateConfirmation();
         if (boton.get() == ButtonType.OK) {
             UpdateDB.updateDataBase();
         }
     }
 
+    /**
+     * Muestra la información de la base de datos.
+     */
     @FXML
     private void getLastUpdate() {
         try {

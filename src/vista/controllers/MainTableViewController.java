@@ -25,7 +25,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import modelos.Libro;
@@ -33,6 +36,8 @@ import vista.Main;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import static controller.Alertas.alertLibrosFound;
 
 /**
  * Created by david on 02/07/2017.
@@ -148,10 +153,4 @@ public class MainTableViewController {
         bookTableView.setItems(main.getLibros());
     }
 
-    private void alertLibrosFound(int count) {
-        Alert resultado = new Alert(Alert.AlertType.INFORMATION);
-        resultado.setHeaderText("Busqueda realizada.");
-        resultado.setContentText("Se han encontrado " + count + " libros.");
-        resultado.show();
-    }
 }

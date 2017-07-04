@@ -19,11 +19,14 @@
 package controller;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import modelos.CommonStrings;
+
+import java.util.Optional;
 
 public class Alertas implements CommonStrings {
     /**
-     * Alerta de fin de carga de datos.
+     * Alerta de fin de carga de datos correcta.
      */
     public static void alertUpdateOK() {
         Alert fin = new Alert(Alert.AlertType.INFORMATION);
@@ -33,7 +36,7 @@ public class Alertas implements CommonStrings {
     }
 
     /**
-     * Alerta de fin de carga de datos.
+     * Alerta de error en carga de datos.
      */
     public static void alertUpdateFail() {
         Alert fin = new Alert(Alert.AlertType.INFORMATION);
@@ -42,6 +45,12 @@ public class Alertas implements CommonStrings {
         fin.show();
     }
 
+    /**
+     * Alerta de información de la base de datos.
+     *
+     * @param fecha  Fecha de la última actualización.
+     * @param libros Número de libros en la base de datos.
+     */
     public static void alertDBInformation(String fecha, int libros) {
         Alert info = new Alert(Alert.AlertType.INFORMATION);
         info.setHeaderText("Información de actualización de la base de datos:");
@@ -50,6 +59,9 @@ public class Alertas implements CommonStrings {
         info.show();
     }
 
+    /**
+     * Error al realizar busqueda en la db.
+     */
     public static void alertDBError() {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setHeaderText("Ha habido un error al realizar consultar los datos");
@@ -57,6 +69,9 @@ public class Alertas implements CommonStrings {
         error.show();
     }
 
+    /**
+     * Información de la aplicación.
+     */
     public static void aplicationInfo() {
         Alert informacion = new Alert(Alert.AlertType.INFORMATION);
         informacion.setTitle("EpubLibrary " + VERSION);
@@ -64,5 +79,24 @@ public class Alertas implements CommonStrings {
         informacion.setContentText("Created by ladaga on 02/07/17.\n" +
                 "Distributed under GNU GPL v3.");
         informacion.show();
+    }
+
+    /**
+     * Pide confirmación para continuar la actualización.
+     *
+     * @return El tipo de botón que el usuario ha pulsado.
+     */
+    public static Optional<ButtonType> updateConfirmation() {
+        Alert sure = new Alert(Alert.AlertType.CONFIRMATION);
+        sure.setHeaderText("La actualización puede tardar unos minutos, dependiendo de tu conexión a internet.");
+        sure.setContentText("¿Está seguro que desea continuar?");
+        return sure.showAndWait();
+    }
+
+    public static void alertLibrosFound(int count) {
+        Alert resultado = new Alert(Alert.AlertType.INFORMATION);
+        resultado.setHeaderText("Busqueda realizada.");
+        resultado.setContentText("Se han encontrado " + count + " libros.");
+        resultado.show();
     }
 }
