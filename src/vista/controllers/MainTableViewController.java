@@ -29,6 +29,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import modelos.Libro;
@@ -132,20 +134,25 @@ public class MainTableViewController {
 
         bookTableView.setEditable(false);
         bookTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+        //Abrir ficha del libro con doble click o enter.
         bookTableView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (event.getClickCount() > 1) {
                 main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
             }
         });
+        bookTableView.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
+            }
+        });
     }
 
+    /**
+     * Configura las opciones del ChoiceBox de busquedas.
+     */
     private void configChoiceBox() {
         choiceBoxSearch.setItems(FXCollections.observableArrayList(OPT_TITLE, OPT_AUTHOR, OPT_GENDER, OPT_LANGUAGE));
         choiceBoxSearch.setValue(OPT_TITLE);
-    }
-
-    public Main getMain() {
-        return main;
     }
 
     public void setMain(Main main) {

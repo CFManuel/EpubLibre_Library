@@ -18,11 +18,8 @@
 
 package modelos;
 
-/**
- * Created by david on 03/07/2017.
- */
 public interface CommonStrings {
-    String VERSION = "v0.5.4";
+    String VERSION = "v0.5.5";
     String LAST_UPDATE = "LAST_UPDATE";
     String CSV_URL = "https://epublibre.org/rssweb/csv";
     String CSV_DEST = "epl/";
