@@ -48,7 +48,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         } else if (tipo == AUTHOR) {
             sql = "SELECT * FROM LIBROS WHERE lower(autor) LIKE lower(?)";
         } else if (tipo == COLLECTIONS) {
-            sql = "SELECT * FROM LIBROS WHERE lower(coleccion) LIKE lower(?)";
+            sql = "SELECT * FROM LIBROS WHERE lower(coleccion) LIKE lower(?)  ORDER BY coleccion, volumen";
         } else if (tipo == GENDER) {
             sql = "SELECT * FROM LIBROS WHERE lower(generos) LIKE lower(?)";
         } else if (tipo == LANGUAGE) {
