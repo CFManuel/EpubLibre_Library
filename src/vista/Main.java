@@ -82,7 +82,7 @@ public class Main extends Application implements CommonStrings {
                     if (archivo.getName().endsWith("csv")) {
                         new Csv().importCSV(archivo);
                     } else if (archivo.getName().endsWith("rss")) {
-                        Rss.importXML(archivo);
+                        Rss.importXML(archivo, Rss.INSERT);
                     } else {
                         throw new ParseException("No es un fichero valido");
                     }

@@ -39,6 +39,8 @@ import java.util.regex.Pattern;
  * Created by david on 02/07/2017.
  */
 public class Rss {
+    public static final int INSERT = 1;
+    public static final int UPDATE = 2;
     static final InsertDatas insertDatas = new InsertDatas();
 
     /**
@@ -48,14 +50,14 @@ public class Rss {
      * @throws FileNotFoundException Error al abrir el fichero.
      * @throws XMLStreamException    Error al realizar el stream.
      */
-    public static void importXML(File xmlFile) {
+    public static void importXML(File xmlFile, int option) {
         try {
             insertDatas.crearTabla();
             insertDatas.conectar();
-            insertDatas.limpiarTabla();
+            if (option == INSERT) insertDatas.limpiarTabla();
             Libro libro = new Libro();
             XMLReader reader = XMLReaderFactory.createXMLReader();
-            reader.setContentHandler(new MyHandler(libro));
+            reader.setContentHandler(new MyHandler(libro, option));
             reader.parse(new InputSource(new FileInputStream(xmlFile)));
         } catch (Exception e) {
             try {
@@ -79,9 +81,11 @@ public class Rss {
 class MyHandler extends DefaultHandler {
     private String valor = "";
     private Libro libro;
+    private int option;
 
-    public MyHandler(Libro libro) {
+    public MyHandler(Libro libro, int option) {
         this.libro = libro;
+        this.option = option;
     }
 
     /**
@@ -118,7 +122,12 @@ class MyHandler extends DefaultHandler {
         } else if (localName.equalsIgnoreCase("rev")) {
             libro.setRevision(Double.parseDouble(valor));
         } else if (localName.equalsIgnoreCase("link")) {
+            String dir = "";
             libro.setEnlaces(valor);
+            Matcher matcher = Pattern.compile("_\\[(\\d+)\\]_", Pattern.CASE_INSENSITIVE).matcher(valor);
+            if (matcher.find()) {
+                libro.setEpl_id(Integer.parseInt(matcher.group(1)));
+            }
         } else if (localName.equalsIgnoreCase("pubdate")) {
             libro.setPublicado(valor);
         } else if (localName.equalsIgnoreCase("description")) {
@@ -130,8 +139,12 @@ class MyHandler extends DefaultHandler {
             }
         } else if (localName.equalsIgnoreCase("item")) {
             try {
-                //Inserta datos al final de la lectura de un libro.
-                Rss.insertDatas.insertarLibros(libro);
+                if (option == Rss.INSERT) {
+                    //Inserta datos al final de la lectura de un libro.
+                    Rss.insertDatas.insertarLibros(libro);
+                } else {
+                    Rss.insertDatas.insertarImgLink(libro);
+                }
             } catch (Exception e) {
                 //nada
             }

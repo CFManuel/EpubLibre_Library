@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="epubLibre.db" uuid="8a80f96e-33cc-419a-b6e6-d74f83bac0f9">
+    <data-source source="LOCAL" name="epubLibre.db" uuid="aa737071-77a5-4e40-9ca4-b084fbabde50">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/epubLibre.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/epl/epubLibre.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
-        <property name="encoding" value="'UTF-8'" />
       </driver-properties>
     </data-source>
   </component>

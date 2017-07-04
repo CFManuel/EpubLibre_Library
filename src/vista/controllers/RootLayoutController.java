@@ -81,7 +81,13 @@ public class RootLayoutController implements CommonStrings {
                     @Override
                     protected Object call() throws Exception {
                         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
-                        Rss.importXML(datos);
+                        /*GetDatas getDatas = new GetDatas();
+                        if (getDatas.countBooks() != 0) {
+                            Rss.importXML(datos, Rss.UPDATE);
+                            System.out.println("update");
+                        } else {*/
+                        Rss.importXML(datos, Rss.INSERT);
+                        //}
                         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
                         return null;
                     }

@@ -82,8 +82,9 @@ public class ConnectorHelper {
                     "  valoracion  REAL,\n" +
                     "  n_votos     NUMERIC,\n" +
                     "  enlaces     TEXT," +
-                    "  imgDir      TEXT," +
-                    "CONSTRAINT lib_titAut PRIMARY KEY (titulo, autor))";
+                    "  imgDir      TEXT" +
+                    ", CONSTRAINT lib_titAut PRIMARY KEY (epl_id)" +
+                    ")";
             String tablaConfig = "CREATE TABLE IF NOT EXISTS CONFIG (\n" +
                     "  TEXT_ID TEXT PRIMARY KEY ,\n" +
                     "  DATASTRING TEXT)";

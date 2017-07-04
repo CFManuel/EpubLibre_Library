@@ -44,9 +44,6 @@ import java.sql.SQLException;
 import static controller.Alertas.alertUpdateFail;
 import static controller.Alertas.alertUpdateOK;
 
-/**
- * Created by david on 03/07/2017.
- */
 public final class UpdateDB implements CommonStrings {
     private static int TOTAL_PROGRESS = 7;
 
@@ -155,7 +152,15 @@ public final class UpdateDB implements CommonStrings {
         }
     }
 
-
+    /**
+     * Clase para lanzar una ventana de ProgressBar a partir de un Task.
+     * <p>
+     * Usage:
+     * progressForm.activateProgressBar(task);
+     * inTask: updateProgress(start, end); updateMessage("mesage");
+     * task.setOnSucceeded(e -> {progressForm.getDialogStage().close());
+     * task.setOnFailed(e -> progressForm.getDialogStage().close());
+     */
     public static class ProgressForm {
         private final Stage dialogStage;
         private final ProgressBar pb = new ProgressBar();

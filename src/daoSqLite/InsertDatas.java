@@ -55,10 +55,19 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
             ps.execute();
         } catch (SQLException e) {
             if (e.getErrorCode() != 19) e.printStackTrace();
-
         }
+    }
 
-
+    public void insertarImgLink(Libro libro) {
+        String sql = "UPDATE libros SET imgDir = ? WHERE  epl_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, libro.getImgURI());
+            ps.setInt(2, libro.getEpl_id());
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
