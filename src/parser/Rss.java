@@ -54,7 +54,7 @@ public class Rss {
         try {
             insertDatas.crearTabla();
             insertDatas.conectar();
-            if (option == INSERT) insertDatas.limpiarTabla();
+            //if (option == INSERT) insertDatas.limpiarTabla();
             Libro libro = new Libro();
             XMLReader reader = XMLReaderFactory.createXMLReader();
             reader.setContentHandler(new MyHandler(libro, option));

@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by david on 03/07/2017.
@@ -41,8 +42,12 @@ public class Utils implements CommonStrings {
         File destino = null;
         try {
             URL url = new URL(CSV_URL);
+            URLConnection conn = url.openConnection();
+            conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) Gecko/20100101 Firefox/31.0");
+            conn.connect();
             destino = new File(CSV_DEST + "epub.zip");
-            FileUtils.copyURLToFile(url, destino);
+            FileUtils.copyInputStreamToFile(conn.getInputStream(), destino);
+            //FileUtils.copyURLToFile(url, destino);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

@@ -29,7 +29,7 @@ import java.sql.SQLException;
 
 public class InsertDatas extends ConnectorHelper implements CommonStrings {
     public void insertarLibros(Libro libro) {
-        String sql = "INSERT INTO libros(epl_id, titulo, titsense, autor, autsense, generos, gensense, coleccion, colsense," +
+        String sql = "INSERT OR REPLACE INTO libros(epl_id, titulo, titsense, autor, autsense, generos, gensense, coleccion, colsense," +
                 " volumen, fecha_publi, sinopsis, paginas, revision, idioma, idisense, publicado, estado, valoracion, " +
                 "n_votos, enlaces, imgDir)" +
                 " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
