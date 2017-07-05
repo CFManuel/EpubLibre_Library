@@ -18,6 +18,7 @@
 
 package parser;
 
+import daoSqLite.GetDatas;
 import daoSqLite.InsertDatas;
 import modelos.Libro;
 import org.apache.commons.io.FileUtils;
@@ -25,6 +26,7 @@ import org.apache.commons.io.LineIterator;
 
 import java.io.*;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 
 public class Csv {
@@ -38,17 +40,27 @@ public class Csv {
     public void importCSV(File csvFile) throws IOException {
         LineIterator it = FileUtils.lineIterator(csvFile, "utf-8");
         int count = 0;
+        int save = 0;
         InsertDatas idatas = new InsertDatas();
+        GetDatas getDatas = new GetDatas();
         String line;
         String[] items;
         try {
             idatas.crearTabla();
+            HashMap<Integer, Double> librosActuales = getDatas.getEPL_ID();
             it.nextLine();
             idatas.conectar();
+
             while (it.hasNext()) {
                 line = it.nextLine();
                 items = line.replaceAll("\",", "").split("\"");
                 Libro libro = generarLibro(items);
+                if (librosActuales.containsKey(libro.getEpl_id())
+                        && (librosActuales.get(libro.getEpl_id()).equals(libro.getRevision()) == false)) {
+                    System.out.println(librosActuales.get(libro.getEpl_id()) + " -> " + libro.getRevision());
+                    idatas.copyBook(libro.getEpl_id());
+                    save++;
+                }
                 try {
                     idatas.insertarLibros(libro);
                     count++;
@@ -73,7 +85,7 @@ public class Csv {
                 e.printStackTrace();
             }
         }
-        System.out.println("Se han integrado " + count + " registros.");
+        System.out.println("Registros: " + count + " integrados y " + save + " copiados.");
     }
 
     /**

@@ -102,6 +102,14 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         super.desconectar();
     }
 
+    public void copyBook(int epl_ID) throws SQLException {
+        String sql = "INSERT INTO librosOLD SELECT * FROM libros WHERE epl_id = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, epl_ID);
+        ps.execute();
+
+    }
+
     private String normalize(String texto) {
         return texto.replaceAll(PATTERN_A, "a")
                 .replaceAll(PATTERN_E, "e")

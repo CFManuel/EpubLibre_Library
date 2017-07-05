@@ -26,6 +26,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GetDatas extends ConnectorHelper implements CommonStrings {
     public static int TITLE = 1;
@@ -116,7 +117,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         return libros;
     }
 
-/*
+
     public HashMap<Integer, Double> getEPL_ID() throws SQLException, ClassNotFoundException {
         HashMap<Integer, Double> ePL_IDs = new HashMap<>();
         String sql = "SELECT epl_id, revision FROM LIBROS";
@@ -128,5 +129,5 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         }
         super.desconectar();
         return ePL_IDs;
-    }*/
+    }
 }

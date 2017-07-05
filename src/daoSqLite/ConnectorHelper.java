@@ -88,13 +88,38 @@ public class ConnectorHelper {
                     "  n_votos     NUMERIC,\n" +
                     "  enlaces     TEXT,\n" +
                     "  imgDir      TEXT,\n" +
-                    "  CONSTRAINT lib_titAut PRIMARY KEY (epl_id)\n" +
-                    ")";
+                    "  CONSTRAINT lib_titAut PRIMARY KEY (epl_id))";
+
+            String tablaOLD = "CREATE TABLE IF NOT EXISTS librosOLD (\n" +
+                    "  epl_id      NUMERIC,\n" +
+                    "  titulo      TEXT,\n" +
+                    "  titsense    TEXT,\n" +
+                    "  autor       TEXT,\n" +
+                    "  autsense    TEXT,\n" +
+                    "  generos     TEXT,\n" +
+                    "  gensense    TEXT,\n" +
+                    "  coleccion   TEXT,\n" +
+                    "  colsense    TEXT,\n" +
+                    "  volumen     NUMERIC,\n" +
+                    "  fecha_publi NUMERIC,\n" +
+                    "  sinopsis    TEXT,\n" +
+                    "  paginas     NUMERIC,\n" +
+                    "  revision    REAL,\n" +
+                    "  idioma      TEXT,\n" +
+                    "  idisense    TEXT,\n" +
+                    "  publicado   TEXT,\n" +
+                    "  estado      TEXT,\n" +
+                    "  valoracion  REAL,\n" +
+                    "  n_votos     NUMERIC,\n" +
+                    "  enlaces     TEXT,\n" +
+                    "  imgDir      TEXT,\n" +
+                    "  CONSTRAINT lib_titAut PRIMARY KEY (epl_id, revision))";
             String tablaConfig = "CREATE TABLE IF NOT EXISTS CONFIG (\n" +
                     "  TEXT_ID TEXT PRIMARY KEY ,\n" +
                     "  DATASTRING TEXT)";
             Statement st = conn.createStatement();
             st.execute(tablaLibros);
+            st.execute(tablaOLD);
             st.execute(tablaConfig);
 
         } catch (Exception e) {
