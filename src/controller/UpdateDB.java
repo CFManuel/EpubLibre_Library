@@ -37,6 +37,7 @@ import org.joda.time.Period;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import parser.Csv;
+import vista.Main;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -109,7 +110,7 @@ public final class UpdateDB implements CommonStrings {
 
                     Csv csv = new Csv();
                     updateMessage("Importando CSV...");
-                    csv.importCSV(new File(CSV_DEST + CSV_NAME));
+                    csv.importCSV(new File(Main.getLocation() + CSV_NAME));
                     updateMessage("CSV importado.");
 
                     updateProgress(5, TOTAL_PROGRESS);

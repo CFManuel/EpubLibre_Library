@@ -22,6 +22,7 @@ import modelos.CommonStrings;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import org.apache.commons.io.FileUtils;
+import vista.Main;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class Utils implements CommonStrings {
             URLConnection conn = url.openConnection();
             conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) Gecko/20100101 Firefox/31.0");
             conn.connect();
-            destino = new File(CSV_DEST + "epub.zip");
+            destino = new File(Main.getLocation() + "epub.zip");
             FileUtils.copyInputStreamToFile(conn.getInputStream(), destino);
             //FileUtils.copyURLToFile(url, destino);
 
@@ -65,7 +66,7 @@ public class Utils implements CommonStrings {
     public static void unZip(File zip) {
         try {
             ZipFile zipFile = new ZipFile(zip);
-            zipFile.extractAll(CSV_DEST);
+            zipFile.extractAll(Main.getLocation());
         } catch (ZipException e) {
             e.printStackTrace();
         }
@@ -81,7 +82,7 @@ public class Utils implements CommonStrings {
     }
 
     public static void crearEPL() {
-        File carpeta = new File(CSV_DEST);
+        File carpeta = new File(Main.getLocation());
         if (carpeta.exists() == false) {
             carpeta.mkdir();
         }

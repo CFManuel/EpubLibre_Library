@@ -19,6 +19,7 @@
 package daoSqLite;
 
 import org.sqlite.Function;
+import vista.Main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -41,10 +42,9 @@ public class ConnectorHelper {
      */
     public void conectar() throws ClassNotFoundException, SQLException {
         Connection conn = null;
-        String driver = "org.my";
         Class.forName("org.sqlite.JDBC");
 
-        conn = DriverManager.getConnection("jdbc:sqlite:epl/epubLibre.db");
+        conn = DriverManager.getConnection("jdbc:sqlite:" + Main.getLocation() + "epubLibre.db");
         conn.setAutoCommit(false);
         this.conn = conn;
 

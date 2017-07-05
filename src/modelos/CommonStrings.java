@@ -23,7 +23,7 @@ public interface CommonStrings {
     String LAST_UPDATE = "LAST_UPDATE";
     String CSV_URL = "https://epublibre.org/rssweb/csv";
     String RSS_URL = "http://epublibre.org/rssweb/rss/completo"; //Compacto
-    String CSV_DEST = "epl/";
+    //Main.getLocation() para apuntar a la carpeta epl del jar
     String CSV_NAME = "epublibre.csv";
     String PATTERN_A = "[àáâä]";
     String PATTERN_E = "[èéêë]";

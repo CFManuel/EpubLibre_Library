@@ -32,19 +32,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelos.CommonStrings;
 import modelos.Libro;
-import org.apache.commons.cli.*;
-import parser.Csv;
-import parser.Rss;
 import vista.controllers.BookViewer;
 import vista.controllers.MainTableViewController;
 import vista.controllers.RootLayoutController;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class Main extends Application implements CommonStrings {
+    private static String appLocation;
 
     @SuppressWarnings("FieldCanBeLocal")
     private Main main;
@@ -58,44 +54,11 @@ public class Main extends Application implements CommonStrings {
      * @param args Argumentos recibidos por linea de comandos.
      */
     public static void main(String[] args) {
-        if (args.length > 1) {
-            Options opciones = new Options();
-            String ficheroEntrada = null;
-            Option cargarFichero = new Option("i", "input", true, "Fichero de origen de datos(csv, rss)");
-            cargarFichero.setRequired(false);
-            opciones.addOption(cargarFichero);
+        launch(args);
+    }
 
-            CommandLineParser parser = new DefaultParser();
-            HelpFormatter formatter = new HelpFormatter();
-            CommandLine cmd;
-
-            try {
-                cmd = parser.parse(opciones, args);
-                ficheroEntrada = cmd.getOptionValue("input");
-                if (ficheroEntrada != null && Files.exists(Paths.get(ficheroEntrada))) {
-                    File archivo = new File(ficheroEntrada);
-
-                    if (archivo.getName().endsWith("csv")) {
-                        new Csv().importCSV(archivo);
-                    } else if (archivo.getName().endsWith("rss")) {
-                        Rss.importXML(archivo, Rss.INSERT);
-                    } else {
-                        throw new ParseException("No es un fichero valido");
-                    }
-                    UpdateDB.updateDate(); //Actualiza la fecha en la db.
-                } else {
-                    throw new ParseException("No existe ese fichero");
-                }
-                System.exit(0);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                formatter.printHelp("EpubLibre_Library", opciones);
-                System.exit(1);
-            }
-        } else {
-
-            launch(args);
-        }
+    public static String getLocation() {
+        return Main.appLocation;
     }
 
     /**
@@ -106,6 +69,7 @@ public class Main extends Application implements CommonStrings {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
+        appLocation = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent() + "/epl/";
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("ePubLibre Library " + VERSION);
         this.primaryStage.getIcons().add(new Image("vista/resources/EPL_Portadas_NEGRO.png"));
