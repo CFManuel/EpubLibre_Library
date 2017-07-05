@@ -65,14 +65,26 @@ public class RootLayoutController implements CommonStrings {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("EpubLibrary", "*.csv", "*.rss"));
         final File datos = fileChooser.showOpenDialog(main.getPrimaryStage());
+        UpdateDB.ProgressForm progressForm = new UpdateDB.ProgressForm();
+
         if (datos != null) {
             if (datos.getName().endsWith("csv")) {
                 importar = new Task() {
                     @Override
                     protected Object call() throws Exception {
+                        progressForm.getDialogStage().getScene().setCursor(Cursor.WAIT);
+                        updateMessage("Iniciando actualización");
+                        updateProgress(1, 4);
                         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
+                        updateMessage("Importando CSV...");
+                        updateProgress(2, 4);
                         new Csv().importCSV(datos);
+                        updateMessage("CSV importado.");
+                        updateProgress(3, 4);
                         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
+                        progressForm.getDialogStage().getScene().setCursor(Cursor.DEFAULT);
+                        updateMessage("Finalizando actualización..,");
+                        updateProgress(4, 4);
                         return null;
                     }
                 };
@@ -80,6 +92,7 @@ public class RootLayoutController implements CommonStrings {
                 importar = new Task() {
                     @Override
                     protected Object call() throws Exception {
+                        progressForm.getDialogStage().getScene().setCursor(Cursor.WAIT);
                         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
                         /*GetDatas getDatas = new GetDatas();
                         if (getDatas.countBooks() != 0) {
@@ -89,6 +102,7 @@ public class RootLayoutController implements CommonStrings {
                         Rss.importXML(datos, Rss.INSERT);
                         //}
                         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
+                        progressForm.getDialogStage().getScene().setCursor(Cursor.DEFAULT);
                         return null;
                     }
                 };
@@ -102,9 +116,14 @@ public class RootLayoutController implements CommonStrings {
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
+                progressForm.getDialogStage().close();
                 alertUpdateOK();
             });
-            importar.setOnFailed(e -> alertUpdateFail());
+            importar.setOnFailed(e -> {
+                alertUpdateFail();
+                progressForm.getDialogStage().close();
+            });
+            progressForm.activateProgressBar(importar);
             new Thread(importar).start();
         }
 
