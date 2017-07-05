@@ -19,7 +19,7 @@
 package modelos;
 
 public interface CommonStrings {
-    String VERSION = "v0.5.8";
+    String VERSION = "v0.5.9";
     String LAST_UPDATE = "LAST_UPDATE";
     String CSV_URL = "https://epublibre.org/rssweb/csv";
     String RSS_URL = "http://epublibre.org/rssweb/rss/completo"; //Compacto
