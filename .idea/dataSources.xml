@@ -8,6 +8,7 @@
       <remarks>SQLite</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\epl\epubLibre.db</jdbc-url>
+      <default-dialect>SQLite</default-dialect>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>

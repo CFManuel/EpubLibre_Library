@@ -35,7 +35,7 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.Optional;
 
-import static controller.Alertas.*;
+import static vista.controllers.Alertas.*;
 
 /**
  * Controlador de la vista principal y el MenuBar asignado

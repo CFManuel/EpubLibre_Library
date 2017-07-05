@@ -26,15 +26,15 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+            <Menu fx:id="menuFile" mnemonicParsing="false" text="Archivo">
                <items>
                    <MenuItem mnemonicParsing="false" onAction="#importDataSource" text="Importar datos desde fichero"/>
                    <MenuItem mnemonicParsing="false" onAction="#epubLibreImport" text="Importar datos desde ePubLibre"/>
                </items></Menu>
-            <Menu mnemonicParsing="false" text="Help">
+            <Menu mnemonicParsing="false" text="Ayuda">
                <items>
-                   <MenuItem mnemonicParsing="false" onAction="#getLastUpdate" text="DB Info"/>
-                  <MenuItem mnemonicParsing="false" onAction="#help" text="About" />
+                   <MenuItem mnemonicParsing="false" onAction="#getLastUpdate" text="Información de la base de datos"/>
+                   <MenuItem mnemonicParsing="false" onAction="#help" text="Sobra la aplicación"/>
                </items></Menu>
         </menus>
       </MenuBar>

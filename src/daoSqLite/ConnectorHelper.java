@@ -18,6 +18,8 @@
 
 package daoSqLite;
 
+import org.sqlite.Function;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -66,33 +68,39 @@ public class ConnectorHelper {
         try {
             conectar();
             String tablaLibros = "CREATE TABLE IF NOT EXISTS libros (\n" +
-                    "  epl_id      NUMERIC,\n" +
-                    "  titulo      TEXT,\n" +
-                    "  titsense    TEXT,\n" +
-                    "  autor       TEXT,\n" +
-                    "  autsense    TEXT,\n" +
-                    "  generos     TEXT,\n" +
-                    "  gensense    TEXT,\n" +
-                    "  coleccion   TEXT,\n" +
-                    "  colsense    TEXT,\n" +
-                    "  volumen     NUMERIC,\n" +
-                    "  fecha_publi NUMERIC,\n" +
-                    "  sinopsis    TEXT,\n" +
-                    "  paginas     NUMERIC,\n" +
-                    "  revision    REAL,\n" +
-                    "  idioma      TEXT,\n" +
-                    "  idisense    TEXT,\n" +
-                    "  publicado   TEXT,\n" +
-                    "  estado      TEXT,\n" +
-                    "  valoracion  REAL,\n" +
-                    "  n_votos     NUMERIC,\n" +
-                    "  enlaces     TEXT,\n" +
-                    "  imgDir      TEXT,\n" +
+                    "  epl_id      NUMERIC COLLATE BINARY,\n" +
+                    "  titulo      TEXT COLLATE BINARY,\n" +
+                    "  titsense    TEXT COLLATE BINARY,\n" +
+                    "  autor       TEXT COLLATE BINARY,\n" +
+                    "  autsense    TEXT COLLATE BINARY,\n" +
+                    "  generos     TEXT COLLATE BINARY,\n" +
+                    "  gensense    TEXT COLLATE BINARY,\n" +
+                    "  coleccion   TEXT COLLATE BINARY,\n" +
+                    "  colsense    TEXT COLLATE BINARY,\n" +
+                    "  volumen     NUMERIC COLLATE BINARY,\n" +
+                    "  fecha_publi NUMERIC COLLATE BINARY,\n" +
+                    "  sinopsis    TEXT COLLATE BINARY,\n" +
+                    "  paginas     NUMERIC COLLATE BINARY,\n" +
+                    "  revision    REAL COLLATE BINARY,\n" +
+                    "  idioma      TEXT COLLATE BINARY,\n" +
+                    "  idisense    TEXT COLLATE BINARY,\n" +
+                    "  publicado   TEXT COLLATE BINARY,\n" +
+                    "  estado      TEXT COLLATE BINARY,\n" +
+                    "  valoracion  REAL COLLATE BINARY,\n" +
+                    "  n_votos     NUMERIC COLLATE BINARY,\n" +
+                    "  enlaces     TEXT COLLATE BINARY,\n" +
+                    "  imgDir      TEXT COLLATE BINARY,\n" +
                     "  CONSTRAINT lib_titAut PRIMARY KEY (epl_id, revision))";
 
             String tablaConfig = "CREATE TABLE IF NOT EXISTS CONFIG (\n" +
                     "  TEXT_ID TEXT PRIMARY KEY ,\n" +
                     "  DATASTRING TEXT)";
+            Function.create(conn, "funcion", new Function() {
+                @Override
+                protected void xFunc() throws SQLException {
+
+                }
+            });
             Statement st = conn.createStatement();
             st.execute(tablaLibros);
             st.execute(tablaConfig);

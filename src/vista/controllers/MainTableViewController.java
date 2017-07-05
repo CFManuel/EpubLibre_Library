@@ -26,10 +26,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -40,7 +37,6 @@ import vista.Main;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static controller.Alertas.alertLibrosFound;
 
 /**
  * Created by david on 02/07/2017.
@@ -80,7 +76,7 @@ public class MainTableViewController {
     @FXML
     private TableColumn<Libro, String> generosColumn;
     @FXML
-    private TableColumn<Libro, ArrayList<Double>> revArrayColumn;
+    private Label labelBookFound;
     @FXML
     private VBox vBox;
 
@@ -123,7 +119,7 @@ public class MainTableViewController {
         }
 
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
-        alertLibrosFound(libros.size());
+        labelBookFound.setText(String.valueOf(this.libros.size()) + " Libros.");
     }
 
     /**

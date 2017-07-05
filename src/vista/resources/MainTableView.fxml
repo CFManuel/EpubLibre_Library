@@ -21,6 +21,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="380.0"
             minWidth="600.0" prefHeight="414.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8"
             fx:controller="vista.controllers.MainTableViewController">
@@ -36,12 +37,21 @@
                   </TextField>
                    <ChoiceBox fx:id="choiceBoxSearch" prefHeight="25.0" prefWidth="128.0"/>
                   <Button mnemonicParsing="false" onAction="#searchBtn" text="Buscar" />
+                   <Label fx:id="labelBookFound" text="0 Libros">
+                       <HBox.margin>
+                           <Insets left="60.0"/>
+                       </HBox.margin>
+                       <font>
+                           <Font name="System Bold" size="13.0"/>
+                       </font>
+                   </Label>
                </children>
                <padding>
                    <Insets right="30.0" top="20.0"/>
                </padding>
             </HBox>
-            <TableView fx:id="bookTableView" VBox.vgrow="ALWAYS">
+             <TableView fx:id="bookTableView" focusTraversable="false" tableMenuButtonVisible="true"
+                        VBox.vgrow="ALWAYS">
               <columns>
                   <TableColumn fx:id="titleColumn" prefWidth="159.0" text="Titulo"/>
                   <TableColumn fx:id="autorColumn" prefWidth="109.0" text="Autor"/>

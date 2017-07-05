@@ -41,8 +41,8 @@ import parser.Csv;
 import java.io.File;
 import java.sql.SQLException;
 
-import static controller.Alertas.alertUpdateFail;
-import static controller.Alertas.alertUpdateOK;
+import static vista.controllers.Alertas.alertUpdateFail;
+import static vista.controllers.Alertas.alertUpdateOK;
 
 public final class UpdateDB implements CommonStrings {
     private static int TOTAL_PROGRESS = 7;

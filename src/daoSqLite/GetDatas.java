@@ -44,7 +44,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      */
     public ArrayList<Libro> getLibros(String busqueda, int tipo) throws SQLException, ClassNotFoundException {
         String sql = "";
-
+        //todo: evaluar campos a buscar.
         if (tipo == TITLE) {
             sql = "SELECT * FROM LIBROS WHERE lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) ORDER BY revision DESC ";
         } else if (tipo == AUTHOR) {
@@ -135,6 +135,19 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         return fecha;
     }
 
+    public String getConfig(String id) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT DATASTRING FROM config WHERE upper(text_id) = upper(?)";
+        String valor = "";
+        super.conectar();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, id);
+        ResultSet rst = ps.executeQuery();
+        while (rst.next()) {
+            valor = rst.getString("datastring");
+        }
+        super.desconectar();
+        return valor;
+    }
     public int countBooks() throws SQLException, ClassNotFoundException {
         String sql = "SELECT COUNT(*) many FROM LIBROS";
         int libros = 0;

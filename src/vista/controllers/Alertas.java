@@ -16,7 +16,7 @@
  *     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package controller;
+package vista.controllers;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -92,12 +92,5 @@ public class Alertas implements CommonStrings {
         sure.setHeaderText("La actualización puede tardar unos minutos, dependiendo de tu conexión a internet.");
         sure.setContentText("¿Está seguro que desea continuar?");
         return sure.showAndWait();
-    }
-
-    public static void alertLibrosFound(int count) {
-        Alert resultado = new Alert(Alert.AlertType.INFORMATION);
-        resultado.setHeaderText("Busqueda realizada.");
-        resultado.setContentText("Se han encontrado " + count + " libros.");
-        resultado.show();
     }
 }

@@ -102,6 +102,16 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         super.desconectar();
     }
 
+    public void insertConfig(String id, String value) throws SQLException, ClassNotFoundException {
+        String sql = "REPLACE INTO CONFIG(TEXT_ID, DATASTRING) VALUES(?,?)";
+
+        super.conectar();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, id);
+        ps.setString(2, value);
+        ps.execute();
+        super.desconectar();
+    }
     private String normalize(String texto) {
         return texto.replaceAll(PATTERN_A, "a")
                 .replaceAll(PATTERN_E, "e")
