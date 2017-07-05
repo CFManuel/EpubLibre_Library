@@ -22,8 +22,6 @@ import controller.UpdateDB;
 import daoSqLite.ConnectorHelper;
 import files.Utils;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -45,11 +43,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class Main extends Application implements CommonStrings {
-    //ArrayList con los datos que se muestran en la tabla.
-    private final ObservableList<Libro> libros = FXCollections.observableArrayList();
+
     @SuppressWarnings("FieldCanBeLocal")
     private Main main;
     private Stage primaryStage;
@@ -193,15 +189,6 @@ public class Main extends Application implements CommonStrings {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public ObservableList<Libro> getLibros() {
-        return libros;
-    }
-
-    public void setLibros(ArrayList<Libro> libros) {
-        this.libros.clear();
-        this.libros.addAll(libros);
     }
 
     public Stage getPrimaryStage() {

@@ -101,7 +101,7 @@
                         <Label fx:id="tfAutor" text="Autor" GridPane.rowIndex="1" />
                         <Label fx:id="tfColeccion" text="Coleccion" />
                         <Label fx:id="tfGeneros" text="Géneros" GridPane.rowIndex="1" />
-                        <Label fx:id="tfRevision" text="Revision" />
+                        <ChoiceBox fx:id="cbRevision" prefHeight="25.0" prefWidth="57.0"/>
                         <Label fx:id="tfIdioma" text="Idioma" />
                      </children>
                      <opaqueInsets>

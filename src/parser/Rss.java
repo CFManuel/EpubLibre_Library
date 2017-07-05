@@ -38,6 +38,7 @@ import java.util.regex.Pattern;
 /**
  * Created by david on 02/07/2017.
  */
+@Deprecated
 public class Rss {
     public static final int INSERT = 1;
     public static final int UPDATE = 2;

@@ -46,32 +46,62 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         String sql = "";
 
         if (tipo == TITLE) {
-            sql = "SELECT * FROM LIBROS WHERE lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?)";
+            sql = "SELECT * FROM LIBROS WHERE lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) ORDER BY revision DESC ";
         } else if (tipo == AUTHOR) {
-            sql = "SELECT * FROM LIBROS WHERE lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?)";
+            sql = "SELECT * FROM LIBROS WHERE lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?) ORDER BY revision DESC ";
         } else if (tipo == COLLECTIONS) {
-            sql = "SELECT * FROM LIBROS WHERE lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?)  ORDER BY coleccion, volumen";
+            sql = "SELECT * FROM LIBROS WHERE lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?)  ORDER BY revision, coleccion, volumen DESC ";
         } else if (tipo == GENDER) {
-            sql = "SELECT * FROM LIBROS WHERE lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?)";
+            sql = "SELECT * FROM LIBROS WHERE lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) ORDER BY revision DESC ";
         } else if (tipo == LANGUAGE) {
-            sql = "SELECT * FROM LIBROS WHERE lower(idioma) LIKE lower(?) OR lower(idisense) LIKE lower(?)";
+            sql = "SELECT * FROM LIBROS WHERE lower(idioma) LIKE lower(?) OR lower(idisense) LIKE lower(?) ORDER BY revision DESC ";
         }
-        ArrayList<Libro> libros = new ArrayList<>();
         busqueda = String.format("%%%s%%", busqueda);
         super.conectar();
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, busqueda);
         ps.setString(2, busqueda);
         ResultSet rst = ps.executeQuery();
-        while (rst.next()) {
-            libros.add(crearLibro(rst));
-        }
+        HashMap<Integer, Libro> libros = procesarConsultaLibros(rst);
         super.desconectar();
+        return new ArrayList<Libro>(libros.values());
+    }
+
+    public Libro getLibro(int epl_id, double revision) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM LIBROS WHERE epl_id = ? AND  revision = ? ORDER BY revision DESC ";
+        super.conectar();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, epl_id);
+        ps.setDouble(2, revision);
+        ResultSet rst = ps.executeQuery();
+        HashMap<Integer, Libro> libros = procesarConsultaLibros(rst);
+        super.desconectar();
+        return libros.get(epl_id);
+    }
+
+    /**
+     * Genera libros con varias revisiones.
+     *
+     * @param rst ResultSet a procesar.
+     * @return HashMap con los resultados de la busqueda
+     * @throws SQLException
+     */
+    private HashMap<Integer, Libro> procesarConsultaLibros(ResultSet rst) throws SQLException {
+        HashMap<Integer, Libro> libros = new HashMap<>();
+        while (rst.next()) {
+            Libro libro = crearLibro(rst);
+            if (libros.containsKey(libro.getEpl_id())) {
+                libros.get(libro.getEpl_id()).addRevArray(libro.getRevision());
+            } else {
+                libros.put(libro.getEpl_id(), libro);
+            }
+        }
         return libros;
     }
 
     private Libro crearLibro(ResultSet rst) throws SQLException {
         Libro libro = new Libro()
+                .setEpl_id(rst.getInt("epl_id"))
                 .setTitulo(rst.getString("titulo"))
                 .setAutor(rst.getString("autor"))
                 .setGeneros(rst.getString("generos"))
@@ -81,6 +111,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
                 .setSinopsis(rst.getString("sinopsis"))
                 .setPaginas(rst.getInt("paginas"))
                 .setRevision(rst.getDouble("revision"))
+                .addRevArray(rst.getDouble("revision"))
                 .setIdioma(rst.getString("idioma"))
                 .setPublicado(rst.getString("publicado"))
                 .setEstado(rst.getString("estado"))
@@ -124,7 +155,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         super.conectar();
         Statement st = conn.createStatement();
         ResultSet rst = st.executeQuery(sql);
-        while (rst.next()){
+        while (rst.next()) {
             ePL_IDs.put(rst.getInt("epl_id"), rst.getDouble("revision"));
         }
         super.desconectar();

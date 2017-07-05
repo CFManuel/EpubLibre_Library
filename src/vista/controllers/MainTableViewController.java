@@ -23,6 +23,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.ChoiceBox;
@@ -50,7 +51,8 @@ public class MainTableViewController {
     private static String OPT_COLLECTIONS = "Colecciones";
     private static String OPT_GENDER = "Géneros";
     private static String OPT_LANGUAGE = "Idioma";
-
+    //ArrayList con los datos que se muestran en la tabla.
+    private final ObservableList<Libro> libros = FXCollections.observableArrayList();
     private Main main;
     @FXML
     private TextField tfSearch;
@@ -77,6 +79,8 @@ public class MainTableViewController {
     private TableColumn<Libro, Number> valColumn;
     @FXML
     private TableColumn<Libro, String> generosColumn;
+    @FXML
+    private TableColumn<Libro, ArrayList<Double>> revArrayColumn;
     @FXML
     private VBox vBox;
 
@@ -110,7 +114,8 @@ public class MainTableViewController {
             } else if (option.equalsIgnoreCase(OPT_LANGUAGE)) {
                 libros = getDatas.getLibros(search, GetDatas.LANGUAGE);
             }
-            main.setLibros(libros);
+            this.libros.clear();
+            this.libros.addAll(libros);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -136,6 +141,7 @@ public class MainTableViewController {
         valColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getValoracion()));
 
         bookTableView.setEditable(false);
+        bookTableView.setItems(this.libros);
         bookTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         //Abrir ficha del libro con doble click o enter.
         bookTableView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -160,7 +166,6 @@ public class MainTableViewController {
 
     public void setMain(Main main) {
         this.main = main;
-        bookTableView.setItems(main.getLibros());
     }
 
 }

@@ -18,6 +18,8 @@
 
 package modelos;
 
+import java.util.ArrayList;
+
 /**
  * JavaBean con los datos de cada libro.
  */
@@ -33,6 +35,7 @@ public class Libro {
     private String sinopsis = "";
     private int paginas = 0;
     private Double revision = 0.0;
+    private ArrayList<Double> revArray = new ArrayList<>();
     private String idioma = "";
     private String publicado = "";
     private String estado = "";
@@ -40,6 +43,15 @@ public class Libro {
     private int n_votos = 0;
     private String enlaces = "";
     private String imgURI = "";
+
+    public ArrayList<Double> getRevArray() {
+        return revArray;
+    }
+
+    public Libro addRevArray(Double revArray) {
+        this.revArray.add(revArray);
+        return this;
+    }
 
     public String getImgURI() {
         return imgURI;

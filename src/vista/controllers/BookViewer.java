@@ -18,7 +18,10 @@
 
 package vista.controllers;
 
+import daoSqLite.GetDatas;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,6 +32,7 @@ import uriSchemeHandler.URISchemeHandler;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.SQLException;
 
 /**
  * Created by david on 02/07/2017.
@@ -45,7 +49,7 @@ public class BookViewer {
     @FXML
     private Label tfGeneros;
     @FXML
-    private Label tfRevision;
+    private ChoiceBox cbRevision;
     @FXML
     private Label tfIdioma;
     @FXML
@@ -62,12 +66,33 @@ public class BookViewer {
      */
     @FXML
     private void initialize() {
+        cbRevision.setItems(FXCollections.observableArrayList(libro.getRevArray()));
+        drawBook(this.libro);
+        cbRevision.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
+            //t1 es el index del choiceBox.
+            GetDatas getDatas = new GetDatas();
+            try {
+                Libro libro = getDatas.getLibro(this.libro.getEpl_id(), (Double) cbRevision.getItems().get((Integer) t1));
+                System.out.println(libro.getTitulo() + " -> " + libro.getRevision());
+                drawBook(libro);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void drawBook(Libro libro) {
         tfSinopsis.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         tfTitulo.setText(libro.getTitulo());
         tfAutor.setText(libro.getAutor());
         tfColeccion.setText(libro.getColeccion());
         tfGeneros.setText(libro.getGeneros());
-        tfRevision.setText(String.valueOf(libro.getRevision()));
+
+        cbRevision.setValue(cbRevision.getItems().get(0));
+
+        //tfRevision.setText(String.valueOf(libro.getRevision()));
         tfIdioma.setText(libro.getIdioma());
         tfSinopsis.setText(libro.getSinopsis());
         try{
@@ -77,7 +102,6 @@ public class BookViewer {
             //Lanza error si no existe link.
         }
     }
-
     /**
      * Cierra el dialogo al pulsar el boton "OK".
      */
