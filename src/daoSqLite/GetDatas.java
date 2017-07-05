@@ -43,7 +43,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      */
     public ArrayList<Libro> getLibros(String busqueda, int tipo) throws SQLException, ClassNotFoundException {
         String sql = "";
-        //todo: Busqueda en columnas normalizadas.
+
         if (tipo == TITLE) {
             sql = "SELECT * FROM LIBROS WHERE lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?)";
         } else if (tipo == AUTHOR) {
@@ -115,4 +115,18 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         super.desconectar();
         return libros;
     }
+
+/*
+    public HashMap<Integer, Double> getEPL_ID() throws SQLException, ClassNotFoundException {
+        HashMap<Integer, Double> ePL_IDs = new HashMap<>();
+        String sql = "SELECT epl_id, revision FROM LIBROS";
+        super.conectar();
+        Statement st = conn.createStatement();
+        ResultSet rst = st.executeQuery(sql);
+        while (rst.next()){
+            ePL_IDs.put(rst.getInt("epl_id"), rst.getDouble("revision"));
+        }
+        super.desconectar();
+        return ePL_IDs;
+    }*/
 }

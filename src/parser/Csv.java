@@ -36,7 +36,7 @@ public class Csv {
      * @throws IOException
      */
     public void importCSV(File csvFile) throws IOException {
-        LineIterator it = FileUtils.lineIterator(csvFile,"utf-8");
+        LineIterator it = FileUtils.lineIterator(csvFile, "utf-8");
         int count = 0;
         InsertDatas idatas = new InsertDatas();
         String line;
@@ -45,18 +45,17 @@ public class Csv {
             idatas.crearTabla();
             it.nextLine();
             idatas.conectar();
-            idatas.limpiarTabla();
             while (it.hasNext()) {
                 line = it.nextLine();
-                line = line.replaceAll("\",", "");
-                items = line.split("\"");
-                Libro lib = generarLibro(items);
+                items = line.replaceAll("\",", "").split("\"");
+                Libro libro = generarLibro(items);
                 try {
-                    idatas.insertarLibros(lib);
+                    idatas.insertarLibros(libro);
                     count++;
                 } catch (Exception e) {
                     //nada
                 }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
