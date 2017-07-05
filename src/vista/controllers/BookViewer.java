@@ -67,14 +67,15 @@ public class BookViewer {
     @FXML
     private void initialize() {
         cbRevision.setItems(FXCollections.observableArrayList(libro.getRevArray()));
-        drawBook(this.libro);
+        drawBook();
         cbRevision.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
             //t1 es el index del choiceBox.
             GetDatas getDatas = new GetDatas();
             try {
                 Libro libro = getDatas.getLibro(this.libro.getEpl_id(), (Double) cbRevision.getItems().get((Integer) t1));
-                System.out.println(libro.getTitulo() + " -> " + libro.getRevision());
-                drawBook(libro);
+                libro.setRevArray(this.libro.getRevArray());
+                this.libro = libro;
+                drawBook();
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -83,7 +84,7 @@ public class BookViewer {
         });
     }
 
-    private void drawBook(Libro libro) {
+    private void drawBook() {
         tfSinopsis.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         tfTitulo.setText(libro.getTitulo());
         tfAutor.setText(libro.getAutor());
@@ -95,13 +96,14 @@ public class BookViewer {
         //tfRevision.setText(String.valueOf(libro.getRevision()));
         tfIdioma.setText(libro.getIdioma());
         tfSinopsis.setText(libro.getSinopsis());
-        try{
-            Image image = new Image(libro.getImgURI(),true);
+        try {
+            Image image = new Image(libro.getImgURI(), true);
             imgView.setImage(image);
         } catch (Exception e) {
             //Lanza error si no existe link.
         }
     }
+
     /**
      * Cierra el dialogo al pulsar el boton "OK".
      */

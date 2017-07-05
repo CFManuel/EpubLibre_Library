@@ -48,6 +48,11 @@ public class Libro {
         return revArray;
     }
 
+    public Libro setRevArray(ArrayList<Double> revArray) {
+        this.revArray = revArray;
+        return this;
+    }
+
     public Libro addRevArray(Double revArray) {
         this.revArray.add(revArray);
         return this;
