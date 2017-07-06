@@ -32,6 +32,8 @@ import parser.Rss;
 import vista.Main;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -169,6 +171,13 @@ public class RootLayoutController implements CommonStrings {
     @FXML
     private void initialize() {
         //do Something.
+    }
+
+    @FXML
+    private void resetGUI() throws SQLException, ClassNotFoundException, IOException, URISyntaxException {
+        InsertDatas insertDatas = new InsertDatas();
+        insertDatas.deleteConfig(CommonStrings.VISIBLE_ROWS);
+        insertDatas.deleteConfig(CommonStrings.ORDER_ROWS);
     }
 
 

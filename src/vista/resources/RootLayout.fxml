@@ -34,6 +34,7 @@
             <Menu mnemonicParsing="false" text="Ayuda">
                <items>
                    <MenuItem mnemonicParsing="false" onAction="#getLastUpdate" text="Información de la base de datos"/>
+                   <MenuItem mnemonicParsing="false" onAction="#resetGUI" text="Borrar ajustes"/>
                    <MenuItem mnemonicParsing="false" onAction="#help" text="Sobra la aplicación"/>
                </items></Menu>
         </menus>

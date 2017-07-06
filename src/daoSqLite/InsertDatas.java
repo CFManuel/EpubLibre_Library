@@ -112,6 +112,16 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         ps.execute();
         super.desconectar();
     }
+
+    public void deleteConfig(String id) throws SQLException, ClassNotFoundException {
+        String sql = "DELETE FROM config WHERE TEXT_ID = ?";
+        super.conectar();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, id);
+        ps.execute();
+        super.desconectar();
+    }
+
     private String normalize(String texto) {
         return texto.replaceAll(PATTERN_A, "a")
                 .replaceAll(PATTERN_E, "e")
