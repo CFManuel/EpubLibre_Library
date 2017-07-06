@@ -23,8 +23,6 @@ import daoSqLite.InsertDatas;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -164,16 +162,15 @@ public class MainTableViewController implements CommonStrings {
         //listeners de orden y visibilidad.
         ObservableList<TableColumn<Libro, ?>> columns = bookTableView.getColumns();
         final List<TableColumn<Libro, ?>> unchangedColumns = Collections.unmodifiableList(new ArrayList<TableColumn<Libro, ?>>(columns));
+        //Registra el orden de las columnas y lo actualiza en la base de datos.
         columns.addListener((ListChangeListener<TableColumn<Libro, ?>>) change -> {
             while (change.next()) {
                 if (change.wasRemoved()) {
-                    ObservableList<TableColumn<Libro, ?>> columns1 = bookTableView.getColumns();
-                    int[] colOrder = new int[columns1.size()];
+                    int[] colOrder = new int[columns.size()];
 
                     for (int i = 0; i < columns.size(); ++i) {
                         colOrder[i] = unchangedColumns.indexOf(columns.get(i));
                     }
-                    System.out.println(Arrays.toString(colOrder));
                     // colOrder will now contain current order (e.g. 1, 2, 0, 5, 4)
 
                     InsertDatas insertDatas = new InsertDatas();
@@ -185,21 +182,40 @@ public class MainTableViewController implements CommonStrings {
                 }
             }
         });
+        //Obtiene la última configuración de la tabla.
+        Boolean[] vista = {};
+        int[] order = {};
+
+        GetDatas getDatas = new GetDatas();
+        try {
+            order = stringToArray(getDatas.getConfig(CommonStrings.ORDER_ROWS));
+            vista = Arrays.stream(getDatas.getConfig(CommonStrings.VISIBLE_ROWS).replaceAll("[\\s\\[\\]]+", "")
+                    .split(","))
+                    .map(Boolean::parseBoolean)
+                    .toArray(Boolean[]::new);
+        } catch (Exception e) {
+            //empty
+        }
+        //Listener que avisa de un cambio en la visibilidad de las columnas.
         for (TableColumn<Libro, ?> column : columns) {
-            column.visibleProperty().addListener(new ChangeListener<Boolean>() {
-                @Override
-                public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldVisibility, Boolean newVisibility) {
-                    System.out.println(("Visibility: " + oldVisibility + " -> " + newVisibility));
+            column.visibleProperty().addListener((observableValue, oldVisibility, newVisibility) -> {
+                Boolean[] vista1 = new Boolean[columns.size()];
+                for (int i = 0; i < vista1.length; i++) {
+                    vista1[i] = unchangedColumns.get(i).visibleProperty().getValue();
+                }
+                InsertDatas insertDatas = new InsertDatas();
+                try {
+                    insertDatas.insertConfig(CommonStrings.VISIBLE_ROWS, Arrays.toString(vista1));
+                } catch (Exception e) {
+                    //empty
                 }
             });
         }
-        //Obtiene la última configuración de orden de columnas.
-        GetDatas getDatas = new GetDatas();
-        int[] order = {};
-        try {
-            order = stringToArray(getDatas.getConfig(CommonStrings.ORDER_ROWS));
-        } catch (Exception e) {
-            //empty
+        //Restaura la visibilidad de las columnas.
+        if (vista.length == columns.size()) {
+            for (int i = 0; i < columns.size(); i++) {
+                columns.get(i).setVisible(vista[i]);
+            }
         }
         //Reordena las columnas.
         if (order.length == columns.size()) {
