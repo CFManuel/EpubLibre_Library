@@ -29,23 +29,17 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import modelos.CommonStrings;
 import modelos.Libro;
 import vista.Main;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
-/**
- * Created by david on 02/07/2017.
- */
 public class MainTableViewController implements CommonStrings {
     private static String OPT_TITLE = "Título";
     private static String OPT_AUTHOR = "Autor";
@@ -80,7 +74,15 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private TableColumn<Libro, String> generosColumn;
     @FXML
+    private TableColumn<Libro, Number> publiYearColumn;
+    @FXML
+    private TableColumn<Libro, String> publiDateColumn;
+    @FXML
+    private TableColumn<Libro, Number> n_votosColumn;
+    @FXML
     private Label labelBookFound;
+    @FXML
+    private CheckBox cbSearchOnTable;
     @FXML
     private MenuButton menuButton;
     @FXML
@@ -101,8 +103,7 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private void initialize() {
         configTable();
-        configChoiceBox();
-
+        cbSearchOnTable.selectedProperty().addListener((observableValue, aBoolean, t1) -> menuButton.setDisable(t1));
     }
 
     /**
@@ -112,12 +113,35 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private void searchBtn() {
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
+        if (cbSearchOnTable.isSelected()) {
+            System.out.println("tabla");
+            searchOnTable();
+        } else {
+            searchOnDB();
+        }
+        main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
+        labelBookFound.setText(String.valueOf(this.libros.size()) + " Libros.");
+
+
+    }
+
+    private void searchOnTable() {
+        java.util.function.BiFunction<Libro, String, Boolean> match = (libro, s) ->
+                (libro.getTitulo().toLowerCase().contains(s) || libro.getAutor().toLowerCase().contains(s) || libro.getColeccion().toLowerCase().contains(s));
+        String search = tfSearch.getText().toLowerCase();
+        Iterator<Libro> i = this.libros.iterator();
+        i.forEachRemaining(libro -> {
+            if (!match.apply(libro, search)) i.remove();
+        });
+    }
+
+    private void searchOnDB() {
         if (cbColeccion.isSelected()) { //evita que salgan resultados si no está seleccionado.
             String search = tfSearch.getText();
             search = String.format("%%%s%%", search);
             search = search.replaceAll("\\s", "%");
             GetDatas getDatas = new GetDatas();
-            ArrayList<Libro> libros = new ArrayList<>();
+            ArrayList<Libro> libros;
             String[] busqueda = new String[6];
             busqueda[0] = cbTitulo.isSelected() ? search : "";
             busqueda[1] = cbAutor.isSelected() ? search : "";
@@ -130,14 +154,9 @@ public class MainTableViewController implements CommonStrings {
                 libros = getDatas.getLibros(busqueda);
                 this.libros.clear();
                 this.libros.addAll(libros);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
-
-            main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
-            labelBookFound.setText(String.valueOf(this.libros.size()) + " Libros.");
         }
     }
 
@@ -154,10 +173,14 @@ public class MainTableViewController implements CommonStrings {
         idiomaColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdioma()));
         pagColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPaginas()));
         valColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getValoracion()));
+        publiYearColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFecha_publi()));
+        n_votosColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getN_votos()));
+        publiDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPublicado()));
 
         bookTableView.setEditable(false);
         bookTableView.setItems(this.libros);
         bookTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+        publiDateColumn.setComparator(new DateComparator());
         //Abrir ficha del libro con doble click o enter.
         bookTableView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (event.getClickCount() > 1) {
@@ -169,15 +192,14 @@ public class MainTableViewController implements CommonStrings {
                 main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
             }
         });
-
+        final KeyCombination searchOnTableKeyCombination = new KeyCodeCombination(KeyCode.ENTER,
+                KeyCombination.CONTROL_DOWN);
+        tfSearch.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+            if (searchOnTableKeyCombination.match(keyEvent)) {
+                searchOnTable();
+            }
+        });
         saveANDrestoreTableState();
-    }
-
-    /**
-     * Configura las opciones del ChoiceBox de busquedas.
-     */
-    private void configChoiceBox() {
-        //Todo: Marcas predefinidas.
     }
 
     public void setMain(Main main) {
@@ -211,7 +233,7 @@ public class MainTableViewController implements CommonStrings {
     private void saveANDrestoreTableState() {
         //listeners de orden y visibilidad.
         ObservableList<TableColumn<Libro, ?>> columns = bookTableView.getColumns();
-        final List<TableColumn<Libro, ?>> unchangedColumns = Collections.unmodifiableList(new ArrayList<TableColumn<Libro, ?>>(columns));
+        final List<TableColumn<Libro, ?>> unchangedColumns = Collections.unmodifiableList(new ArrayList<>(columns));
         //Registra el orden de las columnas y lo actualiza en la base de datos.
         columns.addListener((ListChangeListener<TableColumn<Libro, ?>>) change -> {
             while (change.next()) {
@@ -270,10 +292,53 @@ public class MainTableViewController implements CommonStrings {
         //Reordena las columnas.
         if (order.length == columns.size()) {
             columns.clear();
-            for (int ix = 0; ix < order.length; ix++) {
-                columns.add(unchangedColumns.get(order[ix]));
+            for (int anOrder : order) {
+                columns.add(unchangedColumns.get(anOrder));
             }
         }
     }
 
+    public static class DateComparator implements Comparator<String> {
+        Pattern fecha = Pattern.compile("(\\w):(\\d+)-(\\d+)-(\\d+)");
+        private int MAYOR = 1;
+        private int MENOR = -1;
+
+        //1: p, 2: dia, 3: mes, 4:año
+        @Override
+        public int compare(String o1, String o2) {
+            int result = 0;
+            Matcher fecha1 = fecha.matcher(o1);
+            Matcher fecha2 = fecha.matcher(o2);
+            if (fecha1.find() && fecha2.find()) {
+                int compareYear = fecha1.group(4).compareTo(fecha2.group(4));
+                int compareMonth = fecha1.group(3).compareTo(fecha2.group(3));
+                int compareDay = fecha1.group(2).compareTo(fecha2.group(2));
+                int compareLetter = fecha1.group(1).compareTo(fecha2.group(1));
+                if (compareYear == 0) {
+                    if (compareMonth == 0) {
+                        if (compareDay == 0) {
+                            if (compareLetter < 0) {
+                                result = MAYOR;
+                            } else {
+                                result = MENOR;
+                            }
+                        } else if (compareDay > 0) {
+                            result = MAYOR;
+                        } else {
+                            result = MENOR;
+                        }
+                    } else if (compareMonth > 0) {
+                        result = MAYOR;
+                    } else {
+                        result = MENOR;
+                    }
+                } else if (compareYear > 0) {
+                    result = MAYOR;
+                } else {
+                    result = MENOR;
+                }
+            }
+            return result;
+        }
+    }
 }

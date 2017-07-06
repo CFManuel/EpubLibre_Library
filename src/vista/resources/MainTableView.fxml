@@ -53,7 +53,17 @@
                            </MenuButton>
                        </children>
                    </HBox>
-                  <Button mnemonicParsing="false" onAction="#searchBtn" text="Buscar" />
+                   <CheckBox fx:id="cbSearchOnTable" mnemonicParsing="false" text="Buscar en tabla">
+                       <tooltip>
+                           <Tooltip opacity="0.8"
+                                    text="Busca en la tabla por Titulo, Autor y Colección.&#10;Atajo: CTRL + ENTER."
+                                    wrapText="true">
+                               <font>
+                                   <Font size="16.0"/>
+                               </font>
+                           </Tooltip>
+                       </tooltip>
+                   </CheckBox>
                    <Label fx:id="labelBookFound" text="0 Libros">
                        <HBox.margin>
                            <Insets left="60.0"/>
@@ -76,9 +86,12 @@
                   <TableColumn fx:id="volColumn" prefWidth="41.0" text="Volumen"/>
                   <TableColumn fx:id="generosColumn" prefWidth="75.0" text="Géneros"/>
                   <TableColumn fx:id="idiomaColumn" prefWidth="73.0" text="Idioma"/>
-                  <TableColumn fx:id="revColumn" prefWidth="36.0" resizable="false" text="Rev"/>
-                  <TableColumn fx:id="pagColumn" prefWidth="54.0" text="Paginas"/>
+                  <TableColumn fx:id="revColumn" prefWidth="36.0" resizable="false" text="Rev" visible="false"/>
+                  <TableColumn fx:id="pagColumn" prefWidth="54.0" text="Paginas" visible="false"/>
+                  <TableColumn fx:id="publiYearColumn" prefWidth="75.0" text="Año publicación" visible="false"/>
+                  <TableColumn fx:id="publiDateColumn" prefWidth="75.0" text="Publicado" visible="false"/>
                   <TableColumn fx:id="valColumn" prefWidth="70.0" text="Valoración"/>
+                  <TableColumn fx:id="n_votosColumn" prefWidth="75.0" text="Votos"/>
               </columns>
                <VBox.margin>
                    <Insets bottom="3.0" left="1.0" right="3.0"/>
