@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EpubLibre_Library.iml" filepath="$PROJECT_DIR$/EpubLibre_Library.iml" />
+      <module fileurl="file://C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\EpubLibre_Library.iml" filepath="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\EpubLibre_Library.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2017. Ladaga.
+  ~ This file is part of EpubLibre_Library.
+  ~
+  ~     EpubLibre_Library is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     EpubLibre_Library is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0"
+            minWidth="590" prefHeight="400" prefWidth="660" xmlns="http://javafx.com/javafx/8.0.112"
+            fx:controller="vista.controllers.RootLayoutController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+            <Menu fx:id="menuFile" mnemonicParsing="false" text="Archivo">
+               <items>
+                   <MenuItem mnemonicParsing="false" onAction="#importDataSource" text="Importar datos desde fichero"/>
+                   <MenuItem mnemonicParsing="false" onAction="#epubLibreImport" text="Importar datos desde ePubLibre"/>
+               </items></Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                   <MenuItem mnemonicParsing="false" onAction="#getLastUpdate" text="Información de la base de datos"/>
+                   <MenuItem mnemonicParsing="false" onAction="#resetGUI" text="Borrar ajustes"/>
+                   <MenuItem mnemonicParsing="false" onAction="#help" text="Sobra la aplicación"/>
+               </items></Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
