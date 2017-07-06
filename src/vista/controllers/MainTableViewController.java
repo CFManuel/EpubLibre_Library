@@ -32,7 +32,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import modelos.CommonStrings;
 import modelos.Libro;
 import vista.Main;
@@ -58,8 +57,7 @@ public class MainTableViewController implements CommonStrings {
     private Main main;
     @FXML
     private TextField tfSearch;
-    @FXML
-    private ChoiceBox<String> choiceBoxSearch;
+
 
     @FXML
     private TableView<Libro> bookTableView;
@@ -84,7 +82,19 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private Label labelBookFound;
     @FXML
-    private VBox vBox;
+    private MenuButton menuButton;
+    @FXML
+    private CheckMenuItem cbTitulo;
+    @FXML
+    private CheckMenuItem cbAutor;
+    @FXML
+    private CheckMenuItem cbColeccion;
+    @FXML
+    private CheckMenuItem cbGenero;
+    @FXML
+    private CheckMenuItem cbIdioma;
+    @FXML
+    private CheckMenuItem cbSinopsis;
 
     private ArrayList<Integer> visible_rows = new ArrayList<>();
 
@@ -102,32 +112,33 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private void searchBtn() {
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
-        String search = tfSearch.getText();
-        String option = choiceBoxSearch.getValue();
-        GetDatas getDatas = new GetDatas();
-        ArrayList<Libro> libros = new ArrayList<>();
-        try {
-            if (option.equalsIgnoreCase(OPT_TITLE)) {
-                libros = getDatas.getLibros(search, GetDatas.TITLE);
-            } else if (option.equalsIgnoreCase(OPT_AUTHOR)) {
-                libros = getDatas.getLibros(search, GetDatas.AUTHOR);
-            } else if (option.equalsIgnoreCase(OPT_COLLECTIONS)) {
-                libros = getDatas.getLibros(search, GetDatas.COLLECTIONS);
-            } else if (option.equalsIgnoreCase(OPT_GENDER)) {
-                libros = getDatas.getLibros(search, GetDatas.GENDER);
-            } else if (option.equalsIgnoreCase(OPT_LANGUAGE)) {
-                libros = getDatas.getLibros(search, GetDatas.LANGUAGE);
-            }
-            this.libros.clear();
-            this.libros.addAll(libros);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        if (cbColeccion.isSelected()) { //evita que salgan resultados si no está seleccionado.
+            String search = tfSearch.getText();
+            search = String.format("%%%s%%", search);
+            search = search.replaceAll("\\s", "%");
+            GetDatas getDatas = new GetDatas();
+            ArrayList<Libro> libros = new ArrayList<>();
+            String[] busqueda = new String[6];
+            busqueda[0] = cbTitulo.isSelected() ? search : "";
+            busqueda[1] = cbAutor.isSelected() ? search : "";
+            busqueda[2] = cbColeccion.isSelected() ? search : "";
+            busqueda[3] = cbGenero.isSelected() ? search : "";
+            busqueda[4] = cbIdioma.isSelected() ? search : "";
+            busqueda[5] = cbSinopsis.isSelected() ? search : "";
 
-        main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
-        labelBookFound.setText(String.valueOf(this.libros.size()) + " Libros.");
+            try {
+                libros = getDatas.getLibros(busqueda);
+                this.libros.clear();
+                this.libros.addAll(libros);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
+            labelBookFound.setText(String.valueOf(this.libros.size()) + " Libros.");
+        }
     }
 
     /**
@@ -166,8 +177,7 @@ public class MainTableViewController implements CommonStrings {
      * Configura las opciones del ChoiceBox de busquedas.
      */
     private void configChoiceBox() {
-        choiceBoxSearch.setItems(FXCollections.observableArrayList(OPT_TITLE, OPT_AUTHOR, OPT_COLLECTIONS, OPT_GENDER, OPT_LANGUAGE));
-        choiceBoxSearch.setValue(OPT_TITLE);
+        //Todo: Marcas predefinidas.
     }
 
     public void setMain(Main main) {

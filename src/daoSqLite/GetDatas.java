@@ -29,38 +29,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GetDatas extends ConnectorHelper implements CommonStrings {
-    public static int TITLE = 1;
-    public static int AUTHOR = 2;
-    public static int COLLECTIONS = 3;
-    public static int GENDER = 4;
-    public static int LANGUAGE = 5;
 
     /**
      * @param busqueda Palabra que se desea buscar en la db.
-     * @param tipo     Campo sobre el que se desea realizar la busqueda.
      * @return
      * @throws SQLException           Error al generar la conexión.
      * @throws ClassNotFoundException Driver no encontrado.
      */
-    public ArrayList<Libro> getLibros(String busqueda, int tipo) throws SQLException, ClassNotFoundException {
-        String sql = "";
-        //todo: evaluar campos a buscar.
-        if (tipo == TITLE) {
-            sql = "SELECT * FROM LIBROS WHERE lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) ORDER BY revision DESC ";
-        } else if (tipo == AUTHOR) {
-            sql = "SELECT * FROM LIBROS WHERE lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?) ORDER BY revision DESC ";
-        } else if (tipo == COLLECTIONS) {
-            sql = "SELECT * FROM LIBROS WHERE lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?)  ORDER BY revision, coleccion, volumen DESC ";
-        } else if (tipo == GENDER) {
-            sql = "SELECT * FROM LIBROS WHERE lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) ORDER BY revision DESC ";
-        } else if (tipo == LANGUAGE) {
-            sql = "SELECT * FROM LIBROS WHERE lower(idioma) LIKE lower(?) OR lower(idisense) LIKE lower(?) ORDER BY revision DESC ";
-        }
-        busqueda = String.format("%%%s%%", busqueda);
+    public ArrayList<Libro> getLibros(String[] busqueda) throws SQLException, ClassNotFoundException {
+        String sql = sql = "SELECT * FROM libros WHERE " +
+                "lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) OR " + //titulo
+                "lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?) OR " + //Autor
+                "lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?) OR " + //Colección
+                "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) OR " + //Género
+                "lower(idioma) LIKE lower(?) OR lower(idisense) LIKE lower(?) OR " + //Idioma
+                "lower(sinopsis) LIKE lower(?) " + //sinopsis
+                "ORDER BY revision DESC ";
         super.conectar();
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, busqueda);
-        ps.setString(2, busqueda);
+        ps.setString(1, busqueda[0]);
+        ps.setString(2, busqueda[0]);
+        ps.setString(3, busqueda[1]);
+        ps.setString(4, busqueda[1]);
+        ps.setString(5, busqueda[2]);
+        ps.setString(6, busqueda[2]);
+        ps.setString(7, busqueda[3]);
+        ps.setString(8, busqueda[3]);
+        ps.setString(9, busqueda[4]);
+        ps.setString(10, busqueda[4]);
+        ps.setString(11, busqueda[5]);
         ResultSet rst = ps.executeQuery();
         HashMap<Integer, Libro> libros = procesarConsultaLibros(rst);
         super.desconectar();
@@ -148,6 +145,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         super.desconectar();
         return valor;
     }
+
     public int countBooks() throws SQLException, ClassNotFoundException {
         String sql = "SELECT COUNT(*) many FROM LIBROS";
         int libros = 0;
