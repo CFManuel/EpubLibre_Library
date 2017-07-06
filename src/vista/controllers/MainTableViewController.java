@@ -19,10 +19,14 @@
 package vista.controllers;
 
 import daoSqLite.GetDatas;
+import daoSqLite.InsertDatas;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -31,17 +35,21 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import modelos.CommonStrings;
 import modelos.Libro;
 import vista.Main;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 
 /**
  * Created by david on 02/07/2017.
  */
-public class MainTableViewController {
+public class MainTableViewController implements CommonStrings {
     private static String OPT_TITLE = "Título";
     private static String OPT_AUTHOR = "Autor";
     private static String OPT_COLLECTIONS = "Colecciones";
@@ -79,6 +87,8 @@ public class MainTableViewController {
     private Label labelBookFound;
     @FXML
     private VBox vBox;
+
+    private ArrayList<Integer> visible_rows = new ArrayList<>();
 
     @FXML
     private void initialize() {
@@ -150,11 +160,60 @@ public class MainTableViewController {
                 main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
             }
         });
+
+        //listeners de orden y visibilidad.
+        ObservableList<TableColumn<Libro, ?>> columns = bookTableView.getColumns();
+        final List<TableColumn<Libro, ?>> unchangedColumns = Collections.unmodifiableList(new ArrayList<TableColumn<Libro, ?>>(columns));
+        columns.addListener((ListChangeListener<TableColumn<Libro, ?>>) change -> {
+            while (change.next()) {
+                if (change.wasRemoved()) {
+                    ObservableList<TableColumn<Libro, ?>> columns1 = bookTableView.getColumns();
+                    int[] colOrder = new int[columns1.size()];
+
+                    for (int i = 0; i < columns.size(); ++i) {
+                        colOrder[i] = unchangedColumns.indexOf(columns.get(i));
+                    }
+                    System.out.println(Arrays.toString(colOrder));
+                    // colOrder will now contain current order (e.g. 1, 2, 0, 5, 4)
+
+                    InsertDatas insertDatas = new InsertDatas();
+                    try {
+                        insertDatas.insertConfig(CommonStrings.ORDER_ROWS, Arrays.toString(colOrder).replaceAll("\\s", ""));
+                    } catch (Exception e) {
+                        //empty
+                    }
+                }
+            }
+        });
+        for (TableColumn<Libro, ?> column : columns) {
+            column.visibleProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldVisibility, Boolean newVisibility) {
+                    System.out.println(("Visibility: " + oldVisibility + " -> " + newVisibility));
+                }
+            });
+        }
+        //Obtiene la última configuración de orden de columnas.
+        GetDatas getDatas = new GetDatas();
+        int[] order = {};
+        try {
+            order = stringToArray(getDatas.getConfig(CommonStrings.ORDER_ROWS));
+        } catch (Exception e) {
+            //empty
+        }
+        //Reordena las columnas.
+        if (order.length == columns.size()) {
+            columns.clear();
+            for (int ix = 0; ix < order.length; ix++) {
+                columns.add(unchangedColumns.get(order[ix]));
+            }
+        }
     }
 
     /**
      * Configura las opciones del ChoiceBox de busquedas.
      */
+
     private void configChoiceBox() {
         choiceBoxSearch.setItems(FXCollections.observableArrayList(OPT_TITLE, OPT_AUTHOR, OPT_COLLECTIONS, OPT_GENDER, OPT_LANGUAGE));
         choiceBoxSearch.setValue(OPT_TITLE);
@@ -162,6 +221,25 @@ public class MainTableViewController {
 
     public void setMain(Main main) {
         this.main = main;
+    }
+
+    /**
+     * Convierte una cadena tipo [1, 2, 3, 4] en array de int[]
+     *
+     * @param intArray Cadena que contiene el array en formato texto.
+     * @return Array de enteros.
+     */
+    private int[] stringToArray(String intArray) {
+        String[] array = intArray.replaceAll("[\\s\\[\\]]+", "").split(",");
+        int[] ints = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            try {
+                ints[i] = Integer.parseInt(array[i]);
+            } catch (NumberFormatException nfe) {
+                //Not an integer
+            }
+        }
+        return ints;
     }
 
 }
