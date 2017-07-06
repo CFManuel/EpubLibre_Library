@@ -159,6 +159,46 @@ public class MainTableViewController implements CommonStrings {
             }
         });
 
+        saveANDrestoreTableState();
+    }
+
+    /**
+     * Configura las opciones del ChoiceBox de busquedas.
+     */
+    private void configChoiceBox() {
+        choiceBoxSearch.setItems(FXCollections.observableArrayList(OPT_TITLE, OPT_AUTHOR, OPT_COLLECTIONS, OPT_GENDER, OPT_LANGUAGE));
+        choiceBoxSearch.setValue(OPT_TITLE);
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
+    }
+
+    /**
+     * Convierte una cadena tipo [1, 2, 3, 4] en array de int[]
+     *
+     * @param intArray Cadena que contiene el array en formato texto.
+     * @return Array de enteros.
+     */
+    private int[] stringToArray(String intArray) {
+        String[] array = intArray.replaceAll("[\\s\\[\\]]+", "").split(",");
+        int[] ints = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            try {
+                ints[i] = Integer.parseInt(array[i]);
+            } catch (NumberFormatException nfe) {
+                //Not an integer
+            }
+        }
+        return ints;
+    }
+
+    /**
+     * Restaura el estado anterior de la tabla.
+     * Añade los listener para cambio de orden y de visibilidad de una columna.
+     * Guarda estos datos en la DB.
+     */
+    private void saveANDrestoreTableState() {
         //listeners de orden y visibilidad.
         ObservableList<TableColumn<Libro, ?>> columns = bookTableView.getColumns();
         final List<TableColumn<Libro, ?>> unchangedColumns = Collections.unmodifiableList(new ArrayList<TableColumn<Libro, ?>>(columns));
@@ -224,38 +264,6 @@ public class MainTableViewController implements CommonStrings {
                 columns.add(unchangedColumns.get(order[ix]));
             }
         }
-    }
-
-    /**
-     * Configura las opciones del ChoiceBox de busquedas.
-     */
-
-    private void configChoiceBox() {
-        choiceBoxSearch.setItems(FXCollections.observableArrayList(OPT_TITLE, OPT_AUTHOR, OPT_COLLECTIONS, OPT_GENDER, OPT_LANGUAGE));
-        choiceBoxSearch.setValue(OPT_TITLE);
-    }
-
-    public void setMain(Main main) {
-        this.main = main;
-    }
-
-    /**
-     * Convierte una cadena tipo [1, 2, 3, 4] en array de int[]
-     *
-     * @param intArray Cadena que contiene el array en formato texto.
-     * @return Array de enteros.
-     */
-    private int[] stringToArray(String intArray) {
-        String[] array = intArray.replaceAll("[\\s\\[\\]]+", "").split(",");
-        int[] ints = new int[array.length];
-        for (int i = 0; i < array.length; i++) {
-            try {
-                ints[i] = Integer.parseInt(array[i]);
-            } catch (NumberFormatException nfe) {
-                //Not an integer
-            }
-        }
-        return ints;
     }
 
 }
