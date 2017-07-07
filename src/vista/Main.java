@@ -142,10 +142,10 @@ public class Main extends Application implements CommonStrings {
             AnchorPane pane = loader.load();
             Scene scene = new Scene(pane);
             Stage dialogStage = new Stage();
+            dialogStage.setScene(scene);
             dialogStage.setTitle(libro.getTitulo());
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(this.primaryStage);
-            dialogStage.setScene(scene);
             dialogStage.getIcons().add(new Image("vista/resources/EPL_Portadas_NEGRO.png"));
             controller.setDialogStage(dialogStage);
             controller.setLibro(libro);

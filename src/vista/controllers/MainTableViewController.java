@@ -114,14 +114,12 @@ public class MainTableViewController implements CommonStrings {
     private void searchBtn() {
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         if (cbSearchOnTable.isSelected()) {
-            System.out.println("tabla");
             searchOnTable();
         } else {
             searchOnDB();
         }
+        writeNumberBooks();
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
-        labelBookFound.setText(String.valueOf(this.libros.size()) + " Libros.");
-
 
     }
 
@@ -197,6 +195,7 @@ public class MainTableViewController implements CommonStrings {
         tfSearch.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
             if (searchOnTableKeyCombination.match(keyEvent)) {
                 searchOnTable();
+                writeNumberBooks();
             }
         });
         saveANDrestoreTableState();
@@ -296,6 +295,10 @@ public class MainTableViewController implements CommonStrings {
                 columns.add(unchangedColumns.get(anOrder));
             }
         }
+    }
+
+    private void writeNumberBooks() {
+        labelBookFound.setText(String.valueOf(this.libros.size()) + " Libros");
     }
 
     public static class DateComparator implements Comparator<String> {

@@ -80,18 +80,21 @@
              <TableView fx:id="bookTableView" focusTraversable="false" tableMenuButtonVisible="true"
                         VBox.vgrow="ALWAYS">
               <columns>
-                  <TableColumn fx:id="titleColumn" prefWidth="159.0" text="Titulo"/>
-                  <TableColumn fx:id="autorColumn" prefWidth="109.0" text="Autor"/>
-                  <TableColumn fx:id="colColumn" prefWidth="107.0" text="Colección"/>
-                  <TableColumn fx:id="volColumn" prefWidth="41.0" text="Volumen"/>
-                  <TableColumn fx:id="generosColumn" prefWidth="75.0" text="Géneros"/>
+                  <TableColumn fx:id="titleColumn" minWidth="60.0" prefWidth="159.0" text="Titulo"/>
+                  <TableColumn fx:id="autorColumn" minWidth="60.0" prefWidth="109.0" text="Autor"/>
+                  <TableColumn fx:id="colColumn" minWidth="60.0" prefWidth="107.0" text="Colección"/>
+                  <TableColumn fx:id="volColumn" minWidth="45.0" prefWidth="41.0" text="Volumen"/>
+                  <TableColumn fx:id="generosColumn" minWidth="40.0" prefWidth="75.0" text="Géneros"/>
                   <TableColumn fx:id="idiomaColumn" prefWidth="73.0" text="Idioma"/>
-                  <TableColumn fx:id="revColumn" prefWidth="36.0" resizable="false" text="Rev" visible="false"/>
-                  <TableColumn fx:id="pagColumn" prefWidth="54.0" text="Paginas" visible="false"/>
-                  <TableColumn fx:id="publiYearColumn" prefWidth="75.0" text="Año publicación" visible="false"/>
-                  <TableColumn fx:id="publiDateColumn" prefWidth="75.0" text="Publicado" visible="false"/>
-                  <TableColumn fx:id="valColumn" prefWidth="70.0" text="Valoración"/>
-                  <TableColumn fx:id="n_votosColumn" prefWidth="75.0" text="Votos"/>
+                  <TableColumn fx:id="revColumn" minWidth="36.0" prefWidth="36.0" resizable="false" text="Rev"
+                               visible="false"/>
+                  <TableColumn fx:id="pagColumn" minWidth="40.0" prefWidth="54.0" text="Paginas" visible="false"/>
+                  <TableColumn fx:id="publiYearColumn" minWidth="40.0" prefWidth="75.0" text="Año publicación"
+                               visible="false"/>
+                  <TableColumn fx:id="publiDateColumn" minWidth="80.0" prefWidth="100.0" text="Publicado"
+                               visible="false"/>
+                  <TableColumn fx:id="valColumn" minWidth="35.0" prefWidth="70.0" text="Valoración"/>
+                  <TableColumn fx:id="n_votosColumn" minWidth="40.0" prefWidth="75.0" text="Votos"/>
               </columns>
                <VBox.margin>
                    <Insets bottom="3.0" left="1.0" right="3.0"/>

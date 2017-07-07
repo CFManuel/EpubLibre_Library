@@ -23,8 +23,10 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modelos.Libro;
 import uriSchemeHandler.CouldNotOpenUriSchemeHandler;
@@ -39,6 +41,7 @@ import java.sql.SQLException;
  */
 public class BookViewer {
     private Libro libro;
+
     private Stage dialogStage;
     @FXML
     private Label tfTitulo;
@@ -47,13 +50,23 @@ public class BookViewer {
     @FXML
     private Label tfColeccion;
     @FXML
+    private Label tfVolumen;
+    @FXML
     private Label tfGeneros;
     @FXML
     private ChoiceBox cbRevision;
     @FXML
     private Label tfIdioma;
     @FXML
-    private Label tfSinopsis;
+    private Label tfYear;
+    @FXML
+    private Label tfPages;
+    @FXML
+    private Label tfValoracion;
+    @FXML
+    private Label lColeccion;
+    @FXML
+    private ScrollPane tfSinopsis;
     @FXML
     private ImageView imgView;
 
@@ -66,6 +79,7 @@ public class BookViewer {
      */
     @FXML
     private void initialize() {
+
         cbRevision.setItems(FXCollections.observableArrayList(libro.getRevArray()));
         drawBook();
         cbRevision.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
@@ -89,13 +103,23 @@ public class BookViewer {
         tfTitulo.setText(libro.getTitulo());
         tfAutor.setText(libro.getAutor());
         tfColeccion.setText(libro.getColeccion());
+        tfVolumen.setText(String.valueOf(libro.getVolumen()));
         tfGeneros.setText(libro.getGeneros());
-
-        cbRevision.setValue(cbRevision.getItems().get(0));
-
-        //tfRevision.setText(String.valueOf(libro.getRevision()));
         tfIdioma.setText(libro.getIdioma());
-        tfSinopsis.setText(libro.getSinopsis());
+        cbRevision.setValue(cbRevision.getItems().get(0));
+        tfPages.setText(String.valueOf(libro.getPaginas()));
+        tfValoracion.setText(String.valueOf(libro.getValoracion()));
+
+
+        //tfSinopsis.setText(libro.getSinopsis());
+        Text sinopsis = new Text();
+        sinopsis.wrappingWidthProperty().bind(tfSinopsis.widthProperty());
+        tfSinopsis.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        sinopsis.setText(libro.getSinopsis());
+        //tfSinopsis.setFitToWidth(true);
+        tfSinopsis.setFitToHeight(true);
+
+        tfSinopsis.setContent(sinopsis);
         try {
             Image image = new Image(libro.getImgURI(), true);
             imgView.setImage(image);
@@ -136,4 +160,5 @@ public class BookViewer {
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
+
 }
