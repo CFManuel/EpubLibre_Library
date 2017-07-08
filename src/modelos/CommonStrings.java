@@ -21,8 +21,9 @@ package modelos;
 public interface CommonStrings {
     String VERSION = "v0.6.2";
     String LAST_UPDATE = "LAST_UPDATE";
-    String VISIBLE_ROWS = "VISIBLE_ROWS";
-    String ORDER_ROWS = "ORDER_ROWS";
+    String VISIBLE_COLUMNS = "VISIBLE_COLUMNS";
+    String ORDER_COLUMNS = "ORDER_COLUMNS";
+    String WIDTH_COLUMNS = "WIDTH_COLUMNS";
     String CSV_URL = "https://epublibre.org/rssweb/csv";
     String RSS_URL = "http://epublibre.org/rssweb/rss/completo"; //Compacto
     //Main.getLocation() para apuntar a la carpeta epl del jar

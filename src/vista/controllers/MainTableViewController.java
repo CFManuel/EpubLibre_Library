@@ -246,26 +246,26 @@ public class MainTableViewController implements CommonStrings {
 
                     InsertDatas insertDatas = new InsertDatas();
                     try {
-                        insertDatas.insertConfig(CommonStrings.ORDER_ROWS, Arrays.toString(colOrder).replaceAll("\\s", ""));
+                        insertDatas.insertConfig(CommonStrings.ORDER_COLUMNS, Arrays.toString(colOrder).replaceAll("\\s", ""));
                     } catch (Exception e) {
                         //empty
                     }
                 }
             }
         });
-        //Obtiene la última configuración de la tabla.
-        Boolean[] vista = {};
-        int[] order = {};
-
-        GetDatas getDatas = new GetDatas();
-        try {
-            order = stringToArray(getDatas.getConfig(CommonStrings.ORDER_ROWS));
-            vista = Arrays.stream(getDatas.getConfig(CommonStrings.VISIBLE_ROWS).replaceAll("[\\s\\[\\]]+", "")
-                    .split(","))
-                    .map(Boolean::parseBoolean)
-                    .toArray(Boolean[]::new);
-        } catch (Exception e) {
-            //empty
+        //Listener que avisa del tamaño de las columnas
+        for (TableColumn<Libro, ?> column : columns) {
+            column.widthProperty().addListener((observableValue, oldWidth, newWidth) -> {
+                int[] size = new int[columns.size()];
+                for (int i = 0; i < size.length; i++)
+                    size[i] = unchangedColumns.get(i).widthProperty().getValue().intValue();
+                InsertDatas insertDatas = new InsertDatas();
+                try {
+                    insertDatas.insertConfig(CommonStrings.WIDTH_COLUMNS, Arrays.toString(size));
+                } catch (Exception e) {
+                    //empty
+                }
+            });
         }
         //Listener que avisa de un cambio en la visibilidad de las columnas.
         for (TableColumn<Libro, ?> column : columns) {
@@ -276,11 +276,33 @@ public class MainTableViewController implements CommonStrings {
                 }
                 InsertDatas insertDatas = new InsertDatas();
                 try {
-                    insertDatas.insertConfig(CommonStrings.VISIBLE_ROWS, Arrays.toString(vista1));
+                    insertDatas.insertConfig(CommonStrings.VISIBLE_COLUMNS, Arrays.toString(vista1));
                 } catch (Exception e) {
                     //empty
                 }
             });
+        }
+        //Obtiene la última configuración de la tabla.
+        Boolean[] vista = {};
+        int[] order = {};
+        int[] width = {};
+
+        GetDatas getDatas = new GetDatas();
+        try {
+            order = stringToArray(getDatas.getConfig(CommonStrings.ORDER_COLUMNS));
+            width = stringToArray(getDatas.getConfig(CommonStrings.WIDTH_COLUMNS));
+            vista = Arrays.stream(getDatas.getConfig(CommonStrings.VISIBLE_COLUMNS).replaceAll("[\\s\\[\\]]+", "")
+                    .split(","))
+                    .map(Boolean::parseBoolean)
+                    .toArray(Boolean[]::new);
+        } catch (Exception e) {
+            //empty
+        }
+        //Tamaño de las columnas.
+        if (width.length == columns.size()) {
+            for (int i = 0; i < width.length; i++) {
+                columns.get(i).setPrefWidth(width[i]);
+            }
         }
         //Restaura la visibilidad de las columnas.
         if (vista.length == columns.size()) {

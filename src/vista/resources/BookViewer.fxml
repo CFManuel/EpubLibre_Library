@@ -45,8 +45,6 @@
                    <Font name="System Bold" size="16.0"/>
                </font>
             </Label>
-             <ScrollPane fx:id="tfSinopsis" fitToHeight="true" fitToWidth="true" prefHeight="259.0" prefWidth="535.0"
-                         GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS"/>
             <HBox prefHeight="162.0" prefWidth="299.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <children>
                    <ImageView fx:id="imgView" fitHeight="286.0" fitWidth="193.0" pickOnBounds="true"
@@ -162,6 +160,9 @@
                      <Insets/>
                  </GridPane.margin>
              </HBox>
+             <TextArea fx:id="tfSinopsis" editable="false" prefHeight="250.0" prefWidth="375.0"
+                       text="adsfasasdfasdfasdfassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+                       wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="2"/>
          </children>
       </GridPane>
    </children>

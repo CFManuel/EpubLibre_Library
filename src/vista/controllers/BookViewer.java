@@ -23,10 +23,9 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modelos.Libro;
 import uriSchemeHandler.CouldNotOpenUriSchemeHandler;
@@ -66,7 +65,7 @@ public class BookViewer {
     @FXML
     private Label lColeccion;
     @FXML
-    private ScrollPane tfSinopsis;
+    private TextArea tfSinopsis;
     @FXML
     private ImageView imgView;
 
@@ -111,15 +110,12 @@ public class BookViewer {
         tfValoracion.setText(String.valueOf(libro.getValoracion()));
 
 
-        //tfSinopsis.setText(libro.getSinopsis());
-        Text sinopsis = new Text();
-        sinopsis.wrappingWidthProperty().bind(tfSinopsis.widthProperty());
         tfSinopsis.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        sinopsis.setText(libro.getSinopsis());
-        //tfSinopsis.setFitToWidth(true);
-        tfSinopsis.setFitToHeight(true);
+        libro.setSinopsis(libro.getSinopsis().replaceAll("([a-z]\\.)([A-Z])", "$1\n$2"));
+        tfSinopsis.setText(libro.getSinopsis());
+        tfSinopsis.setStyle("-fx-background-color: transparent;");
+        //tfSinopsis.setEditable(false);
 
-        tfSinopsis.setContent(sinopsis);
         try {
             Image image = new Image(libro.getImgURI(), true);
             imgView.setImage(image);
