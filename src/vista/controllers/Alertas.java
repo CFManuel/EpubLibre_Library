@@ -93,4 +93,11 @@ public class Alertas implements CommonStrings {
         sure.setContentText("¿Está seguro que desea continuar?");
         return sure.showAndWait();
     }
+
+    public static Optional<ButtonType> panicButton() {
+        Alert sure = new Alert(Alert.AlertType.CONFIRMATION);
+        sure.setHeaderText("¿Desea restablecer los valores por defecto?");
+        sure.setContentText("Deberá reiniciar la aplicación para que los cambios tengan efecto.");
+        return sure.showAndWait();
+    }
 }

@@ -20,6 +20,8 @@ package vista;
 
 import controller.UpdateDB;
 import daoSqLite.ConnectorHelper;
+import daoSqLite.GetDatas;
+import daoSqLite.InsertDatas;
 import files.Utils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -73,10 +75,36 @@ public class Main extends Application implements CommonStrings {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("ePubLibre Library " + VERSION);
         this.primaryStage.getIcons().add(new Image("vista/resources/EPL_Portadas_NEGRO.png"));
+        //Restaurar último tamaño
+        try {
+            GetDatas getDatas = new GetDatas();
+            this.primaryStage.setWidth(Double.parseDouble(getDatas.getConfig(CommonStrings.WIDTH_WINDOW)));
+            this.primaryStage.setHeight(Double.parseDouble(getDatas.getConfig(CommonStrings.HEIGHT_WINDOW)));
+        } catch (Exception e) {
+            //Empty value
+        }
+        //Listeners para hacer persitente el tamaño de la ventana.
+        this.primaryStage.widthProperty().addListener((observableValue, number, t1) -> {
+            InsertDatas insertDatas = new InsertDatas();
+            try {
+                insertDatas.insertConfig(CommonStrings.WIDTH_WINDOW, String.valueOf(t1));
+            } catch (Exception e) {//empty]
+            }
+
+        });
+        this.primaryStage.heightProperty().addListener((observableValue, number, t1) -> {
+            InsertDatas insertDatas = new InsertDatas();
+            try {
+                insertDatas.insertConfig(CommonStrings.HEIGHT_WINDOW, String.valueOf(t1));
+            } catch (Exception e) {//empty]
+            }
+
+        });
         this.main = this;
 
         initRootLayout();
         initMainTableView();
+
 
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         Utils.crearEPL();

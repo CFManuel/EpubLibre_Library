@@ -24,6 +24,8 @@ public interface CommonStrings {
     String VISIBLE_COLUMNS = "VISIBLE_COLUMNS";
     String ORDER_COLUMNS = "ORDER_COLUMNS";
     String WIDTH_COLUMNS = "WIDTH_COLUMNS";
+    String WIDTH_WINDOW = "WIDTH_WINDOW";
+    String HEIGHT_WINDOW = "HEIGHT_WINDOW";
     String CSV_URL = "https://epublibre.org/rssweb/csv";
     String RSS_URL = "http://epublibre.org/rssweb/rss/completo"; //Compacto
     //Main.getLocation() para apuntar a la carpeta epl del jar

@@ -176,10 +176,15 @@ public class RootLayoutController implements CommonStrings {
 
     @FXML
     private void resetGUI() throws SQLException, ClassNotFoundException, IOException, URISyntaxException {
-        InsertDatas insertDatas = new InsertDatas();
-        insertDatas.deleteConfig(CommonStrings.VISIBLE_COLUMNS);
-        insertDatas.deleteConfig(CommonStrings.ORDER_COLUMNS);
-        insertDatas.deleteConfig(CommonStrings.WIDTH_COLUMNS);
+        Optional<ButtonType> borrar = panicButton();
+        if (borrar.get() == ButtonType.OK) {
+            InsertDatas insertDatas = new InsertDatas();
+            insertDatas.deleteConfig(CommonStrings.VISIBLE_COLUMNS);
+            insertDatas.deleteConfig(CommonStrings.ORDER_COLUMNS);
+            insertDatas.deleteConfig(CommonStrings.WIDTH_COLUMNS);
+            insertDatas.deleteConfig(CommonStrings.HEIGHT_WINDOW);
+            insertDatas.deleteConfig(CommonStrings.WIDTH_WINDOW);
+        }
     }
 
 
