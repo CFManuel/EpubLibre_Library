@@ -28,11 +28,9 @@ import java.io.*;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-
 public class Csv {
     /**
-     * Abre el csv, lo lee linea a linea e inserta los datos en la base
-     * en forma de transacción.
+     * Abre el csv, lo lee linea a linea e inserta los datos en la base en forma de transacción.
      *
      * @param csvFile Archivo csv con los datos completos.
      * @throws IOException
@@ -60,7 +58,6 @@ public class Csv {
                 } catch (Exception e) {
                     //nada
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,7 +124,7 @@ public class Csv {
             if (!items[14].equalsIgnoreCase("")) lib.setValoracion(Double.parseDouble(items[14]));
             if (!items[15].equalsIgnoreCase("")) lib.setN_votos(Integer.parseInt(items[15]));
             try {
-                lib.setEnlaces("magnet:?xt=urn:btih:" + items[16]);
+                lib.setEnlaces("magnet:?xt=urn:btih:" + items[16].split(",")[0]);
             } catch (Exception e) {
             }
         } catch (Exception e) {
