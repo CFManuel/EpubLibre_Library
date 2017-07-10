@@ -113,7 +113,7 @@ public class BookViewer implements CommonStrings {
 
 
         tfSinopsis.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        libro.setSinopsis(libro.getSinopsis().replaceAll(PATTERN_FOR_PARAGRAPH, "$1\n$2"));
+        libro.setSinopsis(libro.getSinopsis().replaceAll(PATTERN_FOR_PARAGRAPH, "$1\n\n$2"));
         tfSinopsis.setText(libro.getSinopsis());
         tfSinopsis.setStyle("-fx-background-color: transparent;");
         //tfSinopsis.setEditable(false);

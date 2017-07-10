@@ -152,9 +152,10 @@
              <HBox alignment="CENTER" spacing="30.0" GridPane.columnIndex="1" GridPane.halignment="CENTER"
                    GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                  <children>
-                     <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="44.0" text="Ok"
+                     <Button mnemonicParsing="false" onAction="#ok" prefHeight="25.0" prefWidth="44.0" text="Ok"
                              GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                     <Button mnemonicParsing="false" text="Descargar" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                     <Button mnemonicParsing="false" onAction="#download" text="Descargar" GridPane.columnIndex="1"
+                             GridPane.rowIndex="3"/>
                  </children>
                  <GridPane.margin>
                      <Insets/>
