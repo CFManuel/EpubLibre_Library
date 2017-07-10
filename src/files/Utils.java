@@ -45,7 +45,9 @@ public class Utils implements CommonStrings {
         try {
             URL url = new URL(CSV_URL);
             URLConnection conn = url.openConnection();
-            conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) Gecko/20100101 Firefox/31.0");
+            conn.setRequestProperty(
+                    "User-Agent",
+                    "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) Gecko/20100101 Firefox/31.0");
             conn.connect();
             destino = new File(Main.getLocation() + "epub.zip");
             FileUtils.copyInputStreamToFile(conn.getInputStream(), destino);
@@ -89,6 +91,11 @@ public class Utils implements CommonStrings {
         }
     }
 
+    /**
+     * Lanza el URI Scheme correspondiente a un magentLink almacenado en un libro.
+     *
+     * @param libro Libro a descargar.
+     */
     public static void launchTorrent(Libro libro) {
         try {
             URI magnetLink = new URI(libro.getEnlaces());

@@ -79,6 +79,7 @@ public class BookViewer implements CommonStrings {
 
         cbRevision.setItems(FXCollections.observableArrayList(libro.getRevArray()));
         drawBook();
+        //Listener para cargar el libro correspondiente a la revisión seleccionada.
         cbRevision.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
             //t1 es el index del choiceBox.
             GetDatas getDatas = new GetDatas();
@@ -95,6 +96,9 @@ public class BookViewer implements CommonStrings {
         });
     }
 
+    /**
+     * Rellena los campos con la información del libro indicado.
+     */
     private void drawBook() {
         tfSinopsis.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         tfTitulo.setText(libro.getTitulo());
@@ -113,7 +117,6 @@ public class BookViewer implements CommonStrings {
         libro.setSinopsis(libro.getSinopsis().replaceAll(PATTERN_FOR_PARAGRAPH, "$1\n\n$2"));
         tfSinopsis.setText(libro.getSinopsis());
         tfSinopsis.setStyle("-fx-background-color: transparent;");
-        //tfSinopsis.setEditable(false);
 
         try {
             Image image = new Image(libro.getImgURI(), true);
@@ -139,6 +142,11 @@ public class BookViewer implements CommonStrings {
         Utils.launchTorrent(this.libro);
     }
 
+    /**
+     * Asigna el libro sobre el que se va a trabajar.
+     *
+     * @param libro Datos a mostrar.
+     */
     public void setLibro(Libro libro) {
         this.libro = libro;
     }

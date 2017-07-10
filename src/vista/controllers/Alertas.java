@@ -33,12 +33,9 @@ public class Alertas implements CommonStrings {
         fin.setHeaderText("Se han cargado los libros con exito.");
         fin.setContentText("Actualizacion finalizada.");
         fin.show();
-
     }
 
-    /**
-     * Alerta de error en carga de datos.
-     */
+    /** Alerta de error en carga de datos. */
     public static void alertUpdateFail() {
         Alert fin = new Alert(Alert.AlertType.ERROR);
         fin.setHeaderText("No se han podido actualizar los libros.");
@@ -49,20 +46,21 @@ public class Alertas implements CommonStrings {
     /**
      * Alerta de información de la base de datos.
      *
-     * @param fecha  Fecha de la última actualización.
+     * @param fecha Fecha de la última actualización.
      * @param libros Número de libros en la base de datos.
      */
     public static void alertDBInformation(String fecha, int libros) {
         Alert info = new Alert(Alert.AlertType.INFORMATION);
         info.setHeaderText("Información de actualización de la base de datos:");
-        info.setContentText(String.format("La base de datos se actualizo por ultima vez en %s. %n" +
-                "Actualmente contiene %d libros.", fecha, libros));
+        info.setContentText(
+                String.format(
+                        "La base de datos se actualizo por ultima vez en %s. %n"
+                                + "Actualmente contiene %d libros.",
+                        fecha, libros));
         info.show();
     }
 
-    /**
-     * Error al realizar busqueda en la db.
-     */
+    /** Error al realizar busqueda en la db. */
     public static void alertDBError() {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setHeaderText("Ha habido un error al realizar consultar los datos");
@@ -70,15 +68,13 @@ public class Alertas implements CommonStrings {
         error.show();
     }
 
-    /**
-     * Información de la aplicación.
-     */
+    /** Información de la aplicación. */
     public static void aplicationInfo() {
         Alert informacion = new Alert(Alert.AlertType.INFORMATION);
         informacion.setTitle("EpubLibrary " + VERSION);
         informacion.setHeaderText("Created by and for ePubLibre.");
-        informacion.setContentText("Created by ladaga on 02/07/17.\n" +
-                "Distributed under GNU GPL v3.");
+        informacion.setContentText(
+                "Created by ladaga on 02/07/17.\n" + "Distributed under GNU GPL v3.");
         informacion.show();
     }
 
@@ -89,11 +85,17 @@ public class Alertas implements CommonStrings {
      */
     public static Optional<ButtonType> updateConfirmation() {
         Alert sure = new Alert(Alert.AlertType.CONFIRMATION);
-        sure.setHeaderText("La actualización puede tardar unos minutos, dependiendo de tu conexión a internet.");
+        sure.setHeaderText(
+                "La actualización puede tardar unos minutos, dependiendo de tu conexión a internet.");
         sure.setContentText("¿Está seguro que desea continuar?");
         return sure.showAndWait();
     }
 
+    /**
+     * Solicita confirmación antes del borrado de la configuración.
+     *
+     * @return El tipo de botón que el usuario ha pulsado.
+     */
     public static Optional<ButtonType> panicButton() {
         Alert sure = new Alert(Alert.AlertType.CONFIRMATION);
         sure.setHeaderText("¿Desea restablecer los valores por defecto?");

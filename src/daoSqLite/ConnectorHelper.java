@@ -49,17 +49,6 @@ public class ConnectorHelper {
         this.conn = conn;
 
     }
-/*
-    *//**
-     * Elimina todos los libros de la db para evitar duplicados.
-     *
-     * @throws SQLException Error al borrar la tabla.
-     *//*
-    public void limpiarTabla() throws SQLException {
-        String sql = "DELETE FROM libros";
-        Statement st = conn.createStatement();
-        st.execute(sql);
-    }*/
 
     /**
      * Crea las tablas necesarias para trabajar.

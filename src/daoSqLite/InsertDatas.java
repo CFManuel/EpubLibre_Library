@@ -28,11 +28,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class InsertDatas extends ConnectorHelper implements CommonStrings {
+    /**
+     * Inserta un libro en la base de datos si no existe ninguno con la misma revisión.
+     *
+     * @param libro
+     */
     public void insertarLibros(Libro libro) {
-        String sql = "INSERT OR REPLACE INTO libros(epl_id, titulo, titsense, autor, autsense, generos, gensense, coleccion, colsense," +
-                " volumen, fecha_publi, sinopsis, paginas, revision, idioma, idisense, publicado, estado, valoracion, " +
-                "n_votos, enlaces, imgDir)" +
-                " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql =
+                "INSERT OR REPLACE INTO libros(epl_id, titulo, titsense, autor, autsense, generos, gensense, coleccion, colsense,"
+                        + " volumen, fecha_publi, sinopsis, paginas, revision, idioma, idisense, publicado, estado, valoracion, "
+                        + "n_votos, enlaces, imgDir)"
+                        + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         String titsense = normalize(libro.getTitulo());
         String autsense = normalize(libro.getAutor());
@@ -69,25 +75,13 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         }
     }
 
-    public void insertarImgLink(Libro libro) {
-        String sql = "UPDATE libros SET imgDir = ? WHERE  epl_id = ?";
-        try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, libro.getImgURI());
-            ps.setInt(2, libro.getEpl_id());
-            ps.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Actualiza la fecha de la última actualización de la db.
      *
      * @throws ClassNotFoundException Driver no encontrado.
      * @throws IllegalAccessException Faltan permisos de escritura.
      * @throws InstantiationException Error al instanciar el driver.
-     * @throws SQLException           Error al generar la conexión.
+     * @throws SQLException Error al generar la conexión.
      */
     public void updateDate() throws ClassNotFoundException, SQLException {
         String sql = "REPLACE INTO CONFIG(TEXT_ID, DATASTRING) VALUES(?,?)";
@@ -102,6 +96,14 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         super.desconectar();
     }
 
+    /**
+     * Inserta o reemplaza un valor de configuración siguiendo un modelo Key -> Value.
+     *
+     * @param id    Clave del registro.
+     * @param value Valor del registro.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void insertConfig(String id, String value) throws SQLException, ClassNotFoundException {
         String sql = "REPLACE INTO CONFIG(TEXT_ID, DATASTRING) VALUES(?,?)";
 
@@ -113,6 +115,13 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         super.desconectar();
     }
 
+    /**
+     * Elimina un registro de configuración a partir de su clave.
+     *
+     * @param id Clave de registro.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void deleteConfig(String id) throws SQLException, ClassNotFoundException {
         String sql = "DELETE FROM config WHERE TEXT_ID = ?";
         super.conectar();
@@ -122,12 +131,17 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         super.desconectar();
     }
 
+    /**
+     * Recibe una cadena de texto y la devuelve sin tildes.
+     *
+     * @param texto String a normalizar.
+     * @return String normalizada.
+     */
     private String normalize(String texto) {
         return texto.replaceAll(PATTERN_A, "a")
                 .replaceAll(PATTERN_E, "e")
-                .replaceAll(PATTERN_I, "I")
-                .replaceAll(PATTERN_O, "O")
+                .replaceAll(PATTERN_I, "i")
+                .replaceAll(PATTERN_O, "o")
                 .replaceAll(PATTERN_U, "u");
     }
-
 }

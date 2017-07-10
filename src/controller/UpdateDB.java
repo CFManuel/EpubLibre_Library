@@ -190,6 +190,11 @@ public final class UpdateDB implements CommonStrings {
             dialogStage.setScene(scene);
         }
 
+        /**
+         * Asigna a la barra de progreso un task sobre el que se va a informar
+         *
+         * @param task
+         */
         public void activateProgressBar(final Task<?> task) {
             pb.progressProperty().bind(task.progressProperty());
             label.textProperty().bind(task.messageProperty());

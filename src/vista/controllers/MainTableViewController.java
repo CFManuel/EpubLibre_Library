@@ -40,7 +40,6 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class MainTableViewController implements CommonStrings {
     private static String OPT_TITLE = "Título";
     private static String OPT_AUTHOR = "Autor";
@@ -52,7 +51,6 @@ public class MainTableViewController implements CommonStrings {
     private Main main;
     @FXML
     private TextField tfSearch;
-
 
     @FXML
     private TableView<Libro> bookTableView;
@@ -104,12 +102,14 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private void initialize() {
         configTable();
-        cbSearchOnTable.selectedProperty().addListener((observableValue, aBoolean, t1) -> menuButton.setDisable(t1));
+        //Deshabilita el botón de opciones si se pulsa "buscar en tabla".
+        cbSearchOnTable
+                .selectedProperty()
+                .addListener((observableValue, aBoolean, t1) -> menuButton.setDisable(t1));
     }
 
     /**
-     * Acción en el botón de busqueda.
-     * Recoge los datos del TextField y realiza la consulta a la db.
+     * Acción en el botón de busqueda. Recoge los datos del TextField y realiza la consulta a la db.
      */
     @FXML
     private void searchBtn() {
@@ -121,21 +121,33 @@ public class MainTableViewController implements CommonStrings {
         }
         writeNumberBooks();
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
-
     }
 
+    /**
+     * Busca la cadena insertada por el usuario en los datos de la tabla y elimina los que no
+     * cumplan los requisitos.
+     */
     private void searchOnTable() {
-        java.util.function.BiFunction<Libro, String, Boolean> match = (libro, s) ->
-                (libro.getTitulo().toLowerCase().contains(s) || libro.getAutor().toLowerCase().contains(s) || libro.getColeccion().toLowerCase().contains(s));
+        //Recibe un libro, donde busca una cadena y devuelve un Bool si la contiene o no.
+        java.util.function.BiFunction<Libro, String, Boolean> match =
+                (libro, s) ->
+                        (libro.getTitulo().toLowerCase().contains(s)
+                                || libro.getAutor().toLowerCase().contains(s)
+                                || libro.getColeccion().toLowerCase().contains(s));
         String search = tfSearch.getText().toLowerCase();
         Iterator<Libro> i = this.libros.iterator();
-        i.forEachRemaining(libro -> {
-            if (!match.apply(libro, search)) i.remove();
-        });
+        i.forEachRemaining(
+                libro -> {
+                    if (!match.apply(libro, search)) i.remove();
+                });
     }
 
+    /**
+     * Busca la información insertada por el usuario en la base de datos.
+     */
     private void searchOnDB() {
-        if (cbColeccion.isSelected()) { //evita que salgan resultados si no está seleccionado.
+        if (cbColeccion
+                .isSelected()) { //evita que incluya los libros sin colección cuando no se desea.
             String search = tfSearch.getText();
             search = String.format("%%%s%%", search);
             search = search.replaceAll("\\s", "%");
@@ -164,22 +176,33 @@ public class MainTableViewController implements CommonStrings {
         ObservableList<Libro> selectedItems = bookTableView.getSelectionModel().getSelectedItems();
         selectedItems.forEach(libro -> Utils.launchTorrent(libro));
     }
-    /**
-     * Configuración de los campos de la tabla.
-     */
+
+    /** Configuración de los campos de la tabla. */
     private void configTable() {
-        titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
-        autorColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAutor()));
-        colColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getColeccion()));
-        volColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getVolumen()));
-        generosColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGeneros()));
-        revColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getRevision()));
-        idiomaColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdioma()));
-        pagColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPaginas()));
-        valColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getValoracion()));
-        publiYearColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFecha_publi()));
-        n_votosColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getN_votos()));
-        publiDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPublicado()));
+        titleColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
+        autorColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getAutor()));
+        colColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getColeccion()));
+        volColumn.setCellValueFactory(
+                cellData -> new SimpleDoubleProperty(cellData.getValue().getVolumen()));
+        generosColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getGeneros()));
+        revColumn.setCellValueFactory(
+                cellData -> new SimpleDoubleProperty(cellData.getValue().getRevision()));
+        idiomaColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getIdioma()));
+        pagColumn.setCellValueFactory(
+                cellData -> new SimpleIntegerProperty(cellData.getValue().getPaginas()));
+        valColumn.setCellValueFactory(
+                cellData -> new SimpleDoubleProperty(cellData.getValue().getValoracion()));
+        publiYearColumn.setCellValueFactory(
+                cellData -> new SimpleIntegerProperty(cellData.getValue().getFecha_publi()));
+        n_votosColumn.setCellValueFactory(
+                cellData -> new SimpleIntegerProperty(cellData.getValue().getN_votos()));
+        publiDateColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getPublicado()));
 
         bookTableView.setEditable(false);
         bookTableView.setItems(this.libros);
@@ -187,25 +210,32 @@ public class MainTableViewController implements CommonStrings {
         bookTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         publiDateColumn.setComparator(new DateComparator());
         //Abrir ficha del libro con doble click o enter.
-        bookTableView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            ObservableList<Libro> selectedItems = bookTableView.getSelectionModel().getSelectedItems();
-            if (event.getClickCount() > 1 && selectedItems.size() == 1) {
-                main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
-            }
-        });
-        bookTableView.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
-            if (keyEvent.getCode() == KeyCode.ENTER) {
-                main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
-            }
-        });
-        final KeyCombination searchOnTableKeyCombination = new KeyCodeCombination(KeyCode.ENTER,
-                KeyCombination.CONTROL_DOWN);
-        tfSearch.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
-            if (searchOnTableKeyCombination.match(keyEvent)) {
-                searchOnTable();
-                writeNumberBooks();
-            }
-        });
+        bookTableView.addEventHandler(
+                MouseEvent.MOUSE_CLICKED,
+                event -> {
+                    ObservableList<Libro> selectedItems =
+                            bookTableView.getSelectionModel().getSelectedItems();
+                    if (event.getClickCount() > 1 && selectedItems.size() == 1) {
+                        main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
+                    }
+                });
+        bookTableView.addEventHandler(
+                KeyEvent.KEY_PRESSED,
+                keyEvent -> {
+                    if (keyEvent.getCode() == KeyCode.ENTER) {
+                        main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
+                    }
+                });
+        final KeyCombination searchOnTableKeyCombination =
+                new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN);
+        tfSearch.addEventFilter(
+                KeyEvent.KEY_PRESSED,
+                keyEvent -> {
+                    if (searchOnTableKeyCombination.match(keyEvent)) {
+                        searchOnTable();
+                        writeNumberBooks();
+                    }
+                });
         saveANDrestoreTableState();
     }
 
@@ -233,62 +263,78 @@ public class MainTableViewController implements CommonStrings {
     }
 
     /**
-     * Restaura el estado anterior de la tabla.
-     * Añade los listener para cambio de orden y de visibilidad de una columna.
-     * Guarda estos datos en la DB.
+     * Restaura el estado anterior de la tabla. Añade los listener para cambio de orden y de
+     * visibilidad de una columna. Guarda estos datos en la DB.
      */
     private void saveANDrestoreTableState() {
         //listeners de orden y visibilidad.
         ObservableList<TableColumn<Libro, ?>> columns = bookTableView.getColumns();
-        final List<TableColumn<Libro, ?>> unchangedColumns = Collections.unmodifiableList(new ArrayList<>(columns));
+        final List<TableColumn<Libro, ?>> unchangedColumns =
+                Collections.unmodifiableList(new ArrayList<>(columns));
         //Registra el orden de las columnas y lo actualiza en la base de datos.
-        columns.addListener((ListChangeListener<TableColumn<Libro, ?>>) change -> {
-            while (change.next()) {
-                if (change.wasRemoved()) {
-                    int[] colOrder = new int[columns.size()];
+        columns.addListener(
+                (ListChangeListener<TableColumn<Libro, ?>>)
+                        change -> {
+                            while (change.next()) {
+                                if (change.wasRemoved()) {
+                                    int[] colOrder = new int[columns.size()];
 
-                    for (int i = 0; i < columns.size(); ++i) {
-                        colOrder[i] = unchangedColumns.indexOf(columns.get(i));
-                    }
-                    // colOrder will now contain current order (e.g. 1, 2, 0, 5, 4)
+                                    for (int i = 0; i < columns.size(); ++i) {
+                                        colOrder[i] = unchangedColumns.indexOf(columns.get(i));
+                                    }
+                                    // colOrder will now contain current order (e.g. 1, 2, 0, 5, 4)
 
-                    InsertDatas insertDatas = new InsertDatas();
-                    try {
-                        insertDatas.insertConfig(CommonStrings.ORDER_COLUMNS, Arrays.toString(colOrder).replaceAll("\\s", ""));
-                    } catch (Exception e) {
-                        //empty
-                    }
-                }
-            }
-        });
+                                    InsertDatas insertDatas = new InsertDatas();
+                                    try {
+                                        insertDatas.insertConfig(
+                                                CommonStrings.ORDER_COLUMNS,
+                                                Arrays.toString(colOrder).replaceAll("\\s", ""));
+                                    } catch (Exception e) {
+                                        //empty
+                                    }
+                                }
+                            }
+                        });
         //Listener que avisa del tamaño de las columnas
         for (TableColumn<Libro, ?> column : columns) {
-            column.widthProperty().addListener((observableValue, oldWidth, newWidth) -> {
-                int[] size = new int[columns.size()];
-                for (int i = 0; i < size.length; i++)
-                    size[i] = unchangedColumns.get(i).widthProperty().getValue().intValue();
-                InsertDatas insertDatas = new InsertDatas();
-                try {
-                    insertDatas.insertConfig(CommonStrings.WIDTH_COLUMNS, Arrays.toString(size));
-                } catch (Exception e) {
-                    //empty
-                }
-            });
+            column.widthProperty()
+                    .addListener(
+                            (observableValue, oldWidth, newWidth) -> {
+                                int[] size = new int[columns.size()];
+                                for (int i = 0; i < size.length; i++)
+                                    size[i] =
+                                            unchangedColumns
+                                                    .get(i)
+                                                    .widthProperty()
+                                                    .getValue()
+                                                    .intValue();
+                                InsertDatas insertDatas = new InsertDatas();
+                                try {
+                                    insertDatas.insertConfig(
+                                            CommonStrings.WIDTH_COLUMNS, Arrays.toString(size));
+                                } catch (Exception e) {
+                                    //empty
+                                }
+                            });
         }
         //Listener que avisa de un cambio en la visibilidad de las columnas.
         for (TableColumn<Libro, ?> column : columns) {
-            column.visibleProperty().addListener((observableValue, oldVisibility, newVisibility) -> {
-                Boolean[] vista1 = new Boolean[columns.size()];
-                for (int i = 0; i < vista1.length; i++) {
-                    vista1[i] = unchangedColumns.get(i).visibleProperty().getValue();
-                }
-                InsertDatas insertDatas = new InsertDatas();
-                try {
-                    insertDatas.insertConfig(CommonStrings.VISIBLE_COLUMNS, Arrays.toString(vista1));
-                } catch (Exception e) {
-                    //empty
-                }
-            });
+            column.visibleProperty()
+                    .addListener(
+                            (observableValue, oldVisibility, newVisibility) -> {
+                                Boolean[] vista1 = new Boolean[columns.size()];
+                                for (int i = 0; i < vista1.length; i++) {
+                                    vista1[i] =
+                                            unchangedColumns.get(i).visibleProperty().getValue();
+                                }
+                                InsertDatas insertDatas = new InsertDatas();
+                                try {
+                                    insertDatas.insertConfig(
+                                            CommonStrings.VISIBLE_COLUMNS, Arrays.toString(vista1));
+                                } catch (Exception e) {
+                                    //empty
+                                }
+                            });
         }
         //Obtiene la última configuración de la tabla.
         Boolean[] vista = {};
@@ -299,10 +345,13 @@ public class MainTableViewController implements CommonStrings {
         try {
             order = stringToArray(getDatas.getConfig(CommonStrings.ORDER_COLUMNS));
             width = stringToArray(getDatas.getConfig(CommonStrings.WIDTH_COLUMNS));
-            vista = Arrays.stream(getDatas.getConfig(CommonStrings.VISIBLE_COLUMNS).replaceAll("[\\s\\[\\]]+", "")
-                    .split(","))
-                    .map(Boolean::parseBoolean)
-                    .toArray(Boolean[]::new);
+            vista =
+                    Arrays.stream(
+                            getDatas.getConfig(CommonStrings.VISIBLE_COLUMNS)
+                                    .replaceAll("[\\s\\[\\]]+", "")
+                                    .split(","))
+                            .map(Boolean::parseBoolean)
+                            .toArray(Boolean[]::new);
         } catch (Exception e) {
             //empty
         }

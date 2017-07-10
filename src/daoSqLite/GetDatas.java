@@ -33,18 +33,27 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
     /**
      * @param busqueda Palabra que se desea buscar en la db.
      * @return
-     * @throws SQLException           Error al generar la conexión.
+     * @throws SQLException Error al generar la conexión.
      * @throws ClassNotFoundException Driver no encontrado.
      */
-    public ArrayList<Libro> getLibros(String[] busqueda) throws SQLException, ClassNotFoundException {
-        String sql = sql = "SELECT * FROM libros WHERE " +
-                "lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) OR " + //titulo
-                "lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?) OR " + //Autor
-                "lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?) OR " + //Colección
-                "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) OR " + //Género
-                "lower(idioma) LIKE lower(?) OR lower(idisense) LIKE lower(?) OR " + //Idioma
-                "lower(sinopsis) LIKE lower(?) " + //sinopsis
-                "ORDER BY revision DESC ";
+    public ArrayList<Libro> getLibros(String[] busqueda)
+            throws SQLException, ClassNotFoundException {
+        String sql =
+                sql =
+                        "SELECT * FROM libros WHERE "
+                                + "lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) OR "
+                                + //titulo
+                                "lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?) OR "
+                                + //Autor
+                                "lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?) OR "
+                                + //Colección
+                                "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) OR "
+                                + //Género
+                                "lower(idioma) LIKE lower(?) OR lower(idisense) LIKE lower(?) OR "
+                                + //Idioma
+                                "lower(sinopsis) LIKE lower(?) "
+                                + //sinopsis
+                                "ORDER BY revision DESC ";
         super.conectar();
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, busqueda[0]);
@@ -64,8 +73,18 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         return new ArrayList<Libro>(libros.values());
     }
 
+    /**
+     * Obtiene los datos de un libro en concreto a partir de su id y su versión.
+     *
+     * @param epl_id   ID del libro que se desea mostrar.
+     * @param revision Revisión del libro.
+     * @return Libro con los valores de la búsqueda.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public Libro getLibro(int epl_id, double revision) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT * FROM LIBROS WHERE epl_id = ? AND  revision = ? ORDER BY revision DESC ";
+        String sql =
+                "SELECT * FROM LIBROS WHERE epl_id = ? AND  revision = ? ORDER BY revision DESC ";
         super.conectar();
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, epl_id);
@@ -96,31 +115,49 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         return libros;
     }
 
+    /**
+     * Crea un libro a partir de un resultSet.
+     *
+     * @param rst ResultSet con los datos del libro.
+     * @return Libro con los campos rellenos.
+     * @throws SQLException
+     */
     private Libro crearLibro(ResultSet rst) throws SQLException {
-        Libro libro = new Libro()
-                .setEpl_id(rst.getInt("epl_id"))
-                .setTitulo(rst.getString("titulo"))
-                .setAutor(rst.getString("autor"))
-                .setGeneros(rst.getString("generos"))
-                .setColeccion(rst.getString("coleccion"))
-                .setVolumen(rst.getDouble("volumen"))
-                .setFecha_publi(rst.getInt("fecha_publi"))
-                .setSinopsis(rst.getString("sinopsis"))
-                .setPaginas(rst.getInt("paginas"))
-                .setRevision(rst.getDouble("revision"))
-                .addRevArray(rst.getDouble("revision"))
-                .setIdioma(rst.getString("idioma"))
-                .setPublicado(rst.getString("publicado"))
-                .setEstado(rst.getString("estado"))
-                .setValoracion(rst.getDouble("valoracion"))
-                .setN_votos(rst.getInt("n_votos"))
-                .setEnlaces(rst.getString("enlaces"))
-                .setImgURI(rst.getString("imgdir"));
+        Libro libro =
+                new Libro()
+                        .setEpl_id(rst.getInt("epl_id"))
+                        .setTitulo(rst.getString("titulo"))
+                        .setAutor(rst.getString("autor"))
+                        .setGeneros(rst.getString("generos"))
+                        .setColeccion(rst.getString("coleccion"))
+                        .setVolumen(rst.getDouble("volumen"))
+                        .setFecha_publi(rst.getInt("fecha_publi"))
+                        .setSinopsis(rst.getString("sinopsis"))
+                        .setPaginas(rst.getInt("paginas"))
+                        .setRevision(rst.getDouble("revision"))
+                        .addRevArray(rst.getDouble("revision"))
+                        .setIdioma(rst.getString("idioma"))
+                        .setPublicado(rst.getString("publicado"))
+                        .setEstado(rst.getString("estado"))
+                        .setValoracion(rst.getDouble("valoracion"))
+                        .setN_votos(rst.getInt("n_votos"))
+                        .setEnlaces(rst.getString("enlaces"))
+                        .setImgURI(rst.getString("imgdir"));
         return libro;
     }
 
+    /**
+     * Obtiene la fecha de la última actualización.
+     *
+     * @return String con la fecha almacenada.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public String getLastUpdate() throws SQLException, ClassNotFoundException {
-        String sql = String.format("SELECT datastring FROM CONFIG WHERE upper(text_id) = upper('%s')", LAST_UPDATE);
+        String sql =
+                String.format(
+                        "SELECT datastring FROM CONFIG WHERE upper(text_id) = upper('%s')",
+                        LAST_UPDATE);
         String fecha = "";
         super.conectar();
         Statement st = conn.createStatement();
@@ -132,6 +169,14 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         return fecha;
     }
 
+    /**
+     * Obtiene los datos de configuración de un campo específico.
+     *
+     * @param id Campo sobre el que se desea obtener su valor.
+     * @return String con el valor del campo.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public String getConfig(String id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT DATASTRING FROM config WHERE upper(text_id) = upper(?)";
         String valor = "";
@@ -146,6 +191,13 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         return valor;
     }
 
+    /**
+     * Obtener un count de la tabla libros de la db.
+     *
+     * @return Devuelve el número de libros existentes en la db.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public int countBooks() throws SQLException, ClassNotFoundException {
         String sql = "SELECT COUNT(*) many FROM LIBROS";
         int libros = 0;
@@ -159,7 +211,13 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         return libros;
     }
 
-
+    /**
+     * Devuelve la lista de todos los libros existentes y sus revisiones.
+     *
+     * @return Devuelve la lista de libras con las versiones existentes de cada uno.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public HashMap<Integer, Double> getEPL_ID() throws SQLException, ClassNotFoundException {
         HashMap<Integer, Double> ePL_IDs = new HashMap<>();
         String sql = "SELECT epl_id, revision FROM LIBROS";

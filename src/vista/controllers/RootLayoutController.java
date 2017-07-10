@@ -28,7 +28,6 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import modelos.CommonStrings;
 import parser.Csv;
-import parser.Rss;
 import vista.Main;
 
 import java.io.File;
@@ -55,8 +54,7 @@ public class RootLayoutController implements CommonStrings {
     }
 
     /**
-     * Abre la pestaña de importación de ficheros.
-     * Lanza un FileChooser para archivos .csv y .rss.
+     * Abre la pestaña de importación de ficheros. Lanza un FileChooser para archivos .csv y .rss.
      * Según el tipo de fichero abre su parser correspondiente.
      */
     @FXML
@@ -64,76 +62,59 @@ public class RootLayoutController implements CommonStrings {
         FileChooser fileChooser = new FileChooser();
         Task importar = null;
         fileChooser.setTitle("Open source file.");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("EpubLibrary", "*.csv", "*.rss"));
+        fileChooser
+                .getExtensionFilters()
+                .addAll(new FileChooser.ExtensionFilter("EpubLibrary", "*.csv"));
         final File datos = fileChooser.showOpenDialog(main.getPrimaryStage());
         UpdateDB.ProgressForm progressForm = new UpdateDB.ProgressForm();
 
         if (datos != null) {
             if (datos.getName().endsWith("csv")) {
-                importar = new Task() {
-                    @Override
-                    protected Object call() throws Exception {
-                        progressForm.getDialogStage().getScene().setCursor(Cursor.WAIT);
-                        updateMessage("Iniciando actualización");
-                        updateProgress(1, 4);
-                        main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
-                        updateMessage("Importando CSV...");
-                        updateProgress(2, 4);
-                        new Csv().importCSV(datos);
-                        updateMessage("CSV importado.");
-                        updateProgress(3, 4);
-                        main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
-                        progressForm.getDialogStage().getScene().setCursor(Cursor.DEFAULT);
-                        updateMessage("Finalizando actualización..,");
-                        updateProgress(4, 4);
-                        return null;
-                    }
-                };
-            } else if (datos.getName().endsWith("rss")) {
-                importar = new Task() {
-                    @Override
-                    protected Object call() throws Exception {
-                        progressForm.getDialogStage().getScene().setCursor(Cursor.WAIT);
-                        main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
-                        /*GetDatas getDatas = new GetDatas();
-                        if (getDatas.countBooks() != 0) {
-                            Rss.importXML(datos, Rss.UPDATE);
-                            System.out.println("update");
-                        } else {*/
-                        Rss.importXML(datos, Rss.INSERT);
-                        //}
-                        main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
-                        progressForm.getDialogStage().getScene().setCursor(Cursor.DEFAULT);
-                        return null;
-                    }
-                };
+                importar =
+                        new Task() {
+                            @Override
+                            protected Object call() throws Exception {
+                                progressForm.getDialogStage().getScene().setCursor(Cursor.WAIT);
+                                updateMessage("Iniciando actualización");
+                                updateProgress(1, 4);
+                                main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
+                                updateMessage("Importando CSV...");
+                                updateProgress(2, 4);
+                                new Csv().importCSV(datos);
+                                updateMessage("CSV importado.");
+                                updateProgress(3, 4);
+                                main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
+                                progressForm.getDialogStage().getScene().setCursor(Cursor.DEFAULT);
+                                updateMessage("Finalizando actualización..,");
+                                updateProgress(4, 4);
+                                return null;
+                            }
+                        };
             }
-            importar.setOnSucceeded(e -> {
-                InsertDatas insertDatas = new InsertDatas();
-                try {
-                    insertDatas.updateDate();
-                } catch (ClassNotFoundException e1) {
-                    e1.printStackTrace();
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-                progressForm.getDialogStage().close();
-                alertUpdateOK();
-            });
-            importar.setOnFailed(e -> {
-                alertUpdateFail();
-                progressForm.getDialogStage().close();
-            });
+            importar.setOnSucceeded(
+                    e -> {
+                        InsertDatas insertDatas = new InsertDatas();
+                        try {
+                            insertDatas.updateDate();
+                        } catch (ClassNotFoundException e1) {
+                            e1.printStackTrace();
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                        progressForm.getDialogStage().close();
+                        alertUpdateOK();
+                    });
+            importar.setOnFailed(
+                    e -> {
+                        alertUpdateFail();
+                        progressForm.getDialogStage().close();
+                    });
             progressForm.activateProgressBar(importar);
             new Thread(importar).start();
         }
-
     }
 
-    /**
-     * Confirma si el usuario desea actualizar.
-     */
+    /** Confirma si el usuario desea actualizar. */
     @FXML
     private void epubLibreImport() {
         Optional<ButtonType> boton = updateConfirmation();
@@ -142,9 +123,7 @@ public class RootLayoutController implements CommonStrings {
         }
     }
 
-    /**
-     * Muestra la información de la base de datos.
-     */
+    /** Muestra la información de la base de datos. */
     @FXML
     private void getLastUpdate() {
         try {
@@ -157,17 +136,13 @@ public class RootLayoutController implements CommonStrings {
         }
     }
 
-    /**
-     * Información sobre la aplicación.
-     */
+    /** Información sobre la aplicación. */
     @FXML
     private void help() {
         aplicationInfo();
     }
 
-    /**
-     * Función propia JafaFX que se ejecuta al iniciar el componente
-     */
+    /** Función propia JafaFX que se ejecuta al iniciar el componente */
     @FXML
     private void initialize() {
 
@@ -175,7 +150,8 @@ public class RootLayoutController implements CommonStrings {
     }
 
     @FXML
-    private void resetGUI() throws SQLException, ClassNotFoundException, IOException, URISyntaxException {
+    private void resetGUI()
+            throws SQLException, ClassNotFoundException, IOException, URISyntaxException {
         Optional<ButtonType> borrar = panicButton();
         if (borrar.get() == ButtonType.OK) {
             InsertDatas insertDatas = new InsertDatas();
@@ -186,6 +162,4 @@ public class RootLayoutController implements CommonStrings {
             insertDatas.deleteConfig(CommonStrings.WIDTH_WINDOW);
         }
     }
-
-
 }
