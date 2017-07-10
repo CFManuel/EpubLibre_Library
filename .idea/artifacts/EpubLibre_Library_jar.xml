@@ -4,7 +4,7 @@
     <properties id="ant-postprocessing">
       <options enabled="true" />
     </properties>
-    <root id="archive" name="ePLibrary_v0.6.3.jar">
+    <root id="archive" name="ePLibrary_v0.6.4.jar">
       <element id="module-output" name="EpubLibre_Library" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/commons-cli-1.4.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/joda-time-2.9.9.jar" path-in-jar="/" />

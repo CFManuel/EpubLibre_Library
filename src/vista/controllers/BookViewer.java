@@ -19,6 +19,7 @@
 package vista.controllers;
 
 import daoSqLite.GetDatas;
+import files.Utils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -29,11 +30,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelos.CommonStrings;
 import modelos.Libro;
-import uriSchemeHandler.CouldNotOpenUriSchemeHandler;
-import uriSchemeHandler.URISchemeHandler;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.sql.SQLException;
 
 /**
@@ -139,16 +136,7 @@ public class BookViewer implements CommonStrings {
      */
     @FXML
     private void download() {
-        try {
-            URI magnetLink = new URI(libro.getEnlaces());
-            URISchemeHandler uriSchemeHandler = new URISchemeHandler();
-            uriSchemeHandler.open(magnetLink);
-
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (CouldNotOpenUriSchemeHandler couldNotOpenUriSchemeHandler) {
-            couldNotOpenUriSchemeHandler.printStackTrace();
-        }
+        Utils.launchTorrent(this.libro);
     }
 
     public void setLibro(Libro libro) {

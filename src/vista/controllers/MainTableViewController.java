@@ -20,6 +20,7 @@ package vista.controllers;
 
 import daoSqLite.GetDatas;
 import daoSqLite.InsertDatas;
+import files.Utils;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -158,6 +159,11 @@ public class MainTableViewController implements CommonStrings {
         }
     }
 
+    @FXML
+    private void multiDownload() {
+        ObservableList<Libro> selectedItems = bookTableView.getSelectionModel().getSelectedItems();
+        selectedItems.forEach(libro -> Utils.launchTorrent(libro));
+    }
     /**
      * Configuración de los campos de la tabla.
      */
@@ -178,10 +184,12 @@ public class MainTableViewController implements CommonStrings {
         bookTableView.setEditable(false);
         bookTableView.setItems(this.libros);
         bookTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+        bookTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         publiDateColumn.setComparator(new DateComparator());
         //Abrir ficha del libro con doble click o enter.
         bookTableView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            if (event.getClickCount() > 1) {
+            ObservableList<Libro> selectedItems = bookTableView.getSelectionModel().getSelectedItems();
+            if (event.getClickCount() > 1 && selectedItems.size() == 1) {
                 main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
             }
         });

@@ -19,16 +19,17 @@
 package files;
 
 import modelos.CommonStrings;
+import modelos.Libro;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import org.apache.commons.io.FileUtils;
+import uriSchemeHandler.CouldNotOpenUriSchemeHandler;
+import uriSchemeHandler.URISchemeHandler;
 import vista.Main;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 
 /**
  * Created by david on 03/07/2017.
@@ -85,6 +86,19 @@ public class Utils implements CommonStrings {
         File carpeta = new File(Main.getLocation());
         if (carpeta.exists() == false) {
             carpeta.mkdir();
+        }
+    }
+
+    public static void launchTorrent(Libro libro) {
+        try {
+            URI magnetLink = new URI(libro.getEnlaces());
+            URISchemeHandler uriSchemeHandler = new URISchemeHandler();
+            uriSchemeHandler.open(magnetLink);
+
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (CouldNotOpenUriSchemeHandler couldNotOpenUriSchemeHandler) {
+            couldNotOpenUriSchemeHandler.printStackTrace();
         }
     }
 }
