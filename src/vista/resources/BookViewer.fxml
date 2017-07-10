@@ -162,7 +162,11 @@
              </HBox>
              <TextArea fx:id="tfSinopsis" editable="false" prefHeight="250.0" prefWidth="375.0"
                        text="adsfasasdfasdfasdfassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-                       wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="2"/>
+                       wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                 <font>
+                     <Font size="14.0"/>
+                 </font>
+             </TextArea>
          </children>
       </GridPane>
    </children>

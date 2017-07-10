@@ -27,6 +27,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelos.CommonStrings;
 import modelos.Libro;
 import uriSchemeHandler.CouldNotOpenUriSchemeHandler;
 import uriSchemeHandler.URISchemeHandler;
@@ -38,7 +39,7 @@ import java.sql.SQLException;
 /**
  * Created by david on 02/07/2017.
  */
-public class BookViewer {
+public class BookViewer implements CommonStrings {
     private Libro libro;
 
     private Stage dialogStage;
@@ -106,12 +107,13 @@ public class BookViewer {
         tfGeneros.setText(libro.getGeneros());
         tfIdioma.setText(libro.getIdioma());
         cbRevision.setValue(cbRevision.getItems().get(0));
+        tfYear.setText(String.valueOf(libro.getFecha_publi()));
         tfPages.setText(String.valueOf(libro.getPaginas()));
         tfValoracion.setText(String.valueOf(libro.getValoracion()));
 
 
         tfSinopsis.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        libro.setSinopsis(libro.getSinopsis().replaceAll("([a-z]\\.)([A-Z])", "$1\n$2"));
+        libro.setSinopsis(libro.getSinopsis().replaceAll(PATTERN_FOR_PARAGRAPH, "$1\n$2"));
         tfSinopsis.setText(libro.getSinopsis());
         tfSinopsis.setStyle("-fx-background-color: transparent;");
         //tfSinopsis.setEditable(false);
