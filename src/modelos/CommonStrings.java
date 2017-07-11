@@ -19,7 +19,7 @@
 package modelos;
 
 public interface CommonStrings {
-    String VERSION = "v0.6.4";
+    String VERSION = "v0.6.5";
     String LAST_UPDATE = "LAST_UPDATE";
     String VISIBLE_COLUMNS = "VISIBLE_COLUMNS";
     String ORDER_COLUMNS = "ORDER_COLUMNS";

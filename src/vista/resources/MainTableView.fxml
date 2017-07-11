@@ -102,7 +102,7 @@
                  <contextMenu>
                      <ContextMenu>
                          <items>
-                             <MenuItem mnemonicParsing="false" onAction="#multiDownload" text="MultiDescarga"/>
+                             <MenuItem mnemonicParsing="false" onAction="#multiDownload" text="Descargar"/>
                          </items>
                      </ContextMenu>
                  </contextMenu>
