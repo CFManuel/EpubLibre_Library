@@ -32,28 +32,27 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
 
     /**
      * @param busqueda Palabra que se desea buscar en la db.
-     * @return
+     * @return Devuelve los libros encontrados.
      * @throws SQLException Error al generar la conexión.
      * @throws ClassNotFoundException Driver no encontrado.
      */
     public ArrayList<Libro> getLibros(String[] busqueda)
             throws SQLException, ClassNotFoundException {
         String sql =
-                sql =
-                        "SELECT * FROM libros WHERE "
-                                + "lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) OR "
-                                + //titulo
-                                "lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?) OR "
-                                + //Autor
-                                "lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?) OR "
-                                + //Colección
-                                "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) OR "
-                                + //Género
-                                "lower(idioma) LIKE lower(?) OR lower(idisense) LIKE lower(?) OR "
-                                + //Idioma
-                                "lower(sinopsis) LIKE lower(?) "
-                                + //sinopsis
-                                "ORDER BY revision DESC ";
+                "SELECT * FROM libros WHERE "
+                        + "lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) OR "
+                        + //titulo
+                        "lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?) OR "
+                        + //Autor
+                        "lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?) OR "
+                        + //Colección
+                        "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) OR "
+                        + //Género
+                        "lower(idioma) LIKE lower(?) OR lower(idisense) LIKE lower(?) OR "
+                        + //Idioma
+                        "lower(sinopsis) LIKE lower(?) "
+                        + //sinopsis
+                        "ORDER BY revision DESC ";
         super.conectar();
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, busqueda[0]);
@@ -70,17 +69,17 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         ResultSet rst = ps.executeQuery();
         HashMap<Integer, Libro> libros = procesarConsultaLibros(rst);
         super.desconectar();
-        return new ArrayList<Libro>(libros.values());
+        return new ArrayList<>(libros.values());
     }
 
     /**
      * Obtiene los datos de un libro en concreto a partir de su id y su versión.
      *
-     * @param epl_id   ID del libro que se desea mostrar.
+     * @param epl_id ID del libro que se desea mostrar.
      * @param revision Revisión del libro.
      * @return Libro con los valores de la búsqueda.
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException Error en la db.
+     * @throws ClassNotFoundException Error en driver.
      */
     public Libro getLibro(int epl_id, double revision) throws SQLException, ClassNotFoundException {
         String sql =
@@ -100,7 +99,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      *
      * @param rst ResultSet a procesar.
      * @return HashMap con los resultados de la busqueda
-     * @throws SQLException
+     * @throws SQLException Error en la db.
      */
     private HashMap<Integer, Libro> procesarConsultaLibros(ResultSet rst) throws SQLException {
         HashMap<Integer, Libro> libros = new HashMap<>();
@@ -120,38 +119,36 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      *
      * @param rst ResultSet con los datos del libro.
      * @return Libro con los campos rellenos.
-     * @throws SQLException
+     * @throws SQLException Error en la db.
      */
     private Libro crearLibro(ResultSet rst) throws SQLException {
-        Libro libro =
-                new Libro()
-                        .setEpl_id(rst.getInt("epl_id"))
-                        .setTitulo(rst.getString("titulo"))
-                        .setAutor(rst.getString("autor"))
-                        .setGeneros(rst.getString("generos"))
-                        .setColeccion(rst.getString("coleccion"))
-                        .setVolumen(rst.getDouble("volumen"))
-                        .setFecha_publi(rst.getInt("fecha_publi"))
-                        .setSinopsis(rst.getString("sinopsis"))
-                        .setPaginas(rst.getInt("paginas"))
-                        .setRevision(rst.getDouble("revision"))
-                        .addRevArray(rst.getDouble("revision"))
-                        .setIdioma(rst.getString("idioma"))
-                        .setPublicado(rst.getString("publicado"))
-                        .setEstado(rst.getString("estado"))
-                        .setValoracion(rst.getDouble("valoracion"))
-                        .setN_votos(rst.getInt("n_votos"))
-                        .setEnlaces(rst.getString("enlaces"))
-                        .setImgURI(rst.getString("imgdir"));
-        return libro;
+        return new Libro()
+                .setEpl_id(rst.getInt("epl_id"))
+                .setTitulo(rst.getString("titulo"))
+                .setAutor(rst.getString("autor"))
+                .setGeneros(rst.getString("generos"))
+                .setColeccion(rst.getString("coleccion"))
+                .setVolumen(rst.getDouble("volumen"))
+                .setFecha_publi(rst.getInt("fecha_publi"))
+                .setSinopsis(rst.getString("sinopsis"))
+                .setPaginas(rst.getInt("paginas"))
+                .setRevision(rst.getDouble("revision"))
+                .addRevArray(rst.getDouble("revision"))
+                .setIdioma(rst.getString("idioma"))
+                .setPublicado(rst.getString("publicado"))
+                .setEstado(rst.getString("estado"))
+                .setValoracion(rst.getDouble("valoracion"))
+                .setN_votos(rst.getInt("n_votos"))
+                .setEnlaces(rst.getString("enlaces"))
+                .setImgURI(rst.getString("imgdir"));
     }
 
     /**
      * Obtiene la fecha de la última actualización.
      *
      * @return String con la fecha almacenada.
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException Error en la db.
+     * @throws ClassNotFoundException Error en el driver.
      */
     public String getLastUpdate() throws SQLException, ClassNotFoundException {
         String sql =
@@ -174,8 +171,8 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      *
      * @param id Campo sobre el que se desea obtener su valor.
      * @return String con el valor del campo.
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException Error en la db.
+     * @throws ClassNotFoundException Error en el driver.
      */
     public String getConfig(String id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT DATASTRING FROM config WHERE upper(text_id) = upper(?)";
@@ -195,8 +192,8 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      * Obtener un count de la tabla libros de la db.
      *
      * @return Devuelve el número de libros existentes en la db.
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException Error en la db.
+     * @throws ClassNotFoundException Error en el driver.
      */
     public int countBooks() throws SQLException, ClassNotFoundException {
         String sql = "SELECT COUNT(*) many FROM LIBROS";
@@ -215,8 +212,8 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      * Devuelve la lista de todos los libros existentes y sus revisiones.
      *
      * @return Devuelve la lista de libras con las versiones existentes de cada uno.
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException Error en la db.
+     * @throws ClassNotFoundException Error en driver.
      */
     public HashMap<Integer, Double> getEPL_ID() throws SQLException, ClassNotFoundException {
         HashMap<Integer, Double> ePL_IDs = new HashMap<>();

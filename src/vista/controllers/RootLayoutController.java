@@ -61,7 +61,7 @@ public class RootLayoutController implements CommonStrings {
     @FXML
     private void importDataSource() {
         FileChooser fileChooser = new FileChooser();
-        Task importar = null;
+        Task importar;
         fileChooser.setTitle("Open source file.");
         fileChooser
                 .getExtensionFilters()
@@ -118,9 +118,7 @@ public class RootLayoutController implements CommonStrings {
                         InsertDatas insertDatas = new InsertDatas();
                         try {
                             insertDatas.updateDate();
-                        } catch (ClassNotFoundException e1) {
-                            e1.printStackTrace();
-                        } catch (SQLException e1) {
+                        } catch (ClassNotFoundException | SQLException e1) {
                             e1.printStackTrace();
                         }
                         progressForm.getDialogStage().close();
@@ -140,7 +138,7 @@ public class RootLayoutController implements CommonStrings {
     @FXML
     private void epubLibreImport() {
         Optional<ButtonType> boton = updateConfirmation();
-        if (boton.get() == ButtonType.OK) {
+        if (boton.isPresent() && boton.get() == ButtonType.OK) {
             UpdateDB.updateDataBase();
         }
     }
@@ -175,7 +173,7 @@ public class RootLayoutController implements CommonStrings {
     private void resetGUI()
             throws SQLException, ClassNotFoundException, IOException, URISyntaxException {
         Optional<ButtonType> borrar = panicButton();
-        if (borrar.get() == ButtonType.OK) {
+        if (borrar.isPresent() && borrar.get() == ButtonType.OK) {
             InsertDatas insertDatas = new InsertDatas();
             insertDatas.deleteConfig(CommonStrings.VISIBLE_COLUMNS);
             insertDatas.deleteConfig(CommonStrings.ORDER_COLUMNS);

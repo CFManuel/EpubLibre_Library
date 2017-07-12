@@ -33,9 +33,6 @@ import modelos.Libro;
 
 import java.sql.SQLException;
 
-/**
- * Created by david on 02/07/2017.
- */
 public class BookViewer implements CommonStrings {
     private Libro libro;
 
@@ -88,9 +85,7 @@ public class BookViewer implements CommonStrings {
                 libro.setRevArray(this.libro.getRevArray());
                 this.libro = libro;
                 drawBook();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });

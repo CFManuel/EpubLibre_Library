@@ -36,12 +36,10 @@ public class ConnectorHelper {
      * Realiza la conexión con la base de datos, autoCommit off.
      *
      * @throws ClassNotFoundException Driver no encontrado.
-     * @throws IllegalAccessException Faltan permisos de escritura.
-     * @throws InstantiationException Error al instanciar el driver.
      * @throws SQLException           Error al generar la conexión.
      */
     public void conectar() throws ClassNotFoundException, SQLException {
-        Connection conn = null;
+        Connection conn;
         Class.forName("org.sqlite.JDBC");
 
         conn = DriverManager.getConnection("jdbc:sqlite:" + Main.getLocation() + "epubLibre.db");

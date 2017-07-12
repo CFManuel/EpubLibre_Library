@@ -30,8 +30,8 @@ public class Alertas implements CommonStrings {
      */
     public static void alertUpdateOK() {
         Alert fin = new Alert(Alert.AlertType.INFORMATION);
-        fin.setHeaderText("Se han cargado los libros con exito.");
-        fin.setContentText("Actualizacion finalizada.");
+        fin.setHeaderText("Se han cargado los libros con éxito.");
+        fin.setContentText("Actualización finalizada.");
         fin.show();
     }
 
@@ -60,7 +60,9 @@ public class Alertas implements CommonStrings {
         info.show();
     }
 
-    /** Error al realizar busqueda en la db. */
+    /**
+     * Error al realizar búsqueda en la db.
+     */
     public static void alertDBError() {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setHeaderText("Ha habido un error al realizar consultar los datos");

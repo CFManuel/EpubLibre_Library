@@ -18,9 +18,7 @@
 
 package exceptions;
 
-/**
- * Created by david on 04/07/2017.
- */
+
 public class NoValidCSVFile extends Exception {
     public NoValidCSVFile(String message) {
         super(message);

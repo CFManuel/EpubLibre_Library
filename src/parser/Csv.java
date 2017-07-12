@@ -24,7 +24,8 @@ import modelos.Libro;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 
@@ -33,7 +34,7 @@ public class Csv {
      * Abre el csv, lo lee linea a linea e inserta los datos en la base en forma de transacción.
      *
      * @param csvFile Archivo csv con los datos completos.
-     * @throws IOException
+     * @throws IOException Archivo no encontrado.
      */
     public void importCSV(File csvFile) throws IOException {
         LineIterator it = FileUtils.lineIterator(csvFile, "utf-8");
@@ -78,26 +79,6 @@ public class Csv {
         System.out.println("Registros: " + count + " integrados");
     }
 
-    /**
-     * Lee el primer caracter de cada linea y devuelve el número de lineas del documento.
-     *
-     * @param csvFile
-     * @return
-     * @throws IOException
-     */
-    private int calcularRegistros(File csvFile) throws IOException {
-        int lineCount = 0;
-        try (InputStream in = new BufferedInputStream(new FileInputStream(csvFile))) {
-            byte[] buf = new byte[4096 * 16];
-            int c;
-            while ((c = in.read(buf)) > 0) {
-                for (int i = 0; i < c; i++) {
-                    if (buf[i] == '\n') lineCount++;
-                }
-            }
-        }
-        return lineCount;
-    }
 
     /**
      * Obtiene un libro a partir de una linea del csv.
@@ -125,7 +106,7 @@ public class Csv {
             if (!items[15].equalsIgnoreCase("")) lib.setN_votos(Integer.parseInt(items[15]));
             try {
                 lib.setEnlaces("magnet:?xt=urn:btih:" + items[16].split(",")[0]);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         } catch (Exception e) {
             System.err.println(lib.toString());

@@ -174,7 +174,8 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private void multiDownload() {
         ObservableList<Libro> selectedItems = bookTableView.getSelectionModel().getSelectedItems();
-        selectedItems.forEach(libro -> Utils.launchTorrent(libro));
+        selectedItems.forEach(Utils::launchTorrent);
+        //selectedItems.forEach(libro -> Utils.launchTorrent(libro));
     }
 
     /** Configuración de los campos de la tabla. */
@@ -381,9 +382,9 @@ public class MainTableViewController implements CommonStrings {
     }
 
     public static class DateComparator implements Comparator<String> {
-        Pattern fecha = Pattern.compile("(\\w):(\\d+)-(\\d+)-(\\d+)");
-        private int MAYOR = 1;
-        private int MENOR = -1;
+        final Pattern fecha = Pattern.compile("(\\w):(\\d+)-(\\d+)-(\\d+)");
+        private final int MAYOR = 1;
+        private final int MENOR = -1;
 
         //1: p, 2: dia, 3: mes, 4:año
         @Override

@@ -31,7 +31,7 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
     /**
      * Inserta un libro en la base de datos si no existe ninguno con la misma revisión.
      *
-     * @param libro
+     * @param libro Libro con datos que se desea insertar.
      */
     public void insertarLibros(Libro libro) {
         String sql =
@@ -79,8 +79,6 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
      * Actualiza la fecha de la última actualización de la db.
      *
      * @throws ClassNotFoundException Driver no encontrado.
-     * @throws IllegalAccessException Faltan permisos de escritura.
-     * @throws InstantiationException Error al instanciar el driver.
      * @throws SQLException Error al generar la conexión.
      */
     public void updateDate() throws ClassNotFoundException, SQLException {
@@ -101,8 +99,8 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
      *
      * @param id    Clave del registro.
      * @param value Valor del registro.
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException Error en la db.
+     * @throws ClassNotFoundException Error en el driver.
      */
     public void insertConfig(String id, String value) throws SQLException, ClassNotFoundException {
         String sql = "REPLACE INTO CONFIG(TEXT_ID, DATASTRING) VALUES(?,?)";
@@ -119,8 +117,8 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
      * Elimina un registro de configuración a partir de su clave.
      *
      * @param id Clave de registro.
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException Error en la db.
+     * @throws ClassNotFoundException Error en el driver.
      */
     public void deleteConfig(String id) throws SQLException, ClassNotFoundException {
         String sql = "DELETE FROM config WHERE TEXT_ID = ?";
@@ -132,7 +130,7 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
     }
 
     //FIXME: Importar imagenes de forma temporal
-    public void insertIMG(int epl, String imgdir) throws SQLException, ClassNotFoundException {
+    public void insertIMG(int epl, String imgdir) throws SQLException {
         String sql = "UPDATE libros set imgdir = ? where epl_id = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, imgdir);

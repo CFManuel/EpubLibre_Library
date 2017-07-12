@@ -46,13 +46,13 @@ import static vista.controllers.Alertas.alertUpdateFail;
 import static vista.controllers.Alertas.alertUpdateOK;
 
 public final class UpdateDB implements CommonStrings {
-    private static int TOTAL_PROGRESS = 7;
+    private static final int TOTAL_PROGRESS = 7; //Pasos de información de la actualización.
 
     /**
      * Comprueba si existe fecha en la base de datos, sino, la inserta.
      * Comprueba cuantos dias han pasado desde la última actualización y realiza las acciones necesarias.
      */
-    public static void timeToUpdate() throws NoValidCSVFile {
+    public static void timeToUpdate() {
         try {
             GetDatas getDatas = new GetDatas(); //Optiene la fecha de la base
             String lastDate = getDatas.getLastUpdate();
@@ -70,9 +70,7 @@ public final class UpdateDB implements CommonStrings {
                     updateDataBase();
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -118,8 +116,6 @@ public final class UpdateDB implements CommonStrings {
                     updateDate();
                     updateMessage("Fecha actualizada...");
                     updateProgress(6, TOTAL_PROGRESS);
-                } catch (NoValidCSVFile noValidCSVFile) {
-                    throw noValidCSVFile;
                 } finally {
                     Utils.deleteZip(zip);
                     updateProgress(TOTAL_PROGRESS, TOTAL_PROGRESS);
@@ -142,13 +138,11 @@ public final class UpdateDB implements CommonStrings {
     /**
      * Inserta en la base de datos la fecha actual.
      */
-    public static void updateDate() {
+    private static void updateDate() {
         try {
             InsertDatas insertDatas = new InsertDatas();
             insertDatas.updateDate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -193,7 +187,7 @@ public final class UpdateDB implements CommonStrings {
         /**
          * Asigna a la barra de progreso un task sobre el que se va a informar
          *
-         * @param task
+         * @param task Tarea que se desea vigilar.
          */
         public void activateProgressBar(final Task<?> task) {
             pb.progressProperty().bind(task.progressProperty());

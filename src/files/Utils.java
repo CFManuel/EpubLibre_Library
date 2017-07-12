@@ -29,11 +29,12 @@ import vista.Main;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
 
-/**
- * Created by david on 03/07/2017.
- */
+
 public class Utils implements CommonStrings {
     /**
      * Descarga el .zip de la página oficial de EpubLibre
@@ -53,8 +54,6 @@ public class Utils implements CommonStrings {
             FileUtils.copyInputStreamToFile(conn.getInputStream(), destino);
             //FileUtils.copyURLToFile(url, destino);
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,7 +85,7 @@ public class Utils implements CommonStrings {
 
     public static void crearEPL() {
         File carpeta = new File(Main.getLocation());
-        if (carpeta.exists() == false) {
+        if (!carpeta.exists()) {
             carpeta.mkdir();
         }
     }
@@ -102,10 +101,8 @@ public class Utils implements CommonStrings {
             URISchemeHandler uriSchemeHandler = new URISchemeHandler();
             uriSchemeHandler.open(magnetLink);
 
-        } catch (URISyntaxException e) {
+        } catch (URISyntaxException | CouldNotOpenUriSchemeHandler e) {
             e.printStackTrace();
-        } catch (CouldNotOpenUriSchemeHandler couldNotOpenUriSchemeHandler) {
-            couldNotOpenUriSchemeHandler.printStackTrace();
         }
     }
 }
