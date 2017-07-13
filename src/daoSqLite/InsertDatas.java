@@ -129,14 +129,6 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         super.desconectar();
     }
 
-    //FIXME: Importar imagenes de forma temporal
-    public void insertIMG(int epl, String imgdir) throws SQLException {
-        String sql = "UPDATE libros set imgdir = ? where epl_id = ?";
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, imgdir);
-        ps.setInt(2, epl);
-        ps.execute();
-    }
     /**
      * Recibe una cadena de texto y la devuelve sin tildes.
      *

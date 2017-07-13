@@ -28,7 +28,6 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import modelos.CommonStrings;
 import parser.Csv;
-import parser.Rss_SAX;
 import vista.Main;
 
 import java.io.File;
@@ -61,7 +60,7 @@ public class RootLayoutController implements CommonStrings {
     @FXML
     private void importDataSource() {
         FileChooser fileChooser = new FileChooser();
-        Task importar;
+        Task importar = null;
         fileChooser.setTitle("Open source file.");
         fileChooser
                 .getExtensionFilters()
@@ -83,27 +82,6 @@ public class RootLayoutController implements CommonStrings {
                                 updateProgress(2, 4);
                                 new Csv().importCSV(datos);
                                 updateMessage("CSV importado.");
-                                updateProgress(3, 4);
-                                main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
-                                progressForm.getDialogStage().getScene().setCursor(Cursor.DEFAULT);
-                                updateMessage("Finalizando actualización..,");
-                                updateProgress(4, 4);
-                                return null;
-                            }
-                        };
-            } else { //FIXME: importar imagenes de forma temporal.
-                importar =
-                        new Task() {
-                            @Override
-                            protected Object call() throws Exception {
-                                progressForm.getDialogStage().getScene().setCursor(Cursor.WAIT);
-                                updateMessage("Iniciando actualización");
-                                updateProgress(1, 4);
-                                main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
-                                updateMessage("Importando RSS...");
-                                updateProgress(2, 4);
-                                Rss_SAX.importXML(datos);
-                                updateMessage("Rss importado.");
                                 updateProgress(3, 4);
                                 main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
                                 progressForm.getDialogStage().getScene().setCursor(Cursor.DEFAULT);

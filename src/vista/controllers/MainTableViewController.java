@@ -400,9 +400,9 @@ public class MainTableViewController implements CommonStrings {
                 if (compareYear == 0) {
                     if (compareMonth == 0) {
                         if (compareDay == 0) {
-                            if (compareLetter < 0) {
+                            if (compareLetter > 0) {
                                 result = MAYOR;
-                            } else if (compareLetter > 0) {
+                            } else if (compareLetter < 0) {
                                 result = MENOR;
                             }
                         } else if (compareDay > 0) {
