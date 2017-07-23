@@ -35,6 +35,6 @@ public interface CommonStrings {
     String PATTERN_I = "[îíìï]";
     String PATTERN_O = "[ôöóò]";
     String PATTERN_U = "[úùûü]";
-    String PATTERN_FOR_PARAGRAPH = "([a-z][\\.!?])([A-Z])";
+    String PATTERN_FOR_PARAGRAPH = "([a-zA-Z][\\.!?])([A-Z])";
     int DATA_OLD = 3;
 }

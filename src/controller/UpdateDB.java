@@ -90,7 +90,6 @@ public final class UpdateDB implements CommonStrings {
                 updateMessage("Descargando csv...");
                 updateProgress(1, TOTAL_PROGRESS);
                 File zip = Utils.downloadCSV();
-                //File zip = new File(CSV_DEST + "epub.zip");
 
                 updateProgress(3, TOTAL_PROGRESS);
                 updateMessage("CSV Descargado.");
@@ -172,7 +171,6 @@ public final class UpdateDB implements CommonStrings {
             label.setText("alerto");
 
             pb.setProgress(-1F);
-            // pb.setProgress(10);
             pb.setPrefWidth(200);
 
             final VBox vb = new VBox();
@@ -199,5 +197,8 @@ public final class UpdateDB implements CommonStrings {
         public Stage getDialogStage() {
             return dialogStage;
         }
+    }
+
+    private UpdateDB() {
     }
 }
