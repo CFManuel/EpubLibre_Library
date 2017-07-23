@@ -66,7 +66,7 @@ public final class UpdateDB implements CommonStrings {
                 DateTime lastUpdate = format.parseDateTime(lastDate); //Transforma la cadena a DateTime
 
                 Period periodo = new Period(lastUpdate, now); //Comprueba cuantos dias han pasado.
-                if (periodo.getDays() == DATA_OLD) {
+                if (periodo.getDays() >= DATA_OLD) {
                     updateDataBase();
                 }
             }

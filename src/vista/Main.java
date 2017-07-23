@@ -148,7 +148,9 @@ public class Main extends Application implements CommonStrings {
         }
     }
 
-    /** Inicia la tabla de vista y busqueda de libros. */
+    /**
+     * Inicia la tabla de vista y busqueda de libros.
+     */
     private void initMainTableView() {
         try {
             FXMLLoader loader = new FXMLLoader();

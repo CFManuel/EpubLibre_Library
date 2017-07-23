@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="epubLibre [2]" uuid="20419ffa-a242-4ea0-abdc-c3e6a102a237">
+    <data-source name="Desarrollo" uuid="20419ffa-a242-4ea0-abdc-c3e6a102a237">
       <database-info product="SQLite" version="3.16.1" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <auth-required>false</auth-required>
+      <introspection-schemas>*:main</introspection-schemas>
+    </data-source>
+    <data-source name="Producción" uuid="95c6f82e-7fb0-41f4-8225-31f732f20d8f">
+      <database-info product="SQLite" version="3.16.1" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <auth-required>false</auth-required>
       <introspection-schemas>*:main</introspection-schemas>
     </data-source>
   </component>

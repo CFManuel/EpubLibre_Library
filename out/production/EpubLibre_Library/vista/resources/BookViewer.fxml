@@ -24,7 +24,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="Infinity" maxWidth="450.0" minHeight="462.0" minWidth="448.0"
-            prefHeight="614.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/8">
+            prefHeight="635.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/8">
    <children>
        <GridPane layoutX="80.0" layoutY="183.0" maxWidth="500.0" minWidth="413.0" prefHeight="624.0" prefWidth="448.0"
                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
@@ -34,18 +34,21 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="202.0" prefWidth="202.0"/>
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="159.0" minHeight="38.0" prefHeight="38.0" valignment="CENTER" vgrow="NEVER"/>
-            <RowConstraints maxHeight="395.0" minHeight="260.0" prefHeight="292.0" vgrow="NEVER"/>
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="251.0" vgrow="ALWAYS"/>
+            <RowConstraints maxHeight="159.0" minHeight="38.0" prefHeight="62.0" valignment="CENTER" vgrow="NEVER"/>
+            <RowConstraints maxHeight="395.0" minHeight="260.0" prefHeight="275.0" vgrow="ALWAYS"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="262.0" vgrow="ALWAYS"/>
             <RowConstraints maxHeight="112.0" minHeight="36.0" prefHeight="36.0" vgrow="NEVER"/>
         </rowConstraints>
          <children>
-            <Label fx:id="tfTitulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="423.0" text="El temor de un hombre sasdfasdfasdfabio" GridPane.columnSpan="2">
+             <Label fx:id="tfTitulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="123.0" prefWidth="448.0"
+                    text="La imbecilidad minuciosa. Cuaderno de bitácora del periodista deportivo."
+                    textAlignment="CENTER" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+                    GridPane.valignment="CENTER">
                <font>
-                   <Font name="System Bold" size="16.0"/>
+                   <Font name="System Bold" size="18.0"/>
                </font>
             </Label>
-            <HBox prefHeight="162.0" prefWidth="299.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+             <HBox prefHeight="162.0" prefWidth="299.0" spacing="20.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <children>
                    <ImageView fx:id="imgView" fitHeight="286.0" fitWidth="193.0" pickOnBounds="true"
                               preserveRatio="true">
@@ -53,7 +56,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ImageView>
-                   <VBox alignment="CENTER" prefHeight="286.0" prefWidth="243.0" spacing="10.0">
+                   <VBox alignment="CENTER" prefHeight="286.0" prefWidth="243.0" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
                          <HBox spacing="32.0">
                              <children>
@@ -72,7 +75,7 @@
                                          <Font name="System Bold" size="12.0"/>
                                      </font>
                                  </Label>
-                                 <Label fx:id="tfColeccion" text="|Coleccion" wrapText="true"/>
+                                 <Label fx:id="tfColeccion" text="|Coleccion" wrapText="true" HBox.hgrow="ALWAYS"/>
                              </children>
                          </HBox>
                          <HBox spacing="13.0">

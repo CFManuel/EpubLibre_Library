@@ -19,7 +19,7 @@
 package modelos;
 
 public interface CommonStrings {
-    String VERSION = "v0.6.5";
+    String VERSION = "v0.6.6";
     String LAST_UPDATE = "LAST_UPDATE";
     String VISIBLE_COLUMNS = "VISIBLE_COLUMNS";
     String ORDER_COLUMNS = "ORDER_COLUMNS";
@@ -36,5 +36,5 @@ public interface CommonStrings {
     String PATTERN_O = "[ôöóò]";
     String PATTERN_U = "[úùûü]";
     String PATTERN_FOR_PARAGRAPH = "([a-z][\\.!?])([A-Z])";
-    int DATA_OLD = 4;
+    int DATA_OLD = 3;
 }
