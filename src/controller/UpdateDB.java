@@ -137,11 +137,13 @@ public final class UpdateDB implements CommonStrings {
     }
 
     private static boolean checkAppVersion() {
-        boolean bool = false;
+        boolean bool = true;
         try {
             URL url = new URL(VERSION_CHECK);
             URLConnection uc = url.openConnection();
-
+            uc.setConnectTimeout(2 * 1000);
+            uc.setReadTimeout(2 * 1000);
+            uc.connect();
             BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
             String inputLine;
             inputLine = in.readLine();

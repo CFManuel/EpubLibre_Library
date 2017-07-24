@@ -36,8 +36,9 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="159.0" minHeight="38.0" prefHeight="62.0" valignment="CENTER" vgrow="NEVER"/>
-                <RowConstraints maxHeight="395.0" minHeight="260.0" prefHeight="275.0" vgrow="ALWAYS"/>
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="262.0" vgrow="ALWAYS"/>
+                <RowConstraints maxHeight="395.0" minHeight="260.0" prefHeight="291.0" valignment="CENTER"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="246.0" vgrow="ALWAYS"/>
                 <RowConstraints maxHeight="112.0" minHeight="36.0" prefHeight="36.0" vgrow="NEVER"/>
             </rowConstraints>
             <children>
@@ -49,15 +50,16 @@
                         <Font name="System Bold" size="18.0"/>
                     </font>
                 </Label>
-                <HBox prefHeight="162.0" prefWidth="299.0" spacing="20.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                <HBox spacing="20.0" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS"
+                      GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
                     <children>
-                        <ImageView fx:id="imgView" fitHeight="287.0" fitWidth="191.0" pickOnBounds="true"
-                                   preserveRatio="true">
+                        <ImageView fx:id="imgView" fitHeight="294.0" fitWidth="208.0" nodeOrientation="INHERIT"
+                                   pickOnBounds="true" preserveRatio="true">
                             <HBox.margin>
                                 <Insets left="10.0"/>
                             </HBox.margin>
                         </ImageView>
-                        <VBox alignment="CENTER" prefHeight="286.0" prefWidth="243.0" spacing="10.0"
+                        <VBox alignment="CENTER" prefHeight="274.0" prefWidth="227.0" spacing="10.0"
                               HBox.hgrow="ALWAYS">
                             <children>
                                 <HBox spacing="32.0">
@@ -78,8 +80,9 @@
                                                 <Font name="System Bold" size="12.0"/>
                                             </font>
                                         </Label>
-                                        <Label fx:id="tfColeccion" text="|Coleccion" wrapText="true"
-                                               HBox.hgrow="ALWAYS"/>
+                                        <Label fx:id="tfColeccion"
+                                               text="|Coleccion de blablab lablalblablal balbalbal en la casa de blas hay un coche azul y tal."
+                                               wrapText="true" HBox.hgrow="ALWAYS"/>
                                     </children>
                                 </HBox>
                                 <HBox spacing="13.0">
