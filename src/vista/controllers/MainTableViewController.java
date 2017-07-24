@@ -146,29 +146,27 @@ public class MainTableViewController implements CommonStrings {
      * Busca la información insertada por el usuario en la base de datos.
      */
     private void searchOnDB() {
-        if (cbColeccion
-                .isSelected()) { //evita que incluya los libros sin colección cuando no se desea.
-            String search = tfSearch.getText();
-            search = String.format("%%%s%%", search);
-            search = search.replaceAll("\\s", "%");
-            GetDatas getDatas = new GetDatas();
-            ArrayList<Libro> libros;
-            String[] busqueda = new String[6];
-            busqueda[0] = cbTitulo.isSelected() ? search : "";
-            busqueda[1] = cbAutor.isSelected() ? search : "";
-            busqueda[2] = cbColeccion.isSelected() ? search : "";
-            busqueda[3] = cbGenero.isSelected() ? search : "";
-            busqueda[4] = cbIdioma.isSelected() ? search : "";
-            busqueda[5] = cbSinopsis.isSelected() ? search : "";
+        String search = tfSearch.getText();
+        search = String.format("%%%s%%", search);
+        search = search.replaceAll("\\s", "%");
+        GetDatas getDatas = new GetDatas();
+        ArrayList<Libro> libros;
+        String[] busqueda = new String[6];
+        busqueda[0] = cbTitulo.isSelected() ? search : "";
+        busqueda[1] = cbAutor.isSelected() ? search : "";
+        busqueda[2] = cbColeccion.isSelected() ? search : "";
+        busqueda[3] = cbGenero.isSelected() ? search : "";
+        busqueda[4] = cbIdioma.isSelected() ? search : "";
+        busqueda[5] = cbSinopsis.isSelected() ? search : "";
 
-            try {
-                libros = getDatas.getLibros(busqueda);
-                this.libros.clear();
-                this.libros.addAll(libros);
-            } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            libros = getDatas.getLibros(busqueda);
+            this.libros.clear();
+            this.libros.addAll(libros);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         }
+
     }
 
     @FXML
@@ -178,7 +176,9 @@ public class MainTableViewController implements CommonStrings {
         //selectedItems.forEach(libro -> Utils.launchTorrent(libro));
     }
 
-    /** Configuración de los campos de la tabla. */
+    /**
+     * Configuración de los campos de la tabla.
+     */
     private void configTable() {
         titleColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
