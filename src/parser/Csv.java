@@ -18,8 +18,8 @@
 
 package parser;
 
-import daoSqLite.GetDatas;
-import daoSqLite.InsertDatas;
+import daosqlite.GetDatas;
+import daosqlite.InsertDatas;
 import modelos.Libro;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;

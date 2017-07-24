@@ -19,8 +19,8 @@
 package vista.controllers;
 
 import controller.UpdateDB;
-import daoSqLite.GetDatas;
-import daoSqLite.InsertDatas;
+import daosqlite.GetDatas;
+import daosqlite.InsertDatas;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;

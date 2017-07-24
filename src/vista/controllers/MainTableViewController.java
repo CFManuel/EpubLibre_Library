@@ -18,8 +18,8 @@
 
 package vista.controllers;
 
-import daoSqLite.GetDatas;
-import daoSqLite.InsertDatas;
+import daosqlite.GetDatas;
+import daosqlite.InsertDatas;
 import files.Utils;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;

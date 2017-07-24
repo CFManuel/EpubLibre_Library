@@ -22,9 +22,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import modelos.CommonStrings;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Optional;
 
 public class Alertas implements CommonStrings {
+    private Alertas() {
+    }
+
     /**
      * Alerta de fin de carga de datos correcta.
      */
@@ -35,7 +42,23 @@ public class Alertas implements CommonStrings {
         fin.show();
     }
 
-    /** Alerta de error en carga de datos. */
+    public static void alertNewAppUpdate() {
+        Alert fin = new Alert(Alert.AlertType.CONFIRMATION);
+        fin.setHeaderText("Hay una nueva versión disponible.");
+        fin.setContentText("¿Desea acceder a la ePL para ver la nueva versión?");
+        Optional<ButtonType> result = fin.showAndWait();
+        if (result.get() == ButtonType.OK) try {
+            Desktop.getDesktop().browse(new URI(EPL_FORO));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Alerta de error en carga de datos.
+     */
     public static void alertUpdateFail() {
         Alert fin = new Alert(Alert.AlertType.ERROR);
         fin.setHeaderText("No se han podido actualizar los libros.");
@@ -46,7 +69,7 @@ public class Alertas implements CommonStrings {
     /**
      * Alerta de información de la base de datos.
      *
-     * @param fecha Fecha de la última actualización.
+     * @param fecha  Fecha de la última actualización.
      * @param libros Número de libros en la base de datos.
      */
     public static void alertDBInformation(String fecha, int libros) {
@@ -70,7 +93,9 @@ public class Alertas implements CommonStrings {
         error.show();
     }
 
-    /** Información de la aplicación. */
+    /**
+     * Información de la aplicación.
+     */
     public static void aplicationInfo() {
         Alert informacion = new Alert(Alert.AlertType.INFORMATION);
         informacion.setTitle("EpubLibrary " + VERSION);

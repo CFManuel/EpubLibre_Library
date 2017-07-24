@@ -18,8 +18,8 @@
 
 package controller;
 
-import daoSqLite.GetDatas;
-import daoSqLite.InsertDatas;
+import daosqlite.GetDatas;
+import daosqlite.InsertDatas;
 import exceptions.NoValidCSVFile;
 import files.Utils;
 import javafx.concurrent.Task;
@@ -39,40 +39,31 @@ import org.joda.time.format.DateTimeFormatter;
 import parser.Csv;
 import vista.Main;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.SQLException;
 
-import static vista.controllers.Alertas.alertUpdateFail;
-import static vista.controllers.Alertas.alertUpdateOK;
+import static vista.controllers.Alertas.*;
 
 public final class UpdateDB implements CommonStrings {
     private static final int TOTAL_PROGRESS = 7; //Pasos de información de la actualización.
+
+    private UpdateDB() {
+    }
 
     /**
      * Comprueba si existe fecha en la base de datos, sino, la inserta.
      * Comprueba cuantos dias han pasado desde la última actualización y realiza las acciones necesarias.
      */
     public static void timeToUpdate() {
-        try {
-            GetDatas getDatas = new GetDatas(); //Optiene la fecha de la base
-            String lastDate = getDatas.getLastUpdate();
-            if (lastDate.equalsIgnoreCase("")) {
-                updateDate();
-                updateDataBase();
-            } else {
-                //Marca el dia de actual.
-                DateTime now = new DateTime();
-                DateTimeFormatter format = DateTimeFormat.forPattern("dd/MM/yyyy");
-                DateTime lastUpdate = format.parseDateTime(lastDate); //Transforma la cadena a DateTime
+        if (checkAppVersion()) alertNewAppUpdate();
+        if (checkDBage()) updateDataBase();
 
-                Period periodo = new Period(lastUpdate, now); //Comprueba cuantos dias han pasado.
-                if (periodo.getDays() >= DATA_OLD) {
-                    updateDataBase();
-                }
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -146,6 +137,48 @@ public final class UpdateDB implements CommonStrings {
         }
     }
 
+    private static boolean checkAppVersion() {
+        boolean bool = false;
+        try {
+            URL url = new URL(VERSION_CHECK);
+            URLConnection uc = url.openConnection();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+            String inputLine;
+            inputLine = in.readLine();
+            in.close();
+            bool = inputLine.equals(VERSION);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return !bool;
+    }
+
+    private static boolean checkDBage() {
+        boolean actualizar = false;
+        try {
+            GetDatas getDatas = new GetDatas(); //Optiene la fecha de la base
+            String lastDate = getDatas.getLastUpdate();
+            if (lastDate.equalsIgnoreCase("")) {
+                updateDate();
+                updateDataBase();
+            } else {
+                //Marca el dia de actual.
+                DateTime now = new DateTime();
+                DateTimeFormatter format = DateTimeFormat.forPattern("dd/MM/yyyy");
+                DateTime lastUpdate = format.parseDateTime(lastDate); //Transforma la cadena a DateTime
+
+                Period periodo = new Period(lastUpdate, now); //Comprueba cuantos dias han pasado.
+                if (periodo.getDays() >= DATA_OLD) actualizar = true;
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return actualizar;
+    }
+
     /**
      * Clase para lanzar una ventana de ProgressBar a partir de un Task.
      * <p>
@@ -197,8 +230,5 @@ public final class UpdateDB implements CommonStrings {
         public Stage getDialogStage() {
             return dialogStage;
         }
-    }
-
-    private UpdateDB() {
     }
 }

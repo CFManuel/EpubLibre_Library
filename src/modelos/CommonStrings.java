@@ -20,6 +20,8 @@ package modelos;
 
 public interface CommonStrings {
     String VERSION = "v0.6.6";
+    String VERSION_CHECK = "http://dmmop.heliohost.org/version.html";
+    String EPL_FORO = "https://www.epublibre.org/foro/viewtopic.php?f=97&t=34434";
     String LAST_UPDATE = "LAST_UPDATE";
     String VISIBLE_COLUMNS = "VISIBLE_COLUMNS";
     String ORDER_COLUMNS = "ORDER_COLUMNS";

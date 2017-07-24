@@ -18,7 +18,7 @@
 
 package vista.controllers;
 
-import daoSqLite.GetDatas;
+import daosqlite.GetDatas;
 import files.Utils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -81,9 +81,8 @@ public class BookViewer implements CommonStrings {
             //t1 es el index del choiceBox.
             GetDatas getDatas = new GetDatas();
             try {
-                Libro libro = getDatas.getLibro(this.libro.getEpl_id(), (Double) cbRevision.getItems().get((Integer) t1));
+                libro = getDatas.getLibro(this.libro.getEpl_id(), (Double) cbRevision.getItems().get((Integer) t1));
                 libro.setRevArray(this.libro.getRevArray());
-                this.libro = libro;
                 drawBook();
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();

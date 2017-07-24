@@ -19,9 +19,9 @@
 package vista;
 
 import controller.UpdateDB;
-import daoSqLite.ConnectorHelper;
-import daoSqLite.GetDatas;
-import daoSqLite.InsertDatas;
+import daosqlite.ConnectorHelper;
+import daosqlite.GetDatas;
+import daosqlite.InsertDatas;
 import files.Utils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

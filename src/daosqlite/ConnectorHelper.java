@@ -16,9 +16,8 @@
  *     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package daoSqLite;
+package daosqlite;
 
-import org.sqlite.Function;
 import vista.Main;
 
 import java.sql.Connection;
@@ -82,21 +81,15 @@ public class ConnectorHelper {
             String tablaConfig = "CREATE TABLE IF NOT EXISTS CONFIG (\n" +
                     "  TEXT_ID TEXT PRIMARY KEY ,\n" +
                     "  DATASTRING TEXT)";
-            Function.create(conn, "funcion", new Function() {
-                @Override
-                protected void xFunc() throws SQLException {
-
-                }
-            });
             Statement st = conn.createStatement();
             st.execute(tablaLibros);
             st.execute(tablaConfig);
 
         } catch (Exception e) {
-            //System.err.println(e.getCause());
             e.printStackTrace();
         } finally {
             try {
+
                 desconectar();
             } catch (SQLException e) {
                 e.printStackTrace();

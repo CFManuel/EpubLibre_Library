@@ -16,7 +16,7 @@
  *     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package daoSqLite;
+package daosqlite;
 
 import modelos.CommonStrings;
 import modelos.Libro;
