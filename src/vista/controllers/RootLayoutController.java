@@ -91,6 +91,7 @@ public class RootLayoutController implements CommonStrings {
                             }
                         };
             }
+            assert importar != null;
             importar.setOnSucceeded(
                     e -> {
                         InsertDatas insertDatas = new InsertDatas();

@@ -47,11 +47,9 @@ public class Alertas implements CommonStrings {
         fin.setHeaderText("Hay una nueva versión disponible.");
         fin.setContentText("¿Desea acceder a la ePL para ver la nueva versión?");
         Optional<ButtonType> result = fin.showAndWait();
-        if (result.get() == ButtonType.OK) try {
+        if (result.isPresent() && result.get() == ButtonType.OK) try {
             Desktop.getDesktop().browse(new URI(EPL_FORO));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
     }
