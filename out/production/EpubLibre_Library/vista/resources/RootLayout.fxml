@@ -24,20 +24,16 @@
             minWidth="590" prefHeight="400" prefWidth="660" xmlns="http://javafx.com/javafx/8.0.112"
             fx:controller="vista.controllers.RootLayoutController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-            <Menu fx:id="menuFile" mnemonicParsing="false" text="Archivo">
-               <items>
-                   <MenuItem mnemonicParsing="false" onAction="#importDataSource" text="Importar datos desde fichero"/>
-                   <MenuItem mnemonicParsing="false" onAction="#epubLibreImport" text="Importar datos desde ePubLibre"/>
-               </items></Menu>
-            <Menu mnemonicParsing="false" text="Ayuda">
-               <items>
-                   <MenuItem mnemonicParsing="false" onAction="#getLastUpdate" text="Información de la base de datos"/>
-                   <MenuItem mnemonicParsing="false" onAction="#resetGUI" text="Borrar ajustes"/>
-                   <MenuItem mnemonicParsing="false" onAction="#help" text="Sobre la aplicación"/>
-               </items></Menu>
-        </menus>
-      </MenuBar>
+       <MenuBar BorderPane.alignment="CENTER">
+           <Menu fx:id="menuFile" mnemonicParsing="false" text="Archivo">
+               <MenuItem mnemonicParsing="false" onAction="#importDataSource" text="Importar datos desde fichero"/>
+               <MenuItem mnemonicParsing="false" onAction="#epubLibreImport" text="Importar datos desde ePubLibre"/>
+           </Menu>
+           <Menu mnemonicParsing="false" text="Ayuda">
+               <MenuItem mnemonicParsing="false" onAction="#getLastUpdate" text="Información de la base de datos"/>
+               <MenuItem mnemonicParsing="false" onAction="#resetGUI" text="Borrar ajustes"/>
+               <MenuItem mnemonicParsing="false" onAction="#help" text="Sobre la aplicación"/>
+           </Menu>
+       </MenuBar>
    </top>
 </BorderPane>

@@ -28,6 +28,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import modelos.CommonStrings;
 import parser.Csv;
+import parser.Rss;
 import vista.Main;
 
 import java.io.File;
@@ -82,6 +83,27 @@ public class RootLayoutController implements CommonStrings {
                                 updateProgress(2, 4);
                                 new Csv().importCSV(datos);
                                 updateMessage("CSV importado.");
+                                updateProgress(3, 4);
+                                main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
+                                progressForm.getDialogStage().getScene().setCursor(Cursor.DEFAULT);
+                                updateMessage("Finalizando actualización..,");
+                                updateProgress(4, 4);
+                                return null;
+                            }
+                        };
+            } else {
+                importar =
+                        new Task() {
+                            @Override
+                            protected Object call() throws Exception {
+                                progressForm.getDialogStage().getScene().setCursor(Cursor.WAIT);
+                                updateMessage("Iniciando actualización de imágenes.");
+                                updateProgress(1, 4);
+                                main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
+                                updateMessage("Importando RSS...");
+                                updateProgress(2, 4);
+                                Rss.importXML(datos);
+                                updateMessage("RSS importado.");
                                 updateProgress(3, 4);
                                 main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
                                 progressForm.getDialogStage().getScene().setCursor(Cursor.DEFAULT);

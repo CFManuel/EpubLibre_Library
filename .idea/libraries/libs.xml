@@ -1,14 +1,10 @@
 <component name="libraryTable">
   <library name="libs">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/commons-cli-1.4.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/sqlite-jdbc-3.19.3.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/URISchemeHandler-1.7.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/joda-time-2.9.9.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/commons-io-2.5.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/zip4j_1.3.2.jar!/" />
+      <root url="file://$PROJECT_DIR$/libs" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/libs" recursive="false" />
   </library>
 </component>

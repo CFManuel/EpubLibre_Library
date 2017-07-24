@@ -79,7 +79,7 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
      * Actualiza la fecha de la última actualización de la db.
      *
      * @throws ClassNotFoundException Driver no encontrado.
-     * @throws SQLException Error al generar la conexión.
+     * @throws SQLException           Error al generar la conexión.
      */
     public void updateDate() throws ClassNotFoundException, SQLException {
         String sql = "REPLACE INTO CONFIG(TEXT_ID, DATASTRING) VALUES(?,?)";
@@ -99,7 +99,7 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
      *
      * @param id    Clave del registro.
      * @param value Valor del registro.
-     * @throws SQLException Error en la db.
+     * @throws SQLException           Error en la db.
      * @throws ClassNotFoundException Error en el driver.
      */
     public void insertConfig(String id, String value) throws SQLException, ClassNotFoundException {
@@ -117,7 +117,7 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
      * Elimina un registro de configuración a partir de su clave.
      *
      * @param id Clave de registro.
-     * @throws SQLException Error en la db.
+     * @throws SQLException           Error en la db.
      * @throws ClassNotFoundException Error en el driver.
      */
     public void deleteConfig(String id) throws SQLException, ClassNotFoundException {
@@ -127,6 +127,16 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         ps.setString(1, id);
         ps.execute();
         super.desconectar();
+    }
+
+    //FIXME: Importar imagenes de forma temporal
+    @Deprecated
+    public void insertIMG(int epl, String imgdir) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE libros SET imgdir = ? WHERE epl_id = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, imgdir);
+        ps.setInt(2, epl);
+        ps.execute();
     }
 
     /**
