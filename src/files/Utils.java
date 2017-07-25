@@ -49,7 +49,7 @@ public class Utils implements CommonStrings {
             conn.connect();
             destino = new File(Main.getLocation() + "epub.zip");
             FileUtils.copyInputStreamToFile(conn.getInputStream(), destino);
-
+            System.out.println(destino.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,8 +66,8 @@ public class Utils implements CommonStrings {
             uc.setReadTimeout(3 * 1000);
             uc.setConnectTimeout(3 * 1000);
             uc.setRequestProperty("Authorization", "Bearer XvRZ_44-BGAAAAAAAAAAD5Ydn7d9Dnac0PCVz6qzy69FqqLgO2AaTbNj91_aVCMo");
-            uc.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"/epublibre.csv\"}");
-            destino = new File(Main.getLocation() + "epublibre.csv");
+            uc.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"/csv_full_imgs.zip\"}");
+            destino = new File(Main.getLocation() + "epub.zip");
             FileUtils.copyInputStreamToFile(uc.getInputStream(), destino);
         } catch (MalformedURLException e) {
             e.printStackTrace();

@@ -27,7 +27,6 @@ import org.apache.commons.io.LineIterator;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
 
 public class Csv {
     /**
@@ -38,24 +37,21 @@ public class Csv {
      */
     public void importCSV(File csvFile) throws IOException {
         LineIterator it = FileUtils.lineIterator(csvFile, "utf-8");
-        int count = 0;
         InsertDatas idatas = new InsertDatas();
         GetDatas getDatas = new GetDatas();
         String line;
         String[] items;
         try {
             idatas.crearTabla();
-            HashMap<Integer, Double> librosActuales = getDatas.getEPL_ID();
             it.nextLine();
             idatas.conectar();
-
             while (it.hasNext()) {
                 line = it.nextLine();
                 items = line.replaceAll("\",", "").split("\"");
+
                 Libro libro = generarLibro(items);
                 try {
                     idatas.insertarLibros(libro);
-                    count++;
                 } catch (Exception e) {
                     //nada
                 }
@@ -76,7 +72,6 @@ public class Csv {
                 e.printStackTrace();
             }
         }
-        System.out.println("Registros: " + count + " integrados");
     }
 
 
@@ -106,6 +101,7 @@ public class Csv {
             if (!items[15].equalsIgnoreCase("")) lib.setN_votos(Integer.parseInt(items[15]));
             try {
                 lib.setEnlaces("magnet:?xt=urn:btih:" + items[16].split(",")[0]);
+                lib.setImgURI(items[17]);
             } catch (Exception ignored) {
             }
         } catch (Exception e) {

@@ -29,9 +29,8 @@ public interface CommonStrings {
     String WIDTH_WINDOW = "WIDTH_WINDOW";
     String HEIGHT_WINDOW = "HEIGHT_WINDOW";
     String CSV_URL = "https://epublibre.org/rssweb/csv";
-    String RSS_URL = "http://epublibre.org/rssweb/rss/completo"; //Compacto
     //Main.getLocation() para apuntar a la carpeta epl del jar
-    String CSV_NAME = "epublibre.csv";
+    String CSV_NAME = "csv_full_imgs.csv";
     String PATTERN_A = "[àáâä]";
     String PATTERN_E = "[èéêë]";
     String PATTERN_I = "[îíìï]";

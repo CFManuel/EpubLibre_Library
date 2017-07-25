@@ -79,7 +79,7 @@ public final class UpdateDB implements CommonStrings {
 
                 updateMessage("Descargando csv...");
                 updateProgress(1, TOTAL_PROGRESS);
-                File zip = Utils.downloadCSVfromEPL();
+                File zip = Utils.downloadCSVfromDropbox();
 
                 updateProgress(3, TOTAL_PROGRESS);
                 updateMessage("CSV Descargado.");
@@ -94,7 +94,6 @@ public final class UpdateDB implements CommonStrings {
                     }
                     updateProgress(4, TOTAL_PROGRESS);
                     updateMessage("CSV válido.");
-
                     Csv csv = new Csv();
                     updateMessage("Importando CSV...");
                     csv.importCSV(new File(Main.getLocation() + CSV_NAME));
