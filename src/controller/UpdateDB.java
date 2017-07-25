@@ -79,7 +79,7 @@ public final class UpdateDB implements CommonStrings {
 
                 updateMessage("Descargando csv...");
                 updateProgress(1, TOTAL_PROGRESS);
-                File zip = Utils.downloadCSV();
+                File zip = Utils.downloadCSVfromEPL();
 
                 updateProgress(3, TOTAL_PROGRESS);
                 updateMessage("CSV Descargado.");
@@ -170,7 +170,8 @@ public final class UpdateDB implements CommonStrings {
                 DateTime lastUpdate = format.parseDateTime(lastDate); //Transforma la cadena a DateTime
 
                 Period periodo = new Period(lastUpdate, now); //Comprueba cuantos dias han pasado.
-                if (periodo.getDays() >= DATA_OLD) actualizar = true;
+                int dias = periodo.getDays();
+                if (dias >= DATA_OLD && dias > 1) actualizar = true;
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

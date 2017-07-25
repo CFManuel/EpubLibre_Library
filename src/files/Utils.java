@@ -29,10 +29,7 @@ import vista.Main;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 
 
 public class Utils implements CommonStrings {
@@ -41,7 +38,7 @@ public class Utils implements CommonStrings {
      *
      * @return File con el .zip.
      */
-    public static File downloadCSV() {
+    public static File downloadCSVfromEPL() {
         File destino = null;
         try {
             URL url = new URL(CSV_URL);
@@ -52,7 +49,6 @@ public class Utils implements CommonStrings {
             conn.connect();
             destino = new File(Main.getLocation() + "epub.zip");
             FileUtils.copyInputStreamToFile(conn.getInputStream(), destino);
-            //FileUtils.copyURLToFile(url, destino);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,6 +56,26 @@ public class Utils implements CommonStrings {
         return destino;
     }
 
+    public static File downloadCSVfromDropbox() {
+        File destino = null;
+        try {
+            String link = "https://content.dropboxapi.com/2/files/download";
+            URL url = new URL(link);
+            URLConnection uc = url.openConnection();
+
+            uc.setReadTimeout(3 * 1000);
+            uc.setConnectTimeout(3 * 1000);
+            uc.setRequestProperty("Authorization", "Bearer XvRZ_44-BGAAAAAAAAAAD5Ydn7d9Dnac0PCVz6qzy69FqqLgO2AaTbNj91_aVCMo");
+            uc.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"/epublibre.csv\"}");
+            destino = new File(Main.getLocation() + "epublibre.csv");
+            FileUtils.copyInputStreamToFile(uc.getInputStream(), destino);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return destino;
+    }
     /**
      * Recibe un archivo zip y lo descomprime en el directorio junto al jar.
      *
