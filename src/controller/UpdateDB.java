@@ -170,7 +170,7 @@ public final class UpdateDB implements CommonStrings {
 
                 Period periodo = new Period(lastUpdate, now); //Comprueba cuantos dias han pasado.
                 int dias = periodo.getDays();
-                if (dias >= DATA_OLD && dias > 1) actualizar = true;
+                if (dias >= DATA_OLD) actualizar = true;
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
