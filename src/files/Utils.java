@@ -63,8 +63,8 @@ public class Utils implements CommonStrings {
             URL url = new URL(link);
             URLConnection uc = url.openConnection();
 
-            uc.setReadTimeout(3 * 1000);
-            uc.setConnectTimeout(3 * 1000);
+            uc.setReadTimeout(5 * 1000);
+            uc.setConnectTimeout(5 * 1000);
             uc.setRequestProperty("Authorization", "Bearer XvRZ_44-BGAAAAAAAAAAD5Ydn7d9Dnac0PCVz6qzy69FqqLgO2AaTbNj91_aVCMo");
             uc.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"/csv_full_imgs.zip\"}");
             destino = new File(Main.getLocation() + "epub.zip");

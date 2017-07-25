@@ -45,7 +45,7 @@ public class Alertas implements CommonStrings {
     public static void alertNewAppUpdate() {
         Alert fin = new Alert(Alert.AlertType.CONFIRMATION);
         fin.setHeaderText("Hay una nueva versión disponible.");
-        fin.setContentText("¿Desea acceder a la ePL para ver la nueva versión?");
+        fin.setContentText("¿Desea acceder a ePL para ver la nueva versión?");
         Optional<ButtonType> result = fin.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) try {
             Desktop.getDesktop().browse(new URI(EPL_FORO));
