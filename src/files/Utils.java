@@ -43,6 +43,7 @@ public class Utils implements CommonStrings {
      *
      * @return File con el .zip.
      */
+    @Deprecated
     public static File downloadCSVfromEPL() {
         File destino = null;
         try {
@@ -61,16 +62,21 @@ public class Utils implements CommonStrings {
         return destino;
     }
 
+    /**
+     * Descarga el .zip desde la Dropbox.
+     *
+     * @return File con el .zip
+     */
     public static File downloadCSVfromDropbox() {
         File destino = null;
         try {
-            String link = "https://content.dropboxapi.com/2/files/download";
+            String link = DROPBOX_API;
             URL url = new URL(link);
             URLConnection uc = url.openConnection();
 
             uc.setReadTimeout(5 * 1000);
             uc.setConnectTimeout(5 * 1000);
-            uc.setRequestProperty("Authorization", "Bearer XvRZ_44-BGAAAAAAAAAAD5Ydn7d9Dnac0PCVz6qzy69FqqLgO2AaTbNj91_aVCMo");
+            uc.setRequestProperty("Authorization", "Bearer " + TOKEN_API);
             uc.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"/csv_full_imgs.zip\"}");
             destino = new File(Main.getLocation() + "epub.zip");
             FileUtils.copyInputStreamToFile(uc.getInputStream(), destino);
@@ -87,14 +93,14 @@ public class Utils implements CommonStrings {
         Gson gson = new Gson();
         HashMap<String, String> mapa = new HashMap<>();
         String json;
-        String link = "https://content.dropboxapi.com/2/files/download";
+        String link = DROPBOX_API;
         try {
             URL url = new URL(link);
             URLConnection uc = url.openConnection();
 
             uc.setReadTimeout(3 * 1000);
             uc.setConnectTimeout(3 * 1000);
-            uc.setRequestProperty("Authorization", "Bearer XvRZ_44-BGAAAAAAAAAAD5Ydn7d9Dnac0PCVz6qzy69FqqLgO2AaTbNj91_aVCMo");
+            uc.setRequestProperty("Authorization", "Bearer " + TOKEN_API);
             uc.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"/config.json\"}");
 
             IOUtils.copy(uc.getInputStream(), writer, StandardCharsets.UTF_8);

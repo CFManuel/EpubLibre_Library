@@ -41,14 +41,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainTableViewController implements CommonStrings {
+    //ArrayList con los datos que se muestran en la tabla.
+    public static final ObservableList<Libro> libros = FXCollections.observableArrayList();
+    public static SimpleIntegerProperty focusROW = new SimpleIntegerProperty();
     private static String OPT_TITLE = "Título";
     private static String OPT_AUTHOR = "Autor";
     private static String OPT_COLLECTIONS = "Colecciones";
     private static String OPT_GENDER = "Géneros";
     private static String OPT_LANGUAGE = "Idioma";
-    //ArrayList con los datos que se muestran en la tabla.
-    public static final ObservableList<Libro> libros = FXCollections.observableArrayList();
-
     private Main main;
     @FXML
     private TextField tfSearch;
@@ -181,6 +181,12 @@ public class MainTableViewController implements CommonStrings {
      * Configuración de los campos de la tabla.
      */
     private void configTable() {
+        //Cambia la linea seleccionada al moverse por la ficha del libro
+        focusROW.addListener((observableValue, number, t1) -> {
+            bookTableView.getSelectionModel().clearSelection();
+            bookTableView.getSelectionModel().select(t1.intValue());
+            bookTableView.getFocusModel().focus(t1.intValue());
+        });
         titleColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
         autorColumn.setCellValueFactory(

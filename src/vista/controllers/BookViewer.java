@@ -110,6 +110,7 @@ public class BookViewer implements CommonStrings {
         int maxPos = MainTableViewController.libros.size() - 1;
         double nextOpacity = (maxPos == position) ? 0.5 : 1;
         double backOpacity = (position == 0) ? 0.5 : 1;
+        MainTableViewController.focusROW.set(position);
         nextArrow.setOpacity(nextOpacity);
         backArrow.setOpacity(backOpacity);
 

@@ -130,6 +130,11 @@ public final class UpdateDB implements CommonStrings {
         }
     }
 
+    /**
+     * Comprueba si hay una nueva versión de la aplicación.
+     *
+     * @return True si hay que actualizar.
+     */
     private static boolean checkAppVersion() {
         boolean bool = true;
         try {
@@ -138,6 +143,10 @@ public final class UpdateDB implements CommonStrings {
         return !bool;
     }
 
+    /**
+     * Comprueba si la DB tiene 4 o más dias de antiguedad.
+     * @return True si hay que actualizar.
+     */
     private static boolean checkDBage() {
         boolean actualizar = false;
         try {
