@@ -49,7 +49,7 @@ public class Alertas implements CommonStrings {
         fin.setContentText("¿Desea acceder a ePL para ver la nueva versión?");
         Optional<ButtonType> result = fin.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) try {
-            Desktop.getDesktop().browse(new URI(Main.configuracion.get(EPL_FORO)));
+            Desktop.getDesktop().browse(new URI(Main.getConfiguracion().get(EPL_FORO)));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
