@@ -36,9 +36,9 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="159.0" minHeight="38.0" prefHeight="62.0" valignment="CENTER" vgrow="NEVER"/>
-                <RowConstraints maxHeight="395.0" minHeight="260.0" prefHeight="291.0" valignment="CENTER"
+                <RowConstraints maxHeight="395.0" minHeight="260.0" prefHeight="303.0" valignment="CENTER"
                                 vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="246.0" vgrow="ALWAYS"/>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="234.0" vgrow="ALWAYS"/>
                 <RowConstraints maxHeight="112.0" minHeight="36.0" prefHeight="36.0" vgrow="NEVER"/>
             </rowConstraints>
             <children>
@@ -53,12 +53,15 @@
                 <HBox spacing="20.0" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS"
                       GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
                     <children>
-                        <ImageView fx:id="imgView" fitHeight="294.0" fitWidth="208.0" nodeOrientation="INHERIT"
-                                   pickOnBounds="true" preserveRatio="true">
-                            <HBox.margin>
-                                <Insets left="10.0"/>
-                            </HBox.margin>
-                        </ImageView>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <ProgressIndicator focusTraversable="false" maxHeight="50.0" maxWidth="50.0"
+                                                   opacity="0.48" prefHeight="50.0" prefWidth="50.0"
+                                                   StackPane.alignment="CENTER"/>
+                                <ImageView fx:id="imgView" fitHeight="307.0" fitWidth="208.0" nodeOrientation="INHERIT"
+                                           pickOnBounds="true" preserveRatio="true"/>
+                            </children>
+                        </StackPane>
                         <VBox alignment="CENTER" prefHeight="274.0" prefWidth="227.0" spacing="10.0"
                               HBox.hgrow="ALWAYS">
                             <children>
@@ -171,7 +174,7 @@
                                 GridPane.rowIndex="3"/>
                     </children>
                 </HBox>
-                <TextArea fx:id="tfSinopsis" editable="false" prefHeight="250.0" prefWidth="375.0"
+                <TextArea fx:id="tfSinopsis" editable="false" prefHeight="235.0" prefWidth="448.0"
                           text="adsfasasdfasdfasdfassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
                           wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="2">
                     <font>

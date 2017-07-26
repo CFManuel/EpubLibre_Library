@@ -47,7 +47,8 @@ public class MainTableViewController implements CommonStrings {
     private static String OPT_GENDER = "Géneros";
     private static String OPT_LANGUAGE = "Idioma";
     //ArrayList con los datos que se muestran en la tabla.
-    private final ObservableList<Libro> libros = FXCollections.observableArrayList();
+    public static final ObservableList<Libro> libros = FXCollections.observableArrayList();
+
     private Main main;
     @FXML
     private TextField tfSearch;
@@ -135,7 +136,7 @@ public class MainTableViewController implements CommonStrings {
                                 || libro.getAutor().toLowerCase().contains(s)
                                 || libro.getColeccion().toLowerCase().contains(s));
         String search = tfSearch.getText().toLowerCase();
-        Iterator<Libro> i = this.libros.iterator();
+        Iterator<Libro> i = libros.iterator();
         i.forEachRemaining(
                 libro -> {
                     if (!match.apply(libro, search)) i.remove();
@@ -161,8 +162,8 @@ public class MainTableViewController implements CommonStrings {
 
         try {
             libros = getDatas.getLibros(busqueda);
-            this.libros.clear();
-            this.libros.addAll(libros);
+            MainTableViewController.libros.clear();
+            MainTableViewController.libros.addAll(libros);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -206,7 +207,7 @@ public class MainTableViewController implements CommonStrings {
                 cellData -> new SimpleStringProperty(cellData.getValue().getPublicado()));
 
         bookTableView.setEditable(false);
-        bookTableView.setItems(this.libros);
+        bookTableView.setItems(libros);
         bookTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         bookTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         publiDateColumn.setComparator(new DateComparator());
@@ -378,7 +379,7 @@ public class MainTableViewController implements CommonStrings {
     }
 
     private void writeNumberBooks() {
-        labelBookFound.setText(String.valueOf(this.libros.size()) + " Libros");
+        labelBookFound.setText(String.valueOf(libros.size()) + " Libros");
     }
 
     public static class DateComparator implements Comparator<String> {
