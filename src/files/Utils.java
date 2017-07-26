@@ -129,10 +129,13 @@ public class Utils implements CommonStrings {
     /**
      * Borra el fichero .zip.
      *
-     * @param zip Fichero a borrar.
+     * @param forDelete Ficheros a borrar.
      */
-    public static void deleteZip(File zip) {
-        zip.delete();
+    public static void deleteZip(File... forDelete) {
+        for (File file : forDelete) {
+            file.delete();
+        }
+
     }
 
     public static void crearEPL() {
