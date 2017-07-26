@@ -11,6 +11,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/sqlite-jdbc-3.19.3.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/zip4j_1.3.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/commons-io-2.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/gson-2.8.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

@@ -46,12 +46,24 @@ public class Alertas implements CommonStrings {
     public static void alertNewAppUpdate() {
         Alert fin = new Alert(Alert.AlertType.CONFIRMATION);
         fin.setHeaderText("Hay una nueva versión disponible.");
-        fin.setContentText("¿Desea acceder a ePL para ver la nueva versión?");
+        fin.setContentText("¿Desea abrir el navegador para ver la nueva versión?");
+        ButtonType epl = new ButtonType("ePL");
+        ButtonType dropbox = new ButtonType("Dropbox");
+        ButtonType cancel = new ButtonType("Cancelar");
+        fin.getButtonTypes().setAll(epl, dropbox, cancel);
+
         Optional<ButtonType> result = fin.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) try {
-            Desktop.getDesktop().browse(new URI(Main.getConfiguracion().get(EPL_FORO)));
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
+        if (result.isPresent()) {
+            try {
+                if (result.get() == epl) {
+                    Desktop.getDesktop().browse(new URI(Main.getConfiguracion().get(EPL_FORO)));
+                } else if (result.get() == dropbox) {
+                    Desktop.getDesktop().browse(new URI(Main.getConfiguracion().get(DONWLOAD_LINK)));
+                }
+
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
         }
     }
 
