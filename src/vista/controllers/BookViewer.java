@@ -38,6 +38,10 @@ public class BookViewer implements CommonStrings {
 
     private Stage dialogStage;
     @FXML
+    private ImageView nextArrow;
+    @FXML
+    private ImageView backArrow;
+    @FXML
     private Label tfTitulo;
     @FXML
     private Label tfAutor;
@@ -75,11 +79,12 @@ public class BookViewer implements CommonStrings {
      */
     @FXML
     private void backBook() {
-        System.out.println(position);
         if (position != 0) {
             position--;
             this.libro = MainTableViewController.libros.get(position);
+            drawArrows();
             drawBook();
+
         }
 
     }
@@ -89,11 +94,23 @@ public class BookViewer implements CommonStrings {
      */
     @FXML
     private void nextBook() {
-        if (MainTableViewController.libros.size() - 1 != position) {
+        int maxPos = MainTableViewController.libros.size() - 1;
+        if (maxPos != position) {
             position++;
             this.libro = MainTableViewController.libros.get(position);
+            drawArrows();
             drawBook();
         }
+    }
+
+    private void drawArrows() {
+        int maxPos = MainTableViewController.libros.size() - 1;
+        double nextOpacity = (maxPos == position) ? 0.5 : 1;
+        double backOpacity = (position == 0) ? 0.5 : 1;
+        nextArrow.setOpacity(nextOpacity);
+        backArrow.setOpacity(backOpacity);
+
+
     }
 
     /**
@@ -103,6 +120,7 @@ public class BookViewer implements CommonStrings {
     private void initialize() {
 
         cbRevision.setItems(FXCollections.observableArrayList(libro.getRevArray()));
+        drawArrows();
         drawBook();
         //Listener para cargar el libro correspondiente a la revisión seleccionada.
         cbRevision.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {

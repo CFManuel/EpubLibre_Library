@@ -188,14 +188,15 @@
                 <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
                       GridPane.valignment="CENTER">
                     <children>
-                        <ImageView fitHeight="60.0" fitWidth="33.0" onMouseClicked="#backBook" pickOnBounds="true"
-                                   preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                        <ImageView fx:id="backArrow" fitHeight="60.0" fitWidth="33.0" onMouseClicked="#backBook"
+                                   pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1"
+                                   GridPane.halignment="RIGHT">
                             <image>
                                 <Image url="@images/back.png"/>
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="60.0" fitWidth="33.0" onMouseClicked="#nextBook" pickOnBounds="true"
-                                   preserveRatio="true">
+                        <ImageView fx:id="nextArrow" fitHeight="60.0" fitWidth="33.0" onMouseClicked="#nextBook"
+                                   pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/next.png"/>
                             </image>
