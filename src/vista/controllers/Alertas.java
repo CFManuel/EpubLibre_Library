@@ -55,7 +55,7 @@ public class Alertas implements CommonStrings {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("vista/resources/images/EPL_Portadas_NEGRO.png"));
         alert.setGraphic(new ImageView(new Image("vista/resources/images/icono_alertas.png")));
-        alert.setHeaderText("Hay una nueva versión disponible.");
+        alert.setHeaderText("Hay una nueva versión disponible. (" + Main.getConfiguracion().get(VERSION_CHECK) + ")");
         alert.setContentText("¿Desea abrir el navegador para ver la nueva versión?");
         ButtonType epl = new ButtonType("ePL");
         ButtonType dropbox = new ButtonType("Dropbox");
