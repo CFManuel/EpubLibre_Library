@@ -40,29 +40,24 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
                         + "n_votos, enlaces, imgDir)"
                         + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        String titsense = normalize(libro.getTitulo());
-        String autsense = normalize(libro.getAutor());
-        String gensense = normalize(libro.getGeneros());
-        String colsense = normalize(libro.getColeccion());
-        String idisense = normalize(libro.getIdioma());
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, libro.getEpl_id());
             ps.setString(2, libro.getTitulo());
-            ps.setString(3, titsense);
+            ps.setString(3, normalize(libro.getTitulo()));
             ps.setString(4, libro.getAutor());
-            ps.setString(5, autsense);
+            ps.setString(5, normalize(libro.getAutor()));
             ps.setString(6, libro.getGeneros());
-            ps.setString(7, gensense);
+            ps.setString(7, normalize(libro.getGeneros()));
             ps.setString(8, libro.getColeccion());
-            ps.setString(9, colsense);
+            ps.setString(9, normalize(libro.getColeccion()));
             ps.setDouble(10, libro.getVolumen());
             ps.setInt(11, libro.getFecha_publi());
             ps.setString(12, libro.getSinopsis());
             ps.setInt(13, libro.getPaginas());
             ps.setDouble(14, libro.getRevision());
             ps.setString(15, libro.getIdioma());
-            ps.setString(16, idisense);
+            ps.setString(16, normalize(libro.getIdioma()));
             ps.setString(17, libro.getPublicado());
             ps.setString(18, libro.getEstado());
             ps.setDouble(19, libro.getValoracion());

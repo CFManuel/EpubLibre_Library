@@ -76,6 +76,7 @@ public class Utils implements CommonStrings {
         }
         return destino;
     }
+
     /**
      * Recibe un archivo zip y lo descomprime en el directorio junto al jar.
      *
@@ -113,7 +114,7 @@ public class Utils implements CommonStrings {
      */
     public static void launchTorrent(Libro libro) {
         try {
-            URI magnetLink = new URI(libro.getEnlaces());
+            URI magnetLink = new URI(String.format("%s&dn=EPL_[%d]_%s", libro.getEnlaces(), libro.getEpl_id(), libro.getTitulo().replaceAll("\\s", "_")));
             URISchemeHandler uriSchemeHandler = new URISchemeHandler();
             uriSchemeHandler.open(magnetLink);
 

@@ -18,7 +18,6 @@
 
 package parser;
 
-import daosqlite.GetDatas;
 import daosqlite.InsertDatas;
 import modelos.Libro;
 import org.apache.commons.io.FileUtils;
@@ -38,7 +37,6 @@ public class Csv {
     public void importCSV(File csvFile) throws IOException {
         LineIterator it = FileUtils.lineIterator(csvFile, "utf-8");
         InsertDatas idatas = new InsertDatas();
-        GetDatas getDatas = new GetDatas();
         String line;
         String[] items;
         try {

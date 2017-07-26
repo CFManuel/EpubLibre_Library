@@ -115,6 +115,7 @@ public class BookViewer implements CommonStrings {
         try {
             Image image = new Image(libro.getImgURI(), true);
             imgView.setImage(image);
+
         } catch (Exception e) {
             //Lanza error si no existe link.
         }
