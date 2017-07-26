@@ -23,6 +23,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
@@ -53,6 +54,7 @@ public class Alertas implements CommonStrings {
     public static void alertNewAppUpdate() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("vista/resources/images/EPL_Portadas_NEGRO.png"));
+        alert.setGraphic(new ImageView(new Image("vista/resources/images/icono_alertas.png")));
         alert.setHeaderText("Hay una nueva versión disponible.");
         alert.setContentText("¿Desea abrir el navegador para ver la nueva versión?");
         ButtonType epl = new ButtonType("ePL");
@@ -111,12 +113,27 @@ public class Alertas implements CommonStrings {
     public static void alertDBInformation(String fecha, int libros) {
         Alert info = new Alert(Alert.AlertType.INFORMATION);
         ((Stage) info.getDialogPane().getScene().getWindow()).getIcons().add(new Image("vista/resources/images/EPL_Portadas_NEGRO.png"));
+        info.setGraphic(new ImageView(new Image("vista/resources/images/icono_alertas.png")));
         info.setHeaderText("Información de actualización de la base de datos:");
         info.setContentText(
                 String.format(
                         "La base de datos se actualizo por ultima vez en %s. %n"
                                 + "Actualmente contiene %d libros.",
                         fecha, libros));
+        info.show();
+    }
+
+    /**
+     * Información de la aplicación.
+     */
+    public static void aplicationInfo() {
+        Alert info = new Alert(Alert.AlertType.INFORMATION);
+        ((Stage) info.getDialogPane().getScene().getWindow()).getIcons().add(new Image("vista/resources/images/EPL_Portadas_NEGRO.png"));
+        info.setGraphic(new ImageView(new Image("vista/resources/images/icono_alertas.png")));
+        info.setTitle("EpubLibrary " + VERSION);
+        info.setHeaderText("Created by and for ePubLibre.");
+        info.setContentText(
+                "Created by ladaga on 02/07/17.\n" + "Distributed under GNU GPL v3.");
         info.show();
     }
 
@@ -129,19 +146,6 @@ public class Alertas implements CommonStrings {
         error.setHeaderText("Ha habido un error al realizar consultar los datos");
         error.setContentText("Me avergüenza decirlo, pero algo no ha salido bien...");
         error.show();
-    }
-
-    /**
-     * Información de la aplicación.
-     */
-    public static void aplicationInfo() {
-        Alert info = new Alert(Alert.AlertType.INFORMATION);
-        ((Stage) info.getDialogPane().getScene().getWindow()).getIcons().add(new Image("vista/resources/images/EPL_Portadas_NEGRO.png"));
-        info.setTitle("EpubLibrary " + VERSION);
-        info.setHeaderText("Created by and for ePubLibre.");
-        info.setContentText(
-                "Created by ladaga on 02/07/17.\n" + "Distributed under GNU GPL v3.");
-        info.show();
     }
 
     /**
