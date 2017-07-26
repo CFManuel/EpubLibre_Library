@@ -19,7 +19,7 @@
 package modelos;
 
 public interface CommonStrings {
-    String VERSION = "v1.0";
+    String VERSION = "v1.1";
     String VERSION_CHECK = "Version_check";
     String EPL_FORO = "ePL_foro";
     String LAST_UPDATE = "LAST_UPDATE";

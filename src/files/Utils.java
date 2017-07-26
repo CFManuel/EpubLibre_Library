@@ -100,10 +100,8 @@ public class Utils implements CommonStrings {
             IOUtils.copy(uc.getInputStream(), writer, StandardCharsets.UTF_8);
             json = writer.toString();
             mapa = gson.fromJson(json, HashMap.class);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            //Sin conexión.
         }
         return mapa;
     }

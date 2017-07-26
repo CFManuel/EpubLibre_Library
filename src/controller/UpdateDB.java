@@ -57,13 +57,13 @@ public final class UpdateDB implements CommonStrings {
     public static void timeToUpdate() {
         if (checkAppVersion()) alertNewAppUpdate();
         if (checkDBage()) updateDataBase();
-
     }
 
     /**
      * Inicia el proceso de actualización, descarga el fichero .csv, comprueba que pesa al menos 30mb, sino descarta el proceso.
      * Importa el .csv y actualiza la fecha en la base de datos.
      */
+
     public static void updateDataBase() {
         ProgressForm progressForm = new ProgressForm();
         Task importar = new Task() {
@@ -131,7 +131,11 @@ public final class UpdateDB implements CommonStrings {
     }
 
     private static boolean checkAppVersion() {
-        boolean bool = Main.configuracion.get(VERSION_CHECK).equalsIgnoreCase(VERSION);
+        boolean bool = true;
+        try {
+            bool = Main.configuracion.get(VERSION_CHECK).equalsIgnoreCase(VERSION);
+        } catch (Exception e) {/*empty*/}
+        System.out.println(bool);
         return !bool;
     }
 

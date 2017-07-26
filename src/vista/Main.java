@@ -44,7 +44,7 @@ import java.util.HashMap;
 
 public class Main extends Application implements CommonStrings {
     private static String appLocation;
-    public static HashMap<String, String> configuracion = Utils.getConfig();
+    public static HashMap<String, String> configuracion = new HashMap<>();
 
     @SuppressWarnings("FieldCanBeLocal")
     private Main main;
@@ -121,7 +121,8 @@ public class Main extends Application implements CommonStrings {
                             }
                         });
         this.main = this;
-
+        configuracion = Utils.getConfig();
+        configuracion.forEach((k, v) -> System.out.println(k + " -> " + v));
         initRootLayout();
         initMainTableView();
 
