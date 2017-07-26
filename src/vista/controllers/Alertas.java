@@ -20,6 +20,10 @@ package vista.controllers;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import modelos.CommonStrings;
 import vista.Main;
 
@@ -44,21 +48,37 @@ public class Alertas implements CommonStrings {
     }
 
     public static void alertNewAppUpdate() {
-        Alert fin = new Alert(Alert.AlertType.CONFIRMATION);
-        fin.setHeaderText("Hay una nueva versión disponible.");
-        fin.setContentText("¿Desea abrir el navegador para ver la nueva versión?");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Hay una nueva versión disponible.");
+        alert.setContentText("¿Desea abrir el navegador para ver la nueva versión?");
         ButtonType epl = new ButtonType("ePL");
         ButtonType dropbox = new ButtonType("Dropbox");
         ButtonType cancel = new ButtonType("Cancelar");
-        fin.getButtonTypes().setAll(epl, dropbox, cancel);
+        alert.getButtonTypes().setAll(epl, dropbox, cancel);
 
-        Optional<ButtonType> result = fin.showAndWait();
+        Label label = new javafx.scene.control.Label("Cambios en la última versión:");
+        TextArea textArea = new TextArea(Main.getConfiguracion().get(NEWS));
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+        textArea.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+
+        GridPane expandContent = new GridPane();
+        expandContent.setMaxWidth(Double.MAX_VALUE);
+        expandContent.add(label, 0, 0);
+        expandContent.add(textArea, 0, 1);
+        alert.getDialogPane().setExpandableContent(expandContent);
+
+
+        Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
             try {
                 if (result.get() == epl) {
-                    Desktop.getDesktop().browse(new URI((String) Main.getConfiguracion().get(EPL_FORO)));
+                    Desktop.getDesktop().browse(new URI(Main.getConfiguracion().get(EPL_FORO)));
                 } else if (result.get() == dropbox) {
-                    Desktop.getDesktop().browse(new URI((String) Main.getConfiguracion().get(DONWLOAD_LINK)));
+                    Desktop.getDesktop().browse(new URI(Main.getConfiguracion().get(DONWLOAD_LINK)));
                 }
 
             } catch (IOException | URISyntaxException e) {
