@@ -42,8 +42,9 @@
                 <RowConstraints maxHeight="112.0" minHeight="36.0" prefHeight="36.0" vgrow="NEVER"/>
             </rowConstraints>
             <children>
-                <Label fx:id="tfTitulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="378.0"
-                       text="La imbecilidad minuciosa. Cuaderno de bitácora del periodista deportivo."
+                <Label fx:id="tfTitulo" alignment="CENTER" contentDisplay="CENTER" ellipsisString="…" prefHeight="56.0"
+                       prefWidth="387.0"
+                       text="El Matriarcado: una investigación sobre la ginecocracia en el mundo antiguo según su naturaleza religiosa y jurídica"
                        textAlignment="CENTER" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="LEFT"
                        GridPane.valignment="CENTER">
                     <font>
@@ -72,7 +73,7 @@
                                                 <Font name="System Bold" size="12.0"/>
                                             </font>
                                         </Label>
-                                        <Label fx:id="tfAutor" text="|Autor" wrapText="true"/>
+                                        <Label fx:id="tfAutor" ellipsisString="…" text="|Autor" wrapText="true"/>
                                     </children>
                                 </HBox>
                                 <HBox spacing="10.0">
@@ -83,7 +84,7 @@
                                                 <Font name="System Bold" size="12.0"/>
                                             </font>
                                         </Label>
-                                        <Label fx:id="tfColeccion"
+                                        <Label fx:id="tfColeccion" ellipsisString="…"
                                                text="|Coleccion de blablab lablalblablal balbalbal en la casa de blas hay un coche azul y tal."
                                                wrapText="true" HBox.hgrow="ALWAYS"/>
                                     </children>
@@ -105,7 +106,7 @@
                                                 <Font name="System Bold" size="12.0"/>
                                             </font>
                                         </Label>
-                                        <Label fx:id="tfGeneros" text="|Géneros" wrapText="true"/>
+                                        <Label fx:id="tfGeneros" ellipsisString="…" text="|Géneros" wrapText="true"/>
                                     </children>
                                 </HBox>
                                 <HBox spacing="25.0">
@@ -185,17 +186,17 @@
                         <Insets top="5.0"/>
                     </GridPane.margin>
                 </TextArea>
-                <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
-                      GridPane.valignment="CENTER">
+                <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="87.0" spacing="10.0"
+                      GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                     <children>
-                        <ImageView fx:id="backArrow" fitHeight="60.0" fitWidth="33.0" onMouseClicked="#backBook"
+                        <ImageView fx:id="backArrow" fitHeight="26.0" fitWidth="29.0" onMouseClicked="#backBook"
                                    pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1"
                                    GridPane.halignment="RIGHT">
                             <image>
                                 <Image url="@images/back.png"/>
                             </image>
                         </ImageView>
-                        <ImageView fx:id="nextArrow" fitHeight="60.0" fitWidth="33.0" onMouseClicked="#nextBook"
+                        <ImageView fx:id="nextArrow" fitHeight="26.0" fitWidth="29.0" onMouseClicked="#nextBook"
                                    pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/next.png"/>

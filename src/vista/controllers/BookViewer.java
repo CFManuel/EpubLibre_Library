@@ -103,6 +103,9 @@ public class BookViewer implements CommonStrings {
         }
     }
 
+    /**
+     * Modifica la opacidad de las flechas de navegación según su posición.
+     */
     private void drawArrows() {
         int maxPos = MainTableViewController.libros.size() - 1;
         double nextOpacity = (maxPos == position) ? 0.5 : 1;
