@@ -18,18 +18,23 @@
 
 package files;
 
+import com.google.gson.Gson;
 import modelos.CommonStrings;
 import modelos.Libro;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import uriSchemeHandler.CouldNotOpenUriSchemeHandler;
 import uriSchemeHandler.URISchemeHandler;
 import vista.Main;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 
 
 public class Utils implements CommonStrings {
@@ -75,6 +80,32 @@ public class Utils implements CommonStrings {
             e.printStackTrace();
         }
         return destino;
+    }
+
+    public static HashMap<String, String> getConfig() {
+        StringWriter writer = new StringWriter();
+        Gson gson = new Gson();
+        HashMap<String, String> mapa = new HashMap<>();
+        String json;
+        String link = "https://content.dropboxapi.com/2/files/download";
+        try {
+            URL url = new URL(link);
+            URLConnection uc = url.openConnection();
+
+            uc.setReadTimeout(3 * 1000);
+            uc.setConnectTimeout(3 * 1000);
+            uc.setRequestProperty("Authorization", "Bearer XvRZ_44-BGAAAAAAAAAAD5Ydn7d9Dnac0PCVz6qzy69FqqLgO2AaTbNj91_aVCMo");
+            uc.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"/config.json\"}");
+
+            IOUtils.copy(uc.getInputStream(), writer, StandardCharsets.UTF_8);
+            json = writer.toString();
+            mapa = gson.fromJson(json, HashMap.class);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return mapa;
     }
 
     /**

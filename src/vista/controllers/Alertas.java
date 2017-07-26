@@ -21,6 +21,7 @@ package vista.controllers;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import modelos.CommonStrings;
+import vista.Main;
 
 import java.awt.*;
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class Alertas implements CommonStrings {
         fin.setContentText("¿Desea acceder a ePL para ver la nueva versión?");
         Optional<ButtonType> result = fin.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) try {
-            Desktop.getDesktop().browse(new URI(EPL_FORO));
+            Desktop.getDesktop().browse(new URI(Main.configuracion.get(EPL_FORO)));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }

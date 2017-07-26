@@ -39,12 +39,7 @@ import org.joda.time.format.DateTimeFormatter;
 import parser.Csv;
 import vista.Main;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.sql.SQLException;
 
 import static vista.controllers.Alertas.*;
@@ -136,21 +131,7 @@ public final class UpdateDB implements CommonStrings {
     }
 
     private static boolean checkAppVersion() {
-        boolean bool = true;
-        try {
-            URL url = new URL(VERSION_CHECK);
-            URLConnection uc = url.openConnection();
-            uc.setConnectTimeout(2 * 1000);
-            uc.setReadTimeout(2 * 1000);
-            uc.connect();
-            BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
-            String inputLine;
-            inputLine = in.readLine();
-            in.close();
-            bool = inputLine.equals(VERSION);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        boolean bool = Main.configuracion.get(VERSION_CHECK).equalsIgnoreCase(VERSION);
         return !bool;
     }
 

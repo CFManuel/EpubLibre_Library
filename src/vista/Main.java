@@ -40,9 +40,11 @@ import vista.controllers.RootLayoutController;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class Main extends Application implements CommonStrings {
     private static String appLocation;
+    public static HashMap<String, String> configuracion = Utils.getConfig();
 
     @SuppressWarnings("FieldCanBeLocal")
     private Main main;
