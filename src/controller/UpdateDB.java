@@ -138,7 +138,7 @@ public final class UpdateDB implements CommonStrings {
     private static boolean checkAppVersion() {
         boolean bool = true;
         try {
-            bool = Main.getConfiguracion().get(VERSION_CHECK).equalsIgnoreCase(VERSION);
+            bool = String.valueOf(Main.getConfiguracion().get(VERSION_CHECK)).equalsIgnoreCase(VERSION);
         } catch (Exception e) {/*empty*/}
         return !bool;
     }

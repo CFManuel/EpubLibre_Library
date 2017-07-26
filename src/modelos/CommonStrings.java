@@ -19,7 +19,7 @@
 package modelos;
 
 public interface CommonStrings {
-    String VERSION = "v1.1";
+    String VERSION = "v1.";
     String DONWLOAD_LINK = "Dropbox_Jar";
     String DROPBOX_API = "https://content.dropboxapi.com/2/files/download";
     String TOKEN_API = "XvRZ_44-BGAAAAAAAAAAD5Ydn7d9Dnac0PCVz6qzy69FqqLgO2AaTbNj91_aVCMo";

@@ -56,9 +56,9 @@ public class Alertas implements CommonStrings {
         if (result.isPresent()) {
             try {
                 if (result.get() == epl) {
-                    Desktop.getDesktop().browse(new URI(Main.getConfiguracion().get(EPL_FORO)));
+                    Desktop.getDesktop().browse(new URI((String) Main.getConfiguracion().get(EPL_FORO)));
                 } else if (result.get() == dropbox) {
-                    Desktop.getDesktop().browse(new URI(Main.getConfiguracion().get(DONWLOAD_LINK)));
+                    Desktop.getDesktop().browse(new URI((String) Main.getConfiguracion().get(DONWLOAD_LINK)));
                 }
 
             } catch (IOException | URISyntaxException e) {

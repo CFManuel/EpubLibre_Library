@@ -88,10 +88,10 @@ public class Utils implements CommonStrings {
         return destino;
     }
 
-    public static HashMap<String, String> getConfig() {
+    public static HashMap<String, Object> getConfig() {
         StringWriter writer = new StringWriter();
         Gson gson = new Gson();
-        HashMap<String, String> mapa = new HashMap<>();
+        HashMap<String, Object> mapa = new HashMap<>();
         String json;
         String link = DROPBOX_API;
         try {
