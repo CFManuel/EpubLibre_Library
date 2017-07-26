@@ -7,12 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/EpubLibre_Library_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/EpubLibre_Library_jar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/resources/EPL_Portadas_NEGRO.png" afterPath="$PROJECT_DIR$/src/vista/resources/EPL_Portadas_NEGRO.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/daosqlite/InsertDatas.java" afterPath="$PROJECT_DIR$/src/daosqlite/InsertDatas.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/files/Utils.java" afterPath="$PROJECT_DIR$/src/files/Utils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/Csv.java" afterPath="$PROJECT_DIR$/src/parser/Csv.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" afterPath="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -127,7 +123,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/files/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="409">
@@ -139,7 +135,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookViewer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BookViewer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/controllers/BookViewer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="499">
@@ -162,7 +158,7 @@
         <entry file="file://$PROJECT_DIR$/src/parser/Csv.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="442">
-              <caret line="101" column="81" lean-forward="false" selection-start-line="101" selection-start-column="81" selection-end-line="101" selection-end-column="81" />
+              <caret line="100" column="81" lean-forward="false" selection-start-line="100" selection-start-column="81" selection-end-line="100" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -399,6 +395,9 @@
     <property name="Downloaded.Files.Path" value="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\libs" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\src\vista\resources" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="pruebas" />
     </key>
@@ -969,14 +968,7 @@
       <workItem from="1501003863664" duration="797000" />
       <workItem from="1501023275945" duration="1426000" />
       <workItem from="1501024947013" duration="1584000" />
-      <workItem from="1501062797152" duration="999000" />
-    </task>
-    <task id="LOCAL-00033" summary="Added search insensitive to accented vowels.">
-      <created>1499200265532</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1499200265532</updated>
+      <workItem from="1501062797152" duration="1580000" />
     </task>
     <task id="LOCAL-00034" summary="Minor bug fixed">
       <created>1499217052682</created>
@@ -1314,11 +1306,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501025521549</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Added name for torrents.">
+      <created>1501063811765</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1501063811765</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52832000" />
+    <option name="totallyTimeSpent" value="53413000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1331,7 +1330,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739422" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1342,7 +1340,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739422" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942432" sideWeight="0.49565217" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20712695" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20712695" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1409,7 +1407,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Added width columns persistence." />
     <MESSAGE value="Added window size persistence." />
     <MESSAGE value="Version 0.6.3." />
     <MESSAGE value="Improve paragraph detection." />
@@ -1434,7 +1431,8 @@
     <MESSAGE value="Delete support for RSS files." />
     <MESSAGE value="Version 1.0." />
     <MESSAGE value="Modified timeout." />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified timeout." />
+    <MESSAGE value="Added name for torrents." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added name for torrents." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1714,7 +1712,15 @@
     <entry file="file://$PROJECT_DIR$/src/parser/Csv.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
-          <caret line="101" column="81" lean-forward="false" selection-start-line="101" selection-start-column="81" selection-end-line="101" selection-end-column="81" />
+          <caret line="100" column="81" lean-forward="false" selection-start-line="100" selection-start-column="81" selection-end-line="100" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/controllers/BookViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="120" column="9" lean-forward="false" selection-start-line="120" selection-start-column="9" selection-end-line="120" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1726,14 +1732,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/controllers/BookViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="120" column="9" lean-forward="false" selection-start-line="120" selection-start-column="9" selection-end-line="120" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
