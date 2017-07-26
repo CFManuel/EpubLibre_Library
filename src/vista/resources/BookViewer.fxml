@@ -20,7 +20,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="Infinity" maxWidth="450.0" minHeight="462.0" minWidth="448.0"
@@ -35,22 +35,22 @@
                                    prefWidth="202.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="159.0" minHeight="38.0" prefHeight="62.0" valignment="CENTER" vgrow="NEVER"/>
-                <RowConstraints maxHeight="395.0" minHeight="260.0" prefHeight="303.0" valignment="CENTER"
+                <RowConstraints maxHeight="159.0" minHeight="38.0" prefHeight="56.0" valignment="CENTER" vgrow="NEVER"/>
+                <RowConstraints maxHeight="395.0" minHeight="260.0" prefHeight="309.0" valignment="CENTER"
                                 vgrow="SOMETIMES"/>
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="234.0" vgrow="ALWAYS"/>
                 <RowConstraints maxHeight="112.0" minHeight="36.0" prefHeight="36.0" vgrow="NEVER"/>
             </rowConstraints>
             <children>
-                <Label fx:id="tfTitulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="123.0" prefWidth="448.0"
+                <Label fx:id="tfTitulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="378.0"
                        text="La imbecilidad minuciosa. Cuaderno de bitácora del periodista deportivo."
-                       textAlignment="CENTER" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+                       textAlignment="CENTER" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="LEFT"
                        GridPane.valignment="CENTER">
                     <font>
                         <Font name="System Bold" size="18.0"/>
                     </font>
                 </Label>
-                <HBox spacing="20.0" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS"
+                <HBox spacing="15.0" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS"
                       GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
                     <children>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
@@ -58,7 +58,7 @@
                                 <ProgressIndicator focusTraversable="false" maxHeight="50.0" maxWidth="50.0"
                                                    opacity="0.48" prefHeight="50.0" prefWidth="50.0"
                                                    StackPane.alignment="CENTER"/>
-                                <ImageView fx:id="imgView" fitHeight="307.0" fitWidth="208.0" nodeOrientation="INHERIT"
+                                <ImageView fx:id="imgView" fitHeight="318.0" fitWidth="208.0" nodeOrientation="INHERIT"
                                            pickOnBounds="true" preserveRatio="true"/>
                             </children>
                         </StackPane>
@@ -162,16 +162,17 @@
                         </VBox>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER_RIGHT" spacing="30.0" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                      GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                <HBox alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="226.0" spacing="30.0"
+                      GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="3"
+                      GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                     <GridPane.margin>
                         <Insets right="20.0"/>
                     </GridPane.margin>
                     <children>
                         <Button mnemonicParsing="false" onAction="#ok" prefHeight="25.0" prefWidth="44.0" text="Ok"
                                 GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                        <Button mnemonicParsing="false" onAction="#download" text="Descargar" GridPane.columnIndex="1"
-                                GridPane.rowIndex="3"/>
+                        <Button mnemonicParsing="false" onAction="#download" prefHeight="8.0" prefWidth="69.0"
+                                text="Descargar" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                     </children>
                 </HBox>
                 <TextArea fx:id="tfSinopsis" editable="false" prefHeight="235.0" prefWidth="448.0"
@@ -180,7 +181,30 @@
                     <font>
                         <Font size="14.0"/>
                     </font>
+                    <GridPane.margin>
+                        <Insets top="5.0"/>
+                    </GridPane.margin>
                 </TextArea>
+                <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
+                      GridPane.valignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="60.0" fitWidth="33.0" onMouseClicked="#backBook" pickOnBounds="true"
+                                   preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                            <image>
+                                <Image url="@images/back.png"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="60.0" fitWidth="33.0" onMouseClicked="#nextBook" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@images/next.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                    <padding>
+                        <Insets right="5.0"/>
+                    </padding>
+                </HBox>
             </children>
         </GridPane>
     </children>

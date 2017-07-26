@@ -84,7 +84,7 @@ public class Main extends Application implements CommonStrings {
                         + "/epl/";
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("ePubLibre Library " + VERSION);
-        this.primaryStage.getIcons().add(new Image("vista/resources/EPL_Portadas_NEGRO.png"));
+        this.primaryStage.getIcons().add(new Image("vista/resources/images/EPL_Portadas_NEGRO.png"));
         //Restaurar último tamaño
         try {
             GetDatas getDatas = new GetDatas();
@@ -177,10 +177,10 @@ public class Main extends Application implements CommonStrings {
      *
      * @param libro Libro que se va a mostrar en el BookCard.
      */
-    public void launchBook(Libro libro) {
+    public void launchBook(Libro libro, int pos) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            BookViewer controller = new BookViewer(libro);
+            BookViewer controller = new BookViewer(libro, pos);
             loader.setController(controller);
             loader.setLocation(Main.class.getResource("resources/BookViewer.fxml"));
             AnchorPane pane = loader.load();
@@ -190,7 +190,7 @@ public class Main extends Application implements CommonStrings {
             dialogStage.setTitle(libro.getTitulo());
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(this.primaryStage);
-            dialogStage.getIcons().add(new Image("vista/resources/EPL_Portadas_NEGRO.png"));
+            dialogStage.getIcons().add(new Image("vista/resources/images/EPL_Portadas_NEGRO.png"));
             controller.setDialogStage(dialogStage);
             controller.setLibro(libro);
             dialogStage.showAndWait();

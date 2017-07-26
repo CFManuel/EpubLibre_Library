@@ -63,9 +63,37 @@ public class BookViewer implements CommonStrings {
     private TextArea tfSinopsis;
     @FXML
     private ImageView imgView;
+    private int position;
 
-    public BookViewer(Libro libro) {
+    public BookViewer(Libro libro, int pos) {
         this.libro = libro;
+        this.position = pos;
+    }
+
+    /**
+     * Coge el anterior libro de la lista y lo muestra.
+     */
+    @FXML
+    private void backBook() {
+        System.out.println(position);
+        if (position != 0) {
+            position--;
+            this.libro = MainTableViewController.libros.get(position);
+            drawBook();
+        }
+
+    }
+
+    /**
+     * Coge el siguiente libro de la lista y lo muestra.
+     */
+    @FXML
+    private void nextBook() {
+        if (MainTableViewController.libros.size() - 1 != position) {
+            position++;
+            this.libro = MainTableViewController.libros.get(position);
+            drawBook();
+        }
     }
 
     /**
@@ -93,6 +121,7 @@ public class BookViewer implements CommonStrings {
     /**
      * Rellena los campos con la información del libro indicado.
      */
+
     private void drawBook() {
         tfSinopsis.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         tfTitulo.setText(libro.getTitulo());

@@ -218,14 +218,14 @@ public class MainTableViewController implements CommonStrings {
                     ObservableList<Libro> selectedItems =
                             bookTableView.getSelectionModel().getSelectedItems();
                     if (event.getClickCount() > 1 && selectedItems.size() == 1) {
-                        main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
+                        main.launchBook(bookTableView.getSelectionModel().getSelectedItem(), bookTableView.getSelectionModel().getSelectedIndex());
                     }
                 });
         bookTableView.addEventHandler(
                 KeyEvent.KEY_PRESSED,
                 keyEvent -> {
                     if (keyEvent.getCode() == KeyCode.ENTER) {
-                        main.launchBook(bookTableView.getSelectionModel().getSelectedItem());
+                        main.launchBook(bookTableView.getSelectionModel().getSelectedItem(), bookTableView.getSelectionModel().getSelectedIndex());
                     }
                 });
         final KeyCombination searchOnTableKeyCombination =
