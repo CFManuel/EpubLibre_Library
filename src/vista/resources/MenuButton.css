@@ -23,3 +23,17 @@
 .menu-button > .arrow-button > .arrow {
     -fx-padding: 0;
 }
+
+/**Configuración de la tabla*/
+/* estilo para el boton que permite ocultar o mostrar las columnas*/
+.table-view .show-hide-columns-button {
+    -fx-size: 45;
+}
+
+.alineacion-derecha {
+    -fx-alignment: center-right;
+}
+
+.alineacion-izquierda {
+    -fx-alignment: center-left;
+}

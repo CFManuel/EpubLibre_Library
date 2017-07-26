@@ -187,6 +187,7 @@ public class MainTableViewController implements CommonStrings {
             bookTableView.getSelectionModel().select(t1.intValue());
             bookTableView.getFocusModel().focus(t1.intValue());
         });
+        bookTableView.getStylesheets().add(Main.class.getResource("/vista/resources/MenuButton.css").toExternalForm());
         titleColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
         autorColumn.setCellValueFactory(
@@ -211,6 +212,15 @@ public class MainTableViewController implements CommonStrings {
                 cellData -> new SimpleIntegerProperty(cellData.getValue().getN_votos()));
         publiDateColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getPublicado()));
+
+
+        volColumn.getStyleClass().add("alineacion-derecha");
+        revColumn.getStyleClass().add("alineacion-derecha");
+        pagColumn.getStyleClass().add("alineacion-derecha");
+        valColumn.getStyleClass().add("alineacion-derecha");
+        publiYearColumn.getStyleClass().add("alineacion-derecha");
+        n_votosColumn.getStyleClass().add("alineacion-derecha");
+        publiDateColumn.getStyleClass().add("alineacion-derecha");
 
         bookTableView.setEditable(false);
         bookTableView.setItems(libros);

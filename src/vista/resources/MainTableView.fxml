@@ -25,82 +25,91 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="380.0"
             minWidth="600.0" prefHeight="414.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8"
             fx:controller="vista.controllers.MainTableViewController">
-    <VBox fx:id="vBox" prefHeight="390" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0"
-          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <HBox alignment="CENTER_LEFT" spacing="30.0">
-            <padding>
-                <Insets right="30.0" top="20.0"/>
-            </padding>
-            <HBox>
-                <TextField fx:id="tfSearch" onAction="#searchBtn" prefHeight="25.0" prefWidth="180.0">
-                    <HBox.margin>
-                        <Insets left="30.0"/>
-                    </HBox.margin>
-                </TextField>
-                <MenuButton fx:id="menuButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="25.0"
-                            prefWidth="13.0" stylesheets="@MenuButton.css" text="+" textAlignment="CENTER"
-                            textOverrun="CLIP" HBox.hgrow="NEVER">
-                    <items>
-                        <CheckMenuItem fx:id="cbTitulo" mnemonicParsing="false" selected="true"
-                                       text="Titulo"/>
-                        <CheckMenuItem fx:id="cbAutor" mnemonicParsing="false" selected="true" text="Autor"/>
-                        <CheckMenuItem fx:id="cbColeccion" mnemonicParsing="false" selected="true"
-                                       text="Colección"/>
-                        <CheckMenuItem fx:id="cbGenero" mnemonicParsing="false" text="Genero"/>
-                        <CheckMenuItem fx:id="cbIdioma" mnemonicParsing="false" text="Idioma"/>
-                        <CheckMenuItem fx:id="cbSinopsis" mnemonicParsing="false" text="Sinopsis"/>
-                    </items>
-                </MenuButton>
-            </HBox>
-            <CheckBox fx:id="cbSearchOnTable" mnemonicParsing="false" text="Buscar en tabla">
-                <tooltip>
-                    <Tooltip opacity="0.8"
-                             text="Busca en la tabla por Titulo, Autor y Colección.&#10;Atajo: CTRL + ENTER."
-                             wrapText="true">
-                        <font>
-                            <Font size="16.0"/>
-                        </font>
-                    </Tooltip>
-                </tooltip>
-            </CheckBox>
-            <Label fx:id="labelBookFound" text="0 Libros">
-                <HBox.margin>
-                    <Insets left="60.0"/>
-                </HBox.margin>
-                <font>
-                    <Font name="System Bold" size="13.0"/>
-                </font>
-            </Label>
-        </HBox>
-        <TableView fx:id="bookTableView" focusTraversable="false" tableMenuButtonVisible="true"
-                   VBox.vgrow="ALWAYS">
-            <columns>
-                <TableColumn fx:id="titleColumn" minWidth="60.0" prefWidth="159.0" text="Titulo"/>
-                <TableColumn fx:id="autorColumn" minWidth="60.0" prefWidth="109.0" text="Autor"/>
-                <TableColumn fx:id="colColumn" minWidth="60.0" prefWidth="107.0" text="Colección"/>
-                <TableColumn fx:id="volColumn" minWidth="45.0" prefWidth="41.0" text="Volumen"/>
-                <TableColumn fx:id="generosColumn" minWidth="40.0" prefWidth="75.0" text="Géneros"/>
-                <TableColumn fx:id="idiomaColumn" prefWidth="73.0" text="Idioma"/>
-                <TableColumn fx:id="revColumn" minWidth="36.0" prefWidth="36.0" resizable="false" text="Rev"
-                             visible="false"/>
-                <TableColumn fx:id="pagColumn" minWidth="40.0" prefWidth="54.0" text="Paginas" visible="false"/>
-                <TableColumn fx:id="publiYearColumn" minWidth="40.0" prefWidth="75.0" text="Año publicación"
-                             visible="false"/>
-                <TableColumn fx:id="publiDateColumn" minWidth="80.0" prefWidth="100.0" text="Publicado"
-                             visible="false"/>
-                <TableColumn fx:id="valColumn" minWidth="35.0" prefWidth="70.0" text="Valoración"/>
-                <TableColumn fx:id="n_votosColumn" minWidth="40.0" prefWidth="75.0" text="Votos"/>
-            </columns>
-            <VBox.margin>
-                <Insets bottom="3.0" left="1.0" right="3.0"/>
-            </VBox.margin>
-            <contextMenu>
-                <ContextMenu>
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#multiDownload" text="Descargar"/>
-                    </items>
-                </ContextMenu>
-            </contextMenu>
-        </TableView>
-    </VBox>
+    <children>
+        <VBox fx:id="vBox" prefHeight="390" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="30.0">
+                    <padding>
+                        <Insets right="30.0" top="20.0"/>
+                    </padding>
+                    <children>
+                        <HBox>
+                            <children>
+                                <TextField fx:id="tfSearch" onAction="#searchBtn" prefHeight="25.0" prefWidth="180.0">
+                                    <HBox.margin>
+                                        <Insets left="30.0"/>
+                                    </HBox.margin>
+                                </TextField>
+                                <MenuButton fx:id="menuButton" contentDisplay="TOP" mnemonicParsing="false"
+                                            prefHeight="25.0" prefWidth="13.0" stylesheets="@MenuButton.css" text="+"
+                                            textAlignment="CENTER" textOverrun="CLIP" HBox.hgrow="NEVER">
+                                    <items>
+                                        <CheckMenuItem fx:id="cbTitulo" mnemonicParsing="false" selected="true"
+                                                       text="Titulo"/>
+                                        <CheckMenuItem fx:id="cbAutor" mnemonicParsing="false" selected="true"
+                                                       text="Autor"/>
+                                        <CheckMenuItem fx:id="cbColeccion" mnemonicParsing="false" selected="true"
+                                                       text="Colección"/>
+                                        <CheckMenuItem fx:id="cbGenero" mnemonicParsing="false" text="Genero"/>
+                                        <CheckMenuItem fx:id="cbIdioma" mnemonicParsing="false" text="Idioma"/>
+                                        <CheckMenuItem fx:id="cbSinopsis" mnemonicParsing="false" text="Sinopsis"/>
+                                    </items>
+                                </MenuButton>
+                            </children>
+                        </HBox>
+                        <CheckBox fx:id="cbSearchOnTable" mnemonicParsing="false" text="Buscar en tabla">
+                            <tooltip>
+                                <Tooltip opacity="0.8"
+                                         text="Busca en la tabla por Titulo, Autor y Colección.&#10;Atajo: CTRL + ENTER."
+                                         wrapText="true">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                        </CheckBox>
+                        <Label fx:id="labelBookFound">
+                            <HBox.margin>
+                                <Insets left="60.0"/>
+                            </HBox.margin>
+                            <font>
+                                <Font name="System Bold" size="13.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <TableView fx:id="bookTableView" focusTraversable="false" tableMenuButtonVisible="true"
+                           VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="titleColumn" minWidth="60.0" prefWidth="159.0" text="Titulo"/>
+                        <TableColumn fx:id="autorColumn" minWidth="60.0" prefWidth="109.0" text="Autor"/>
+                        <TableColumn fx:id="colColumn" minWidth="60.0" prefWidth="107.0" text="Colección"/>
+                        <TableColumn fx:id="volColumn" minWidth="45.0" prefWidth="41.0" text="Volumen"/>
+                        <TableColumn fx:id="generosColumn" minWidth="40.0" prefWidth="75.0" text="Géneros"/>
+                        <TableColumn fx:id="idiomaColumn" prefWidth="73.0" text="Idioma"/>
+                        <TableColumn fx:id="revColumn" minWidth="36.0" prefWidth="36.0" resizable="false" text="Rev"
+                                     visible="false"/>
+                        <TableColumn fx:id="pagColumn" minWidth="40.0" prefWidth="54.0" text="Paginas" visible="false"/>
+                        <TableColumn fx:id="publiYearColumn" minWidth="40.0" prefWidth="75.0" text="Año publicación"
+                                     visible="false"/>
+                        <TableColumn fx:id="publiDateColumn" minWidth="80.0" prefWidth="100.0" text="Publicado"
+                                     visible="false"/>
+                        <TableColumn fx:id="valColumn" minWidth="35.0" prefWidth="70.0" text="Valoración"/>
+                        <TableColumn fx:id="n_votosColumn" minWidth="40.0" prefWidth="75.0" text="Votos"/>
+                    </columns>
+                    <VBox.margin>
+                        <Insets bottom="3.0" left="1.0" right="3.0"/>
+                    </VBox.margin>
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#multiDownload" text="Descargar"/>
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </TableView>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
