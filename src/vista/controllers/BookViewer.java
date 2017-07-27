@@ -165,12 +165,22 @@ public class BookViewer implements CommonStrings {
 
         try {
             Image image = new Image(libro.getImgURI(), true);
-            imgView.setImage(image);
+            /* Algunas imagenes necesitan un agente.
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            Future<Image> img = executor.submit(() -> {
+                URLConnection conn = new URL(libro.getImgURI()).openConnection();
+                conn.setRequestProperty("User-Agent", "Wget/1.13.4 (linux-gnu)");
 
+                try (InputStream stream = conn.getInputStream()) {
+                    return new Image(stream);
+                }
+            });*/
+            imgView.setImage(image);
         } catch (Exception e) {
             //Lanza error si no existe link.
         }
     }
+
 
     /**
      * Cierra el dialogo al pulsar el boton "OK".
@@ -200,5 +210,4 @@ public class BookViewer implements CommonStrings {
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
-
 }

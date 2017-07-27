@@ -138,13 +138,15 @@ public final class UpdateDB implements CommonStrings {
     private static boolean checkAppVersion() {
         boolean bool = true;
         try {
-            bool = String.valueOf(Main.getConfiguracion().get(VERSION_CHECK)).equalsIgnoreCase(VERSION);
+            String version = Main.getConfiguracion().get(VERSION_CHECK);
+            if (version != null) bool = version.equalsIgnoreCase(VERSION);
         } catch (Exception e) {/*empty*/}
         return !bool;
     }
 
     /**
      * Comprueba si la DB tiene 4 o más dias de antiguedad.
+     *
      * @return True si hay que actualizar.
      */
     private static boolean checkDBage() {
