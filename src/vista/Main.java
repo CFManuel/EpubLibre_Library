@@ -34,6 +34,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelos.CommonStrings;
 import modelos.Libro;
+import vista.controllers.Alertas;
 import vista.controllers.BookViewer;
 import vista.controllers.MainTableViewController;
 import vista.controllers.RootLayoutController;
@@ -151,6 +152,8 @@ public class Main extends Application implements CommonStrings {
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
+            Alertas.stackTraceAlert(e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -175,6 +178,8 @@ public class Main extends Application implements CommonStrings {
             controller.setMain(this);
         } catch (IOException e) {
             e.printStackTrace();
+            Alertas.stackTraceAlert(e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -202,6 +207,8 @@ public class Main extends Application implements CommonStrings {
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
+            Alertas.stackTraceAlert(e);
+            throw new RuntimeException(e);
         }
     }
 

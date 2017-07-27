@@ -21,6 +21,7 @@ package vista.controllers;
 import daosqlite.GetDatas;
 import files.Utils;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -31,7 +32,11 @@ import javafx.stage.Stage;
 import modelos.CommonStrings;
 import modelos.Libro;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.SQLException;
+
 
 public class BookViewer implements CommonStrings {
     private Libro libro;
@@ -164,17 +169,21 @@ public class BookViewer implements CommonStrings {
         tfSinopsis.setStyle("-fx-background-color: transparent;");
 
         try {
-            Image image = new Image(libro.getImgURI(), true);
-            /* Algunas imagenes necesitan un agente.
-            ExecutorService executor = Executors.newSingleThreadExecutor();
-            Future<Image> img = executor.submit(() -> {
-                URLConnection conn = new URL(libro.getImgURI()).openConnection();
-                conn.setRequestProperty("User-Agent", "Wget/1.13.4 (linux-gnu)");
+            Image image = null;
+            Task loadImage = new Task() {
+                @Override
+                protected Image call() throws Exception {
+                    URLConnection conn = new URL(libro.getImgURI()).openConnection();
+                    conn.setRequestProperty("User-Agent", "Wget/1.13.4 (linux-gnu)");
 
-                try (InputStream stream = conn.getInputStream()) {
-                    return new Image(stream);
+                    try (InputStream stream = conn.getInputStream()) {
+                        return new Image(stream);
+                    }
                 }
-            });*/
+            };
+            loadImage.setOnSucceeded(e -> imgView.setImage((Image) loadImage.getValue()));
+            loadImage.setOnFailed(e -> imgView.setImage(new Image("vista/resources/images/no-image.png")));
+            new Thread(loadImage).start();
             imgView.setImage(image);
         } catch (Exception e) {
             //Lanza error si no existe link.

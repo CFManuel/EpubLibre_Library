@@ -32,6 +32,8 @@ import vista.Main;
 
 import java.awt.*;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
@@ -93,6 +95,33 @@ public class Alertas implements CommonStrings {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void stackTraceAlert(Exception ex) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image(SIMBOLO_EPL));
+        alert.setHeaderText(ex.toString());
+        alert.setContentText("Informe de error:");
+        TextArea textArea = new TextArea(Main.getConfiguracion().get(NEWS));
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+        textArea.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+
+// Create expandable Exception.
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        ex.printStackTrace(pw);
+        String exceptionText = sw.toString();
+        textArea.setText(exceptionText);
+
+        GridPane expandContent = new GridPane();
+        expandContent.setMaxWidth(Double.MAX_VALUE);
+        expandContent.add(textArea, 0, 0);
+        alert.getDialogPane().setExpandableContent(expandContent);
+        alert.showAndWait();
     }
 
     /**
