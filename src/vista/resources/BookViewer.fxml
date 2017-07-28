@@ -23,12 +23,12 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="Infinity" maxWidth="450.0" minHeight="462.0" minWidth="448.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="Infinity" maxWidth="450.0" minHeight="635.0" minWidth="448.0"
             prefHeight="635.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/8">
     <children>
-        <GridPane layoutX="80.0" layoutY="183.0" maxWidth="500.0" minWidth="413.0" prefHeight="624.0" prefWidth="448.0"
-                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                  AnchorPane.topAnchor="0.0">
+        <GridPane layoutX="80.0" layoutY="183.0" maxWidth="500.0" minHeight="635.0" minWidth="448.0" prefHeight="635.0"
+                  prefWidth="448.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" maxWidth="1.7976931348623157E308" minWidth="202.0" prefWidth="202.0"/>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="202.0"
@@ -170,9 +170,9 @@
                         <Insets right="20.0"/>
                     </GridPane.margin>
                     <children>
-                        <Button mnemonicParsing="false" onAction="#ok" prefHeight="25.0" prefWidth="44.0" text="Ok"
+                        <Button mnemonicParsing="false" onAction="#ok" prefHeight="25.0" prefWidth="56.0" text="Ok"
                                 GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                        <Button mnemonicParsing="false" onAction="#download" prefHeight="8.0" prefWidth="69.0"
+                        <Button mnemonicParsing="false" onAction="#download" prefHeight="25.0" prefWidth="93.0"
                                 text="Descargar" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                     </children>
                 </HBox>

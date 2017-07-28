@@ -91,7 +91,6 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
             ps.setString(7, busqueda[3]);
             ps.setString(8, busqueda[3]);
             ps.setString(9, busqueda[4]);
-            System.out.println(busqueda[4]);
             ps.setString(10, busqueda[5]);
             rst = ps.executeQuery();
         }

@@ -132,7 +132,6 @@ public class BookViewer implements CommonStrings {
      */
     @FXML
     private void initialize() {
-
         cbRevision.setItems(FXCollections.observableArrayList(libro.getRevArray()));
         drawArrows();
         drawBook();
@@ -224,5 +223,7 @@ public class BookViewer implements CommonStrings {
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
+        this.dialogStage.setMinHeight(635);
+        this.dialogStage.setMinWidth(448);
     }
 }
