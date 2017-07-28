@@ -167,7 +167,6 @@ public final class UpdateDB implements CommonStrings {
 
                 int dias = antiguedad.getDays();
                 if (dias >= DATA_OLD) actualizar = true;
-                System.out.println(antiguedad.getDays() + ":" + DATA_OLD + " -> " + actualizar);
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

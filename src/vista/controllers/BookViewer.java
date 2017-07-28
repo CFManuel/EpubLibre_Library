@@ -73,7 +73,7 @@ public class BookViewer implements CommonStrings {
     @FXML
     private ImageView imgView;
     private int position;
-
+    private Thread loadImg;
     public BookViewer(Libro libro, int pos) {
         this.libro = libro;
         this.position = pos;
@@ -84,6 +84,7 @@ public class BookViewer implements CommonStrings {
      */
     @FXML
     private void backBook() {
+        interruptThread();
         if (position != 0) {
             position--;
             this.libro = MainTableViewController.libros.get(position);
@@ -99,6 +100,7 @@ public class BookViewer implements CommonStrings {
      */
     @FXML
     private void nextBook() {
+        interruptThread();
         int maxPos = MainTableViewController.libros.size() - 1;
         if (maxPos != position) {
             position++;
@@ -108,6 +110,9 @@ public class BookViewer implements CommonStrings {
         }
     }
 
+    private void interruptThread() {
+        if (this.loadImg.isAlive()) this.loadImg.interrupt();
+    }
     /**
      * Modifica la opacidad de las flechas de navegación según su posición.
      */
@@ -174,7 +179,7 @@ public class BookViewer implements CommonStrings {
                 @Override
                 protected Image call() throws Exception {
                     URLConnection conn = new URL(libro.getImgURI()).openConnection();
-                    conn.setRequestProperty("User-Agent", "Wget/1.13.4 (linux-gnu)");
+                    conn.setRequestProperty("User-Agent", USER_AGENT);
 
                     try (InputStream stream = conn.getInputStream()) {
                         return new Image(stream);
@@ -183,7 +188,8 @@ public class BookViewer implements CommonStrings {
             };
             loadImage.setOnSucceeded(e -> imgView.setImage((Image) loadImage.getValue()));
             loadImage.setOnFailed(e -> imgView.setImage(new Image("vista/resources/images/no-image.png")));
-            new Thread(loadImage).start();
+            this.loadImg = new Thread(loadImage);
+            this.loadImg.start();
             imgView.setImage(image);
         } catch (Exception e) {
             //Lanza error si no existe link.
