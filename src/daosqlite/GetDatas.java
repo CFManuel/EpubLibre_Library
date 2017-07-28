@@ -32,7 +32,7 @@ import java.util.HashMap;
 public class GetDatas extends ConnectorHelper implements CommonStrings {
 
     public static void getIdiomas() {
-        String sql = "select distinct idioma from libros";
+        String sql = "select distinct idioma from libros ORDER BY idioma ASC ";
         GetDatas getDatas = new GetDatas();
         try {
             getDatas.conectar();
@@ -69,17 +69,17 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         } else {
             sql = "SELECT * FROM libros WHERE "
                     //titulo
-                    + "lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) OR "
+                    + "(lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) OR "
                     //Autor
                     + "lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?) OR "
                     //Colección
                     + "lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?) OR "
                     //Género
-                    + "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?)"
-                    //Idioma
-                    + "AND lower(idioma) LIKE lower(?) OR "
+                    + "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) OR "
                     //sinopsis
-                    + "lower(sinopsis) LIKE lower(?) "
+                    + "lower(sinopsis) LIKE lower(?)) "
+                    //Idioma
+                    + "AND idioma like ? "
                     + "ORDER BY revision DESC ";
             ps = conn.prepareStatement(sql);
             ps.setString(1, busqueda[0]);
@@ -111,15 +111,15 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
     private ResultSet getLibrosSinColeccion(PreparedStatement ps, String[] busqueda) throws SQLException {
         String sql = "SELECT * FROM libros WHERE "
                 //titulo
-                + "lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) OR "
+                + "(lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) OR "
                 //Autor
                 + "lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?) OR "
                 //Género
                 + "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) OR "
-                //Idioma
-                + "lower(idioma) LIKE lower(?) OR lower(idisense) LIKE lower(?) OR "
                 //sinopsis
-                + "lower(sinopsis) LIKE lower(?) "
+                + "lower(sinopsis) LIKE lower(?)) "
+                //Idioma
+                + "AND idioma like ? "
                 + "ORDER BY revision DESC ";
         ps = conn.prepareStatement(sql);
         ps.setString(1, busqueda[0]);
@@ -129,8 +129,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         ps.setString(5, busqueda[3]);
         ps.setString(6, busqueda[3]);
         ps.setString(7, busqueda[4]);
-        ps.setString(8, busqueda[4]);
-        ps.setString(9, busqueda[5]);
+        ps.setString(8, busqueda[5]);
         return ps.executeQuery();
     }
 

@@ -161,10 +161,9 @@ public class MainTableViewController implements CommonStrings {
         busqueda[1] = cbAutor.isSelected() ? search : "";
         busqueda[2] = cbColeccion.isSelected() ? search : "";
         busqueda[3] = cbGenero.isSelected() ? search : "";
+        busqueda[4] = cbSinopsis.isSelected() ? search : "";
         String idioma = cbIdiomas.getSelectionModel().getSelectedItem();
-        busqueda[4] = (idioma.equalsIgnoreCase("todos")) ? "%" : idioma;
-        busqueda[5] = cbSinopsis.isSelected() ? search : "";
-
+        busqueda[5] = (idioma.equalsIgnoreCase("todos")) ? "%" : idioma;
         try {
             libros = getDatas.getLibros(busqueda);
             MainTableViewController.libros.clear();
@@ -190,7 +189,7 @@ public class MainTableViewController implements CommonStrings {
         idiomas.add("Todos");
         GetDatas.getIdiomas();
         cbIdiomas.setItems(idiomas);
-        cbIdiomas.getSelectionModel().select(2);
+        cbIdiomas.getSelectionModel().select(3);
         //Cambia la linea seleccionada al moverse por la ficha del libro
         focusROW.addListener((observableValue, number, t1) -> {
             bookTableView.getSelectionModel().clearSelection();
