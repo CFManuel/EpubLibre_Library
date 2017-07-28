@@ -33,7 +33,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelos.CommonStrings;
 import org.joda.time.DateTime;
-import org.joda.time.Period;
+import org.joda.time.Days;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import parser.Csv;
@@ -55,8 +55,8 @@ public final class UpdateDB implements CommonStrings {
      * Comprueba cuantos dias han pasado desde la última actualización y realiza las acciones necesarias.
      */
     public static void timeToUpdate() {
-        if (checkAppVersion()) alertNewAppUpdate();
         if (checkDBage()) updateDataBase();
+        if (checkAppVersion()) alertNewAppUpdate();
     }
 
     /**
@@ -163,9 +163,11 @@ public final class UpdateDB implements CommonStrings {
                 DateTimeFormatter format = DateTimeFormat.forPattern("dd/MM/yyyy");
                 DateTime lastUpdate = format.parseDateTime(lastDate); //Transforma la cadena a DateTime
 
-                Period periodo = new Period(lastUpdate, now); //Comprueba cuantos dias han pasado.
-                int dias = periodo.getDays();
+                Days antiguedad = Days.daysBetween(lastUpdate, now); //Comprueba cuantos dias han pasado.
+
+                int dias = antiguedad.getDays();
                 if (dias >= DATA_OLD) actualizar = true;
+                System.out.println(antiguedad.getDays() + ":" + DATA_OLD + " -> " + actualizar);
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
