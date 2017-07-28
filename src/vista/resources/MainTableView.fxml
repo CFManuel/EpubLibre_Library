@@ -82,6 +82,8 @@
                 <TableView fx:id="bookTableView" focusTraversable="false" tableMenuButtonVisible="true"
                            VBox.vgrow="ALWAYS">
                     <columns>
+                        <TableColumn fx:id="eplidColumn" editable="false" prefWidth="75.0" text="ePL ID"
+                                     visible="false"/>
                         <TableColumn fx:id="titleColumn" minWidth="60.0" prefWidth="159.0" text="Titulo"/>
                         <TableColumn fx:id="autorColumn" minWidth="60.0" prefWidth="109.0" text="Autor"/>
                         <TableColumn fx:id="colColumn" minWidth="60.0" prefWidth="107.0" text="Colección"/>

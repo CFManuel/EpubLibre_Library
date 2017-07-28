@@ -80,6 +80,8 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private TableColumn<Libro, Number> n_votosColumn;
     @FXML
+    private TableColumn<Libro, Number> eplidColumn;
+    @FXML
     private Label labelBookFound;
     @FXML
     private CheckBox cbSearchOnTable;
@@ -188,6 +190,7 @@ public class MainTableViewController implements CommonStrings {
             bookTableView.getFocusModel().focus(t1.intValue());
         });
         bookTableView.getStylesheets().add(Main.class.getResource("/vista/resources/MenuButton.css").toExternalForm());
+        eplidColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEpl_id()));
         titleColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
         autorColumn.setCellValueFactory(

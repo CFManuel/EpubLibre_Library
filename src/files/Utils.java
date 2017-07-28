@@ -28,6 +28,7 @@ import org.apache.commons.io.IOUtils;
 import uriSchemeHandler.CouldNotOpenUriSchemeHandler;
 import uriSchemeHandler.URISchemeHandler;
 import vista.Main;
+import vista.controllers.Alertas;
 
 import java.io.File;
 import java.io.IOException;
@@ -117,13 +118,9 @@ public class Utils implements CommonStrings {
      *
      * @param zip Fichero a descomprimir
      */
-    public static void unZip(File zip) {
-        try {
+    public static void unZip(File zip) throws ZipException {
             ZipFile zipFile = new ZipFile(zip);
             zipFile.extractAll(Main.getLocation());
-        } catch (ZipException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -151,6 +148,8 @@ public class Utils implements CommonStrings {
      * @param libro Libro a descargar.
      */
     public static void launchTorrent(Libro libro) {
+        URISyntaxException uri = new URISyntaxException("link", "errorcojonudo", 2);
+        uri.printStackTrace();
         try {
             URI magnetLink = new URI(String.format("%s&dn=EPL_[%d]_%s", libro.getEnlaces(), libro.getEpl_id(), libro.getTitulo().replaceAll("\\s", "_")));
             URISchemeHandler uriSchemeHandler = new URISchemeHandler();
@@ -158,6 +157,7 @@ public class Utils implements CommonStrings {
 
         } catch (URISyntaxException | CouldNotOpenUriSchemeHandler e) {
             e.printStackTrace();
+            Alertas.stackTraceAlert(e);
         }
     }
 }
