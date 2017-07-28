@@ -8,9 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/daosqlite/GetDatas.java" afterPath="$PROJECT_DIR$/src/daosqlite/GetDatas.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" afterPath="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/resources/BookViewer.fxml" afterPath="$PROJECT_DIR$/src/vista/resources/BookViewer.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" afterPath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -97,11 +95,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainTableViewController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainTableViewController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="247" column="0" lean-forward="false" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
+            <state relative-caret-position="240">
+              <caret line="272" column="44" lean-forward="false" selection-start-line="272" selection-start-column="44" selection-end-line="272" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -169,11 +167,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookViewer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BookViewer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/controllers/BookViewer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="226" column="40" lean-forward="false" selection-start-line="226" selection-start-column="40" selection-end-line="226" selection-end-column="40" />
+            <state relative-caret-position="478">
+              <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="226" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -256,9 +254,9 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9228402c-1b64-48e9-bbe1-3871ac246023/console.sql" />
         <option value="$PROJECT_DIR$/src/parser/Csv.java" />
         <option value="$PROJECT_DIR$/src/controller/UpdateDB.java" />
-        <option value="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
         <option value="$PROJECT_DIR$/src/daosqlite/GetDatas.java" />
         <option value="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" />
+        <option value="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
       </list>
     </option>
   </component>
@@ -993,14 +991,7 @@
       <workItem from="1501191378918" duration="24000" />
       <workItem from="1501191677255" duration="4396000" />
       <workItem from="1501196122010" duration="7744000" />
-      <workItem from="1501237695071" duration="5141000" />
-    </task>
-    <task id="LOCAL-00064" summary="Added coments in fuction.">
-      <created>1499718885362</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1499718885362</updated>
+      <workItem from="1501237695071" duration="5396000" />
     </task>
     <task id="LOCAL-00065" summary="Corrected magnetLink when book have many.">
       <created>1499718991705</created>
@@ -1338,11 +1329,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501241725001</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="Added minimum size for bookCard.">
+      <created>1501243005085</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1501243005085</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104510000" />
+    <option name="totallyTimeSpent" value="104765000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1477,7 +1475,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Modify link for updates." />
     <MESSAGE value="Modify configuration support to Dropbox." />
     <MESSAGE value="Deleted debug outs." />
     <MESSAGE value="Added instant access to dropbox." />
@@ -1502,7 +1499,8 @@
     <MESSAGE value="Added column for ePL ID." />
     <MESSAGE value="Added support for languaje search." />
     <MESSAGE value="Fixed support for languaje search." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed support for languaje search." />
+    <MESSAGE value="Added minimum size for bookCard." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added minimum size for bookCard." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -2061,21 +2059,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="247" column="0" lean-forward="false" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/controllers/BookViewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="226" column="40" lean-forward="false" selection-start-line="226" selection-start-column="40" selection-end-line="226" selection-end-column="40" />
+        <state relative-caret-position="478">
+          <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="226" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="272" column="44" lean-forward="false" selection-start-line="272" selection-start-column="44" selection-end-line="272" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>

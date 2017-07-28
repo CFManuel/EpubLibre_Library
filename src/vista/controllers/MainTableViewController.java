@@ -269,6 +269,8 @@ public class MainTableViewController implements CommonStrings {
     }
 
     public void setMain(Main main) {
+        main.getPrimaryStage().setMinHeight(200);
+        main.getPrimaryStage().setMinWidth(600);
         this.main = main;
     }
 
