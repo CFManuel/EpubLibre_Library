@@ -292,23 +292,4 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         return libros;
     }
 
-    /**
-     * Devuelve la lista de todos los libros existentes y sus revisiones.
-     *
-     * @return Devuelve la lista de libras con las versiones existentes de cada uno.
-     * @throws SQLException           Error en la db.
-     * @throws ClassNotFoundException Error en driver.
-     */
-    public HashMap<Integer, Double> getEPL_ID() throws SQLException, ClassNotFoundException {
-        HashMap<Integer, Double> ePL_IDs = new HashMap<>();
-        String sql = "SELECT epl_id, revision FROM LIBROS";
-        super.conectar();
-        Statement st = conn.createStatement();
-        ResultSet rst = st.executeQuery(sql);
-        while (rst.next()) {
-            ePL_IDs.put(rst.getInt("epl_id"), rst.getDouble("revision"));
-        }
-        super.desconectar();
-        return ePL_IDs;
-    }
 }

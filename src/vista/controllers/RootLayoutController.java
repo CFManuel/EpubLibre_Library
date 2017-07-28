@@ -58,6 +58,7 @@ public class RootLayoutController implements CommonStrings {
      * Según el tipo de fichero abre su parser correspondiente.
      */
     @FXML
+    @Deprecated
     private void importDataSource() {
         FileChooser fileChooser = new FileChooser();
         Task importar = null;
