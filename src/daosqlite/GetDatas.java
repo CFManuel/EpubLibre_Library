@@ -133,6 +133,29 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         return ps.executeQuery();
     }
 
+    public static void getLibrosMultiRev() {
+        String sql = "select * from libros where epl_id in (select epl_id from libros GROUP BY epl_id HAVING count(*) > 1) ORDER BY revision DESC";
+        GetDatas getDatas = new GetDatas();
+        try {
+            getDatas.conectar();
+            Statement st = getDatas.conn.createStatement();
+            ResultSet rst = st.executeQuery(sql);
+            HashMap<Integer, Libro> libros = procesarConsultaLibros(rst);
+            MainTableViewController.libros.clear();
+            MainTableViewController.libros.addAll(new ArrayList<>(libros.values()));
+            rst.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                getDatas.desconectar();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     /**
      * Obtiene los datos de un libro en concreto a partir de su id y su versión.
      *
@@ -162,7 +185,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      * @return HashMap con los resultados de la busqueda
      * @throws SQLException Error en la db.
      */
-    private HashMap<Integer, Libro> procesarConsultaLibros(ResultSet rst) throws SQLException {
+    private static HashMap<Integer, Libro> procesarConsultaLibros(ResultSet rst) throws SQLException {
         HashMap<Integer, Libro> libros = new HashMap<>();
         while (rst.next()) {
             Libro libro = crearLibro(rst);
@@ -182,7 +205,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      * @return Libro con los campos rellenos.
      * @throws SQLException Error en la db.
      */
-    private Libro crearLibro(ResultSet rst) throws SQLException {
+    private static Libro crearLibro(ResultSet rst) throws SQLException {
         return new Libro()
                 .setEpl_id(rst.getInt("epl_id"))
                 .setTitulo(rst.getString("titulo"))

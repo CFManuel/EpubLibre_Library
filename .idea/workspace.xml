@@ -6,10 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Fixed sql fail with languaje.">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/daosqlite/GetDatas.java" afterPath="$PROJECT_DIR$/src/daosqlite/GetDatas.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" afterPath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" afterPath="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" afterPath="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -96,11 +97,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainTableViewController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainTableViewController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+            <state relative-caret-position="193">
+              <caret line="167" column="30" lean-forward="false" selection-start-line="167" selection-start-column="30" selection-end-line="167" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -131,8 +132,8 @@
       <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9228402c-1b64-48e9-bbe1-3871ac246023/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="102">
+              <caret line="6" column="47" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="123" />
               <folding />
             </state>
           </provider>
@@ -141,18 +142,46 @@
       <file leaf-file-name="GetDatas.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/daosqlite/GetDatas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="130" column="36" lean-forward="false" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
+            <state relative-caret-position="126">
+              <caret line="135" column="145" lean-forward="false" selection-start-line="135" selection-start-column="145" selection-end-line="135" selection-end-column="145" />
               <folding>
-                <marker date="1501244164200" expanded="true" signature="1206:1240" ph="select disti... libros" />
-                <marker date="1501244164200" expanded="true" signature="1206:1260" ph="select disti... libros" />
-                <marker date="1501244164200" expanded="true" signature="2522:3234" ph="SELECT * FRO... libros" />
-                <marker date="1501244164200" expanded="true" signature="4439:4983" ph="SELECT * FRO... libros" />
-                <marker date="1501244164200" expanded="true" signature="5879:5957" ph="SELECT * FRO... LIBROS" />
-                <marker date="1501244164200" expanded="true" signature="9488:9549" ph="SELECT DATAS... config" />
-                <marker date="1501244164200" expanded="true" signature="10231:10263" ph="SELECT COUNT... LIBROS" />
-                <marker date="1501244164200" expanded="true" signature="11013:11048" ph="SELECT epl_i... LIBROS" />
+                <marker date="1501246457125" expanded="true" signature="1206:1240" ph="select disti... libros" />
+                <marker date="1501246457125" expanded="true" signature="1206:1260" ph="select disti... libros" />
+                <marker date="1501246457125" expanded="true" signature="2522:3234" ph="SELECT * FRO... libros" />
+                <marker date="1501246457125" expanded="true" signature="4439:4983" ph="SELECT * FRO... libros" />
+                <marker date="1501246457125" expanded="true" signature="5438:5561" ph="select * fro... libros" />
+                <marker date="1501246457125" expanded="true" signature="5476:5537" ph="select epl_i... libros" />
+                <marker date="1501246457125" expanded="true" signature="6835:6913" ph="SELECT * FRO... LIBROS" />
+                <marker date="1501246457125" expanded="true" signature="10458:10519" ph="SELECT DATAS... config" />
+                <marker date="1501246457125" expanded="true" signature="11201:11233" ph="SELECT COUNT... LIBROS" />
+                <marker date="1501246457125" expanded="true" signature="11983:12018" ph="SELECT epl_i... LIBROS" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RootLayoutController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="160" column="37" lean-forward="false" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
+              <folding>
+                <element signature="e#5529#5530#0" expanded="true" />
+                <element signature="e#5573#5574#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RootLayout.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/resources/RootLayout.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="31" column="61" lean-forward="false" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -197,7 +226,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Modelos/Libro.java" />
         <option value="$PROJECT_DIR$/src/vista/fxml/BookViewer.fxml" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/8a80f96e-33cc-419a-b6e6-d74f83bac0f9/console.sql" />
         <option value="$PROJECT_DIR$/src/daoSqLite/GetLibros.java" />
@@ -215,7 +243,6 @@
         <option value="$PROJECT_DIR$/src/vista/customControls/JFXToggleButtonSkin.java" />
         <option value="$PROJECT_DIR$/src/vista/customControls/JFXToggleButton.java" />
         <option value="$PROJECT_DIR$/src/vista/resources/MainTableView.fxml" />
-        <option value="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" />
         <option value="$PROJECT_DIR$/src/exceptions/NoValidCSVFile.java" />
         <option value="$PROJECT_DIR$/src/daoSqLite/GetDatas.java" />
         <option value="$PROJECT_DIR$/src/daoSqLite/InsertDatas.java" />
@@ -236,7 +263,6 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/95c6f82e-7fb0-41f4-8225-31f732f20d8f/console.sql" />
         <option value="$PROJECT_DIR$/src/vista/Exec.java" />
         <option value="$PROJECT_DIR$/src/vista/controllers/Alertas.java" />
-        <option value="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/20419ffa-a242-4ea0-abdc-c3e6a102a237/console.sql" />
         <option value="$PROJECT_DIR$/src/vista/Main.java" />
         <option value="$PROJECT_DIR$/src/modelos/CommonStrings.java" />
@@ -245,9 +271,12 @@
         <option value="$PROJECT_DIR$/src/parser/Csv.java" />
         <option value="$PROJECT_DIR$/src/controller/UpdateDB.java" />
         <option value="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" />
+        <option value="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
+        <option value="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" />
+        <option value="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9228402c-1b64-48e9-bbe1-3871ac246023/console.sql" />
         <option value="$PROJECT_DIR$/src/daosqlite/GetDatas.java" />
-        <option value="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2268ff80-bafe-4665-a5b8-de27093e8ed9/console.sql" />
       </list>
     </option>
   </component>
@@ -314,6 +343,13 @@
               <item name="EpubLibre_Library" type="462c0819:PsiDirectoryNode" />
               <item name="out" type="462c0819:PsiDirectoryNode" />
               <item name="production" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EpubLibre_Library" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EpubLibre_Library" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="epl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="EpubLibre_Library" type="b2602c69:ProjectViewProjectNode" />
@@ -417,6 +453,7 @@
       <recent name="pruebas" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\out\production\epl" />
       <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\src\vista\resources\images" />
       <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\src\vista\resources" />
     </key>
@@ -982,14 +1019,7 @@
       <workItem from="1501191378918" duration="24000" />
       <workItem from="1501191677255" duration="4396000" />
       <workItem from="1501196122010" duration="7744000" />
-      <workItem from="1501237695071" duration="6384000" />
-    </task>
-    <task id="LOCAL-00066" summary="Version 0.6.5.">
-      <created>1499779340821</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1499779340821</updated>
+      <workItem from="1501237695071" duration="9469000" />
     </task>
     <task id="LOCAL-00067" summary="Soporte temporal para rss">
       <created>1499816961909</created>
@@ -1327,11 +1357,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501243244120</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="Fixed sql fail with languaje.">
+      <created>1501244226042</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1501244226042</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105753000" />
+    <option name="totallyTimeSpent" value="108838000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1507,14 +1544,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="dbDummy://dbtable:/3ca7bae5/aa737071-77a5-4e40-9ca4-b084fbabde50/main.librosOLD" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/aa737071-77a5-4e40-9ca4-b084fbabde50/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="38" column="28" lean-forward="true" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/3ca7bae5/373d7e02-a6a0-45eb-83e8-27bf0ab7b25d/main.librosOLD" />
     <entry file="dbDummy://dbtable:/3ca7bae5/373d7e02-a6a0-45eb-83e8-27bf0ab7b25d/main.libros" />
     <entry file="file://$PROJECT_DIR$/src/vista/resources/main.css" />
@@ -1572,16 +1601,6 @@
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/resources/RootLayout.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
         </state>
       </provider>
@@ -1921,17 +1940,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/Exec.java" />
-    <entry file="file://$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-79">
-          <caret line="89" column="32" lean-forward="false" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
-          <folding>
-            <element signature="e#2493#3657#0" expanded="true" />
-            <element signature="e#3656#3657#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/3ca7bae5/20419ffa-a242-4ea0-abdc-c3e6a102a237/main.libros" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/20419ffa-a242-4ea0-abdc-c3e6a102a237/console.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -2036,36 +2044,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9228402c-1b64-48e9-bbe1-3871ac246023/console.sql">
+    <entry file="file://$PROJECT_DIR$/src/vista/resources/RootLayout.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="425">
+          <caret line="31" column="61" lean-forward="false" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="167" column="30" lean-forward="false" selection-start-line="167" selection-start-column="30" selection-end-line="167" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/daosqlite/GetDatas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="130" column="36" lean-forward="false" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
+        <state relative-caret-position="126">
+          <caret line="135" column="145" lean-forward="false" selection-start-line="135" selection-start-column="145" selection-end-line="135" selection-end-column="145" />
           <folding>
-            <marker date="1501244164200" expanded="true" signature="1206:1240" ph="select disti... libros" />
-            <marker date="1501244164200" expanded="true" signature="1206:1260" ph="select disti... libros" />
-            <marker date="1501244164200" expanded="true" signature="2522:3234" ph="SELECT * FRO... libros" />
-            <marker date="1501244164200" expanded="true" signature="4439:4983" ph="SELECT * FRO... libros" />
-            <marker date="1501244164200" expanded="true" signature="5879:5957" ph="SELECT * FRO... LIBROS" />
-            <marker date="1501244164200" expanded="true" signature="9488:9549" ph="SELECT DATAS... config" />
-            <marker date="1501244164200" expanded="true" signature="10231:10263" ph="SELECT COUNT... LIBROS" />
-            <marker date="1501244164200" expanded="true" signature="11013:11048" ph="SELECT epl_i... LIBROS" />
+            <marker date="1501246457125" expanded="true" signature="1206:1240" ph="select disti... libros" />
+            <marker date="1501246457125" expanded="true" signature="1206:1260" ph="select disti... libros" />
+            <marker date="1501246457125" expanded="true" signature="2522:3234" ph="SELECT * FRO... libros" />
+            <marker date="1501246457125" expanded="true" signature="4439:4983" ph="SELECT * FRO... libros" />
+            <marker date="1501246457125" expanded="true" signature="5438:5561" ph="select * fro... libros" />
+            <marker date="1501246457125" expanded="true" signature="5476:5537" ph="select epl_i... libros" />
+            <marker date="1501246457125" expanded="true" signature="6835:6913" ph="SELECT * FRO... LIBROS" />
+            <marker date="1501246457125" expanded="true" signature="10458:10519" ph="SELECT DATAS... config" />
+            <marker date="1501246457125" expanded="true" signature="11201:11233" ph="SELECT COUNT... LIBROS" />
+            <marker date="1501246457125" expanded="true" signature="11983:12018" ph="SELECT epl_i... LIBROS" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
+    <entry file="das://table:/3ca7bae5/2268ff80-bafe-4665-a5b8-de27093e8ed9/main.libros">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2268ff80-bafe-4665-a5b8-de27093e8ed9/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9228402c-1b64-48e9-bbe1-3871ac246023/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="47" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="123" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="160" column="37" lean-forward="false" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
+          <folding>
+            <element signature="e#5529#5530#0" expanded="true" />
+            <element signature="e#5573#5574#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

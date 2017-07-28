@@ -157,6 +157,11 @@ public class RootLayoutController implements CommonStrings {
     }
 
     @FXML
+    private void getMultiRev() {
+        GetDatas.getLibrosMultiRev();
+    }
+
+    @FXML
     private void resetGUI()
             throws SQLException, ClassNotFoundException, IOException, URISyntaxException {
         Optional<ButtonType> borrar = panicButton();
