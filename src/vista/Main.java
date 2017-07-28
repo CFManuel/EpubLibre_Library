@@ -24,6 +24,7 @@ import daosqlite.GetDatas;
 import daosqlite.InsertDatas;
 import files.Utils;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -126,14 +127,21 @@ public class Main extends Application implements CommonStrings {
                             }
                         });
         this.main = this;
-        configuracion = Utils.getConfig();
+        Task task = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                configuracion = Utils.getConfig();
+                return null;
+            }
+        };
+        task.setOnSucceeded(e -> UpdateDB.timeToUpdate());
+        new Thread(task).start();
         initRootLayout();
         initMainTableView();
 
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         Utils.crearEPL();
         new ConnectorHelper().crearTabla();
-        UpdateDB.timeToUpdate();
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
     }
 
