@@ -162,7 +162,7 @@ public class MainTableViewController implements CommonStrings {
         busqueda[2] = cbColeccion.isSelected() ? search : "";
         busqueda[3] = cbGenero.isSelected() ? search : "";
         String idioma = cbIdiomas.getSelectionModel().getSelectedItem();
-        busqueda[4] = (idioma.equalsIgnoreCase("todos")) ? "" : idioma;
+        busqueda[4] = (idioma.equalsIgnoreCase("todos")) ? "%" : idioma;
         busqueda[5] = cbSinopsis.isSelected() ? search : "";
 
         try {
@@ -186,8 +186,11 @@ public class MainTableViewController implements CommonStrings {
      * Configuración de los campos de la tabla.
      */
     private void configTable() {
+        idiomas.clear();
+        idiomas.add("Todos");
         GetDatas.getIdiomas();
         cbIdiomas.setItems(idiomas);
+        cbIdiomas.getSelectionModel().select(2);
         //Cambia la linea seleccionada al moverse por la ficha del libro
         focusROW.addListener((observableValue, number, t1) -> {
             bookTableView.getSelectionModel().clearSelection();

@@ -33,17 +33,14 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
 
     public static void getIdiomas() {
         String sql = "select distinct idioma from libros";
-        MainTableViewController.idiomas.add("Todos");
         GetDatas getDatas = new GetDatas();
         try {
             getDatas.conectar();
             Statement st = getDatas.conn.createStatement();
             ResultSet rst = st.executeQuery(sql);
             while (rst.next()) MainTableViewController.idiomas.add(rst.getString("idioma"));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            //No hay datos.
         } finally {
             try {
                 getDatas.desconectar();
@@ -78,9 +75,9 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
                     //Colección
                     + "lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?) OR "
                     //Género
-                    + "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) OR "
+                    + "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?)"
                     //Idioma
-                    + "lower(idioma) LIKE lower(?) OR lower(idisense) LIKE lower(?) OR "
+                    + "AND lower(idioma) LIKE lower(?) OR "
                     //sinopsis
                     + "lower(sinopsis) LIKE lower(?) "
                     + "ORDER BY revision DESC ";
@@ -94,8 +91,8 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
             ps.setString(7, busqueda[3]);
             ps.setString(8, busqueda[3]);
             ps.setString(9, busqueda[4]);
-            ps.setString(10, busqueda[4]);
-            ps.setString(11, busqueda[5]);
+            System.out.println(busqueda[4]);
+            ps.setString(10, busqueda[5]);
             rst = ps.executeQuery();
         }
 
