@@ -52,12 +52,12 @@
                                         <CheckMenuItem fx:id="cbColeccion" mnemonicParsing="false" selected="true"
                                                        text="Colección"/>
                                         <CheckMenuItem fx:id="cbGenero" mnemonicParsing="false" text="Genero"/>
-                                        <CheckMenuItem fx:id="cbIdioma" mnemonicParsing="false" text="Idioma"/>
                                         <CheckMenuItem fx:id="cbSinopsis" mnemonicParsing="false" text="Sinopsis"/>
                                     </items>
                                 </MenuButton>
                             </children>
                         </HBox>
+                        <ComboBox fx:id="cbIdiomas" prefWidth="150.0"/>
                         <CheckBox fx:id="cbSearchOnTable" mnemonicParsing="false" text="Buscar en tabla">
                             <tooltip>
                                 <Tooltip opacity="0.8"

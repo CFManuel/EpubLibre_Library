@@ -43,6 +43,7 @@ import java.util.regex.Pattern;
 public class MainTableViewController implements CommonStrings {
     //ArrayList con los datos que se muestran en la tabla.
     public static final ObservableList<Libro> libros = FXCollections.observableArrayList();
+    public static final ObservableList<String> idiomas = FXCollections.observableArrayList();
     public static SimpleIntegerProperty focusROW = new SimpleIntegerProperty();
     private static String OPT_TITLE = "Título";
     private static String OPT_AUTHOR = "Autor";
@@ -96,9 +97,10 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private CheckMenuItem cbGenero;
     @FXML
-    private CheckMenuItem cbIdioma;
-    @FXML
     private CheckMenuItem cbSinopsis;
+    @FXML
+    private ComboBox<String> cbIdiomas;
+
 
     private ArrayList<Integer> visible_rows = new ArrayList<>();
 
@@ -159,7 +161,8 @@ public class MainTableViewController implements CommonStrings {
         busqueda[1] = cbAutor.isSelected() ? search : "";
         busqueda[2] = cbColeccion.isSelected() ? search : "";
         busqueda[3] = cbGenero.isSelected() ? search : "";
-        busqueda[4] = cbIdioma.isSelected() ? search : "";
+        String idioma = cbIdiomas.getSelectionModel().getSelectedItem();
+        busqueda[4] = (idioma.equalsIgnoreCase("todos")) ? "" : idioma;
         busqueda[5] = cbSinopsis.isSelected() ? search : "";
 
         try {
@@ -183,6 +186,8 @@ public class MainTableViewController implements CommonStrings {
      * Configuración de los campos de la tabla.
      */
     private void configTable() {
+        GetDatas.getIdiomas();
+        cbIdiomas.setItems(idiomas);
         //Cambia la linea seleccionada al moverse por la ficha del libro
         focusROW.addListener((observableValue, number, t1) -> {
             bookTableView.getSelectionModel().clearSelection();

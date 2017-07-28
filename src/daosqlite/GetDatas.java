@@ -20,6 +20,7 @@ package daosqlite;
 
 import modelos.CommonStrings;
 import modelos.Libro;
+import vista.controllers.MainTableViewController;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,6 +30,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GetDatas extends ConnectorHelper implements CommonStrings {
+
+    public static void getIdiomas() {
+        String sql = "select distinct idioma from libros";
+        MainTableViewController.idiomas.add("Todos");
+        GetDatas getDatas = new GetDatas();
+        try {
+            getDatas.conectar();
+            Statement st = getDatas.conn.createStatement();
+            ResultSet rst = st.executeQuery(sql);
+            while (rst.next()) MainTableViewController.idiomas.add(rst.getString("idioma"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                getDatas.desconectar();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
     /**
      * @param busqueda Palabra que se desea buscar en la db.

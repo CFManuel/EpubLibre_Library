@@ -111,6 +111,7 @@ public final class UpdateDB implements CommonStrings {
         importar.setOnSucceeded(e -> {
             progressForm.getDialogStage().close();
             alertUpdateOK();
+            GetDatas.getIdiomas();
         });
         importar.setOnFailed(e -> {
             progressForm.getDialogStage().close();
