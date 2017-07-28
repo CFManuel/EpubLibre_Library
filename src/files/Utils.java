@@ -74,7 +74,7 @@ public class Utils implements CommonStrings {
             URL url = new URL(link);
             URLConnection uc = url.openConnection();
 
-            uc.setReadTimeout(15 * 1000);
+            uc.setReadTimeout(120 * 1000);
             uc.setConnectTimeout(10 * 1000);
             uc.setRequestProperty("Authorization", "Bearer " + TOKEN_API);
             uc.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"/csv_full_imgs.zip\"}");
@@ -98,7 +98,7 @@ public class Utils implements CommonStrings {
             URL url = new URL(link);
             URLConnection uc = url.openConnection();
 
-            uc.setReadTimeout(15 * 1000);
+            uc.setReadTimeout(60 * 1000);
             uc.setConnectTimeout(10 * 1000);
             uc.setRequestProperty("Authorization", "Bearer " + TOKEN_API);
             uc.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"/config.json\"}");
