@@ -168,7 +168,8 @@ public final class UpdateDB implements CommonStrings {
                 Days antiguedad = Days.daysBetween(lastUpdate, now); //Comprueba cuantos dias han pasado.
 
                 int dias = antiguedad.getDays();
-                if (dias >= DATA_OLD) actualizar = true;
+                //Actualiza si ha pasado un día de diferencia y son más de las 4.
+                if (dias >= 1 && now.hourOfDay().get() >= 4) actualizar = true;
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
