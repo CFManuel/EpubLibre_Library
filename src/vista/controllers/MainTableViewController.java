@@ -106,6 +106,12 @@ public class MainTableViewController implements CommonStrings {
 
     @FXML
     private void initialize() {
+        libros.addListener(new ListChangeListener<Libro>() {
+            @Override
+            public void onChanged(Change<? extends Libro> change) {
+                labelBookFound.setText(String.valueOf(libros.size()) + " Libros");
+            }
+        });
         configTable();
         //Deshabilita el botón de opciones si se pulsa "buscar en tabla".
         cbSearchOnTable
@@ -124,7 +130,6 @@ public class MainTableViewController implements CommonStrings {
         } else {
             searchOnDB();
         }
-        writeNumberBooks();
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
     }
 
@@ -261,7 +266,6 @@ public class MainTableViewController implements CommonStrings {
                 keyEvent -> {
                     if (searchOnTableKeyCombination.match(keyEvent)) {
                         searchOnTable();
-                        writeNumberBooks();
                     }
                 });
         saveANDrestoreTableState();
@@ -404,10 +408,6 @@ public class MainTableViewController implements CommonStrings {
                 columns.add(unchangedColumns.get(anOrder));
             }
         }
-    }
-
-    private void writeNumberBooks() {
-        labelBookFound.setText(String.valueOf(libros.size()) + " Libros");
     }
 
     public static class DateComparator implements Comparator<String> {

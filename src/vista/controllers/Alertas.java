@@ -56,6 +56,11 @@ public class Alertas implements CommonStrings {
         ok.show();
     }
 
+    /**
+     * Alerta que avisa de una nueva versión de la app.
+     * Informa del número de versión y los cambios realizados.
+     * Proporciona dos links para descargar la nueva versión.
+     */
     public static void alertNewAppUpdate() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image(SIMBOLO_EPL));

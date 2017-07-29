@@ -51,6 +51,79 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
 
     }
 
+    public static void getLibrosMultiRev() {
+        String sql = "select * from libros where epl_id in (select epl_id from libros GROUP BY epl_id HAVING count(*) > 1) ORDER BY revision DESC";
+        GetDatas getDatas = new GetDatas();
+        try {
+            getDatas.conectar();
+            Statement st = getDatas.conn.createStatement();
+            ResultSet rst = st.executeQuery(sql);
+            HashMap<Integer, Libro> libros = procesarConsultaLibros(rst);
+            MainTableViewController.libros.clear();
+            MainTableViewController.libros.addAll(new ArrayList<>(libros.values()));
+            rst.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                getDatas.desconectar();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Genera libros con varias revisiones.
+     *
+     * @param rst ResultSet a procesar.
+     * @return HashMap con los resultados de la busqueda
+     * @throws SQLException Error en la db.
+     */
+    private static HashMap<Integer, Libro> procesarConsultaLibros(ResultSet rst) throws SQLException {
+        HashMap<Integer, Libro> libros = new HashMap<>();
+        while (rst.next()) {
+            Libro libro = crearLibro(rst);
+            if (libros.containsKey(libro.getEpl_id())) {
+                libros.get(libro.getEpl_id()).addRevArray(libro.getRevision());
+            } else {
+                libros.put(libro.getEpl_id(), libro);
+            }
+        }
+        return libros;
+    }
+
+    /**
+     * Crea un libro a partir de un resultSet.
+     *
+     * @param rst ResultSet con los datos del libro.
+     * @return Libro con los campos rellenos.
+     * @throws SQLException Error en la db.
+     */
+    private static Libro crearLibro(ResultSet rst) throws SQLException {
+        return new Libro()
+                .setEpl_id(rst.getInt("epl_id"))
+                .setTitulo(rst.getString("titulo"))
+                .setAutor(rst.getString("autor"))
+                .setGeneros(rst.getString("generos"))
+                .setColeccion(rst.getString("coleccion"))
+                .setVolumen(rst.getDouble("volumen"))
+                .setFecha_publi(rst.getInt("fecha_publi"))
+                .setSinopsis(rst.getString("sinopsis"))
+                .setPaginas(rst.getInt("paginas"))
+                .setRevision(rst.getDouble("revision"))
+                .addRevArray(rst.getDouble("revision"))
+                .setIdioma(rst.getString("idioma"))
+                .setPublicado(rst.getString("publicado"))
+                .setEstado(rst.getString("estado"))
+                .setValoracion(rst.getDouble("valoracion"))
+                .setN_votos(rst.getInt("n_votos"))
+                .setEnlaces(rst.getString("enlaces"))
+                .setImgURI(rst.getString("imgdir"));
+    }
+
     /**
      * @param busqueda Palabra que se desea buscar en la db.
      * @return Devuelve los libros encontrados.
@@ -133,29 +206,6 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         return ps.executeQuery();
     }
 
-    public static void getLibrosMultiRev() {
-        String sql = "select * from libros where epl_id in (select epl_id from libros GROUP BY epl_id HAVING count(*) > 1) ORDER BY revision DESC";
-        GetDatas getDatas = new GetDatas();
-        try {
-            getDatas.conectar();
-            Statement st = getDatas.conn.createStatement();
-            ResultSet rst = st.executeQuery(sql);
-            HashMap<Integer, Libro> libros = procesarConsultaLibros(rst);
-            MainTableViewController.libros.clear();
-            MainTableViewController.libros.addAll(new ArrayList<>(libros.values()));
-            rst.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                getDatas.desconectar();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     /**
      * Obtiene los datos de un libro en concreto a partir de su id y su versión.
      *
@@ -176,55 +226,6 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         HashMap<Integer, Libro> libros = procesarConsultaLibros(rst);
         super.desconectar();
         return libros.get(epl_id);
-    }
-
-    /**
-     * Genera libros con varias revisiones.
-     *
-     * @param rst ResultSet a procesar.
-     * @return HashMap con los resultados de la busqueda
-     * @throws SQLException Error en la db.
-     */
-    private static HashMap<Integer, Libro> procesarConsultaLibros(ResultSet rst) throws SQLException {
-        HashMap<Integer, Libro> libros = new HashMap<>();
-        while (rst.next()) {
-            Libro libro = crearLibro(rst);
-            if (libros.containsKey(libro.getEpl_id())) {
-                libros.get(libro.getEpl_id()).addRevArray(libro.getRevision());
-            } else {
-                libros.put(libro.getEpl_id(), libro);
-            }
-        }
-        return libros;
-    }
-
-    /**
-     * Crea un libro a partir de un resultSet.
-     *
-     * @param rst ResultSet con los datos del libro.
-     * @return Libro con los campos rellenos.
-     * @throws SQLException Error en la db.
-     */
-    private static Libro crearLibro(ResultSet rst) throws SQLException {
-        return new Libro()
-                .setEpl_id(rst.getInt("epl_id"))
-                .setTitulo(rst.getString("titulo"))
-                .setAutor(rst.getString("autor"))
-                .setGeneros(rst.getString("generos"))
-                .setColeccion(rst.getString("coleccion"))
-                .setVolumen(rst.getDouble("volumen"))
-                .setFecha_publi(rst.getInt("fecha_publi"))
-                .setSinopsis(rst.getString("sinopsis"))
-                .setPaginas(rst.getInt("paginas"))
-                .setRevision(rst.getDouble("revision"))
-                .addRevArray(rst.getDouble("revision"))
-                .setIdioma(rst.getString("idioma"))
-                .setPublicado(rst.getString("publicado"))
-                .setEstado(rst.getString("estado"))
-                .setValoracion(rst.getDouble("valoracion"))
-                .setN_votos(rst.getInt("n_votos"))
-                .setEnlaces(rst.getString("enlaces"))
-                .setImgURI(rst.getString("imgdir"));
     }
 
     /**

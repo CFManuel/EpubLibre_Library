@@ -26,7 +26,7 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu fx:id="menuFile" mnemonicParsing="false" text="Archivo">
-                <!--<MenuItem mnemonicParsing="false" onAction="#epubLibreImport" text="Importar datos desde ePubLibre"/>-->
+                <MenuItem mnemonicParsing="false" onAction="#ePLDownload" text="Comprobar diferencia con carpeta"/>
             </Menu>
             <Menu mnemonicParsing="false" text="Base de datos">
                 <MenuItem mnemonicParsing="false" onAction="#getLastUpdate" text="Información de la base de datos"/>
