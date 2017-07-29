@@ -118,7 +118,7 @@ public class RootLayoutController implements CommonStrings {
      * Confirma si el usuario desea actualizar.
      */
     @FXML
-    private void epubLibreImport() {
+    private void epubLibreImport() throws InterruptedException {
         Optional<ButtonType> boton = updateConfirmation();
         if (boton.isPresent() && boton.get() == ButtonType.OK) {
             UpdateDB.updateDataBase();
