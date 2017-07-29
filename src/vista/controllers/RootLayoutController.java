@@ -89,6 +89,7 @@ public class RootLayoutController implements CommonStrings {
                 MainTableViewController.libros.addAll(librosDB);
             }
         } catch (SQLException | ClassNotFoundException e) {
+            main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
             e.printStackTrace();
         }
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
