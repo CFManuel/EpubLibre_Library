@@ -130,7 +130,7 @@ public class Main extends Application implements CommonStrings {
         Task task = new Task() {
             @Override
             protected Object call() throws Exception {
-                configuracion = Utils.getConfig();
+                if (UpdateDB.checkDBage()) configuracion = Utils.getConfig();
                 return null;
             }
         };

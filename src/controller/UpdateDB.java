@@ -151,7 +151,7 @@ public final class UpdateDB implements CommonStrings {
      *
      * @return True si hay que actualizar.
      */
-    private static boolean checkDBage() {
+    public static boolean checkDBage() {
         boolean actualizar = false;
         try {
             GetDatas getDatas = new GetDatas(); //Optiene la fecha de la base
