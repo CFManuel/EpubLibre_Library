@@ -27,6 +27,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -184,14 +185,22 @@ public class MainTableViewController implements CommonStrings {
     private void multiDownload() {
         ObservableList<Libro> selectedItems = bookTableView.getSelectionModel().getSelectedItems();
         // selectedItems.forEach(Utils::launchTorrent);
-        selectedItems.forEach(libro -> {
-            Utils.launchTorrent(libro);
-            try {
-                TimeUnit.MILLISECONDS.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        Task launcher = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                selectedItems.forEach(libro -> {
+                    Utils.launchTorrent(libro);
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(150);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
+                return null;
             }
-        });
+        };
+        new Thread(launcher).start();
+
     }
 
     /**
