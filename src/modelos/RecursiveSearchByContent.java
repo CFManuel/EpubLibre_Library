@@ -31,7 +31,10 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public class RecursiveSearchByContent implements FileVisitor<Path>, CommonStrings {
-    private final Pattern pattern = Pattern.compile("<p class=\"tautor\">(.+?)<\\/p>[\\s\\S]*<h1 class=\"ttitulo\">(.+?)<\\/h1>[\\s\\S]*<p class=\"trevision\">ePub r(\\d+?\\.\\d+?)<\\/p>");
+    private final Pattern pattern1 =
+            Pattern.compile("<p class=\"tautor\"><code class=\"sans\">(.+?)<\\/code><\\/p>[\\s\\S]*<h1 class=\"ttitulo\"[\\s\\S]*><strong class=\"sans\">(.+?)<\\/strong><\\/h1>[\\s\\S]*<p class=\"trevision\"><strong class=\"sans\">ePub r(\\d\\.\\d)<\\/strong><\\/p>");
+    private final Pattern pattern2 =
+            Pattern.compile("<p class=\"tautor\">(.+?)<\\/p>[\\s\\S]*<h1 class=\"ttitulo\">(.+?)<\\/h1>[\\s\\S]*<p class=\"trevision\">ePub r(\\d+?\\.\\d+?)<\\/p>");
     private final PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:*.{epub}"); //Busca ficheros con extensión
     private ArrayList<Libro> epubs = new ArrayList<>(); //Se almacenan los libros
     private int numEpub = 0;
@@ -53,14 +56,21 @@ public class RecursiveSearchByContent implements FileVisitor<Path>, CommonString
                     StringWriter sw = new StringWriter();
                     IOUtils.copy(zipFile.getInputStream(entry), sw, "UTF-8");
                     String text = sw.toString();
-                    Matcher matcher = pattern.matcher(text);
-                    if (matcher.find()) {
+                    Matcher matcher1 = pattern1.matcher(text);
+                    Matcher matcher2 = pattern2.matcher(text);
+                    if (matcher2.find()) {
                         epubs.add(
-                                new Libro().setTitulo(matcher.group(2).replaceAll("&amp;", "&"))
-                                        .setAutor(matcher.group(1).replaceAll("&amp;", "&"))
-                                        .setRevision(Double.parseDouble(matcher.group(3))));
+                                new Libro().setTitulo(matcher2.group(2).replaceAll("&amp;", "&"))
+                                        .setAutor(matcher2.group(1).replaceAll("&amp;", "&"))
+                                        .setRevision(Double.parseDouble(matcher2.group(3))));
                         this.numEpub++;
-
+                    } else if (matcher1.find()) {
+                        epubs.add(
+                                new Libro().setTitulo(matcher1.group(2).replaceAll("&amp;", "&"))
+                                        .setAutor(matcher1.group(1).replaceAll("&amp;", "&"))
+                                        .setRevision(Double.parseDouble(matcher1.group(3))));
+                    } else {
+                        System.out.println(text.replaceAll("\\n", " "));
                     }
                 }
             } catch (IOException e) {
