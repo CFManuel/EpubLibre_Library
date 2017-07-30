@@ -57,7 +57,7 @@
                                 </MenuButton>
                             </children>
                         </HBox>
-                        <ComboBox fx:id="cbIdiomas" prefWidth="150.0"/>
+                        <ComboBox fx:id="cbIdiomas" prefHeight="25.0" prefWidth="97.0"/>
                         <CheckBox fx:id="cbSearchOnTable" mnemonicParsing="false" text="Buscar en tabla">
                             <tooltip>
                                 <Tooltip opacity="0.8"
