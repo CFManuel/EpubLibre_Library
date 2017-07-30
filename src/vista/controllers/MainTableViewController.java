@@ -37,6 +37,7 @@ import vista.Main;
 
 import java.sql.SQLException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -182,9 +183,15 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private void multiDownload() {
         ObservableList<Libro> selectedItems = bookTableView.getSelectionModel().getSelectedItems();
-        selectedItems.forEach(Utils::launchTorrent);
-        //fixme: Se colapsa cuando se intentan añadir demasiados
-        //selectedItems.forEach(libro -> Utils.launchTorrent(libro));
+        // selectedItems.forEach(Utils::launchTorrent);
+        selectedItems.forEach(libro -> {
+            Utils.launchTorrent(libro);
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /**

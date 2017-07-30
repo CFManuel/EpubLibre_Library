@@ -148,8 +148,6 @@ public class Utils implements CommonStrings {
      * @param libro Libro a descargar.
      */
     public static void launchTorrent(Libro libro) {
-        URISyntaxException uri = new URISyntaxException("link", "errorcojonudo", 2);
-        uri.printStackTrace();
         try {
             URI magnetLink = new URI(String.format("%s&dn=EPL_[%d]_%s", libro.getEnlaces(), libro.getEpl_id(), libro.getTitulo().replaceAll("\\s", "_")));
             URISchemeHandler uriSchemeHandler = new URISchemeHandler();
