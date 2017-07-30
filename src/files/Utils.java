@@ -119,8 +119,8 @@ public class Utils implements CommonStrings {
      * @param zip Fichero a descomprimir
      */
     public static void unZip(File zip) throws ZipException {
-            ZipFile zipFile = new ZipFile(zip);
-            zipFile.extractAll(Main.getLocation());
+        ZipFile zipFile = new ZipFile(zip);
+        zipFile.extractAll(Main.getLocation());
     }
 
     /**
@@ -149,7 +149,13 @@ public class Utils implements CommonStrings {
      */
     public static void launchTorrent(Libro libro) {
         try {
-            URI magnetLink = new URI(String.format("%s&dn=EPL_[%d]_%s", libro.getEnlaces(), libro.getEpl_id(), libro.getTitulo().replaceAll("\\s", "_")));
+            URI magnetLink = new URI(String.format("%s&dn=ePL_[%d]_%s",
+                    libro.getEnlaces(),
+                    libro.getEpl_id(),
+                    libro.getTitulo()
+                            .replaceAll("\\s", "_")
+                            .replaceAll("[´`\"\']", ""))
+            );
             URISchemeHandler uriSchemeHandler = new URISchemeHandler();
             uriSchemeHandler.open(magnetLink);
 
