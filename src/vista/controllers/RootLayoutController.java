@@ -29,7 +29,8 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import modelos.CommonStrings;
 import modelos.Libro;
-import modelos.RecursiveEpubSearch;
+import modelos.RecursiveSearchByContent;
+import modelos.RecursiveSearchByName;
 import parser.Csv;
 import vista.Main;
 
@@ -43,6 +44,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.function.BiFunction;
 
 import static vista.controllers.Alertas.*;
 
@@ -62,7 +64,48 @@ public class RootLayoutController implements CommonStrings {
     }
 
     @FXML
-    private void ePLDownload() {
+    private void checkByContent() {
+        final DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Carpeta con ePubs.");
+        final Path root = Paths.get(directoryChooser.showDialog(main.getPrimaryStage()).getAbsolutePath());
+
+        final String[] busqueda = new String[6];
+        ArrayList<Libro> librosDownload;
+
+        for (int i = 0; i < 6; i++) busqueda[i] = "%%";
+        try {
+            final GetDatas getDatas = new GetDatas();
+            final ArrayList<Libro> librosDB = getDatas.getLibros(busqueda);
+            final RecursiveSearchByContent epubSearch = new RecursiveSearchByContent();
+
+            Files.walkFileTree(root, epubSearch);
+            librosDownload = epubSearch.getEpubs();
+            System.out.print(librosDB.size() + " - " + librosDownload.size() + " = ");
+            BiFunction<Libro, ArrayList<Libro>, Integer> cmp = (l1, l2) -> {
+                for (int i = 0; i < l2.size(); i++) {
+                    if (l1.getTitulo().equalsIgnoreCase(l2.get(i).getTitulo()) && l1.getAutor().equalsIgnoreCase(l2.get(i).getAutor()) && l1.getRevision().equals(l2.get(i).getRevision())) {
+                        return i;
+                    }
+                }
+                return -1;
+            };
+            //Comprueba que hay libros descargados.
+            if (librosDownload.size() > 0) {
+                librosDownload.forEach(libro -> {
+                    int num;
+                    if ((num = cmp.apply(libro, librosDB)) != -1) librosDB.remove(num);
+
+                });
+            }
+            System.out.println(librosDB.size());
+        } catch (SQLException | ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+
+        }
+
+    }
+    @FXML
+    private void checkByName() {
         final DirectoryChooser directoryChooser = new DirectoryChooser();
         final String[] busqueda = new String[6];
         HashMap<Integer, String> librosDownload;
@@ -76,7 +119,7 @@ public class RootLayoutController implements CommonStrings {
         try {
             final GetDatas getDatas = new GetDatas();
             final ArrayList<Libro> librosDB = getDatas.getLibros(busqueda);
-            final RecursiveEpubSearch epubSearch = new RecursiveEpubSearch();
+            final RecursiveSearchByName epubSearch = new RecursiveSearchByName();
             Files.walkFileTree(root, epubSearch);
             librosDownload = epubSearch.getEpubs();
             //Comprueba que hay libros descargados.

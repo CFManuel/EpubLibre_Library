@@ -96,7 +96,7 @@ public final class UpdateDB implements CommonStrings {
 
                     updateProgress(5, TOTAL_PROGRESS);
                     updateMessage("Actualizando fecha...");
-                    updateDate();
+
                     updateMessage("Fecha actualizada...");
                     updateProgress(6, TOTAL_PROGRESS);
                     Utils.deleteZip(zip, csvFile);
@@ -109,6 +109,7 @@ public final class UpdateDB implements CommonStrings {
         };
         progressForm.activateProgressBar(importar);
         importar.setOnSucceeded(e -> {
+            updateDate();
             progressForm.getDialogStage().close();
             GetDatas.getIdiomas();
             alertUpdateOK();
@@ -172,7 +173,7 @@ public final class UpdateDB implements CommonStrings {
                 if (dias >= 1 && now.hourOfDay().get() >= 4) actualizar = true;
             }
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            //no update
         }
         return actualizar;
     }

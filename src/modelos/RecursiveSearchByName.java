@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 /**
  * Se usa junto con Files.walkFileTree para buscar en un directorio.
  */
-public class RecursiveEpubSearch implements FileVisitor<Path>, CommonStrings {
+public class RecursiveSearchByName implements FileVisitor<Path>, CommonStrings {
     private final PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:*.{epub}"); //Busca ficheros con extensión
     private final Pattern pattern = Pattern.compile(PATTERN_FOR_IDREV); //Patron para identificar el epl_ID y la revisión del libro.
     private Matcher matcher;

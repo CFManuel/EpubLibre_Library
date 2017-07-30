@@ -191,7 +191,7 @@ public class MainTableViewController implements CommonStrings {
                 selectedItems.forEach(libro -> {
                     Utils.launchTorrent(libro);
                     try {
-                        TimeUnit.MILLISECONDS.sleep(150);
+                        TimeUnit.MILLISECONDS.sleep(80);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

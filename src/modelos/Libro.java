@@ -210,4 +210,15 @@ public class Libro {
         this.enlaces = enlaces;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "epl_id=" + epl_id +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", revision=" + revision +
+                ", revArray=" + revArray +
+                '}';
+    }
 }

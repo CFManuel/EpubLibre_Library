@@ -45,7 +45,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class Main extends Application implements CommonStrings {
-    private static String appLocation;
+    public static String appLocation;
     private static HashMap<String, String> configuracion = new HashMap<>();
 
     @SuppressWarnings("FieldCanBeLocal")
