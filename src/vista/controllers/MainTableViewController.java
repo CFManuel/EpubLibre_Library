@@ -183,6 +183,7 @@ public class MainTableViewController implements CommonStrings {
     private void multiDownload() {
         ObservableList<Libro> selectedItems = bookTableView.getSelectionModel().getSelectedItems();
         selectedItems.forEach(Utils::launchTorrent);
+        //fixme: Se colapsa cuando se intentan añadir demasiados
         //selectedItems.forEach(libro -> Utils.launchTorrent(libro));
     }
 

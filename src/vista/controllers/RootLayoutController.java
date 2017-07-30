@@ -29,18 +29,20 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import modelos.CommonStrings;
 import modelos.Libro;
+import modelos.RecursiveEpubSearch;
 import parser.Csv;
 import vista.Main;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static vista.controllers.Alertas.*;
 
@@ -61,24 +63,22 @@ public class RootLayoutController implements CommonStrings {
 
     @FXML
     private void ePLDownload() {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
+        final DirectoryChooser directoryChooser = new DirectoryChooser();
+        final String[] busqueda = new String[6];
+        HashMap<Integer, String> librosDownload;
         directoryChooser.setTitle("Carpeta con ePubs.");
-        File fs = directoryChooser.showDialog(main.getPrimaryStage());
+
+        final Path root = Paths.get(directoryChooser.showDialog(main.getPrimaryStage()).getAbsolutePath());
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
-        File[] fList = fs.listFiles();
-        String[] busqueda = new String[6];
+
+
         for (int i = 0; i < 6; i++) busqueda[i] = "%%";
         try {
-            GetDatas getDatas = new GetDatas();
+            final GetDatas getDatas = new GetDatas();
             final ArrayList<Libro> librosDB = getDatas.getLibros(busqueda);
-            System.out.println(librosDB.size());
-            HashMap<Integer, String> librosDownload = new HashMap<>();
-            Pattern pattern = Pattern.compile("\\[(\\d+)].*?\\((r\\d.\\d)\\)");
-            Matcher matcher;
-            for (File file : fList) {
-                matcher = pattern.matcher(file.getName());
-                if (matcher.find()) librosDownload.put(Integer.parseInt(matcher.group(1)), matcher.group(2));
-            }
+            final RecursiveEpubSearch epubSearch = new RecursiveEpubSearch();
+            Files.walkFileTree(root, epubSearch);
+            librosDownload = epubSearch.getEpubs();
             //Comprueba que hay libros descargados.
             if (librosDownload.size() > 0) {
                 for (int i = 0; i < librosDB.size(); i++) {
@@ -90,6 +90,8 @@ public class RootLayoutController implements CommonStrings {
             }
         } catch (SQLException | ClassNotFoundException e) {
             main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
