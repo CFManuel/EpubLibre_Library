@@ -68,7 +68,7 @@ public class RootLayoutController implements CommonStrings {
         final DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Carpeta con ePubs.");
         final Path root = Paths.get(directoryChooser.showDialog(main.getPrimaryStage()).getAbsolutePath());
-
+        main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         final String[] busqueda = new String[6];
         ArrayList<Libro> librosDownload;
 
@@ -80,7 +80,6 @@ public class RootLayoutController implements CommonStrings {
 
             Files.walkFileTree(root, epubSearch);
             librosDownload = epubSearch.getEpubs();
-            System.out.print(librosDB.size() + " - " + librosDownload.size() + " = ");
             BiFunction<Libro, ArrayList<Libro>, Integer> cmp = (l1, l2) -> {
                 for (int i = 0; i < l2.size(); i++) {
                     if (l1.getTitulo().equalsIgnoreCase(l2.get(i).getTitulo()) && l1.getAutor().equalsIgnoreCase(l2.get(i).getAutor()) && l1.getRevision().equals(l2.get(i).getRevision())) {
@@ -94,16 +93,17 @@ public class RootLayoutController implements CommonStrings {
                 librosDownload.forEach(libro -> {
                     int num;
                     if ((num = cmp.apply(libro, librosDB)) != -1) librosDB.remove(num);
-
                 });
+                MainTableViewController.libros.clear();
+                MainTableViewController.libros.addAll(librosDB);
             }
-            System.out.println(librosDB.size());
         } catch (SQLException | ClassNotFoundException | IOException e) {
+            main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
             e.printStackTrace();
-
         }
-
+        main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
     }
+
     @FXML
     private void checkByName() {
         final DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -131,10 +131,8 @@ public class RootLayoutController implements CommonStrings {
                 MainTableViewController.libros.clear();
                 MainTableViewController.libros.addAll(librosDB);
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | IOException e) {
             main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);

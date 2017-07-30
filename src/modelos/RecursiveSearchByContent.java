@@ -34,6 +34,7 @@ public class RecursiveSearchByContent implements FileVisitor<Path>, CommonString
     private final Pattern pattern = Pattern.compile("<p class=\"tautor\">(.+?)<\\/p>[\\s\\S]*<h1 class=\"ttitulo\">(.+?)<\\/h1>[\\s\\S]*<p class=\"trevision\">ePub r(\\d+?\\.\\d+?)<\\/p>");
     private final PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:*.{epub}"); //Busca ficheros con extensión
     private ArrayList<Libro> epubs = new ArrayList<>(); //Se almacenan los libros
+    private int numEpub = 0;
 
     @Override
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
@@ -57,8 +58,9 @@ public class RecursiveSearchByContent implements FileVisitor<Path>, CommonString
                         epubs.add(
                                 new Libro().setTitulo(matcher.group(2).replaceAll("&amp;", "&"))
                                         .setAutor(matcher.group(1).replaceAll("&amp;", "&"))
-                                        .setRevision(Double.parseDouble(matcher.group(3)))
-                        );
+                                        .setRevision(Double.parseDouble(matcher.group(3))));
+                        this.numEpub++;
+
                     }
                 }
             } catch (IOException e) {
@@ -87,5 +89,9 @@ public class RecursiveSearchByContent implements FileVisitor<Path>, CommonString
 
     public ArrayList<Libro> getEpubs() {
         return epubs;
+    }
+
+    public int getNumEpub() {
+        return numEpub;
     }
 }
