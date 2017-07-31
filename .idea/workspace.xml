@@ -9,7 +9,6 @@
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelos/RecursiveSearchByContent.java" afterPath="$PROJECT_DIR$/src/modelos/RecursiveSearchByContent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" afterPath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -125,7 +124,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainTableViewController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainTableViewController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="193">
@@ -150,11 +149,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RecursiveSearchByContent.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RecursiveSearchByContent.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/modelos/RecursiveSearchByContent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="57" column="48" lean-forward="true" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="48" />
+            <state relative-caret-position="447">
+              <caret line="99" column="1" lean-forward="true" selection-start-line="99" selection-start-column="1" selection-end-line="99" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -255,8 +254,8 @@
         <option value="$PROJECT_DIR$/src/modelos/RecursiveSearchByName.java" />
         <option value="$PROJECT_DIR$/src/modelos/CommonStrings.java" />
         <option value="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" />
-        <option value="$PROJECT_DIR$/src/modelos/RecursiveSearchByContent.java" />
         <option value="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
+        <option value="$PROJECT_DIR$/src/modelos/RecursiveSearchByContent.java" />
       </list>
     </option>
   </component>
@@ -1022,14 +1021,7 @@
       <workItem from="1501430561398" duration="2070000" />
       <workItem from="1501432656524" duration="34000" />
       <workItem from="1501435177953" duration="10276000" />
-      <workItem from="1501502359783" duration="1272000" />
-    </task>
-    <task id="LOCAL-00087" summary="Modify link for updates.">
-      <created>1501075533794</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1501075533796</updated>
+      <workItem from="1501502359783" duration="1308000" />
     </task>
     <task id="LOCAL-00088" summary="Modify configuration support to Dropbox.">
       <created>1501084128171</created>
@@ -1367,11 +1359,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501503151544</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Improve default sort by publicDate.">
+      <created>1501503649846</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1501503649846</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144748000" />
+    <option name="totallyTimeSpent" value="144784000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1507,7 +1506,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Added column for ePL ID." />
     <MESSAGE value="Added support for languaje search." />
     <MESSAGE value="Fixed support for languaje search." />
     <MESSAGE value="Added minimum size for bookCard." />
@@ -1532,7 +1530,8 @@
     <MESSAGE value="Fixed check by Name pattern." />
     <MESSAGE value="Added support for other epubBase" />
     <MESSAGE value="Default sort by publicDate." />
-    <option name="LAST_COMMIT_MESSAGE" value="Default sort by publicDate." />
+    <MESSAGE value="Improve default sort by publicDate." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve default sort by publicDate." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -2067,16 +2066,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelos/RecursiveSearchByContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="57" column="48" lean-forward="true" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -2114,6 +2103,16 @@
         <state relative-caret-position="193">
           <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelos/RecursiveSearchByContent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="99" column="1" lean-forward="true" selection-start-line="99" selection-start-column="1" selection-end-line="99" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
