@@ -28,14 +28,15 @@ public interface CommonStrings {
     String EPL_FORO = "ePL_foro";
     String NEWS = "Novedades";
     String DONWLOAD_LINK = "Dropbox_Jar";
+
     String LAST_UPDATE = "LAST_UPDATE";
     String VISIBLE_COLUMNS = "VISIBLE_COLUMNS";
     String ORDER_COLUMNS = "ORDER_COLUMNS";
     String WIDTH_COLUMNS = "WIDTH_COLUMNS";
     String WIDTH_WINDOW = "WIDTH_WINDOW";
     String HEIGHT_WINDOW = "HEIGHT_WINDOW";
-    String CSV_URL = "https://epublibre.org/rssweb/csv";
-    //Main.getLocation() para apuntar a la carpeta epl del jar
+    String LAST_SEARCH = "LAST_SEARCH";
+
     String CSV_NAME = "csv_full_imgs.csv";
     String PATTERN_A = "[àáâä]";
     String PATTERN_E = "[èéêë]";

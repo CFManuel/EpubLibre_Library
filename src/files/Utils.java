@@ -48,7 +48,7 @@ public class Utils implements CommonStrings {
     public static File downloadCSVfromEPL() {
         File destino = null;
         try {
-            URL url = new URL(CSV_URL);
+            URL url = new URL("https://epublibre.org/rssweb/csv");
             URLConnection conn = url.openConnection();
             conn.setRequestProperty(
                     "User-Agent",
