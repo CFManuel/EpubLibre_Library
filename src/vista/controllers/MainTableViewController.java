@@ -174,6 +174,7 @@ public class MainTableViewController implements CommonStrings {
             libros = getDatas.getLibros(busqueda);
             MainTableViewController.libros.clear();
             MainTableViewController.libros.addAll(libros);
+            InsertDatas.insertConfig(CommonStrings.LAST_SEARCH, Arrays.toString(busqueda));
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -420,6 +421,16 @@ public class MainTableViewController implements CommonStrings {
             for (int anOrder : order) {
                 columns.add(unchangedColumns.get(anOrder));
             }
+        }
+        try {
+            String lastSearch = GetDatas.getConfig(CommonStrings.LAST_SEARCH);
+            if (!lastSearch.equalsIgnoreCase("")) {
+                GetDatas getDatas = new GetDatas();
+                libros.clear();
+                libros.addAll(getDatas.getLibros(lastSearch.replaceAll("[\\s\\[\\]]+", "").split(",")));
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            //first execution.
         }
     }
 
