@@ -108,11 +108,10 @@ public class MainTableViewController implements CommonStrings {
 
     @FXML
     private void initialize() {
-        libros.addListener(new ListChangeListener<Libro>() {
-            @Override
-            public void onChanged(Change<? extends Libro> change) {
-                labelBookFound.setText(String.valueOf(libros.size()) + " Libros");
-            }
+        libros.addListener((ListChangeListener<Libro>) change -> {
+            labelBookFound.setText(String.valueOf(libros.size()) + " Libros");
+            if (change.next() && change.wasAdded())
+                bookTableView.getSortOrder().add(publiDateColumn); //Se ordena por esa columna.
         });
         configTable();
         //Deshabilita el botón de opciones si se pulsa "buscar en tabla".
@@ -173,10 +172,8 @@ public class MainTableViewController implements CommonStrings {
         busqueda[5] = (idioma.equalsIgnoreCase("todos")) ? "%" : idioma;
         try {
             libros = getDatas.getLibros(busqueda);
-            publiDateColumn.setSortType(TableColumn.SortType.DESCENDING);
             MainTableViewController.libros.clear();
             MainTableViewController.libros.addAll(libros);
-            bookTableView.getSortOrder().add(publiDateColumn);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -246,6 +243,7 @@ public class MainTableViewController implements CommonStrings {
                 cellData -> new SimpleIntegerProperty(cellData.getValue().getN_votos()));
         publiDateColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getPublicado()));
+        publiDateColumn.setSortType(TableColumn.SortType.DESCENDING); //Se establece el tipo de ordenación.
 
 
         volColumn.getStyleClass().add("alineacion-derecha");
