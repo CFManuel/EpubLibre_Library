@@ -169,7 +169,7 @@ public final class UpdateDB implements CommonStrings {
 
                 int dias = antiguedad.getDays();
                 //Actualiza si ha pasado un día de diferencia y son más de las 4.
-                actualizar = dias >= 1 && now.hourOfDay().get() >= 4;
+                actualizar = (dias >= 1 && now.hourOfDay().get() >= 4);
             }
         } catch (SQLException | ClassNotFoundException e) {
             //no update

@@ -9,7 +9,7 @@
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/UpdateDB.java" afterPath="$PROJECT_DIR$/src/controller/UpdateDB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/Main.java" afterPath="$PROJECT_DIR$/src/vista/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelos/CommonStrings.java" afterPath="$PROJECT_DIR$/src/modelos/CommonStrings.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,83 +102,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CommonStrings.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelos/CommonStrings.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/vista/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="135" column="33" lean-forward="false" selection-start-line="135" selection-start-column="33" selection-end-line="135" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Csv.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/parser/Csv.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="94" column="44" lean-forward="false" selection-start-line="94" selection-start-column="44" selection-end-line="94" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="libros" pinned="false" current-in-tab="false">
-        <entry file="das://table:/3ca7bae5/7010690c-c718-4925-9bbb-92b51760de25/main.libros">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UpdateDB.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/UpdateDB.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1248">
-              <caret line="159" column="49" lean-forward="false" selection-start-line="159" selection-start-column="49" selection-end-line="159" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RootLayoutController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="208" column="21" lean-forward="false" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="21" />
-              <folding>
-                <element signature="e#5669#5674#0" expanded="false" />
-                <element signature="method#importDataSource#0;class#RootLayoutController#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7010690c-c718-4925-9bbb-92b51760de25/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="40" lean-forward="false" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CONFIG" pinned="false" current-in-tab="false">
         <entry file="das://table:/3ca7bae5/7010690c-c718-4925-9bbb-92b51760de25/main.CONFIG">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="130" column="35" lean-forward="false" selection-start-line="130" selection-start-column="35" selection-end-line="130" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommonStrings.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/modelos/CommonStrings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -332,6 +280,13 @@
               <item name="EpubLibre_Library" type="462c0819:PsiDirectoryNode" />
               <item name="out" type="462c0819:PsiDirectoryNode" />
               <item name="production" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EpubLibre_Library" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EpubLibre_Library" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="epl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="EpubLibre_Library" type="b2602c69:ProjectViewProjectNode" />
@@ -1034,14 +989,7 @@
       <workItem from="1501435177953" duration="10276000" />
       <workItem from="1501502359783" duration="4033000" />
       <workItem from="1501510162039" duration="49000" />
-      <workItem from="1501513149975" duration="1347000" />
-    </task>
-    <task id="LOCAL-00092" summary="Version 1.1.">
-      <created>1501086676343</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1501086676343</updated>
+      <workItem from="1501513149975" duration="1835000" />
     </task>
     <task id="LOCAL-00093" summary="Improved move of focus table and delete hardcode links.">
       <created>1501090202442</created>
@@ -1379,11 +1327,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501506478480</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="Fixed minor bugs.">
+      <created>1501514515148</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1501514515148</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148905000" />
+    <option name="totallyTimeSpent" value="149393000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1414,7 +1369,7 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18283582" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33260393" sideWeight="0.49203822" order="12" side_tool="false" content_ui="tabs" x="759" y="211" width="402" height="618" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20309168" sideWeight="0.49203822" order="12" side_tool="false" content_ui="tabs" x="759" y="211" width="402" height="618" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1520,7 +1475,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Fixed sql fail with languaje." />
     <MESSAGE value="Added direct shortcut for books with multirevision." />
     <MESSAGE value="Delete support for manual update from csv." />
     <MESSAGE value="Update once time of day and after of 4 o'clock." />
@@ -1545,7 +1499,8 @@
     <MESSAGE value="Update config to static method." />
     <MESSAGE value="Code clean up." />
     <MESSAGE value="Added recover search in init." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added recover search in init." />
+    <MESSAGE value="Fixed minor bugs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bugs." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -2053,14 +2008,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/files/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -2070,13 +2017,6 @@
       </provider>
     </entry>
     <entry file="das://table:/3ca7bae5/7010690c-c718-4925-9bbb-92b51760de25/main.libros">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/3ca7bae5/7010690c-c718-4925-9bbb-92b51760de25/main.CONFIG">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -2102,22 +2042,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelos/CommonStrings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/UpdateDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
-          <caret line="159" column="49" lean-forward="false" selection-start-line="159" selection-start-column="49" selection-end-line="159" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parser/Csv.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="317">
@@ -2126,10 +2050,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/files/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="94" column="55" lean-forward="true" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="135" column="33" lean-forward="false" selection-start-line="135" selection-start-column="33" selection-end-line="135" selection-end-column="33" />
+        <state relative-caret-position="202">
+          <caret line="130" column="35" lean-forward="false" selection-start-line="130" selection-start-column="35" selection-end-line="130" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/UpdateDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="171" column="70" lean-forward="false" selection-start-line="171" selection-start-column="70" selection-end-line="171" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/3ca7bae5/7010690c-c718-4925-9bbb-92b51760de25/main.CONFIG">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelos/CommonStrings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
           <folding />
         </state>
       </provider>
