@@ -173,8 +173,10 @@ public class MainTableViewController implements CommonStrings {
         busqueda[5] = (idioma.equalsIgnoreCase("todos")) ? "%" : idioma;
         try {
             libros = getDatas.getLibros(busqueda);
+            publiDateColumn.setSortType(TableColumn.SortType.DESCENDING);
             MainTableViewController.libros.clear();
             MainTableViewController.libros.addAll(libros);
+            bookTableView.getSortOrder().add(publiDateColumn);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
