@@ -172,8 +172,9 @@
                     <children>
                         <Button mnemonicParsing="false" onAction="#ok" prefHeight="25.0" prefWidth="56.0" text="Ok"
                                 GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                        <Button mnemonicParsing="false" onAction="#download" prefHeight="25.0" prefWidth="93.0"
-                                text="Descargar" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Button mnemonicParsing="false" onAction="#download" onContextMenuRequested="#copyToClipboard"
+                                prefHeight="25.0" prefWidth="93.0" text="Descargar" GridPane.columnIndex="1"
+                                GridPane.rowIndex="3"/>
                     </children>
                 </HBox>
                 <TextArea fx:id="tfSinopsis" editable="false" prefHeight="235.0" prefWidth="448.0"

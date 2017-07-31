@@ -28,6 +28,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import modelos.CommonStrings;
 import modelos.Libro;
@@ -210,6 +212,18 @@ public class BookViewer implements CommonStrings {
     @FXML
     private void download() {
         Utils.launchTorrent(this.libro);
+    }
+
+    @FXML
+    private void copyToClipboard() {
+        final ClipboardContent content = new ClipboardContent();
+        content.putString(String.format("%s&dn=ePL_[%d]_%s",
+                libro.getEnlaces(),
+                libro.getEpl_id(),
+                libro.getTitulo()
+                        .replaceAll("\\s", "_")
+                        .replaceAll("[´`\"\']", "")));
+        Clipboard.getSystemClipboard().setContent(content);
     }
 
     /**

@@ -169,7 +169,7 @@ public class MainTableViewController implements CommonStrings {
         busqueda[3] = cbGenero.isSelected() ? search : "";
         busqueda[4] = cbSinopsis.isSelected() ? search : "";
         String idioma = cbIdiomas.getSelectionModel().getSelectedItem();
-        busqueda[5] = (idioma.equalsIgnoreCase("todos")) ? "%" : idioma;
+        busqueda[5] = (idioma == null || idioma.equalsIgnoreCase("todos")) ? "%" : idioma;
         try {
             libros = getDatas.getLibros(busqueda);
             MainTableViewController.libros.clear();
