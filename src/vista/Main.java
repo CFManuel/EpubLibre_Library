@@ -95,11 +95,10 @@ public class Main extends Application implements CommonStrings {
         this.primaryStage.getIcons().add(new Image("vista/resources/images/EPL_Portadas_NEGRO.png"));
         //Restaurar último tamaño
         try {
-            GetDatas getDatas = new GetDatas();
             this.primaryStage.setWidth(
-                    Double.parseDouble(getDatas.getConfig(CommonStrings.WIDTH_WINDOW)));
+                    Double.parseDouble(GetDatas.getConfig(CommonStrings.WIDTH_WINDOW)));
             this.primaryStage.setHeight(
-                    Double.parseDouble(getDatas.getConfig(CommonStrings.HEIGHT_WINDOW)));
+                    Double.parseDouble(GetDatas.getConfig(CommonStrings.HEIGHT_WINDOW)));
         } catch (Exception e) {
             //Empty value
         }
@@ -108,9 +107,9 @@ public class Main extends Application implements CommonStrings {
                 .widthProperty()
                 .addListener(
                         (observableValue, number, t1) -> {
-                            InsertDatas insertDatas = new InsertDatas();
+
                             try {
-                                insertDatas.insertConfig(
+                                InsertDatas.insertConfig(
                                         CommonStrings.WIDTH_WINDOW, String.valueOf(t1));
                             } catch (Exception e) { //empty]
                             }
@@ -119,9 +118,8 @@ public class Main extends Application implements CommonStrings {
                 .heightProperty()
                 .addListener(
                         (observableValue, number, t1) -> {
-                            InsertDatas insertDatas = new InsertDatas();
                             try {
-                                insertDatas.insertConfig(
+                                InsertDatas.insertConfig(
                                         CommonStrings.HEIGHT_WINDOW, String.valueOf(t1));
                             } catch (Exception e) { //empty]
                             }
@@ -138,10 +136,10 @@ public class Main extends Application implements CommonStrings {
         new Thread(task).start();
         initRootLayout();
         initMainTableView();
-
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         Utils.crearEPL();
         new ConnectorHelper().crearTabla();
+        //todo: realizar última búsqueda
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
     }
 

@@ -29,6 +29,25 @@ import java.sql.SQLException;
 
 public class InsertDatas extends ConnectorHelper implements CommonStrings {
     /**
+     * Inserta o reemplaza un valor de configuración siguiendo un modelo Key -> Value.
+     *
+     * @param id    Clave del registro.
+     * @param value Valor del registro.
+     * @throws SQLException           Error en la db.
+     * @throws ClassNotFoundException Error en el driver.
+     */
+    public static void insertConfig(String id, String value) throws SQLException, ClassNotFoundException {
+        String sql = "REPLACE INTO CONFIG(TEXT_ID, DATASTRING) VALUES(?,?)";
+        InsertDatas insertDatas = new InsertDatas();
+        insertDatas.conectar();
+        PreparedStatement ps = insertDatas.conn.prepareStatement(sql);
+        ps.setString(1, id);
+        ps.setString(2, value);
+        ps.execute();
+        insertDatas.desconectar();
+    }
+
+    /**
      * Inserta un libro en la base de datos si no existe ninguno con la misma revisión.
      *
      * @param libro Libro con datos que se desea insertar.
@@ -85,25 +104,6 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, LAST_UPDATE);
         ps.setString(2, format.print(now));
-        ps.execute();
-        super.desconectar();
-    }
-
-    /**
-     * Inserta o reemplaza un valor de configuración siguiendo un modelo Key -> Value.
-     *
-     * @param id    Clave del registro.
-     * @param value Valor del registro.
-     * @throws SQLException           Error en la db.
-     * @throws ClassNotFoundException Error en el driver.
-     */
-    public void insertConfig(String id, String value) throws SQLException, ClassNotFoundException {
-        String sql = "REPLACE INTO CONFIG(TEXT_ID, DATASTRING) VALUES(?,?)";
-
-        super.conectar();
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, id);
-        ps.setString(2, value);
         ps.execute();
         super.desconectar();
     }

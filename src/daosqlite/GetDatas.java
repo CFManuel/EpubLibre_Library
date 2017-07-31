@@ -259,17 +259,18 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      * @throws SQLException           Error en la db.
      * @throws ClassNotFoundException Error en el driver.
      */
-    public String getConfig(String id) throws SQLException, ClassNotFoundException {
+    public static String getConfig(String id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT DATASTRING FROM config WHERE upper(text_id) = upper(?)";
         String valor = "";
-        super.conectar();
-        PreparedStatement ps = conn.prepareStatement(sql);
+        GetDatas getDatas = new GetDatas();
+        getDatas.conectar();
+        PreparedStatement ps = getDatas.conn.prepareStatement(sql);
         ps.setString(1, id);
         ResultSet rst = ps.executeQuery();
         while (rst.next()) {
             valor = rst.getString("datastring");
         }
-        super.desconectar();
+        getDatas.desconectar();
         return valor;
     }
 

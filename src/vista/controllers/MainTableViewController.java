@@ -337,7 +337,7 @@ public class MainTableViewController implements CommonStrings {
 
                                     InsertDatas insertDatas = new InsertDatas();
                                     try {
-                                        insertDatas.insertConfig(
+                                        InsertDatas.insertConfig(
                                                 CommonStrings.ORDER_COLUMNS,
                                                 Arrays.toString(colOrder).replaceAll("\\s", ""));
                                     } catch (Exception e) {
@@ -359,9 +359,8 @@ public class MainTableViewController implements CommonStrings {
                                                     .widthProperty()
                                                     .getValue()
                                                     .intValue();
-                                InsertDatas insertDatas = new InsertDatas();
                                 try {
-                                    insertDatas.insertConfig(
+                                    InsertDatas.insertConfig(
                                             CommonStrings.WIDTH_COLUMNS, Arrays.toString(size));
                                 } catch (Exception e) {
                                     //empty
@@ -378,9 +377,8 @@ public class MainTableViewController implements CommonStrings {
                                     vista1[i] =
                                             unchangedColumns.get(i).visibleProperty().getValue();
                                 }
-                                InsertDatas insertDatas = new InsertDatas();
                                 try {
-                                    insertDatas.insertConfig(
+                                    InsertDatas.insertConfig(
                                             CommonStrings.VISIBLE_COLUMNS, Arrays.toString(vista1));
                                 } catch (Exception e) {
                                     //empty
@@ -391,14 +389,12 @@ public class MainTableViewController implements CommonStrings {
         Boolean[] vista = {};
         int[] order = {};
         int[] width = {};
-
-        GetDatas getDatas = new GetDatas();
         try {
-            order = stringToArray(getDatas.getConfig(CommonStrings.ORDER_COLUMNS));
-            width = stringToArray(getDatas.getConfig(CommonStrings.WIDTH_COLUMNS));
+            order = stringToArray(GetDatas.getConfig(CommonStrings.ORDER_COLUMNS));
+            width = stringToArray(GetDatas.getConfig(CommonStrings.WIDTH_COLUMNS));
             vista =
                     Arrays.stream(
-                            getDatas.getConfig(CommonStrings.VISIBLE_COLUMNS)
+                            GetDatas.getConfig(CommonStrings.VISIBLE_COLUMNS)
                                     .replaceAll("[\\s\\[\\]]+", "")
                                     .split(","))
                             .map(Boolean::parseBoolean)
