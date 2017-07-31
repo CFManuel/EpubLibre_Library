@@ -143,7 +143,9 @@ public final class UpdateDB implements CommonStrings {
         try {
             String version = Main.getConfiguracion().get(VERSION_CHECK);
             if (version != null) bool = version.equalsIgnoreCase(VERSION);
-        } catch (Exception e) {/*empty*/}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return !bool;
     }
 
@@ -153,14 +155,11 @@ public final class UpdateDB implements CommonStrings {
      * @return True si hay que actualizar.
      */
     public static boolean checkDBage() {
-        boolean actualizar = false;
+        boolean actualizar = true;
         try {
             GetDatas getDatas = new GetDatas(); //Optiene la fecha de la base
             String lastDate = getDatas.getLastUpdate();
-            if (lastDate.equalsIgnoreCase("")) {
-                updateDate();
-                updateDataBase();
-            } else {
+            if (!lastDate.equalsIgnoreCase("")) {
                 //Marca el dia de actual.
                 DateTime now = new DateTime();
                 DateTimeFormatter format = DateTimeFormat.forPattern("dd/MM/yyyy");
@@ -170,7 +169,7 @@ public final class UpdateDB implements CommonStrings {
 
                 int dias = antiguedad.getDays();
                 //Actualiza si ha pasado un día de diferencia y son más de las 4.
-                if (dias >= 1 && now.hourOfDay().get() >= 4) actualizar = true;
+                actualizar = dias >= 1 && now.hourOfDay().get() >= 4;
             }
         } catch (SQLException | ClassNotFoundException e) {
             //no update

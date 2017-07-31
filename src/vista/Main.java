@@ -136,11 +136,11 @@ public class Main extends Application implements CommonStrings {
         new Thread(task).start();
         initRootLayout();
         initMainTableView();
-        main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
+        this.primaryStage.getScene().setCursor(Cursor.WAIT);
         Utils.crearEPL();
         new ConnectorHelper().crearTabla();
         //todo: realizar última búsqueda
-        main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
+        this.primaryStage.getScene().setCursor(Cursor.DEFAULT);
     }
 
     /**
