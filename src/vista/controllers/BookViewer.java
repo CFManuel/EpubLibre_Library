@@ -76,6 +76,7 @@ public class BookViewer implements CommonStrings {
     private ImageView imgView;
     private int position;
     private Thread loadImg;
+
     public BookViewer(Libro libro, int pos) {
         this.libro = libro;
         this.position = pos;
@@ -90,6 +91,7 @@ public class BookViewer implements CommonStrings {
         if (position != 0) {
             position--;
             this.libro = MainTableViewController.libros.get(position);
+            configComboBox();
             drawArrows();
             drawBook();
 
@@ -107,6 +109,7 @@ public class BookViewer implements CommonStrings {
         if (maxPos != position) {
             position++;
             this.libro = MainTableViewController.libros.get(position);
+            configComboBox();
             drawArrows();
             drawBook();
         }
@@ -115,6 +118,7 @@ public class BookViewer implements CommonStrings {
     private void interruptThread() {
         if (this.loadImg.isAlive()) this.loadImg.interrupt();
     }
+
     /**
      * Modifica la opacidad de las flechas de navegación según su posición.
      */
@@ -129,24 +133,31 @@ public class BookViewer implements CommonStrings {
 
     }
 
+    private void configComboBox() {
+        cbRevision.setItems(FXCollections.observableArrayList(libro.getRevArray()));
+        cbRevision.getSelectionModel().selectFirst();
+    }
+
     /**
      * Carga los datos en sus respectivos componentes.
      */
     @FXML
     private void initialize() {
-        cbRevision.setItems(FXCollections.observableArrayList(libro.getRevArray()));
         drawArrows();
         drawBook();
+        configComboBox();
         //Listener para cargar el libro correspondiente a la revisión seleccionada.
         cbRevision.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
             //t1 es el index del choiceBox.
             GetDatas getDatas = new GetDatas();
             try {
+
                 libro = getDatas.getLibro(this.libro.getEpl_id(), (Double) cbRevision.getItems().get((Integer) t1));
                 libro.setRevArray(this.libro.getRevArray());
                 drawBook();
-            } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
+
+            } catch (SQLException | ClassNotFoundException | ArrayIndexOutOfBoundsException e) {
+                //Error de mierda.
             }
         });
     }
@@ -163,7 +174,6 @@ public class BookViewer implements CommonStrings {
         tfVolumen.setText(String.valueOf(libro.getVolumen()));
         tfGeneros.setText(libro.getGeneros());
         tfIdioma.setText(libro.getIdioma());
-        cbRevision.setValue(cbRevision.getItems().get(0));
         tfYear.setText(String.valueOf(libro.getFecha_publi()));
         tfPages.setText(String.valueOf(libro.getPaginas()));
         tfValoracion.setText(String.valueOf(libro.getValoracion()));
