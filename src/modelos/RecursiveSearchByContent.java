@@ -32,9 +32,9 @@ import java.util.zip.ZipFile;
 
 public class RecursiveSearchByContent implements FileVisitor<Path>, CommonStrings {
     private final Pattern pattern1 =
-            Pattern.compile("<p class=\"tautor\"><code class=\"sans\">(.+?)<\\/code><\\/p>[\\s\\S]*<h1 class=\"ttitulo\"[\\s\\S]*><strong class=\"sans\">(.+?)<\\/strong><\\/h1>[\\s\\S]*<p class=\"trevision\"><strong class=\"sans\">ePub r(\\d\\.\\d)<\\/strong><\\/p>");
+            Pattern.compile(EPUB_BASE_1);
     private final Pattern pattern2 =
-            Pattern.compile("<p class=\"tautor\">(.+?)<\\/p>[\\s\\S]*<h1 class=\"ttitulo\">(.+?)<\\/h1>[\\s\\S]*<p class=\"trevision\">ePub r(\\d+?\\.\\d+?)<\\/p>");
+            Pattern.compile(EPUB_BASE_2);
     private final PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:*.{epub}"); //Busca ficheros con extensión
     private ArrayList<Libro> epubs = new ArrayList<>(); //Se almacenan los libros
 
