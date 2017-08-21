@@ -45,4 +45,6 @@ public interface CommonStrings {
     String PATTERN_U = "[úùûü]";
     String PATTERN_FOR_PARAGRAPH = "(.[\\.!?])([A-Z«¿¡—])";
     String PATTERN_FOR_IDREV = "\\[(\\d+)].*?\\((r\\d.\\d)(.+)?\\)";
+    String EPUB_BASE_1 = "<p class=\"tautor\"><code class=\"sans\">(.+?)<\\/code><\\/p>[\\s\\S]*<h1 class=\"ttitulo\"[\\s\\S]*><strong class=\"sans\">(.+?)<\\/strong><\\/h1>[\\s\\S]*<p class=\"trevision\"><strong class=\"sans\">ePub r(\\d\\.\\d)<\\/strong><\\/p>";
+    String EPUB_BASE_2 = "<p class=\"tautor\">(.+?)<\\/p>[\\s\\S]*<h1 class=\"ttitulo\">(.+?)<\\/h1>[\\s\\S]*<p class=\"trevision\">ePub r(\\d+?\\.\\d+?)<\\/p>";
 }

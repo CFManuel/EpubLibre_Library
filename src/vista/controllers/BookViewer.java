@@ -34,11 +34,14 @@ import javafx.stage.Stage;
 import modelos.CommonStrings;
 import modelos.Libro;
 
+import java.awt.*;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.sql.SQLException;
-
 
 public class BookViewer implements CommonStrings {
     private Libro libro;
@@ -94,14 +97,10 @@ public class BookViewer implements CommonStrings {
             configComboBox();
             drawArrows();
             drawBook();
-
         }
-
     }
 
-    /**
-     * Coge el siguiente libro de la lista y lo muestra.
-     */
+    /** Coge el siguiente libro de la lista y lo muestra. */
     @FXML
     private void nextBook() {
         interruptThread();
@@ -119,9 +118,7 @@ public class BookViewer implements CommonStrings {
         if (this.loadImg.isAlive()) this.loadImg.interrupt();
     }
 
-    /**
-     * Modifica la opacidad de las flechas de navegación según su posición.
-     */
+    /** Modifica la opacidad de las flechas de navegación según su posición. */
     private void drawArrows() {
         int maxPos = MainTableViewController.libros.size() - 1;
         double nextOpacity = (maxPos == position) ? 0.5 : 1;
@@ -129,8 +126,6 @@ public class BookViewer implements CommonStrings {
         MainTableViewController.focusROW.set(position);
         nextArrow.setOpacity(nextOpacity);
         backArrow.setOpacity(backOpacity);
-
-
     }
 
     private void configComboBox() {
@@ -138,34 +133,48 @@ public class BookViewer implements CommonStrings {
         cbRevision.getSelectionModel().selectFirst();
     }
 
-    /**
-     * Carga los datos en sus respectivos componentes.
-     */
+    /** Carga los datos en sus respectivos componentes. */
     @FXML
     private void initialize() {
         drawArrows();
         drawBook();
         configComboBox();
         //Listener para cargar el libro correspondiente a la revisión seleccionada.
-        cbRevision.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
-            //t1 es el index del choiceBox.
-            GetDatas getDatas = new GetDatas();
-            try {
+        cbRevision
+                .getSelectionModel()
+                .selectedIndexProperty()
+                .addListener(
+                        (observableValue, number, t1) -> {
+                            //t1 es el index del choiceBox.
+                            GetDatas getDatas = new GetDatas();
+                            try {
 
-                libro = getDatas.getLibro(this.libro.getEpl_id(), (Double) cbRevision.getItems().get((Integer) t1));
-                libro.setRevArray(this.libro.getRevArray());
-                drawBook();
+                                libro =
+                                        getDatas.getLibro(
+                                                this.libro.getEpl_id(),
+                                                (Double) cbRevision.getItems().get((Integer) t1));
+                                libro.setRevArray(this.libro.getRevArray());
+                                drawBook();
 
-            } catch (SQLException | ClassNotFoundException | ArrayIndexOutOfBoundsException e) {
-                //Error de mierda.
-            }
-        });
+                            } catch (SQLException
+                                    | ClassNotFoundException
+                                    | ArrayIndexOutOfBoundsException e) {
+                                //Error de mierda.
+                            }
+                        });
     }
 
-    /**
-     * Rellena los campos con la información del libro indicado.
-     */
+    @FXML
+    private void openePLWeb() {
+        String web = String.format("https://www.epublibre.org/libro/detalle/%d", libro.getEpl_id());
+        try {
+            Desktop.getDesktop().browse(new URI(web));
+        } catch (URISyntaxException | IOException e) {
+            Alertas.stackTraceAlert(e);
+        }
+    }
 
+    /** Rellena los campos con la información del libro indicado. */
     private void drawBook() {
         tfSinopsis.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         tfTitulo.setText(libro.getTitulo());
@@ -178,7 +187,6 @@ public class BookViewer implements CommonStrings {
         tfPages.setText(String.valueOf(libro.getPaginas()));
         tfValoracion.setText(String.valueOf(libro.getValoracion()));
 
-
         tfSinopsis.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
         libro.setSinopsis(libro.getSinopsis().replaceAll(PATTERN_FOR_PARAGRAPH, "$1\n\n$2"));
         tfSinopsis.setText(libro.getSinopsis());
@@ -186,19 +194,21 @@ public class BookViewer implements CommonStrings {
 
         try {
             Image image = null;
-            Task loadImage = new Task() {
-                @Override
-                protected Image call() throws Exception {
-                    URLConnection conn = new URL(libro.getImgURI()).openConnection();
-                    conn.setRequestProperty("User-Agent", USER_AGENT);
+            Task loadImage =
+                    new Task() {
+                        @Override
+                        protected Image call() throws Exception {
+                            URLConnection conn = new URL(libro.getImgURI()).openConnection();
+                            conn.setRequestProperty("User-Agent", USER_AGENT);
 
-                    try (InputStream stream = conn.getInputStream()) {
-                        return new Image(stream);
-                    }
-                }
-            };
+                            try (InputStream stream = conn.getInputStream()) {
+                                return new Image(stream);
+                            }
+                        }
+                    };
             loadImage.setOnSucceeded(e -> imgView.setImage((Image) loadImage.getValue()));
-            loadImage.setOnFailed(e -> imgView.setImage(new Image("vista/resources/images/no-image.png")));
+            loadImage.setOnFailed(
+                    e -> imgView.setImage(new Image("vista/resources/images/no-image.png")));
             this.loadImg = new Thread(loadImage);
             this.loadImg.start();
             imgView.setImage(image);
@@ -207,18 +217,13 @@ public class BookViewer implements CommonStrings {
         }
     }
 
-
-    /**
-     * Cierra el dialogo al pulsar el boton "OK".
-     */
+    /** Cierra el dialogo al pulsar el boton "OK". */
     @FXML
     private void ok() {
         dialogStage.close();
     }
 
-    /**
-     * Abre el URISchema correspondiente al magnetLink.
-     */
+    /** Abre el URISchema correspondiente al magnetLink. */
     @FXML
     private void download() {
         Utils.launchTorrent(this.libro);
@@ -227,12 +232,12 @@ public class BookViewer implements CommonStrings {
     @FXML
     private void copyToClipboard() {
         final ClipboardContent content = new ClipboardContent();
-        content.putString(String.format("%s&dn=ePL_[%d]_%s",
-                libro.getEnlaces(),
-                libro.getEpl_id(),
-                libro.getTitulo()
-                        .replaceAll("\\s", "_")
-                        .replaceAll("[´`\"\']", "")));
+        content.putString(
+                String.format(
+                        "%s&dn=ePL_[%d]_%s",
+                        libro.getEnlaces(),
+                        libro.getEpl_id(),
+                        libro.getTitulo().replaceAll("\\s", "_").replaceAll("[´`\"\']", "")));
         Clipboard.getSystemClipboard().setContent(content);
     }
 
