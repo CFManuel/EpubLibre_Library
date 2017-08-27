@@ -26,8 +26,8 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu fx:id="menuFile" mnemonicParsing="false" text="Archivo">
-                <MenuItem mnemonicParsing="false" onAction="#checkByName" text="Comprobar diferencia por nombre"/>
-                <MenuItem mnemonicParsing="false" onAction="#checkByContent" text="Comprobar diferencia por contenido"/>
+                <!--<MenuItem mnemonicParsing="false" onAction="#checkByName" text="Comprobar diferencia por nombre"/>-->
+                <!--<MenuItem mnemonicParsing="false" onAction="#checkByContent" text="Comprobar diferencia por contenido"/>-->
             </Menu>
             <Menu mnemonicParsing="false" text="Base de datos">
                 <MenuItem mnemonicParsing="false" onAction="#getLastUpdate" text="Información de la base de datos"/>

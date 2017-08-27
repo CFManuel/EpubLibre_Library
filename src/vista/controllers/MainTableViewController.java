@@ -471,8 +471,9 @@ public class MainTableViewController implements CommonStrings {
         for (int i = 0; i < 5; i++) {
             busqueda[i] = "";
         }
-        busqueda[2] = collection;
-        busqueda[5] = "todos";
+        busqueda[2] = search;
+        String idioma = cbIdiomas.getSelectionModel().getSelectedItem();
+        busqueda[5] = (idioma == null || idioma.equalsIgnoreCase("todos")) ? "%" : idioma;
         drawTable(busqueda);
         main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
     }
