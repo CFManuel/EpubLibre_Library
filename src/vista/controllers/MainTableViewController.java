@@ -103,16 +103,19 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private ComboBox<String> cbIdiomas;
 
-
     private ArrayList<Integer> visible_rows = new ArrayList<>();
 
     @FXML
     private void initialize() {
-        libros.addListener((ListChangeListener<Libro>) change -> {
-            labelBookFound.setText(String.valueOf(libros.size()) + " Libros");
-            if (change.next() && change.wasAdded())
-                bookTableView.getSortOrder().add(publiDateColumn); //Se ordena por esa columna.
-        });
+        libros.addListener(
+                (ListChangeListener<Libro>)
+                        change -> {
+                            labelBookFound.setText(String.valueOf(libros.size()) + " Libros");
+                            if (change.next() && change.wasAdded())
+                                bookTableView
+                                        .getSortOrder()
+                                        .add(publiDateColumn); //Se ordena por esa columna.
+                        });
         configTable();
         //Deshabilita el botón de opciones si se pulsa "buscar en tabla".
         cbSearchOnTable
@@ -160,8 +163,6 @@ public class MainTableViewController implements CommonStrings {
         String search = tfSearch.getText();
         search = String.format("%%%s%%", search);
         search = search.replaceAll("\\s", "%");
-        GetDatas getDatas = new GetDatas();
-        ArrayList<Libro> libros;
         String[] busqueda = new String[6];
         busqueda[0] = cbTitulo.isSelected() ? search : "";
         busqueda[1] = cbAutor.isSelected() ? search : "";
@@ -170,42 +171,33 @@ public class MainTableViewController implements CommonStrings {
         busqueda[4] = cbSinopsis.isSelected() ? search : "";
         String idioma = cbIdiomas.getSelectionModel().getSelectedItem();
         busqueda[5] = (idioma == null || idioma.equalsIgnoreCase("todos")) ? "%" : idioma;
-        try {
-            libros = getDatas.getLibros(busqueda);
-            MainTableViewController.libros.clear();
-            MainTableViewController.libros.addAll(libros);
-            InsertDatas.insertConfig(CommonStrings.LAST_SEARCH, Arrays.toString(busqueda));
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-
+        drawTable(busqueda);
     }
 
     @FXML
     private void multiDownload() {
         ObservableList<Libro> selectedItems = bookTableView.getSelectionModel().getSelectedItems();
         // selectedItems.forEach(Utils::launchTorrent);
-        Task launcher = new Task() {
-            @Override
-            protected Object call() throws Exception {
-                selectedItems.forEach(libro -> {
-                    Utils.launchTorrent(libro);
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(80);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+        Task launcher =
+                new Task() {
+                    @Override
+                    protected Object call() throws Exception {
+                        selectedItems.forEach(
+                                libro -> {
+                                    Utils.launchTorrent(libro);
+                                    try {
+                                        TimeUnit.MILLISECONDS.sleep(80);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                });
+                        return null;
                     }
-                });
-                return null;
-            }
-        };
+                };
         new Thread(launcher).start();
-
     }
 
-    /**
-     * Configuración de los campos de la tabla.
-     */
+    /** Configuración de los campos de la tabla. */
     private void configTable() {
         idiomas.clear();
         idiomas.add("Todos");
@@ -213,13 +205,17 @@ public class MainTableViewController implements CommonStrings {
         cbIdiomas.setItems(idiomas);
         cbIdiomas.getSelectionModel().select(3);
         //Cambia la linea seleccionada al moverse por la ficha del libro
-        focusROW.addListener((observableValue, number, t1) -> {
-            bookTableView.getSelectionModel().clearSelection();
-            bookTableView.getSelectionModel().select(t1.intValue());
-            bookTableView.getFocusModel().focus(t1.intValue());
-        });
-        bookTableView.getStylesheets().add(Main.class.getResource("/vista/resources/MenuButton.css").toExternalForm());
-        eplidColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEpl_id()));
+        focusROW.addListener(
+                (observableValue, number, t1) -> {
+                    bookTableView.getSelectionModel().clearSelection();
+                    bookTableView.getSelectionModel().select(t1.intValue());
+                    bookTableView.getFocusModel().focus(t1.intValue());
+                });
+        bookTableView
+                .getStylesheets()
+                .add(Main.class.getResource("/vista/resources/MenuButton.css").toExternalForm());
+        eplidColumn.setCellValueFactory(
+                cellData -> new SimpleIntegerProperty(cellData.getValue().getEpl_id()));
         titleColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
         autorColumn.setCellValueFactory(
@@ -244,8 +240,8 @@ public class MainTableViewController implements CommonStrings {
                 cellData -> new SimpleIntegerProperty(cellData.getValue().getN_votos()));
         publiDateColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getPublicado()));
-        publiDateColumn.setSortType(TableColumn.SortType.DESCENDING); //Se establece el tipo de ordenación.
-
+        publiDateColumn.setSortType(
+                TableColumn.SortType.DESCENDING); //Se establece el tipo de ordenación.
 
         volColumn.getStyleClass().add("alineacion-derecha");
         revColumn.getStyleClass().add("alineacion-derecha");
@@ -267,14 +263,18 @@ public class MainTableViewController implements CommonStrings {
                     ObservableList<Libro> selectedItems =
                             bookTableView.getSelectionModel().getSelectedItems();
                     if (event.getClickCount() > 1 && selectedItems.size() == 1) {
-                        main.launchBook(bookTableView.getSelectionModel().getSelectedItem(), bookTableView.getSelectionModel().getSelectedIndex());
+                        main.launchBook(
+                                bookTableView.getSelectionModel().getSelectedItem(),
+                                bookTableView.getSelectionModel().getSelectedIndex());
                     }
                 });
         bookTableView.addEventHandler(
                 KeyEvent.KEY_PRESSED,
                 keyEvent -> {
                     if (keyEvent.getCode() == KeyCode.ENTER) {
-                        main.launchBook(bookTableView.getSelectionModel().getSelectedItem(), bookTableView.getSelectionModel().getSelectedIndex());
+                        main.launchBook(
+                                bookTableView.getSelectionModel().getSelectedItem(),
+                                bookTableView.getSelectionModel().getSelectedIndex());
                     }
                 });
         final KeyCombination searchOnTableKeyCombination =
@@ -427,11 +427,54 @@ public class MainTableViewController implements CommonStrings {
             if (!lastSearch.equalsIgnoreCase("")) {
                 GetDatas getDatas = new GetDatas();
                 libros.clear();
-                libros.addAll(getDatas.getLibros(lastSearch.replaceAll("[\\s\\[\\]]+", "").split(",")));
+                libros.addAll(
+                        getDatas.getLibros(lastSearch.replaceAll("[\\s\\[\\]]+", "").split(",")));
             }
         } catch (ClassNotFoundException | SQLException e) {
             //first execution.
         }
+    }
+
+    private void drawTable(String[] busqueda) {
+        try {
+            GetDatas getDatas = new GetDatas();
+
+            ArrayList<Libro> libros = getDatas.getLibros(busqueda);
+            MainTableViewController.libros.clear();
+            MainTableViewController.libros.addAll(libros);
+            InsertDatas.insertConfig(CommonStrings.LAST_SEARCH, Arrays.toString(busqueda));
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void searchAutor(String autor) {
+        main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
+        String search = String.format("%%%s%%", autor);
+        search = search.replaceAll("\\s", "%");
+        String[] busqueda = new String[6];
+        for (int i = 0; i < 5; i++) {
+            busqueda[i] = "";
+        }
+        busqueda[1] = search;
+        String idioma = cbIdiomas.getSelectionModel().getSelectedItem();
+        busqueda[5] = (idioma == null || idioma.equalsIgnoreCase("todos")) ? "%" : idioma;
+        drawTable(busqueda);
+        main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
+    }
+
+    public void searchCollection(String collection) {
+        main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
+        String search = String.format("%%%s%%", collection);
+        search = search.replaceAll("\\s", "%");
+        String[] busqueda = new String[6];
+        for (int i = 0; i < 5; i++) {
+            busqueda[i] = "";
+        }
+        busqueda[2] = collection;
+        busqueda[5] = "todos";
+        drawTable(busqueda);
+        main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
     }
 
     public static class DateComparator implements Comparator<String> {

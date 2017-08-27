@@ -37,3 +37,10 @@
 .alineacion-izquierda {
     -fx-alignment: center-left;
 }
+
+.linked-label:hover {
+    -fx-font-size: 101%;
+    -fx-text-fill: blue;
+    -fx-font-weight: bold;
+    -fx-underline: true;
+}

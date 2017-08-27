@@ -47,6 +47,7 @@ import java.util.HashMap;
 public class Main extends Application implements CommonStrings {
     public static String appLocation;
     private static HashMap<String, String> configuracion = new HashMap<>();
+    private static MainTableViewController mainTableViewController;
 
     @SuppressWarnings("FieldCanBeLocal")
     private Main main;
@@ -163,30 +164,8 @@ public class Main extends Application implements CommonStrings {
         }
     }
 
-    /**
-     * Inicia la tabla de vista y busqueda de libros.
-     */
-    private void initMainTableView() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            // Se indica la situación del xml gráfico.
-            loader.setLocation(Main.class.getResource("resources/MainTableView.fxml"));
-            // Se carga el contenedor, en este caso un AnchorPane.
-            AnchorPane pane = loader.load();
-            // Se integra en la parte central del RootLayout.
-            pane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            rootLayout.setCenter(pane);
-            // Se indica el tamaño del root para que se ajuste a la vista de datos.
-            rootLayout.setPrefSize(pane.getWidth(), pane.getHeight());
-            // Se relaciona el controlador.
-            MainTableViewController controller = loader.getController();
-            // Se le entrega la instancia del Main al controlador.
-            controller.setMain(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Alertas.stackTraceAlert(e);
-            throw new RuntimeException(e);
-        }
+    public static MainTableViewController getMainTableViewController() {
+        return mainTableViewController;
     }
 
     /**
@@ -211,6 +190,32 @@ public class Main extends Application implements CommonStrings {
             controller.setDialogStage(dialogStage);
             controller.setLibro(libro);
             dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alertas.stackTraceAlert(e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Inicia la tabla de vista y busqueda de libros.
+     */
+    private void initMainTableView() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            // Se indica la situación del xml gráfico.
+            loader.setLocation(Main.class.getResource("resources/MainTableView.fxml"));
+            // Se carga el contenedor, en este caso un AnchorPane.
+            AnchorPane pane = loader.load();
+            // Se integra en la parte central del RootLayout.
+            pane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            rootLayout.setCenter(pane);
+            // Se indica el tamaño del root para que se ajuste a la vista de datos.
+            rootLayout.setPrefSize(pane.getWidth(), pane.getHeight());
+            // Se relaciona el controlador.
+            mainTableViewController = loader.getController();
+            // Se le entrega la instancia del Main al controlador.
+            mainTableViewController.setMain(this);
         } catch (IOException e) {
             e.printStackTrace();
             Alertas.stackTraceAlert(e);

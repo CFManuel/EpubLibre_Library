@@ -37,7 +37,6 @@ import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
-
 public class Utils implements CommonStrings {
     /**
      * Descarga el .zip de la página oficial de EpubLibre
@@ -50,9 +49,7 @@ public class Utils implements CommonStrings {
         try {
             URL url = new URL("https://epublibre.org/rssweb/csv");
             URLConnection conn = url.openConnection();
-            conn.setRequestProperty(
-                    "User-Agent",
-                    USER_AGENT);
+            conn.setRequestProperty("User-Agent", USER_AGENT);
             conn.connect();
             destino = new File(Main.getLocation() + "epub.zip");
             FileUtils.copyInputStreamToFile(conn.getInputStream(), destino);
@@ -132,7 +129,6 @@ public class Utils implements CommonStrings {
         for (File file : forDelete) {
             file.delete();
         }
-
     }
 
     public static void crearEPL() {
@@ -149,18 +145,18 @@ public class Utils implements CommonStrings {
      */
     public static void launchTorrent(Libro libro) {
         try {
-            URI magnetLink = new URI(String.format("%s&dn=ePL_[%d]_%s",
-                    libro.getEnlaces(),
-                    libro.getEpl_id(),
-                    libro.getTitulo()
-                            .replaceAll("\\s", "_")
-                            .replaceAll("[´`\"\']", ""))
-            );
+            URI magnetLink =
+                    new URI(
+                            String.format(
+                                    "%s&dn=ePL_[%d]_%s",
+                                    libro.getEnlaces(),
+                                    libro.getEpl_id(),
+                                    libro.getTitulo()
+                                            .replaceAll("\\s", "_")
+                                            .replaceAll("[´`\"\']", "")));
             URISchemeHandler uriSchemeHandler = new URISchemeHandler();
             uriSchemeHandler.open(magnetLink);
-
         } catch (URISyntaxException | CouldNotOpenUriSchemeHandler e) {
-            e.printStackTrace();
             Alertas.stackTraceAlert(e);
         }
     }

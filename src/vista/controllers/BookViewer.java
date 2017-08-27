@@ -33,6 +33,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import modelos.CommonStrings;
 import modelos.Libro;
+import vista.Main;
 
 import java.awt.*;
 import java.io.IOException;
@@ -174,6 +175,17 @@ public class BookViewer implements CommonStrings {
         }
     }
 
+    @FXML
+    private void searchAutor() {
+        Main.getMainTableViewController().searchAutor(tfAutor.getText());
+        dialogStage.close();
+    }
+
+    @FXML
+    private void searchCollection() {
+        Main.getMainTableViewController().searchCollection(tfColeccion.getText());
+        dialogStage.close();
+    }
     /** Rellena los campos con la información del libro indicado. */
     private void drawBook() {
         tfSinopsis.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);

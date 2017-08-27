@@ -73,7 +73,9 @@
                                                 <Font name="System Bold" size="12.0"/>
                                             </font>
                                         </Label>
-                                        <Label fx:id="tfAutor" ellipsisString="…" text="|Autor" wrapText="true"/>
+                                        <Label fx:id="tfAutor" ellipsisString="…" onMouseClicked="#searchAutor"
+                                               styleClass="linked-label" stylesheets="@MenuButton.css" text="|Autor"
+                                               wrapText="true"/>
                                     </children>
                                 </HBox>
                                 <HBox spacing="10.0">
@@ -84,7 +86,8 @@
                                                 <Font name="System Bold" size="12.0"/>
                                             </font>
                                         </Label>
-                                        <Label fx:id="tfColeccion" ellipsisString="…"
+                                        <Label fx:id="tfColeccion" ellipsisString="…" onMouseClicked="#searchCollection"
+                                               styleClass="linked-label" stylesheets="@MenuButton.css"
                                                text="|Coleccion de blablab lablalblablal balbalbal en la casa de blas hay un coche azul y tal."
                                                wrapText="true" HBox.hgrow="ALWAYS"/>
                                     </children>

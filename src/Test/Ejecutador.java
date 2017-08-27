@@ -18,17 +18,43 @@
 
 package Test;
 
+import com.sun.org.apache.xerces.internal.impl.dv.util.HexBin;
 import vista.Main;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class Ejecutador {
-    public static void main(String[] args) throws IOException {
-        ArrayList<Lib> libros = getBookList();
+    public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
+        String file = "diagrama.uml";
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        String digest = getDigest(new FileInputStream(file), md, 2048);
+
+        System.out.println("MD5 Digest: " + digest);
+
+    }
+
+    public static String getDigest(InputStream is, MessageDigest md, int byteArraySize)
+            throws NoSuchAlgorithmException, IOException {
+
+        md.reset();
+        byte[] bytes = new byte[byteArraySize];
+        int numBytes;
+        while ((numBytes = is.read(bytes)) != -1) {
+            md.update(bytes, 0, numBytes);
+        }
+        byte[] digest = md.digest();
+        String result = new String(HexBin.encode(digest));
+        return result;
+
+        /*       ArrayList<Lib> libros = getBookList();
         libros.forEach(lib -> {
             if (lib.getColeccion().equalsIgnoreCase(""))
                 System.out.println(String.format("[url=https://www.epublibre.org/libro/detalle/%d] %d - %s - %s[/url]", lib.getId(), lib.getId(), lib.getTitulo(), lib.getAutor()));
@@ -36,29 +62,8 @@ public class Ejecutador {
                 System.out.println(String.format("[url=https://www.epublibre.org/libro/detalle/%d] %d - %s - %s -%s, %d[/url]",
                         lib.getId(), lib.getId(), lib.getTitulo(), lib.getAutor(), lib.getColeccion(), lib.getVolumen()));
             }
-        });
-        /*try (Writer fstream = new OutputStreamWriter(new FileOutputStream(new File("json.txt")), StandardCharsets.UTF_8)) { //escritura (reemplaza)
-            BufferedWriter out = new BufferedWriter(fstream);
-            Gson gson = new Gson();
-            ArrayList<Lib> libros = getBookList();
-            String json = gson.toJson(libros);
-            out.write(json);
-            out.newLine();
-            out.close();
-            fstream.close();
+        });*/
 
-            JsonParser parser = new JsonParser();
-            JsonElement element =  parser.parse(json);
-            if(element.isJsonArray()){
-                JsonArray array = element.getAsJsonArray();
-                array.forEach((libro) ->{
-                    JsonObject lib = libro.getAsJsonObject();
-                    System.out.println(lib.get("id"));
-
-                });
-            }
-
-        }*/
     }
 
 

@@ -99,7 +99,8 @@ public final class UpdateDB implements CommonStrings {
 
                     updateMessage("Fecha actualizada...");
                     updateProgress(6, TOTAL_PROGRESS);
-                    Utils.deleteZip(zip, csvFile);
+                    //Utils.deleteZip(zip, csvFile);
+                    Utils.deleteZip(zip);
 
                 } finally {
                     updateProgress(TOTAL_PROGRESS, TOTAL_PROGRESS);
