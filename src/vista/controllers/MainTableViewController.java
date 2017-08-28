@@ -213,7 +213,7 @@ public class MainTableViewController implements CommonStrings {
                 });
         bookTableView
                 .getStylesheets()
-                .add(Main.class.getResource("/vista/resources/MenuButton.css").toExternalForm());
+                .add(Main.class.getResource("/vista/resources/Style.css").toExternalForm());
         eplidColumn.setCellValueFactory(
                 cellData -> new SimpleIntegerProperty(cellData.getValue().getEpl_id()));
         titleColumn.setCellValueFactory(
@@ -422,6 +422,10 @@ public class MainTableViewController implements CommonStrings {
                 columns.add(unchangedColumns.get(anOrder));
             }
         }
+        restoreLastSearch();
+    }
+
+    public void restoreLastSearch() {
         try {
             String lastSearch = GetDatas.getConfig(CommonStrings.LAST_SEARCH);
             if (!lastSearch.equalsIgnoreCase("")) {

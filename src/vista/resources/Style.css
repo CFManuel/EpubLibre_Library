@@ -43,4 +43,5 @@
     -fx-text-fill: blue;
     -fx-font-weight: bold;
     -fx-underline: true;
+    -fx-cursor: hand;
 }

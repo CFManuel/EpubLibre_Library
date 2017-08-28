@@ -42,7 +42,7 @@
                                     </HBox.margin>
                                 </TextField>
                                 <MenuButton fx:id="menuButton" contentDisplay="TOP" mnemonicParsing="false"
-                                            prefHeight="25.0" prefWidth="13.0" stylesheets="@MenuButton.css" text="+"
+                                            prefHeight="25.0" prefWidth="13.0" stylesheets="@Style.css" text="+"
                                             textAlignment="CENTER" textOverrun="CLIP" HBox.hgrow="NEVER">
                                     <items>
                                         <CheckMenuItem fx:id="cbTitulo" mnemonicParsing="false" selected="true"

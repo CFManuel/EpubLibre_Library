@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="epubLibre" uuid="7264e4a0-c5f4-4a7b-ba33-d45c9e552b5c">
+    <data-source source="LOCAL" name="epubLibre [2]" uuid="96075c71-44f4-450b-942a-ac4f9a2070fe">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>

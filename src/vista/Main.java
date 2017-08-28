@@ -73,6 +73,10 @@ public class Main extends Application implements CommonStrings {
         return configuracion;
     }
 
+    public static MainTableViewController getMainTableViewController() {
+        return mainTableViewController;
+    }
+
     /**
      * Lanzamiento de aplicación JavaFX.
      *
@@ -93,7 +97,9 @@ public class Main extends Application implements CommonStrings {
                         + "/epl/";
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("ePubLibre Library " + VERSION);
-        this.primaryStage.getIcons().add(new Image("vista/resources/images/EPL_Portadas_NEGRO.png"));
+        this.primaryStage
+                .getIcons()
+                .add(new Image("vista/resources/images/EPL_Portadas_NEGRO.png"));
         //Restaurar último tamaño
         try {
             this.primaryStage.setWidth(
@@ -108,7 +114,6 @@ public class Main extends Application implements CommonStrings {
                 .widthProperty()
                 .addListener(
                         (observableValue, number, t1) -> {
-
                             try {
                                 InsertDatas.insertConfig(
                                         CommonStrings.WIDTH_WINDOW, String.valueOf(t1));
@@ -126,21 +131,21 @@ public class Main extends Application implements CommonStrings {
                             }
                         });
         this.main = this;
-        Task task = new Task() {
-            @Override
-            protected Object call() throws Exception {
-                if (UpdateDB.checkDBage()) configuracion = Utils.getConfig();
-                return null;
-            }
-        };
-        task.setOnSucceeded(e -> UpdateDB.timeToUpdate());
-        new Thread(task).start();
         initRootLayout();
         initMainTableView();
+        Task task =
+                new Task() {
+                    @Override
+                    protected Object call() throws Exception {
+                        if (UpdateDB.checkDBage()) configuracion = Utils.getConfig();
+                        return null;
+                    }
+                };
+        task.setOnSucceeded(e -> UpdateDB.timeToUpdate());
         this.primaryStage.getScene().setCursor(Cursor.WAIT);
         Utils.crearEPL();
         new ConnectorHelper().crearTabla();
-        //todo: realizar última búsqueda
+        new Thread(task).start();
         this.primaryStage.getScene().setCursor(Cursor.DEFAULT);
     }
 
@@ -162,10 +167,6 @@ public class Main extends Application implements CommonStrings {
             Alertas.stackTraceAlert(e);
             throw new RuntimeException(e);
         }
-    }
-
-    public static MainTableViewController getMainTableViewController() {
-        return mainTableViewController;
     }
 
     /**
@@ -197,9 +198,7 @@ public class Main extends Application implements CommonStrings {
         }
     }
 
-    /**
-     * Inicia la tabla de vista y busqueda de libros.
-     */
+    /** Inicia la tabla de vista y busqueda de libros. */
     private void initMainTableView() {
         try {
             FXMLLoader loader = new FXMLLoader();

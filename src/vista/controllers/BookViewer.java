@@ -122,8 +122,21 @@ public class BookViewer implements CommonStrings {
     /** Modifica la opacidad de las flechas de navegación según su posición. */
     private void drawArrows() {
         int maxPos = MainTableViewController.libros.size() - 1;
-        double nextOpacity = (maxPos == position) ? 0.5 : 1;
-        double backOpacity = (position == 0) ? 0.5 : 1;
+        double nextOpacity, backOpacity;
+        if (maxPos == position) {
+            nextOpacity = 0.5;
+            nextArrow.setStyle("-fx-cursor: default");
+        } else {
+            nextOpacity = 1;
+            nextArrow.setStyle("-fx-cursor: hand");
+        }
+        if (0 == position) {
+            backOpacity = 0.5;
+            backArrow.setStyle("-fx-cursor: default");
+        } else {
+            backOpacity = 1;
+            backArrow.setStyle("-fx-cursor: hand");
+        }
         MainTableViewController.focusROW.set(position);
         nextArrow.setOpacity(nextOpacity);
         backArrow.setOpacity(backOpacity);
@@ -177,14 +190,14 @@ public class BookViewer implements CommonStrings {
 
     @FXML
     private void searchAutor() {
-        Main.getMainTableViewController().searchAutor(tfAutor.getText());
         dialogStage.close();
+        Main.getMainTableViewController().searchAutor(tfAutor.getText());
     }
 
     @FXML
     private void searchCollection() {
-        Main.getMainTableViewController().searchCollection(tfColeccion.getText());
         dialogStage.close();
+        Main.getMainTableViewController().searchCollection(tfColeccion.getText());
     }
     /** Rellena los campos con la información del libro indicado. */
     private void drawBook() {
@@ -224,6 +237,7 @@ public class BookViewer implements CommonStrings {
             this.loadImg = new Thread(loadImage);
             this.loadImg.start();
             imgView.setImage(image);
+            imgView.setStyle("-fx-cursor: hand");
         } catch (Exception e) {
             //Lanza error si no existe link.
         }

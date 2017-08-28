@@ -113,6 +113,7 @@ public final class UpdateDB implements CommonStrings {
             updateDate();
             progressForm.getDialogStage().close();
             GetDatas.getIdiomas();
+            Main.getMainTableViewController().restoreLastSearch();
             alertUpdateOK();
         });
         importar.setOnFailed(e -> {
