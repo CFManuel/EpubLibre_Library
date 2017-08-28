@@ -214,34 +214,20 @@ public class MainTableViewController implements CommonStrings {
         bookTableView
                 .getStylesheets()
                 .add(Main.class.getResource("/vista/resources/Style.css").toExternalForm());
-        eplidColumn.setCellValueFactory(
-                cellData -> new SimpleIntegerProperty(cellData.getValue().getEpl_id()));
-        titleColumn.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
-        autorColumn.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getAutor()));
-        colColumn.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getColeccion()));
-        volColumn.setCellValueFactory(
-                cellData -> new SimpleDoubleProperty(cellData.getValue().getVolumen()));
-        generosColumn.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getGeneros()));
-        revColumn.setCellValueFactory(
-                cellData -> new SimpleDoubleProperty(cellData.getValue().getRevision()));
-        idiomaColumn.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getIdioma()));
-        pagColumn.setCellValueFactory(
-                cellData -> new SimpleIntegerProperty(cellData.getValue().getPaginas()));
-        valColumn.setCellValueFactory(
-                cellData -> new SimpleDoubleProperty(cellData.getValue().getValoracion()));
-        publiYearColumn.setCellValueFactory(
-                cellData -> new SimpleIntegerProperty(cellData.getValue().getFecha_publi()));
-        n_votosColumn.setCellValueFactory(
-                cellData -> new SimpleIntegerProperty(cellData.getValue().getN_votos()));
-        publiDateColumn.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getPublicado()));
-        publiDateColumn.setSortType(
-                TableColumn.SortType.DESCENDING); //Se establece el tipo de ordenación.
+        eplidColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEpl_id()));
+        titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
+        autorColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAutor()));
+        colColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getColeccion()));
+        volColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getVolumen()));
+        generosColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGeneros()));
+        revColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getRevision()));
+        idiomaColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdioma()));
+        pagColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPaginas()));
+        valColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getValoracion()));
+        publiYearColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFecha_publi()));
+        n_votosColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getN_votos()));
+        publiDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPublicado()));
+        publiDateColumn.setSortType(TableColumn.SortType.DESCENDING); //Se establece el tipo de ordenación.
 
         volColumn.getStyleClass().add("alineacion-derecha");
         revColumn.getStyleClass().add("alineacion-derecha");
@@ -455,7 +441,6 @@ public class MainTableViewController implements CommonStrings {
     public void searchAutor(String autor) {
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         String search = String.format("%%%s%%", autor);
-        search = search.replaceAll("\\s", "%");
         String[] busqueda = new String[6];
         for (int i = 0; i < 5; i++) {
             busqueda[i] = "";
@@ -470,7 +455,6 @@ public class MainTableViewController implements CommonStrings {
     public void searchCollection(String collection) {
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         String search = String.format("%%%s%%", collection);
-        search = search.replaceAll("\\s", "%");
         String[] busqueda = new String[6];
         for (int i = 0; i < 5; i++) {
             busqueda[i] = "";
