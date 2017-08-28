@@ -30,6 +30,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import modelos.CommonStrings;
 import modelos.Libro;
@@ -237,7 +239,6 @@ public class BookViewer implements CommonStrings {
             this.loadImg = new Thread(loadImage);
             this.loadImg.start();
             imgView.setImage(image);
-            imgView.setStyle("-fx-cursor: hand");
         } catch (Exception e) {
             //Lanza error si no existe link.
         }
@@ -280,5 +281,16 @@ public class BookViewer implements CommonStrings {
         this.dialogStage = dialogStage;
         this.dialogStage.setMinHeight(635);
         this.dialogStage.setMinWidth(448);
+        this.dialogStage
+                .getScene()
+                .addEventHandler(
+                        KeyEvent.KEY_PRESSED,
+                        keyEvent -> {
+                            if (keyEvent.getCode() == KeyCode.RIGHT) {
+                                nextBook();
+                            } else if (keyEvent.getCode() == KeyCode.LEFT) {
+                                backBook();
+                            }
+                        });
     }
 }

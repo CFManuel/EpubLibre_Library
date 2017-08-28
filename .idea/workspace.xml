@@ -8,7 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" afterPath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/Alertas.java" afterPath="$PROJECT_DIR$/src/vista/controllers/Alertas.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" afterPath="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/resources/BookViewer.fxml" afterPath="$PROJECT_DIR$/src/vista/resources/BookViewer.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,27 +94,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BookViewer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BookViewer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/vista/controllers/BookViewer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="193" column="47" lean-forward="false" selection-start-line="193" selection-start-column="47" selection-end-line="193" selection-end-column="47" />
+            <state relative-caret-position="368">
+              <caret line="276" column="43" lean-forward="true" selection-start-line="276" selection-start-column="43" selection-end-line="276" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3211#3212#0" expanded="true" />
-                <element signature="e#3279#3280#0" expanded="true" />
-                <element signature="e#7244#7745#0" expanded="true" />
-                <element signature="e#7744#7745#0" expanded="true" />
+                <element signature="e#3222#3223#0" expanded="true" />
+                <element signature="e#3290#3291#0" expanded="true" />
+                <element signature="e#7255#7756#0" expanded="true" />
+                <element signature="e#7755#7756#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql">
+      <file leaf-file-name="CommonStrings.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modelos/CommonStrings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="30" />
+            <state relative-caret-position="85">
+              <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -128,16 +130,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainTableViewController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="190" column="23" lean-forward="false" selection-start-line="190" selection-start-column="23" selection-end-line="190" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainTableViewController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
+            <state relative-caret-position="1384">
               <caret line="456" column="60" lean-forward="false" selection-start-line="456" selection-start-column="60" selection-end-line="456" selection-end-column="60" />
               <folding>
                 <element signature="method#multiDownload#0;class#MainTableViewController#0" expanded="false" />
                 <element signature="method#stringToArray#0;class#MainTableViewController#0" expanded="false" />
                 <element signature="class#DateComparator#0;class#MainTableViewController#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Alertas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/controllers/Alertas.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="69" column="47" lean-forward="false" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -164,6 +186,7 @@
       <find>add</find>
       <find>revarray</find>
       <find>MainTableView</find>
+      <find>scene</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library</dir>
@@ -206,7 +229,6 @@
         <option value="$PROJECT_DIR$/src/daosqlite/ConnectorHelper.java" />
         <option value="$PROJECT_DIR$/src/daosqlite/Exect.java" />
         <option value="$PROJECT_DIR$/src/daosqlite/Ejecutador.java" />
-        <option value="$PROJECT_DIR$/src/vista/controllers/Alertas.java" />
         <option value="$PROJECT_DIR$/src/parser/Csv.java" />
         <option value="$PROJECT_DIR$/src/modelos/RecursiveEpubSearch.java" />
         <option value="$PROJECT_DIR$/src/modelos/RecursiveSearchByName.java" />
@@ -224,14 +246,15 @@
         <option value="$PROJECT_DIR$/src/Test/Ejecutador.java" />
         <option value="$PROJECT_DIR$/src/files/Utils.java" />
         <option value="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" />
-        <option value="$PROJECT_DIR$/src/modelos/CommonStrings.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql" />
         <option value="$PROJECT_DIR$/src/vista/Main.java" />
         <option value="$PROJECT_DIR$/src/controller/UpdateDB.java" />
         <option value="$PROJECT_DIR$/src/vista/resources/MenuButton.css" />
-        <option value="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" />
         <option value="$PROJECT_DIR$/src/vista/resources/Style.css" />
         <option value="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
+        <option value="$PROJECT_DIR$/src/vista/controllers/Alertas.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql" />
+        <option value="$PROJECT_DIR$/src/modelos/CommonStrings.java" />
+        <option value="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" />
       </list>
     </option>
   </component>
@@ -288,19 +311,6 @@
               <item name="EpubLibre_Library" type="462c0819:PsiDirectoryNode" />
               <item name="out" type="462c0819:PsiDirectoryNode" />
               <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EpubLibre_Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EpubLibre_Library" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EpubLibre_Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EpubLibre_Library" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="epl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="EpubLibre_Library" type="b2602c69:ProjectViewProjectNode" />
@@ -1049,14 +1059,7 @@
       <workItem from="1503854885673" duration="9000" />
       <workItem from="1503857247404" duration="78000" />
       <workItem from="1503928460682" duration="40000" />
-      <workItem from="1503928665774" duration="788000" />
-    </task>
-    <task id="LOCAL-00102" summary="Refactored code alerts.">
-      <created>1501154506605</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1501154506606</updated>
+      <workItem from="1503928665774" duration="2045000" />
     </task>
     <task id="LOCAL-00103" summary="Fixed error in updateAlert without connection.">
       <created>1501196314143</created>
@@ -1394,11 +1397,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503929310080</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="Corrected in search for autor.">
+      <created>1503929466730</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1503929466730</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174640000" />
+    <option name="totallyTimeSpent" value="175897000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1425,6 +1435,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33184856" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25426438" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="18" side_tool="false" content_ui="tabs" />
@@ -1451,7 +1462,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20309168" sideWeight="0.5134707" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33184856" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1493,7 +1503,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Added Time Between torrentLaunch." />
     <MESSAGE value="Fixed paragraph detection." />
     <MESSAGE value="Modified width of languaje selector." />
     <MESSAGE value="MultiTorrent Launcher in other thread. Non-block UI." />
@@ -1518,7 +1527,8 @@
     <MESSAGE value="Version 1.5." />
     <MESSAGE value="Minor bug fixed." />
     <MESSAGE value="Added cursor hand in links." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added cursor hand in links." />
+    <MESSAGE value="Corrected in search for autor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected in search for autor." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1978,14 +1988,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/controllers/Alertas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="61" column="61" lean-forward="false" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7264e4a0-c5f4-4a7b-ba33-d45c9e552b5c/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -2044,14 +2046,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelos/CommonStrings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/3ca7bae5/96075c71-44f4-450b-942a-ac4f9a2070fe/main.CONFIG">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -2059,26 +2053,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/UpdateDB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
           <caret line="115" column="66" lean-forward="false" selection-start-line="115" selection-start-column="66" selection-end-line="115" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="143" column="52" lean-forward="false" selection-start-line="143" selection-start-column="52" selection-end-line="143" selection-end-column="52" />
           <folding />
         </state>
       </provider>
@@ -2091,28 +2069,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/controllers/BookViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="193" column="47" lean-forward="false" selection-start-line="193" selection-start-column="47" selection-end-line="193" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3211#3212#0" expanded="true" />
-            <element signature="e#3279#3280#0" expanded="true" />
-            <element signature="e#7244#7745#0" expanded="true" />
-            <element signature="e#7744#7745#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
+        <state relative-caret-position="1384">
           <caret line="456" column="60" lean-forward="false" selection-start-line="456" selection-start-column="60" selection-end-line="456" selection-end-column="60" />
           <folding>
             <element signature="method#multiDownload#0;class#MainTableViewController#0" expanded="false" />
             <element signature="method#stringToArray#0;class#MainTableViewController#0" expanded="false" />
             <element signature="class#DateComparator#0;class#MainTableViewController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/controllers/Alertas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="69" column="47" lean-forward="false" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelos/CommonStrings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="190" column="23" lean-forward="false" selection-start-line="190" selection-start-column="23" selection-end-line="190" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/controllers/BookViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="276" column="43" lean-forward="true" selection-start-line="276" selection-start-column="43" selection-end-line="276" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3222#3223#0" expanded="true" />
+            <element signature="e#3290#3291#0" expanded="true" />
+            <element signature="e#7255#7756#0" expanded="true" />
+            <element signature="e#7755#7756#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -20,6 +20,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -60,7 +61,11 @@
                                                    opacity="0.48" prefHeight="50.0" prefWidth="50.0"
                                                    StackPane.alignment="CENTER"/>
                                 <ImageView fx:id="imgView" fitHeight="318.0" fitWidth="208.0" nodeOrientation="INHERIT"
-                                           pickOnBounds="true" preserveRatio="true"/>
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND"/>
+                                    </cursor>
+                                </ImageView>
                             </children>
                         </StackPane>
                         <VBox alignment="CENTER" prefHeight="274.0" prefWidth="227.0" spacing="10.0"
@@ -174,10 +179,18 @@
                     </GridPane.margin>
                     <children>
                         <Button mnemonicParsing="false" onAction="#ok" prefHeight="25.0" prefWidth="56.0" text="Ok"
-                                GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                GridPane.columnIndex="1" GridPane.rowIndex="3">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </Button>
                         <Button mnemonicParsing="false" onAction="#download" onContextMenuRequested="#copyToClipboard"
                                 prefHeight="25.0" prefWidth="93.0" text="Descargar" GridPane.columnIndex="1"
-                                GridPane.rowIndex="3"/>
+                                GridPane.rowIndex="3">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </Button>
                     </children>
                 </HBox>
                 <TextArea fx:id="tfSinopsis" editable="false" prefHeight="235.0" prefWidth="448.0"

@@ -68,7 +68,7 @@ public class Alertas implements CommonStrings {
         alert.setHeaderText("Hay una nueva versión disponible. (" + Main.getConfiguracion().get(VERSION_CHECK) + ")");
         alert.setContentText("¿Desea abrir el navegador para ver la nueva versión?");
         ButtonType epl = new ButtonType("ePL");
-        ButtonType dropbox = new ButtonType("Dropbox");
+        ButtonType dropbox = new ButtonType("Descarga");
         alert.getButtonTypes().setAll(epl, dropbox, ButtonType.CLOSE);
 
         Label label = new javafx.scene.control.Label("Cambios en la última versión:");
