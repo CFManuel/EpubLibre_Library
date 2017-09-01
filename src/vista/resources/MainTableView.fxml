@@ -104,8 +104,9 @@
                         <Insets bottom="3.0" left="1.0" right="3.0"/>
                     </VBox.margin>
                     <contextMenu>
-                        <ContextMenu>
+                        <ContextMenu onShowing="#contextMenu">
                             <items>
+                                <MenuItem fx:id="menuRead" mnemonicParsing="false" onAction="#markAsRead" text="Leido"/>
                                 <MenuItem mnemonicParsing="false" onAction="#multiDownload" text="Descargar"/>
                             </items>
                         </ContextMenu>

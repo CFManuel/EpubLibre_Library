@@ -6,11 +6,15 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added support for readed books.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/Alertas.java" afterPath="$PROJECT_DIR$/src/vista/controllers/Alertas.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" afterPath="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/resources/BookViewer.fxml" afterPath="$PROJECT_DIR$/src/vista/resources/BookViewer.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/daosqlite/ConnectorHelper.java" afterPath="$PROJECT_DIR$/src/daosqlite/ConnectorHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/daosqlite/GetDatas.java" afterPath="$PROJECT_DIR$/src/daosqlite/GetDatas.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/daosqlite/InsertDatas.java" afterPath="$PROJECT_DIR$/src/daosqlite/InsertDatas.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" afterPath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" afterPath="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/resources/MainTableView.fxml" afterPath="$PROJECT_DIR$/src/vista/resources/MainTableView.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" afterPath="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,48 +98,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BookViewer.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/vista/controllers/BookViewer.java">
+      <file leaf-file-name="GetDatas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/daosqlite/GetDatas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="276" column="43" lean-forward="true" selection-start-line="276" selection-start-column="43" selection-end-line="276" selection-end-column="43" />
+            <state relative-caret-position="59">
+              <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3222#3223#0" expanded="true" />
-                <element signature="e#3290#3291#0" expanded="true" />
-                <element signature="e#7255#7756#0" expanded="true" />
-                <element signature="e#7755#7756#0" expanded="true" />
+                <marker date="1504254510712" expanded="true" signature="1206:1240" ph="select disti... libros" />
+                <marker date="1504254510712" expanded="true" signature="1206:1260" ph="select disti... libros" />
+                <marker date="1504254510712" expanded="true" signature="1869:1911" ph="SELECT epl_i... readed" />
+                <marker date="1504254510712" expanded="true" signature="6213:6274" ph="SELECT DATAS... config" />
+                <marker date="1504254510712" expanded="true" signature="7395:8326" ph="SELECT * FRO... libros" />
+                <marker date="1504254510712" expanded="true" signature="9560:10197" ph="SELECT * FRO... libros" />
+                <marker date="1504254510712" expanded="true" signature="9560:10303" ph="SELECT * FRO... libros" />
+                <marker date="1504254510712" expanded="true" signature="11187:11265" ph="SELECT * FRO... LIBROS" />
+                <marker date="1504254510712" expanded="true" signature="12720:12752" ph="SELECT COUNT... LIBROS" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommonStrings.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelos/CommonStrings.java">
+      <file leaf-file-name="RootLayout.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/resources/RootLayout.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+            <state relative-caret-position="374">
+              <caret line="34" column="61" lean-forward="true" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="75" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vista/resources/Style.css">
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InsertDatas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/daosqlite/InsertDatas.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="482">
-              <caret line="46" column="1" lean-forward="false" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vista/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="190" column="23" lean-forward="false" selection-start-line="190" selection-start-column="23" selection-end-line="190" selection-end-column="23" />
-              <folding />
+              <caret line="71" column="27" lean-forward="false" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
+              <folding>
+                <marker date="1504254510810" expanded="true" signature="1542:1594" ph="REPLACE INTO... CONFIG" />
+                <marker date="1504254510810" expanded="true" signature="1944:1974" ph="REPLACE INTO... readed" />
+                <marker date="1504254510810" expanded="true" signature="2960:3358" ph="INSERT OR RE... libros" />
+                <marker date="1504254510810" expanded="true" signature="5017:5069" ph="REPLACE INTO... CONFIG" />
+                <marker date="1504254510810" expanded="true" signature="5748:5784" ph="DELETE FROM " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,23 +160,16 @@
       <file leaf-file-name="MainTableViewController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1384">
-              <caret line="456" column="60" lean-forward="false" selection-start-line="456" selection-start-column="60" selection-end-line="456" selection-end-column="60" />
+            <state relative-caret-position="346">
+              <caret line="118" column="19" lean-forward="false" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
               <folding>
                 <element signature="method#multiDownload#0;class#MainTableViewController#0" expanded="false" />
+                <element signature="e#7119#7776#0" expanded="true" />
+                <element signature="e#7775#7776#0" expanded="true" />
+                <element signature="method#configTable#0;class#MainTableViewController#0" expanded="false" />
                 <element signature="method#stringToArray#0;class#MainTableViewController#0" expanded="false" />
-                <element signature="class#DateComparator#0;class#MainTableViewController#0" expanded="false" />
+                <element signature="method#saveANDrestoreTableState#0;class#MainTableViewController#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Alertas.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vista/controllers/Alertas.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="69" column="47" lean-forward="false" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -226,16 +236,12 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9228402c-1b64-48e9-bbe1-3871ac246023/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2268ff80-bafe-4665-a5b8-de27093e8ed9/console.sql" />
         <option value="$PROJECT_DIR$/src/vista/Exect.java" />
-        <option value="$PROJECT_DIR$/src/daosqlite/ConnectorHelper.java" />
         <option value="$PROJECT_DIR$/src/daosqlite/Exect.java" />
         <option value="$PROJECT_DIR$/src/daosqlite/Ejecutador.java" />
         <option value="$PROJECT_DIR$/src/parser/Csv.java" />
         <option value="$PROJECT_DIR$/src/modelos/RecursiveEpubSearch.java" />
         <option value="$PROJECT_DIR$/src/modelos/RecursiveSearchByName.java" />
-        <option value="$PROJECT_DIR$/src/daosqlite/InsertDatas.java" />
-        <option value="$PROJECT_DIR$/src/daosqlite/GetDatas.java" />
         <option value="$PROJECT_DIR$/src/modelos/Libro.java" />
-        <option value="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7010690c-c718-4925-9bbb-92b51760de25/console.sql" />
         <option value="$PROJECT_DIR$/src/modelos/RecursiveSearchByContent.java" />
         <option value="$PROJECT_DIR$/src/vista/Ejecutador.java" />
@@ -245,16 +251,20 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7264e4a0-c5f4-4a7b-ba33-d45c9e552b5c/console.sql" />
         <option value="$PROJECT_DIR$/src/Test/Ejecutador.java" />
         <option value="$PROJECT_DIR$/src/files/Utils.java" />
-        <option value="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" />
         <option value="$PROJECT_DIR$/src/vista/Main.java" />
         <option value="$PROJECT_DIR$/src/controller/UpdateDB.java" />
         <option value="$PROJECT_DIR$/src/vista/resources/MenuButton.css" />
         <option value="$PROJECT_DIR$/src/vista/resources/Style.css" />
-        <option value="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
         <option value="$PROJECT_DIR$/src/vista/controllers/Alertas.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql" />
         <option value="$PROJECT_DIR$/src/modelos/CommonStrings.java" />
         <option value="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" />
+        <option value="$PROJECT_DIR$/src/daosqlite/ConnectorHelper.java" />
+        <option value="$PROJECT_DIR$/src/daosqlite/InsertDatas.java" />
+        <option value="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql" />
+        <option value="$PROJECT_DIR$/src/daosqlite/GetDatas.java" />
+        <option value="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" />
+        <option value="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
       </list>
     </option>
   </component>
@@ -294,6 +304,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -383,9 +396,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -1059,14 +1069,10 @@
       <workItem from="1503854885673" duration="9000" />
       <workItem from="1503857247404" duration="78000" />
       <workItem from="1503928460682" duration="40000" />
-      <workItem from="1503928665774" duration="2045000" />
-    </task>
-    <task id="LOCAL-00103" summary="Fixed error in updateAlert without connection.">
-      <created>1501196314143</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1501196314143</updated>
+      <workItem from="1503928665774" duration="2212000" />
+      <workItem from="1503933692854" duration="10000" />
+      <workItem from="1503934348950" duration="421000" />
+      <workItem from="1504250424887" duration="4100000" />
     </task>
     <task id="LOCAL-00104" summary="Change load system for book images.">
       <created>1501199819208</created>
@@ -1404,11 +1410,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503929466730</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="Added support for navigable key in bookcard.">
+      <created>1503930737846</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1503930737846</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175897000" />
+    <option name="totallyTimeSpent" value="180595000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1425,28 +1438,27 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739422" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850778" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32850778" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32733408" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942432" sideWeight="0.49565217" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2962138" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2962138" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33184856" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25426438" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16311301" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="18" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14552239" sideWeight="0.48652932" order="12" side_tool="false" content_ui="tabs" x="759" y="211" width="402" height="618" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850778" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997773" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997773" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1463,6 +1475,7 @@
       <window_info id="Coverage" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20309168" sideWeight="0.5134707" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850778" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1503,8 +1516,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Fixed paragraph detection." />
-    <MESSAGE value="Modified width of languaje selector." />
     <MESSAGE value="MultiTorrent Launcher in other thread. Non-block UI." />
     <MESSAGE value="Code cleanup." />
     <MESSAGE value="Added check by ContentBook." />
@@ -1528,7 +1539,9 @@
     <MESSAGE value="Minor bug fixed." />
     <MESSAGE value="Added cursor hand in links." />
     <MESSAGE value="Corrected in search for autor." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected in search for autor." />
+    <MESSAGE value="Added support for navigable key in bookcard." />
+    <MESSAGE value="Added support for readed books." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for readed books." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1544,288 +1557,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="uml://JAVA/">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement />
-          <nodes>
-            <node x="103.88703231292504" y="1423.0">vista.Main</node>
-            <node x="269.02559523809504" y="479.0">daosqlite.GetDatas</node>
-            <node x="642.0561224489795" y="777.0">controller.UpdateDB</node>
-            <node x="0.0" y="0.0">daosqlite.ConnectorHelper</node>
-            <node x="706.3007227891155" y="1022.0">controller.UpdateDB.ProgressForm</node>
-            <node x="878.2565051020406" y="2011.0">vista.Exec</node>
-            <node x="928.11143707483" y="55.5">modelos</node>
-            <node x="906.0255952380951" y="556.5">parser.Csv</node>
-            <node x="1255.195493197279" y="0.0">vista.resources</node>
-            <node x="736.275595238095" y="1254.0">vista.controllers</node>
-            <node x="194.44953231292504" y="260.0">daosqlite.InsertDatas</node>
-            <node x="828.7565051020406" y="1778.0">files.Utils</node>
-            <node x="693.0255952380951" y="567.5">exceptions.NoValidCSVFile</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="daosqlite.InsertDatas" target="daosqlite.ConnectorHelper">
-              <point x="-78.66666666666669" y="-69.5" />
-              <point x="233.78286564625836" y="160.0" />
-              <point x="146.125" y="160.0" />
-              <point x="62.625" y="70.0" />
-            </edge>
-            <edge source="controller.UpdateDB" target="vista.Main">
-              <point x="-61.428571428571445" y="92.5" />
-              <point x="688.1275510204081" y="992.0" />
-              <point x="224.80612244897952" y="992.0" />
-              <point x="224.80612244897952" y="1333.0" />
-              <point x="312.88703231292504" y="1333.0" />
-              <point x="55.0" y="-147.5" />
-            </edge>
-            <edge source="vista.Main" target="daosqlite.InsertDatas">
-              <point x="-55.0" y="-147.5" />
-              <point x="202.88703231292504" y="1383.0" />
-              <point x="169.80612244897952" y="1383.0" />
-              <point x="169.80612244897952" y="449.0" />
-              <point x="209.19953231292504" y="449.0" />
-              <point x="-103.25" y="69.5" />
-            </edge>
-            <edge source="daosqlite.GetDatas" target="daosqlite.ConnectorHelper">
-              <point x="-147.0" y="-114.0" />
-              <point x="318.02559523809504" y="439.0" />
-              <point x="104.37499999999994" y="439.0" />
-              <point x="20.875" y="70.0" />
-            </edge>
-            <edge source="parser.Csv" target="daosqlite.InsertDatas">
-              <point x="-79.87500000000011" y="-36.5" />
-              <point x="932.6505952380949" y="429.0" />
-              <point x="386.19953231292504" y="429.0" />
-              <point x="73.75" y="69.5" />
-            </edge>
-            <edge source="controller.UpdateDB" target="daosqlite.InsertDatas">
-              <point x="-13.4375" y="-92.5" />
-              <point x="736.1186224489795" y="727.0" />
-              <point x="682.5255952380951" y="727.0" />
-              <point x="682.5255952380951" y="439.0" />
-              <point x="356.69953231292504" y="439.0" />
-              <point x="44.25" y="69.5" />
-            </edge>
-            <edge source="vista.controllers" target="files.Utils">
-              <point x="57.857142857142776" y="14.5" />
-              <point x="861.6327380952378" y="1738.0" />
-              <point x="940.4231717687073" y="1738.0" />
-              <point x="-22.333333333333258" y="-91.5" />
-            </edge>
-            <edge source="files.Utils" target="vista.Main">
-              <point x="-111.66666666666663" y="-91.5" />
-              <point x="851.0898384353741" y="1758.0" />
-              <point x="180.88703231292504" y="1758.0" />
-              <point x="-77.0" y="147.5" />
-            </edge>
-            <edge source="vista.controllers" target="modelos">
-              <point x="28.125" y="-14.5" />
-              <point x="831.900595238095" y="1204.0" />
-              <point x="1135.632993197279" y="1204.0" />
-              <point x="1135.632993197279" y="220.0" />
-              <point x="1010.14268707483" y="220.0" />
-              <point x="19.53125" y="14.5" />
-            </edge>
-            <edge source="daosqlite.InsertDatas" target="modelos">
-              <point x="78.66666666666669" y="-69.5" />
-              <point x="391.11619897959173" y="200.0" />
-              <point x="955.45518707483" y="200.0" />
-              <point x="-35.15625" y="14.5" />
-            </edge>
-            <edge source="vista.controllers" target="daosqlite.InsertDatas">
-              <point x="-61.875" y="-14.5" />
-              <point x="741.900595238095" y="1234.0" />
-              <point x="247.52559523809504" y="1234.0" />
-              <point x="247.52559523809504" y="449.0" />
-              <point x="268.19953231292504" y="449.0" />
-              <point x="-44.25" y="69.5" />
-            </edge>
-            <edge source="controller.UpdateDB" target="parser.Csv">
-              <point x="67.1875" y="-92.5" />
-              <point x="816.7436224489795" y="747.0" />
-              <point x="941.5255952380951" y="747.0" />
-              <point x="-71.0" y="36.5" />
-            </edge>
-            <edge source="vista.Main" target="vista.controllers">
-              <point x="77.0" y="-147.5" />
-              <point x="334.88703231292504" y="1373.0" />
-              <point x="784.4898809523806" y="1373.0" />
-              <point x="-19.285714285714334" y="14.5" />
-            </edge>
-            <edge source="vista.controllers" target="vista.Main">
-              <point x="19.285714285714334" y="14.5" />
-              <point x="823.0613095238093" y="1393.0" />
-              <point x="378.88703231292504" y="1393.0" />
-              <point x="121.0" y="-147.5" />
-            </edge>
-            <edge source="controller.UpdateDB" target="daosqlite.GetDatas">
-              <point x="-67.1875" y="-92.5" />
-              <point x="682.3686224489795" y="747.0" />
-              <point x="628.3589285714284" y="747.0" />
-              <point x="163.33333333333337" y="114.0" />
-            </edge>
-            <edge source="controller.UpdateDB" target="controller.UpdateDB.ProgressForm">
-              <point x="61.428571428571445" y="92.5" />
-              <point x="810.984693877551" y="992.0" />
-              <point x="915.4673894557822" y="992.0" />
-              <point x="83.6666666666666" y="-71.0" />
-            </edge>
-            <edge source="daosqlite.GetDatas" target="modelos">
-              <point x="-49.0" y="-114.0" />
-              <point x="416.02559523809504" y="459.0" />
-              <point x="505.17393707482995" y="459.0" />
-              <point x="505.17393707482995" y="210.0" />
-              <point x="963.26768707483" y="210.0" />
-              <point x="-27.34375" y="14.5" />
-            </edge>
-            <edge source="vista.Main" target="daosqlite.GetDatas">
-              <point x="11.0" y="-147.5" />
-              <point x="268.88703231292504" y="1353.0" />
-              <point x="202.80612244897952" y="1353.0" />
-              <point x="202.80612244897952" y="757.0" />
-              <point x="367.02559523809504" y="757.0" />
-              <point x="-98.0" y="114.0" />
-            </edge>
-            <edge source="vista.controllers" target="controller.UpdateDB">
-              <point x="-16.875" y="-14.5" />
-              <point x="786.900595238095" y="1194.0" />
-              <point x="667.775595238095" y="1194.0" />
-              <point x="667.775595238095" y="1002.0" />
-              <point x="718.8418367346937" y="1002.0" />
-              <point x="-30.71428571428578" y="92.5" />
-            </edge>
-            <edge source="controller.UpdateDB" target="exceptions.NoValidCSVFile">
-              <point x="13.4375" y="-92.5" />
-              <point x="762.9936224489795" y="727.0" />
-              <point x="789.0255952380951" y="727.0" />
-              <point x="0.0" y="25.5" />
-            </edge>
-            <edge source="controller.UpdateDB" target="modelos">
-              <point x="40.3125" y="-92.5" />
-              <point x="789.8686224489795" y="737.0" />
-              <point x="895.5255952380951" y="737.0" />
-              <point x="895.5255952380951" y="240.0" />
-              <point x="986.70518707483" y="240.0" />
-              <point x="-3.90625" y="14.5" />
-            </edge>
-            <edge source="vista.controllers" target="daosqlite.GetDatas">
-              <point x="-28.125" y="-14.5" />
-              <point x="775.650595238095" y="1204.0" />
-              <point x="470.52559523809504" y="1204.0" />
-              <point x="470.52559523809504" y="757.0" />
-              <point x="497.6922619047617" y="757.0" />
-              <point x="32.666666666666686" y="114.0" />
-            </edge>
-            <edge source="files.Utils" target="modelos">
-              <point x="111.66666666666674" y="-91.5" />
-              <point x="1074.4231717687073" y="1758.0" />
-              <point x="1204.195493197279" y="1758.0" />
-              <point x="1204.195493197279" y="170.0" />
-              <point x="1049.20518707483" y="170.0" />
-              <point x="58.593750000000114" y="14.5" />
-            </edge>
-            <edge source="vista.Main" target="modelos">
-              <point x="-77.0" y="-147.5" />
-              <point x="180.88703231292504" y="1393.0" />
-              <point x="158.80612244897952" y="1393.0" />
-              <point x="158.80612244897952" y="180.0" />
-              <point x="939.83018707483" y="180.0" />
-              <point x="-50.78125" y="14.5" />
-            </edge>
-            <edge source="vista.Main" target="controller.UpdateDB">
-              <point x="33.0" y="-147.5" />
-              <point x="290.88703231292504" y="1343.0" />
-              <point x="213.80612244897952" y="1343.0" />
-              <point x="213.80612244897952" y="982.0" />
-              <point x="657.4132653061224" y="982.0" />
-              <point x="-92.14285714285711" y="92.5" />
-            </edge>
-            <edge source="daosqlite.ConnectorHelper" target="vista.Main">
-              <point x="-62.625" y="70.0" />
-              <point x="20.875" y="240.0" />
-              <point x="82.375" y="240.0" />
-              <point x="82.375" y="1403.0" />
-              <point x="114.88703231292504" y="1403.0" />
-              <point x="-143.0" y="-147.5" />
-            </edge>
-            <edge source="controller.UpdateDB" target="files.Utils">
-              <point x="92.14285714285711" y="92.5" />
-              <point x="841.6989795918366" y="982.0" />
-              <point x="1182.195493197279" y="982.0" />
-              <point x="1182.195493197279" y="1738.0" />
-              <point x="985.0898384353741" y="1738.0" />
-              <point x="22.33333333333337" y="-91.5" />
-            </edge>
-            <edge source="vista.Main" target="daosqlite.ConnectorHelper">
-              <point x="-121.0" y="-147.5" />
-              <point x="136.88703231292504" y="1393.0" />
-              <point x="93.375" y="1393.0" />
-              <point x="93.375" y="230.0" />
-              <point x="62.625" y="230.0" />
-              <point x="-20.875" y="70.0" />
-            </edge>
-            <edge source="vista.controllers" target="vista.controllers">
-              <point x="-38.571428571428555" y="14.5" />
-              <point x="765.2041666666664" y="1313.0" />
-              <point x="706.275595238095" y="1313.0" />
-              <point x="706.275595238095" y="1261.25" />
-              <point x="-67.5" y="-7.25" />
-            </edge>
-            <edge source="vista.controllers" target="controller.UpdateDB.ProgressForm">
-              <point x="-5.625" y="-14.5" />
-              <point x="798.150595238095" y="1184.0" />
-              <point x="769.0507227891155" y="1184.0" />
-              <point x="-62.75" y="71.0" />
-            </edge>
-            <edge source="controller.UpdateDB.ProgressForm" target="controller.UpdateDB">
-              <point x="-83.66666666666674" y="-71.0" />
-              <point x="748.1340561224488" y="1002.0" />
-              <point x="749.5561224489795" y="1002.0" />
-              <point x="0.0" y="92.5" />
-            </edge>
-            <edge source="vista.Main" target="files.Utils">
-              <point x="77.0" y="147.5" />
-              <point x="334.88703231292504" y="1748.0" />
-              <point x="895.7565051020406" y="1748.0" />
-              <point x="-67.0" y="-91.5" />
-            </edge>
-            <edge source="vista.Exec" target="files.Utils">
-              <point x="0.0" y="-47.5" />
-              <point x="0.0" y="91.5" />
-            </edge>
-            <edge source="parser.Csv" target="modelos">
-              <point x="79.87499999999989" y="-36.5" />
-              <point x="1092.4005952380949" y="459.0" />
-              <point x="1083.574532312925" y="459.0" />
-              <point x="1083.574532312925" y="230.0" />
-              <point x="1002.33018707483" y="230.0" />
-              <point x="11.71875" y="14.5" />
-            </edge>
-            <edge source="vista.controllers" target="parser.Csv">
-              <point x="16.875" y="-14.5" />
-              <point x="820.650595238095" y="1194.0" />
-              <point x="1079.5520833333333" y="1194.0" />
-              <point x="1079.5520833333333" y="757.0" />
-              <point x="1083.5255952380949" y="757.0" />
-              <point x="70.99999999999989" y="36.5" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="0.39793038570084666" x="693.0" y="1053.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>Fields</Category>
-            <Category>Inner Classes</Category>
-            <Category>Constructors</Category>
-            <Category>Properties</Category>
-            <Category>Methods</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/3ca7bae5/95c6f82e-7fb0-41f4-8225-31f732f20d8f/main.libros" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/95c6f82e-7fb0-41f4-8225-31f732f20d8f/console.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -1866,13 +1597,6 @@
     <entry file="file://$PROJECT_DIR$/out/production/epl/images/52.jpg" />
     <entry file="file://$PROJECT_DIR$/out/production/epl/images/85.jpg" />
     <entry file="file://$PROJECT_DIR$/src/daosqlite/Exect.java" />
-    <entry file="file://$PROJECT_DIR$/src/daosqlite/ConnectorHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="44" column="34" lean-forward="false" selection-start-line="40" selection-start-column="7" selection-end-line="44" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/3ca7bae5/7010690c-c718-4925-9bbb-92b51760de25/main.libros" />
     <entry file="file://$PROJECT_DIR$/src/parser/Csv.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1924,28 +1648,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/daosqlite/InsertDatas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="38" column="29" lean-forward="false" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.git/info/exclude">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="84" column="187" lean-forward="false" selection-start-line="84" selection-start-column="187" selection-end-line="84" selection-end-column="187" />
-          <folding>
-            <element signature="e#5669#5674#0" expanded="false" />
-            <element signature="method#importDataSource#0;class#RootLayoutController#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1978,14 +1684,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/resources/BookViewer.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="56" column="63" lean-forward="false" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="63" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7264e4a0-c5f4-4a7b-ba33-d45c9e552b5c/console.sql">
@@ -2017,35 +1723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/daosqlite/GetDatas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="132" column="28" lean-forward="false" selection-start-line="132" selection-start-column="28" selection-end-line="132" selection-end-column="28" />
-          <folding>
-            <marker date="1501503906644" expanded="true" signature="1206:1240" ph="select disti... libros" />
-            <marker date="1501503906644" expanded="true" signature="1206:1260" ph="select disti... libros" />
-            <marker date="1501503906644" expanded="true" signature="1871:1994" ph="select * fro... libros" />
-            <marker date="1501503906644" expanded="true" signature="1909:1970" ph="select epl_i... libros" />
-            <marker date="1501503906644" expanded="true" signature="5485:6197" ph="SELECT * FRO... libros" />
-            <marker date="1501503906644" expanded="true" signature="7402:7946" ph="SELECT * FRO... libros" />
-            <marker date="1501503906644" expanded="true" signature="8842:8920" ph="SELECT * FRO... LIBROS" />
-            <marker date="1501503906644" expanded="true" signature="10470:10531" ph="SELECT DATAS... config" />
-            <marker date="1501503906644" expanded="true" signature="11272:11304" ph="SELECT COUNT... LIBROS" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/resources/RootLayout.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="118" lean-forward="false" selection-start-line="29" selection-start-column="118" selection-end-line="29" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="das://table:/3ca7bae5/96075c71-44f4-450b-942a-ac4f9a2070fe/main.CONFIG">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -2063,36 +1740,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/resources/Style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
+        <state relative-caret-position="782">
           <caret line="46" column="1" lean-forward="false" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1384">
-          <caret line="456" column="60" lean-forward="false" selection-start-line="456" selection-start-column="60" selection-end-line="456" selection-end-column="60" />
-          <folding>
-            <element signature="method#multiDownload#0;class#MainTableViewController#0" expanded="false" />
-            <element signature="method#stringToArray#0;class#MainTableViewController#0" expanded="false" />
-            <element signature="class#DateComparator#0;class#MainTableViewController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/controllers/Alertas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="69" column="47" lean-forward="false" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2107,7 +1756,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
+        <state relative-caret-position="2414">
           <caret line="190" column="23" lean-forward="false" selection-start-line="190" selection-start-column="23" selection-end-line="190" selection-end-column="23" />
           <folding />
         </state>
@@ -2115,15 +1764,121 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/controllers/BookViewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="276" column="43" lean-forward="true" selection-start-line="276" selection-start-column="43" selection-end-line="276" selection-end-column="43" />
+        <state relative-caret-position="0">
+          <caret line="59" column="39" lean-forward="false" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3222#3223#0" expanded="true" />
-            <element signature="e#3290#3291#0" expanded="true" />
-            <element signature="e#7255#7756#0" expanded="true" />
-            <element signature="e#7755#7756#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/daosqlite/ConnectorHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="81" column="85" lean-forward="false" selection-start-line="81" selection-start-column="85" selection-end-line="81" selection-end-column="85" />
+          <folding>
+            <marker date="1504254510794" expanded="true" signature="1745:3403" ph="CREATE TABLE... IF" />
+            <marker date="1504254510794" expanded="true" signature="3461:3612" ph="CREATE TABLE... IF" />
+            <marker date="1504254510794" expanded="true" signature="3669:3759" ph="CREATE TABLE... IF" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/controllers/Alertas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="69" column="47" lean-forward="false" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/3ca7bae5/96075c71-44f4-450b-942a-ac4f9a2070fe/main.readed">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="65" column="35" lean-forward="true" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
+          <folding>
+            <element signature="e#1969#1970#0" expanded="true" />
+            <element signature="e#2017#2018#0" expanded="true" />
+            <element signature="e#2064#2065#0" expanded="true" />
+            <element signature="e#2106#2107#0" expanded="true" />
+            <element signature="e#6608#7772#0" expanded="true" />
+            <element signature="e#7771#7772#0" expanded="true" />
+            <element signature="e#9401#9402#0" expanded="true" />
+            <element signature="e#9433#9434#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/resources/RootLayout.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="34" column="61" lean-forward="true" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/daosqlite/InsertDatas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="71" column="27" lean-forward="false" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
+          <folding>
+            <marker date="1504254510810" expanded="true" signature="1542:1594" ph="REPLACE INTO... CONFIG" />
+            <marker date="1504254510810" expanded="true" signature="1944:1974" ph="REPLACE INTO... readed" />
+            <marker date="1504254510810" expanded="true" signature="2960:3358" ph="INSERT OR RE... libros" />
+            <marker date="1504254510810" expanded="true" signature="5017:5069" ph="REPLACE INTO... CONFIG" />
+            <marker date="1504254510810" expanded="true" signature="5748:5784" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/daosqlite/GetDatas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding>
+            <marker date="1504254510712" expanded="true" signature="1206:1240" ph="select disti... libros" />
+            <marker date="1504254510712" expanded="true" signature="1206:1260" ph="select disti... libros" />
+            <marker date="1504254510712" expanded="true" signature="1869:1911" ph="SELECT epl_i... readed" />
+            <marker date="1504254510712" expanded="true" signature="6213:6274" ph="SELECT DATAS... config" />
+            <marker date="1504254510712" expanded="true" signature="7395:8326" ph="SELECT * FRO... libros" />
+            <marker date="1504254510712" expanded="true" signature="9560:10197" ph="SELECT * FRO... libros" />
+            <marker date="1504254510712" expanded="true" signature="9560:10303" ph="SELECT * FRO... libros" />
+            <marker date="1504254510712" expanded="true" signature="11187:11265" ph="SELECT * FRO... LIBROS" />
+            <marker date="1504254510712" expanded="true" signature="12720:12752" ph="SELECT COUNT... LIBROS" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="118" column="19" lean-forward="false" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
+          <folding>
+            <element signature="method#multiDownload#0;class#MainTableViewController#0" expanded="false" />
+            <element signature="e#7119#7776#0" expanded="true" />
+            <element signature="e#7775#7776#0" expanded="true" />
+            <element signature="method#configTable#0;class#MainTableViewController#0" expanded="false" />
+            <element signature="method#stringToArray#0;class#MainTableViewController#0" expanded="false" />
+            <element signature="method#saveANDrestoreTableState#0;class#MainTableViewController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="77" />
+          <folding />
         </state>
       </provider>
     </entry>

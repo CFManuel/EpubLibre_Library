@@ -31,12 +31,13 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
     /**
      * Inserta o reemplaza un valor de configuración siguiendo un modelo Key -> Value.
      *
-     * @param id    Clave del registro.
+     * @param id Clave del registro.
      * @param value Valor del registro.
-     * @throws SQLException           Error en la db.
+     * @throws SQLException Error en la db.
      * @throws ClassNotFoundException Error en el driver.
      */
-    public static void insertConfig(String id, String value) throws SQLException, ClassNotFoundException {
+    public static void insertConfig(String id, String value)
+            throws SQLException, ClassNotFoundException {
         String sql = "REPLACE INTO CONFIG(TEXT_ID, DATASTRING) VALUES(?,?)";
         InsertDatas insertDatas = new InsertDatas();
         insertDatas.conectar();
@@ -47,6 +48,33 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         insertDatas.desconectar();
     }
 
+    public static void insertRead(int id) {
+        String sql = "REPLACE INTO readed VALUES (?)";
+        read(sql, id);
+    }
+
+    public static void deleteRead(int id) {
+        String sql = "DELETE FROM readed WHERE epl_id = ?";
+        read(sql, id);
+    }
+
+    private static void read(String sql, int id) {
+        InsertDatas insertDatas = new InsertDatas();
+        try {
+            insertDatas.conectar();
+            PreparedStatement ps = insertDatas.conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                insertDatas.desconectar();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     /**
      * Inserta un libro en la base de datos si no existe ninguno con la misma revisión.
      *
@@ -93,7 +121,7 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
      * Actualiza la fecha de la última actualización de la db.
      *
      * @throws ClassNotFoundException Driver no encontrado.
-     * @throws SQLException           Error al generar la conexión.
+     * @throws SQLException Error al generar la conexión.
      */
     public void updateDate() throws ClassNotFoundException, SQLException {
         String sql = "REPLACE INTO CONFIG(TEXT_ID, DATASTRING) VALUES(?,?)";
@@ -112,7 +140,7 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
      * Elimina un registro de configuración a partir de su clave.
      *
      * @param id Clave de registro.
-     * @throws SQLException           Error en la db.
+     * @throws SQLException Error en la db.
      * @throws ClassNotFoundException Error en el driver.
      */
     public void deleteConfig(String id) throws SQLException, ClassNotFoundException {
@@ -123,7 +151,6 @@ public class InsertDatas extends ConnectorHelper implements CommonStrings {
         ps.execute();
         super.desconectar();
     }
-
 
     /**
      * Recibe una cadena de texto y la devuelve sin tildes.

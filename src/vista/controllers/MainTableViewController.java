@@ -43,19 +43,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainTableViewController implements CommonStrings {
-    //ArrayList con los datos que se muestran en la tabla.
+    // ArrayList con los datos que se muestran en la tabla.
     public static final ObservableList<Libro> libros = FXCollections.observableArrayList();
     public static final ObservableList<String> idiomas = FXCollections.observableArrayList();
     public static SimpleIntegerProperty focusROW = new SimpleIntegerProperty();
-    private static String OPT_TITLE = "Título";
-    private static String OPT_AUTHOR = "Autor";
-    private static String OPT_COLLECTIONS = "Colecciones";
-    private static String OPT_GENDER = "Géneros";
-    private static String OPT_LANGUAGE = "Idioma";
     private Main main;
     @FXML
     private TextField tfSearch;
-
+    @FXML
+    private MenuItem menuRead;
     @FXML
     private TableView<Libro> bookTableView;
     @FXML
@@ -106,6 +102,24 @@ public class MainTableViewController implements CommonStrings {
     private ArrayList<Integer> visible_rows = new ArrayList<>();
 
     @FXML
+    private void contextMenu() {
+        int id = bookTableView.getSelectionModel().getSelectedItem().getEpl_id();
+        if (GetDatas.isRead(id)) menuRead.setText("Desmarcar");
+        else menuRead.setText("Marcar");
+    }
+
+    @FXML
+    private void markAsRead() {
+        ObservableList<Libro> libros = bookTableView.getSelectionModel().getSelectedItems();
+        libros.forEach(
+                libro -> {
+                    int id = libro.getEpl_id();
+                    if (GetDatas.isRead(id)) InsertDatas.deleteRead(id);
+                    else InsertDatas.insertRead(id);
+                });
+    }
+
+    @FXML
     private void initialize() {
         libros.addListener(
                 (ListChangeListener<Libro>)
@@ -114,10 +128,10 @@ public class MainTableViewController implements CommonStrings {
                             if (change.next() && change.wasAdded())
                                 bookTableView
                                         .getSortOrder()
-                                        .add(publiDateColumn); //Se ordena por esa columna.
+                                        .add(publiDateColumn); // Se ordena por esa columna.
                         });
         configTable();
-        //Deshabilita el botón de opciones si se pulsa "buscar en tabla".
+        // Deshabilita el botón de opciones si se pulsa "buscar en tabla".
         cbSearchOnTable
                 .selectedProperty()
                 .addListener((observableValue, aBoolean, t1) -> menuButton.setDisable(t1));
@@ -142,7 +156,7 @@ public class MainTableViewController implements CommonStrings {
      * cumplan los requisitos.
      */
     private void searchOnTable() {
-        //Recibe un libro, donde busca una cadena y devuelve un Bool si la contiene o no.
+        // Recibe un libro, donde busca una cadena y devuelve un Bool si la contiene o no.
         java.util.function.BiFunction<Libro, String, Boolean> match =
                 (libro, s) ->
                         (libro.getTitulo().toLowerCase().contains(s)
@@ -204,7 +218,7 @@ public class MainTableViewController implements CommonStrings {
         GetDatas.getIdiomas();
         cbIdiomas.setItems(idiomas);
         cbIdiomas.getSelectionModel().select(3);
-        //Cambia la linea seleccionada al moverse por la ficha del libro
+        // Cambia la linea seleccionada al moverse por la ficha del libro
         focusROW.addListener(
                 (observableValue, number, t1) -> {
                     bookTableView.getSelectionModel().clearSelection();
@@ -214,20 +228,34 @@ public class MainTableViewController implements CommonStrings {
         bookTableView
                 .getStylesheets()
                 .add(Main.class.getResource("/vista/resources/Style.css").toExternalForm());
-        eplidColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEpl_id()));
-        titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
-        autorColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAutor()));
-        colColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getColeccion()));
-        volColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getVolumen()));
-        generosColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGeneros()));
-        revColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getRevision()));
-        idiomaColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdioma()));
-        pagColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPaginas()));
-        valColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getValoracion()));
-        publiYearColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFecha_publi()));
-        n_votosColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getN_votos()));
-        publiDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPublicado()));
-        publiDateColumn.setSortType(TableColumn.SortType.DESCENDING); //Se establece el tipo de ordenación.
+        eplidColumn.setCellValueFactory(
+                cellData -> new SimpleIntegerProperty(cellData.getValue().getEpl_id()));
+        titleColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getTitulo()));
+        autorColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getAutor()));
+        colColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getColeccion()));
+        volColumn.setCellValueFactory(
+                cellData -> new SimpleDoubleProperty(cellData.getValue().getVolumen()));
+        generosColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getGeneros()));
+        revColumn.setCellValueFactory(
+                cellData -> new SimpleDoubleProperty(cellData.getValue().getRevision()));
+        idiomaColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getIdioma()));
+        pagColumn.setCellValueFactory(
+                cellData -> new SimpleIntegerProperty(cellData.getValue().getPaginas()));
+        valColumn.setCellValueFactory(
+                cellData -> new SimpleDoubleProperty(cellData.getValue().getValoracion()));
+        publiYearColumn.setCellValueFactory(
+                cellData -> new SimpleIntegerProperty(cellData.getValue().getFecha_publi()));
+        n_votosColumn.setCellValueFactory(
+                cellData -> new SimpleIntegerProperty(cellData.getValue().getN_votos()));
+        publiDateColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getPublicado()));
+        publiDateColumn.setSortType(
+                TableColumn.SortType.DESCENDING); // Se establece el tipo de ordenación.
 
         volColumn.getStyleClass().add("alineacion-derecha");
         revColumn.getStyleClass().add("alineacion-derecha");
@@ -242,7 +270,7 @@ public class MainTableViewController implements CommonStrings {
         bookTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         bookTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         publiDateColumn.setComparator(new DateComparator());
-        //Abrir ficha del libro con doble click o enter.
+        // Abrir ficha del libro con doble click o enter.
         bookTableView.addEventHandler(
                 MouseEvent.MOUSE_CLICKED,
                 event -> {
@@ -294,7 +322,7 @@ public class MainTableViewController implements CommonStrings {
             try {
                 ints[i] = Integer.parseInt(array[i]);
             } catch (NumberFormatException nfe) {
-                //Not an integer
+                // Not an integer
             }
         }
         return ints;
@@ -305,11 +333,11 @@ public class MainTableViewController implements CommonStrings {
      * visibilidad de una columna. Guarda estos datos en la DB.
      */
     private void saveANDrestoreTableState() {
-        //listeners de orden y visibilidad.
+        // listeners de orden y visibilidad.
         ObservableList<TableColumn<Libro, ?>> columns = bookTableView.getColumns();
         final List<TableColumn<Libro, ?>> unchangedColumns =
                 Collections.unmodifiableList(new ArrayList<>(columns));
-        //Registra el orden de las columnas y lo actualiza en la base de datos.
+        // Registra el orden de las columnas y lo actualiza en la base de datos.
         columns.addListener(
                 (ListChangeListener<TableColumn<Libro, ?>>)
                         change -> {
@@ -328,12 +356,12 @@ public class MainTableViewController implements CommonStrings {
                                                 CommonStrings.ORDER_COLUMNS,
                                                 Arrays.toString(colOrder).replaceAll("\\s", ""));
                                     } catch (Exception e) {
-                                        //empty
+                                        // empty
                                     }
                                 }
                             }
                         });
-        //Listener que avisa del tamaño de las columnas
+        // Listener que avisa del tamaño de las columnas
         for (TableColumn<Libro, ?> column : columns) {
             column.widthProperty()
                     .addListener(
@@ -350,11 +378,11 @@ public class MainTableViewController implements CommonStrings {
                                     InsertDatas.insertConfig(
                                             CommonStrings.WIDTH_COLUMNS, Arrays.toString(size));
                                 } catch (Exception e) {
-                                    //empty
+                                    // empty
                                 }
                             });
         }
-        //Listener que avisa de un cambio en la visibilidad de las columnas.
+        // Listener que avisa de un cambio en la visibilidad de las columnas.
         for (TableColumn<Libro, ?> column : columns) {
             column.visibleProperty()
                     .addListener(
@@ -368,11 +396,11 @@ public class MainTableViewController implements CommonStrings {
                                     InsertDatas.insertConfig(
                                             CommonStrings.VISIBLE_COLUMNS, Arrays.toString(vista1));
                                 } catch (Exception e) {
-                                    //empty
+                                    // empty
                                 }
                             });
         }
-        //Obtiene la última configuración de la tabla.
+        // Obtiene la última configuración de la tabla.
         Boolean[] vista = {};
         int[] order = {};
         int[] width = {};
@@ -387,21 +415,21 @@ public class MainTableViewController implements CommonStrings {
                             .map(Boolean::parseBoolean)
                             .toArray(Boolean[]::new);
         } catch (Exception e) {
-            //empty
+            // empty
         }
-        //Tamaño de las columnas.
+        // Tamaño de las columnas.
         if (width.length == columns.size()) {
             for (int i = 0; i < width.length; i++) {
                 columns.get(i).setPrefWidth(width[i]);
             }
         }
-        //Restaura la visibilidad de las columnas.
+        // Restaura la visibilidad de las columnas.
         if (vista.length == columns.size()) {
             for (int i = 0; i < columns.size(); i++) {
                 columns.get(i).setVisible(vista[i]);
             }
         }
-        //Reordena las columnas.
+        // Reordena las columnas.
         if (order.length == columns.size()) {
             columns.clear();
             for (int anOrder : order) {
@@ -421,7 +449,7 @@ public class MainTableViewController implements CommonStrings {
                         getDatas.getLibros(lastSearch.replaceAll("[\\s\\[\\]]+", "").split(",")));
             }
         } catch (ClassNotFoundException | SQLException e) {
-            //first execution.
+            // first execution.
         }
     }
 
@@ -471,7 +499,7 @@ public class MainTableViewController implements CommonStrings {
         private final int MAYOR = 1;
         private final int MENOR = -1;
 
-        //1: p, 2: dia, 3: mes, 4:año
+        // 1: p, 2: dia, 3: mes, 4:año
         @Override
         public int compare(String o1, String o2) {
             int result = 0;

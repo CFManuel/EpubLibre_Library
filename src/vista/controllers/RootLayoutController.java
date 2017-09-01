@@ -64,10 +64,16 @@ public class RootLayoutController implements CommonStrings {
     }
 
     @FXML
+    private void getReadedBooks() {
+        GetDatas.getLibrosLeidos();
+    }
+
+    @FXML
     private void checkByContent() {
         final DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Carpeta con ePubs.");
-        final Path root = Paths.get(directoryChooser.showDialog(main.getPrimaryStage()).getAbsolutePath());
+        final Path root =
+                Paths.get(directoryChooser.showDialog(main.getPrimaryStage()).getAbsolutePath());
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         final String[] busqueda = new String[6];
         ArrayList<Libro> librosDownload;
@@ -80,20 +86,24 @@ public class RootLayoutController implements CommonStrings {
 
             Files.walkFileTree(root, epubSearch);
             librosDownload = epubSearch.getEpubs();
-            BiFunction<Libro, ArrayList<Libro>, Integer> cmp = (l1, l2) -> {
-                for (int i = 0; i < l2.size(); i++) {
-                    if (l1.getTitulo().equalsIgnoreCase(l2.get(i).getTitulo()) && l1.getAutor().equalsIgnoreCase(l2.get(i).getAutor()) && l1.getRevision().equals(l2.get(i).getRevision())) {
-                        return i;
-                    }
-                }
-                return -1;
-            };
-            //Comprueba que hay libros descargados.
+            BiFunction<Libro, ArrayList<Libro>, Integer> cmp =
+                    (l1, l2) -> {
+                        for (int i = 0; i < l2.size(); i++) {
+                            if (l1.getTitulo().equalsIgnoreCase(l2.get(i).getTitulo())
+                                    && l1.getAutor().equalsIgnoreCase(l2.get(i).getAutor())
+                                    && l1.getRevision().equals(l2.get(i).getRevision())) {
+                                return i;
+                            }
+                        }
+                        return -1;
+                    };
+            // Comprueba que hay libros descargados.
             if (librosDownload.size() > 0) {
-                librosDownload.forEach(libro -> {
-                    int num;
-                    if ((num = cmp.apply(libro, librosDB)) != -1) librosDB.remove(num);
-                });
+                librosDownload.forEach(
+                        libro -> {
+                            int num;
+                            if ((num = cmp.apply(libro, librosDB)) != -1) librosDB.remove(num);
+                        });
                 MainTableViewController.libros.clear();
                 MainTableViewController.libros.addAll(librosDB);
             }
@@ -111,9 +121,9 @@ public class RootLayoutController implements CommonStrings {
         HashMap<Integer, String> librosDownload;
         directoryChooser.setTitle("Carpeta con ePubs.");
 
-        final Path root = Paths.get(directoryChooser.showDialog(main.getPrimaryStage()).getAbsolutePath());
+        final Path root =
+                Paths.get(directoryChooser.showDialog(main.getPrimaryStage()).getAbsolutePath());
         main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
-
 
         for (int i = 0; i < 6; i++) busqueda[i] = "%%";
         try {
@@ -122,7 +132,7 @@ public class RootLayoutController implements CommonStrings {
             final RecursiveSearchByName epubSearch = new RecursiveSearchByName();
             Files.walkFileTree(root, epubSearch);
             librosDownload = epubSearch.getEpubs();
-            //Comprueba que hay libros descargados.
+            // Comprueba que hay libros descargados.
             if (librosDownload.size() > 0) {
                 for (int i = 0; i < librosDB.size(); i++) {
                     if (librosDownload.containsKey(librosDB.get(i).getEpl_id())) librosDB.remove(i);
@@ -210,9 +220,7 @@ public class RootLayoutController implements CommonStrings {
         }
     }
 
-    /**
-     * Muestra la información de la base de datos.
-     */
+    /** Muestra la información de la base de datos. */
     @FXML
     private void getLastUpdate() {
         try {
@@ -225,21 +233,17 @@ public class RootLayoutController implements CommonStrings {
         }
     }
 
-    /**
-     * Información sobre la aplicación.
-     */
+    /** Información sobre la aplicación. */
     @FXML
     private void help() {
         aplicationInfo();
     }
 
-    /**
-     * Función propia JafaFX que se ejecuta al iniciar el componente
-     */
+    /** Función propia JafaFX que se ejecuta al iniciar el componente */
     @FXML
     private void initialize() {
 
-        //do Something.
+        // do Something.
     }
 
     @FXML
