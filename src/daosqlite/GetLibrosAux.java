@@ -22,11 +22,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 final class GetLibrosAux {
     public static ResultSet getLibros(
             Connection conn, String[] busqueda, Boolean mostrarLeidos, Boolean collection)
             throws SQLException {
+        System.out.println(Arrays.toString(busqueda) + " - " + mostrarLeidos + " + " + collection);
         String sql_NColeccion_NLeidos =
                 "SELECT * FROM libros LEFT JOIN readed ON libros.epl_id = readed.epl_id  WHERE "
                         // titulo
@@ -125,7 +127,6 @@ final class GetLibrosAux {
 
     private static ResultSet getLibrosConColeccion(Connection conn, String[] busqueda, String sql)
             throws SQLException {
-
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, busqueda[0]);
         ps.setString(2, busqueda[0]);

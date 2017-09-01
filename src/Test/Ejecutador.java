@@ -22,7 +22,6 @@ import com.sun.org.apache.xerces.internal.impl.dv.util.HexBin;
 import vista.Main;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -32,13 +31,13 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Ejecutador {
-    public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
-        String file = "diagrama.uml";
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        String digest = getDigest(new FileInputStream(file), md, 2048);
+    public static void main(String[] args) throws IOException, NoSuchAlgorithmException, SQLException, ClassNotFoundException {
 
-        System.out.println("MD5 Digest: " + digest);
-
+        String lastSearch = "[, %Javier Cercas%, , , , Español]";
+        System.out.println(lastSearch);
+        //     lastSearch = lastSearch.replaceAll("(?<!\\w)\\s(?!\\w)|((?<=,)\\s)", "+");
+        lastSearch = lastSearch.replaceAll("(?<!\\w)\\s(?!\\w)|((?<=,)\\s)|[\\[\\]]", "");
+        System.out.println(lastSearch);
     }
 
     public static String getDigest(InputStream is, MessageDigest md, int byteArraySize)

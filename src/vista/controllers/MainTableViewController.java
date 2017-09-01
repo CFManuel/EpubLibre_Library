@@ -449,7 +449,10 @@ public class MainTableViewController implements CommonStrings {
                 libros.clear();
                 libros.addAll(
                         getDatas.getLibros(
-                                lastSearch.replaceAll("[\\s\\[\\]]+", "").split(","), true));
+                                lastSearch
+                                        .replaceAll("(?<!\\w)\\s(?!\\w)|((?<=,)\\s)|[\\[\\]]", "")
+                                        .split(","),
+                                true));
             }
         } catch (ClassNotFoundException | SQLException e) {
             // first execution.
@@ -459,7 +462,6 @@ public class MainTableViewController implements CommonStrings {
     private void drawTable(String[] busqueda) {
         try {
             GetDatas getDatas = new GetDatas();
-
             ArrayList<Libro> libros = getDatas.getLibros(busqueda, cbLeidos.isSelected());
             MainTableViewController.libros.clear();
             MainTableViewController.libros.addAll(libros);

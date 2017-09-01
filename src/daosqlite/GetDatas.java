@@ -191,7 +191,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
         ResultSet rst = null;
         super.conectar();
         // Se realiza una busqueda a parte cuando el usuario no ha seleccionado una colección.
-        Boolean collection = busqueda[2].equalsIgnoreCase("");
+        Boolean collection = !(busqueda[2].equalsIgnoreCase("") || busqueda[2].equalsIgnoreCase(" "));
         rst = GetLibrosAux.getLibros(conn, busqueda, mostrarLeidos, collection);
 
         HashMap<Integer, Libro> libros = procesarConsultaLibros(rst);
