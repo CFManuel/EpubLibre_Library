@@ -81,7 +81,7 @@ public class RootLayoutController implements CommonStrings {
         for (int i = 0; i < 6; i++) busqueda[i] = "%%";
         try {
             final GetDatas getDatas = new GetDatas();
-            final ArrayList<Libro> librosDB = getDatas.getLibros(busqueda);
+            final ArrayList<Libro> librosDB = getDatas.getLibros(busqueda, true);
             final RecursiveSearchByContent epubSearch = new RecursiveSearchByContent();
 
             Files.walkFileTree(root, epubSearch);
@@ -128,7 +128,7 @@ public class RootLayoutController implements CommonStrings {
         for (int i = 0; i < 6; i++) busqueda[i] = "%%";
         try {
             final GetDatas getDatas = new GetDatas();
-            final ArrayList<Libro> librosDB = getDatas.getLibros(busqueda);
+            final ArrayList<Libro> librosDB = getDatas.getLibros(busqueda, true);
             final RecursiveSearchByName epubSearch = new RecursiveSearchByName();
             Files.walkFileTree(root, epubSearch);
             librosDownload = epubSearch.getEpubs();

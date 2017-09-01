@@ -97,6 +97,8 @@ public class MainTableViewController implements CommonStrings {
     @FXML
     private CheckMenuItem cbSinopsis;
     @FXML
+    private CheckMenuItem cbLeidos;
+    @FXML
     private ComboBox<String> cbIdiomas;
 
     private ArrayList<Integer> visible_rows = new ArrayList<>();
@@ -446,7 +448,8 @@ public class MainTableViewController implements CommonStrings {
                 GetDatas getDatas = new GetDatas();
                 libros.clear();
                 libros.addAll(
-                        getDatas.getLibros(lastSearch.replaceAll("[\\s\\[\\]]+", "").split(",")));
+                        getDatas.getLibros(
+                                lastSearch.replaceAll("[\\s\\[\\]]+", "").split(","), true));
             }
         } catch (ClassNotFoundException | SQLException e) {
             // first execution.
@@ -457,7 +460,7 @@ public class MainTableViewController implements CommonStrings {
         try {
             GetDatas getDatas = new GetDatas();
 
-            ArrayList<Libro> libros = getDatas.getLibros(busqueda);
+            ArrayList<Libro> libros = getDatas.getLibros(busqueda, cbLeidos.isSelected());
             MainTableViewController.libros.clear();
             MainTableViewController.libros.addAll(libros);
             InsertDatas.insertConfig(CommonStrings.LAST_SEARCH, Arrays.toString(busqueda));

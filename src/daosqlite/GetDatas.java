@@ -162,7 +162,7 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      *
      * @param id Campo sobre el que se desea obtener su valor.
      * @return String con el valor del campo.
-     * @throws SQLException           Error en la db.
+     * @throws SQLException Error en la db.
      * @throws ClassNotFoundException Error en el driver.
      */
     public static String getConfig(String id) throws SQLException, ClassNotFoundException {
@@ -186,86 +186,17 @@ public class GetDatas extends ConnectorHelper implements CommonStrings {
      * @throws SQLException Error al generar la conexión.
      * @throws ClassNotFoundException Driver no encontrado.
      */
-    public ArrayList<Libro> getLibros(String[] busqueda)
+    public ArrayList<Libro> getLibros(String[] busqueda, Boolean mostrarLeidos)
             throws SQLException, ClassNotFoundException {
-        String sql;
         ResultSet rst = null;
         super.conectar();
-        PreparedStatement ps = null;
-        if (busqueda[2].equalsIgnoreCase("")) {
-            // Se realiza una busqueda a parte cuando el usuario no ha seleccionado una colección.
-            rst = getLibrosSinColeccion(ps, busqueda);
-        } else {
-            sql =
-                    "SELECT * FROM libros LEFT JOIN readed ON libros.epl_id = readed.epl_id WHERE "
-                            // titulo
-                            + "(lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) OR "
-                            // Autor
-                            + "lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?) OR "
-                            // Colección
-                            + "lower(coleccion) LIKE lower(?) OR lower(colsense) LIKE lower(?) OR "
-                            // Género
-                            + "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) OR "
-                            // sinopsis
-                            + "lower(sinopsis) LIKE lower(?)) "
-                            // Idioma
-                            + "AND idioma LIKE ? "
-                            + "AND readed.epl_id IS NULL "
-                            + "ORDER BY revision DESC ";
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, busqueda[0]);
-            ps.setString(2, busqueda[0]);
-            ps.setString(3, busqueda[1]);
-            ps.setString(4, busqueda[1]);
-            ps.setString(5, busqueda[2]);
-            ps.setString(6, busqueda[2]);
-            ps.setString(7, busqueda[3]);
-            ps.setString(8, busqueda[3]);
-            ps.setString(9, busqueda[4]);
-            ps.setString(10, busqueda[5]);
-            rst = ps.executeQuery();
-        }
+        // Se realiza una busqueda a parte cuando el usuario no ha seleccionado una colección.
+        Boolean collection = busqueda[2].equalsIgnoreCase("");
+        rst = GetLibrosAux.getLibros(conn, busqueda, mostrarLeidos, collection);
 
         HashMap<Integer, Libro> libros = procesarConsultaLibros(rst);
         super.desconectar();
         return new ArrayList<>(libros.values());
-    }
-
-    /**
-     * Se realiza la solicitud de libros, pero sin buscar en las colecciones. Esto evita que se
-     * muestren resultados con colecciones vacias.
-     *
-     * @param ps PreparedStatement sobre el que se genera la consulta.
-     * @param busqueda String[] con los datos de la consulta.
-     * @return ResultSet con los datos de la Query.
-     * @throws SQLException Error con el cursor.
-     */
-    private ResultSet getLibrosSinColeccion(PreparedStatement ps, String[] busqueda)
-            throws SQLException {
-        String sql =
-                "SELECT * FROM libros LEFT JOIN readed ON libros.epl_id = readed.epl_id  WHERE "
-                        // titulo
-                        + "(lower(titulo) LIKE lower(?) OR lower(titsense) LIKE lower(?) OR "
-                        // Autor
-                        + "lower(autor) LIKE lower(?)  OR lower(autsense) LIKE lower(?) OR "
-                        // Género
-                        + "lower(generos) LIKE lower(?) OR lower(gensense) LIKE lower(?) OR "
-                        // sinopsis
-                        + "lower(sinopsis) LIKE lower(?)) "
-                        // Idioma
-                        + "AND idioma like ? "
-                        + "AND readed.epl_id IS NULL "
-                        + "ORDER BY revision DESC ";
-        ps = conn.prepareStatement(sql);
-        ps.setString(1, busqueda[0]);
-        ps.setString(2, busqueda[0]);
-        ps.setString(3, busqueda[1]);
-        ps.setString(4, busqueda[1]);
-        ps.setString(5, busqueda[3]);
-        ps.setString(6, busqueda[3]);
-        ps.setString(7, busqueda[4]);
-        ps.setString(8, busqueda[5]);
-        return ps.executeQuery();
     }
 
     /**

@@ -6,15 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added support for readed books.">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/daosqlite/GetLibrosAux.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/daosqlite/ConnectorHelper.java" afterPath="$PROJECT_DIR$/src/daosqlite/ConnectorHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/daosqlite/GetDatas.java" afterPath="$PROJECT_DIR$/src/daosqlite/GetDatas.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/daosqlite/InsertDatas.java" afterPath="$PROJECT_DIR$/src/daosqlite/InsertDatas.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" afterPath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" afterPath="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/resources/MainTableView.fxml" afterPath="$PROJECT_DIR$/src/vista/resources/MainTableView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" afterPath="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -101,42 +99,28 @@
       <file leaf-file-name="GetDatas.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/daosqlite/GetDatas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+            <state relative-caret-position="2822">
+              <caret line="191" column="25" lean-forward="false" selection-start-line="191" selection-start-column="25" selection-end-line="191" selection-end-column="25" />
               <folding>
-                <marker date="1504254510712" expanded="true" signature="1206:1240" ph="select disti... libros" />
-                <marker date="1504254510712" expanded="true" signature="1206:1260" ph="select disti... libros" />
-                <marker date="1504254510712" expanded="true" signature="1869:1911" ph="SELECT epl_i... readed" />
-                <marker date="1504254510712" expanded="true" signature="6213:6274" ph="SELECT DATAS... config" />
-                <marker date="1504254510712" expanded="true" signature="7395:8326" ph="SELECT * FRO... libros" />
-                <marker date="1504254510712" expanded="true" signature="9560:10197" ph="SELECT * FRO... libros" />
-                <marker date="1504254510712" expanded="true" signature="9560:10303" ph="SELECT * FRO... libros" />
-                <marker date="1504254510712" expanded="true" signature="11187:11265" ph="SELECT * FRO... LIBROS" />
-                <marker date="1504254510712" expanded="true" signature="12720:12752" ph="SELECT COUNT... LIBROS" />
+                <marker date="1504256785269" expanded="true" signature="1206:1240" ph="select disti... libros" />
+                <marker date="1504256785269" expanded="true" signature="1206:1260" ph="select disti... libros" />
+                <marker date="1504256785269" expanded="true" signature="1869:1911" ph="SELECT epl_i... readed" />
+                <marker date="1504256785269" expanded="true" signature="6203:6264" ph="SELECT DATAS... config" />
+                <marker date="1504256785269" expanded="true" signature="7982:8060" ph="SELECT * FRO... LIBROS" />
+                <marker date="1504256785269" expanded="true" signature="9515:9547" ph="SELECT COUNT... LIBROS" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RootLayout.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vista/resources/RootLayout.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
+      <file leaf-file-name="GetLibrosAux.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/daosqlite/GetLibrosAux.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="34" column="61" lean-forward="true" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="75" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="77" />
-              <folding />
+            <state relative-caret-position="1513">
+              <caret line="105" column="6" lean-forward="false" selection-start-line="105" selection-start-column="6" selection-end-line="105" selection-end-column="6" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -157,18 +141,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainTableViewController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainTableViewController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="118" column="19" lean-forward="false" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
+            <state relative-caret-position="6332">
+              <caret line="423" column="91" lean-forward="false" selection-start-line="423" selection-start-column="91" selection-end-line="423" selection-end-column="91" />
               <folding>
-                <element signature="method#multiDownload#0;class#MainTableViewController#0" expanded="false" />
-                <element signature="e#7119#7776#0" expanded="true" />
-                <element signature="e#7775#7776#0" expanded="true" />
-                <element signature="method#configTable#0;class#MainTableViewController#0" expanded="false" />
-                <element signature="method#stringToArray#0;class#MainTableViewController#0" expanded="false" />
-                <element signature="method#saveANDrestoreTableState#0;class#MainTableViewController#0" expanded="false" />
+                <element signature="e#7049#7706#0" expanded="true" />
+                <element signature="e#7705#7706#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -214,7 +194,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/373d7e02-a6a0-45eb-83e8-27bf0ab7b25d/console.sql" />
         <option value="$PROJECT_DIR$/src/vista/Alertas.java" />
         <option value="$PROJECT_DIR$/src/vista/customControls/JFXToggleButtonSkin.java" />
         <option value="$PROJECT_DIR$/src/vista/customControls/JFXToggleButton.java" />
@@ -262,9 +241,10 @@
         <option value="$PROJECT_DIR$/src/daosqlite/InsertDatas.java" />
         <option value="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql" />
-        <option value="$PROJECT_DIR$/src/daosqlite/GetDatas.java" />
         <option value="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" />
         <option value="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" />
+        <option value="$PROJECT_DIR$/src/daosqlite/GetDatas.java" />
+        <option value="$PROJECT_DIR$/src/daosqlite/GetLibrosAux.java" />
       </list>
     </option>
   </component>
@@ -1072,14 +1052,7 @@
       <workItem from="1503928665774" duration="2212000" />
       <workItem from="1503933692854" duration="10000" />
       <workItem from="1503934348950" duration="421000" />
-      <workItem from="1504250424887" duration="4100000" />
-    </task>
-    <task id="LOCAL-00104" summary="Change load system for book images.">
-      <created>1501199819208</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1501199819208</updated>
+      <workItem from="1504250424887" duration="6258000" />
     </task>
     <task id="LOCAL-00105" summary="Added default error book image.">
       <created>1501199843717</created>
@@ -1417,11 +1390,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503930737846</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="Added support for readed books.">
+      <created>1504254536738</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1504254536739</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180595000" />
+    <option name="totallyTimeSpent" value="182753000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1434,25 +1414,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739422" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32850778" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850778" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32733408" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942432" sideWeight="0.49565217" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2962138" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2962138" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33184856" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16311301" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16311301" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="18" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14552239" sideWeight="0.48652932" order="12" side_tool="false" content_ui="tabs" x="759" y="211" width="402" height="618" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31023455" sideWeight="0.48652932" order="12" side_tool="false" content_ui="tabs" x="759" y="211" width="402" height="618" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1557,7 +1536,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://table:/3ca7bae5/95c6f82e-7fb0-41f4-8225-31f732f20d8f/main.libros" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/95c6f82e-7fb0-41f4-8225-31f732f20d8f/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1777,9 +1755,9 @@
         <state relative-caret-position="391">
           <caret line="81" column="85" lean-forward="false" selection-start-line="81" selection-start-column="85" selection-end-line="81" selection-end-column="85" />
           <folding>
-            <marker date="1504254510794" expanded="true" signature="1745:3403" ph="CREATE TABLE... IF" />
-            <marker date="1504254510794" expanded="true" signature="3461:3612" ph="CREATE TABLE... IF" />
-            <marker date="1504254510794" expanded="true" signature="3669:3759" ph="CREATE TABLE... IF" />
+            <marker date="1504254530635" expanded="true" signature="1757:3415" ph="CREATE TABLE... IF" />
+            <marker date="1504254530635" expanded="true" signature="3473:3624" ph="CREATE TABLE... IF" />
+            <marker date="1504254530635" expanded="true" signature="3681:3771" ph="CREATE TABLE... IF" />
           </folding>
         </state>
       </provider>
@@ -1799,30 +1777,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="65" column="35" lean-forward="true" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
-          <folding>
-            <element signature="e#1969#1970#0" expanded="true" />
-            <element signature="e#2017#2018#0" expanded="true" />
-            <element signature="e#2064#2065#0" expanded="true" />
-            <element signature="e#2106#2107#0" expanded="true" />
-            <element signature="e#6608#7772#0" expanded="true" />
-            <element signature="e#7771#7772#0" expanded="true" />
-            <element signature="e#9401#9402#0" expanded="true" />
-            <element signature="e#9433#9434#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/resources/RootLayout.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
+        <state relative-caret-position="566">
           <caret line="34" column="61" lean-forward="true" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="77" />
           <folding />
         </state>
       </provider>
@@ -1841,44 +1810,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="130" column="79" lean-forward="false" selection-start-line="130" selection-start-column="79" selection-end-line="130" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/daosqlite/GetLibrosAux.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1513">
+          <caret line="105" column="6" lean-forward="false" selection-start-line="105" selection-start-column="6" selection-end-line="105" selection-end-column="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/daosqlite/GetDatas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+        <state relative-caret-position="2822">
+          <caret line="191" column="25" lean-forward="false" selection-start-line="191" selection-start-column="25" selection-end-line="191" selection-end-column="25" />
           <folding>
-            <marker date="1504254510712" expanded="true" signature="1206:1240" ph="select disti... libros" />
-            <marker date="1504254510712" expanded="true" signature="1206:1260" ph="select disti... libros" />
-            <marker date="1504254510712" expanded="true" signature="1869:1911" ph="SELECT epl_i... readed" />
-            <marker date="1504254510712" expanded="true" signature="6213:6274" ph="SELECT DATAS... config" />
-            <marker date="1504254510712" expanded="true" signature="7395:8326" ph="SELECT * FRO... libros" />
-            <marker date="1504254510712" expanded="true" signature="9560:10197" ph="SELECT * FRO... libros" />
-            <marker date="1504254510712" expanded="true" signature="9560:10303" ph="SELECT * FRO... libros" />
-            <marker date="1504254510712" expanded="true" signature="11187:11265" ph="SELECT * FRO... LIBROS" />
-            <marker date="1504254510712" expanded="true" signature="12720:12752" ph="SELECT COUNT... LIBROS" />
+            <marker date="1504256785269" expanded="true" signature="1206:1240" ph="select disti... libros" />
+            <marker date="1504256785269" expanded="true" signature="1206:1260" ph="select disti... libros" />
+            <marker date="1504256785269" expanded="true" signature="1869:1911" ph="SELECT epl_i... readed" />
+            <marker date="1504256785269" expanded="true" signature="6203:6264" ph="SELECT DATAS... config" />
+            <marker date="1504256785269" expanded="true" signature="7982:8060" ph="SELECT * FRO... LIBROS" />
+            <marker date="1504256785269" expanded="true" signature="9515:9547" ph="SELECT COUNT... LIBROS" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="118" column="19" lean-forward="false" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
+        <state relative-caret-position="6332">
+          <caret line="423" column="91" lean-forward="false" selection-start-line="423" selection-start-column="91" selection-end-line="423" selection-end-column="91" />
           <folding>
-            <element signature="method#multiDownload#0;class#MainTableViewController#0" expanded="false" />
-            <element signature="e#7119#7776#0" expanded="true" />
-            <element signature="e#7775#7776#0" expanded="true" />
-            <element signature="method#configTable#0;class#MainTableViewController#0" expanded="false" />
-            <element signature="method#stringToArray#0;class#MainTableViewController#0" expanded="false" />
-            <element signature="method#saveANDrestoreTableState#0;class#MainTableViewController#0" expanded="false" />
+            <element signature="e#7049#7706#0" expanded="true" />
+            <element signature="e#7705#7706#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/96075c71-44f4-450b-942a-ac4f9a2070fe/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
