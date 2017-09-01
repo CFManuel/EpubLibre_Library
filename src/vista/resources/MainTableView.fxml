@@ -51,7 +51,8 @@
                                                        text="Autor"/>
                                         <CheckMenuItem fx:id="cbColeccion" mnemonicParsing="false" selected="true"
                                                        text="Colección"/>
-                                        <CheckMenuItem fx:id="cbGenero" mnemonicParsing="false" text="Genero"/>
+                                        <CheckMenuItem fx:id="cbGenero" mnemonicParsing="false" selected="true"
+                                                       text="Genero"/>
                                         <CheckMenuItem fx:id="cbSinopsis" mnemonicParsing="false" text="Sinopsis"/>
                                         <CheckMenuItem fx:id="cbLeidos" mnemonicParsing="false" text="Leidos"/>
                                     </items>
