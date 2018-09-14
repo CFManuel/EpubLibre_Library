@@ -1,5 +1,5 @@
 # EpubLibre_Library
-Aplicación de escritorio para tener una funcionalidad básica de la página [EpubLibre](http://epublibre.org) fuuera de línea.
+Java desktop graphic aplication make it to provide an offline functionality of [EpubLibre](http://epublibre.org) web. Developed for books fan and misc people.
 
 ## Installation
 Requiere Java 8
