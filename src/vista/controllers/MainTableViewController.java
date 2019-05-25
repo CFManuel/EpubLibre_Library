@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Ladaga.
+ * Copyright (c) 2019. Ladaga.
  * This file is part of EpubLibre_Library.
  *
  *     EpubLibre_Library is free software: you can redistribute it and/or modify
@@ -126,7 +126,7 @@ public class MainTableViewController implements CommonStrings {
         libros.addListener(
                 (ListChangeListener<Libro>)
                         change -> {
-                            labelBookFound.setText(String.valueOf(libros.size()) + " Libros");
+                            labelBookFound.setText(libros.size() + " Libros");
                             if (change.next() && change.wasAdded())
                                 bookTableView
                                         .getSortOrder()
@@ -213,7 +213,35 @@ public class MainTableViewController implements CommonStrings {
         new Thread(launcher).start();
     }
 
-    /** Configuración de los campos de la tabla. */
+    @FXML
+    private void copyAllMagnet() {
+        ObservableList<Libro> selectedItems = bookTableView.getSelectionModel().getSelectedItems();
+        // selectedItems.forEach(Utils::launchTorrent);
+        StringBuilder magnetLinks = new StringBuilder();
+        selectedItems.forEach(
+                libro -> {
+                    magnetLinks.append(
+                            String.format(
+                                    "%s&dn=ePL_[%d]_%s",
+                                    libro.getEnlaces(),
+                                    libro.getEpl_id(),
+                                    libro.getTitulo().replaceAll("\\s", "_").replaceAll("[´`\"\']", "")
+                            )
+                    );
+                    magnetLinks.append("\n");
+                });
+
+        final ClipboardContent content = new ClipboardContent();
+        content.putString(magnetLinks.toString());
+
+        Clipboard.getSystemClipboard().setContent(content);
+
+
+    }
+
+    /**
+     * Configuración de los campos de la tabla.
+     */
     private void configTable() {
         idiomas.clear();
         idiomas.add("Todos");

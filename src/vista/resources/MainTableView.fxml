@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ Copyright (c) 2017. Ladaga.
+  ~ Copyright (c) 2019. Ladaga.
   ~ This file is part of EpubLibre_Library.
   ~
   ~     EpubLibre_Library is free software: you can redistribute it and/or modify
@@ -110,6 +110,7 @@
                             <items>
                                 <MenuItem fx:id="menuRead" mnemonicParsing="false" onAction="#markAsRead" text="Leido"/>
                                 <MenuItem mnemonicParsing="false" onAction="#multiDownload" text="Descargar"/>
+                                <MenuItem mnemonicParsing="false" onAction="#copyAllMagnet" text="Copiar Magnets"/>
                             </items>
                         </ContextMenu>
                     </contextMenu>
