@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="epubLibre [2]" uuid="96075c71-44f4-450b-942a-ac4f9a2070fe">
+    <data-source source="LOCAL" name="epubLibre" uuid="fbbd03df-6491-4d09-8176-d627375f0012">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>SQLite</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\out\production\epl\epubLibre.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:E:\Proyectos\EpubLibre_Library\target\epl\epubLibre.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
