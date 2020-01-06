@@ -7,81 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Refactor to use maven.">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/controller/UpdateDB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/daosqlite/ConnectorHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/daosqlite/GetDatas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/daosqlite/GetLibrosAux.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/daosqlite/InsertDatas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/exceptions/NoValidCSVFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/files/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/modelos/CommonStrings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/modelos/Libro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/modelos/RecursiveSearchByContent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/modelos/RecursiveSearchByName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/parser/Csv.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/vista/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/vista/controllers/Alertas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/vista/controllers/BookViewer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/vista/controllers/MainTableViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmmop/vista/controllers/RootLayoutController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/BookViewer.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/MainTableView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/RootLayout.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/EPL_Portadas_NEGRO.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/back.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icono_alertas.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/next.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/no-image.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/EpubLibre_Library_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EpubLibre_Library.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EpubLibre_Library.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/URISchemeHandler-1.9-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/commons-io-2.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/gson-2.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/joda-time-2.9.9.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/sqlite-jdbc-3.19.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/zip4j_1.3.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/UpdateDB.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daosqlite/ConnectorHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daosqlite/GetDatas.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daosqlite/GetLibrosAux.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daosqlite/InsertDatas.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/NoValidCSVFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos/CommonStrings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos/Libro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos/RecursiveSearchByContent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelos/RecursiveSearchByName.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/Csv.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/controllers/Alertas.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/controllers/BookViewer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/controllers/MainTableViewController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/controllers/RootLayoutController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/resources/BookViewer.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/resources/MainTableView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/resources/RootLayout.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/resources/Style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/resources/images/EPL_Portadas_NEGRO.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/resources/images/back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/resources/images/icono_alertas.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/resources/images/next.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/resources/images/no-image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/EpubLibre_Library$Main.coverage" NAME="Main Coverage Results" MODIFIED="1501515200412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -195,15 +135,27 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
   <component name="ProjectId" id="1PYRJunjISSVllu3SVCHFJhZMIv" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path" value="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\libs" />
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SONARLINT_ANALYSIS_RESULTS_SCOPE" value="All project files" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="false" />
@@ -213,15 +165,24 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562415652252" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/zip4j_1.3.2.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.38850576" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\out\production\epl" />
+      <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\src\vista\resources\images" />
+      <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\libs" />
+      <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\src\parser" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="pruebas" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Proyectos\EpubLibre_Library\src\main\resources" />
       <recent name="E:\Proyectos\EpubLibre_Library\libs" />
@@ -229,74 +190,65 @@
       <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\out\production\epl" />
       <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\src\vista\resources\images" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="pruebas" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\out\production\epl" />
-      <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\src\vista\resources\images" />
-      <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\libs" />
-      <recent name="C:\Users\david\Documents\EPL\Apps de apoyo\EpubLibre_Library\src\parser" />
-    </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean javafx:run" />
+      <command value="mvn clean package" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
-      <Host>localhost</Host>
-      <Port>5050</Port>
-    </configuration>
+  <component name="RunManager">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Ejecutador" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test.Ejecutador" />
-      <module name="EpubLibre_Library" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Exec" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="vista.Exec" />
-      <module name="EpubLibre_Library" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
     </configuration>
-    <configuration name="Exect" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="daosqlite.Exect" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dmmop.vista.Main" />
       <module name="EpubLibre_Library" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Test.*" />
+          <option name="PATTERN" value="com.dmmop.vista.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -342,6 +294,7 @@
       <setting name="vmparams" value="" />
       <setting name="cmdLine" value="run-app" />
       <setting name="passParentEnv" value="true" />
+      <setting name="grailsApplicationRoot" value="" />
       <setting name="launchBrowser" value="true" />
       <setting name="launchBrowserUrl" value="" />
       <setting name="depsClasspath" value="false" />
@@ -353,40 +306,6 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
       </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <module name="" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -421,19 +340,23 @@
       <envs />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.Exect" />
-      <item itemvalue="Application.Exec" />
-      <item itemvalue="Application.Ejecutador" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Ejecutador" />
-        <item itemvalue="Application.Exect" />
-        <item itemvalue="Application.Exec" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -593,6 +516,8 @@
       <workItem from="1565043786679" duration="371000" />
       <workItem from="1565044204821" duration="2596000" />
       <workItem from="1566048988048" duration="2585000" />
+      <workItem from="1578295216115" duration="225000" />
+      <workItem from="1578295543298" duration="2428000" />
     </task>
     <task id="LOCAL-00108" summary="Modify timeOut for downloads.">
       <created>1501201725217</created>
@@ -1015,103 +940,54 @@
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
+  <component name="WindowStateProjectService">
+    <state x="555" y="215" width="800" height="675" key="#Project_Structure" timestamp="1578295317628">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="215" width="800" height="675" key="#Project_Structure/0.27.1920.1053@0.27.1920.1053" timestamp="1578295317628" />
+    <state x="418" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578297970114">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="418" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1578297970114" />
+    <state width="1874" height="278" key="GridCell.Tab.0.bottom" timestamp="1578298092800">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="278" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1578298092800" />
+    <state width="1874" height="278" key="GridCell.Tab.0.center" timestamp="1578298092800">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="278" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1578298092800" />
+    <state width="1874" height="278" key="GridCell.Tab.0.left" timestamp="1578298092800">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="278" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1578298092800" />
+    <state width="1874" height="278" key="GridCell.Tab.0.right" timestamp="1578298092800">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="278" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1578298092800" />
+    <state x="493" y="403" width="924" height="298" key="Performance.Activity.Monitor" timestamp="1578296450711">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="493" y="403" width="924" height="298" key="Performance.Activity.Monitor/0.27.1920.1053@0.27.1920.1053" timestamp="1578296450711" />
+    <state x="468" y="219" width="973" height="666" key="Registry" timestamp="1578296571953">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="468" y="219" width="973" height="666" key="Registry/0.27.1920.1053@0.27.1920.1053" timestamp="1578296571953" />
+    <state x="443" y="131" width="1024" height="843" key="SettingsEditor" timestamp="1578295925119">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="443" y="131" width="1024" height="843" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1578295925119" />
+    <state x="624" y="254" width="672" height="677" key="run.anything.popup" timestamp="1578298092813">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="624" y="254" width="672" height="677" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1578298092813" />
+    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1578296504190">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1578296504190" />
+  </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor>
-            <show-content>
-              <type id="javaee-facet-resources" />
-              <type id="artifact" />
-              <type id="jpa-descriptors" />
-              <type id="library" />
-            </show-content>
-          </artifact-editor>
-          <last-edited>ePLibrary:jar</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="Copyright.UI">
-        <settings>
-          <last-edited>GNU GPL v3</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>EpubLibre_Library</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: commons-io:commons-io:2.5</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
