@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  ~ Copyright (c) 2020. Ladaga.
+  ~ This file is part of EpubLibre_Library.
+  ~
+  ~     EpubLibre_Library is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     EpubLibre_Library is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<AnchorPane maxHeight="400.0" maxWidth="578.0" minHeight="400.0" minWidth="578.0" prefHeight="400.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane prefHeight="305.0" prefWidth="569.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Proxy">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="544.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="99.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Servidor" />
+                              <Label text="Autentificacion" GridPane.columnIndex="1" />
+                              <CheckBox fx:id="cbUseProxy" mnemonicParsing="false" onAction="#onChangeCB" text="Usar Proxy" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="cbUseProxyAut" mnemonicParsing="false" onAction="#onChangeCB" text="Usar Autentificacion" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label text="Servidor" />
+                                    <TextField fx:id="tfHost" prefHeight="25.0" prefWidth="193.0">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="20.0" />
+                                       </VBox.margin></TextField>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label text="Usuario" />
+                                    <TextField fx:id="tfUser">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="20.0" />
+                                       </VBox.margin></TextField>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label text="Puerto" />
+                                    <TextField fx:id="tfPort">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="20.0" />
+                                       </VBox.margin></TextField>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label text="Contraseña" />
+                                    <TextField fx:id="tfPass">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="20.0" />
+                                       </VBox.margin></TextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <ButtonBar layoutX="354.0" layoutY="338.0" prefHeight="40.0" prefWidth="537.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#save" text="Guardar" />
+            <Button mnemonicParsing="false" onAction="#cancel" text="Cancelar" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>

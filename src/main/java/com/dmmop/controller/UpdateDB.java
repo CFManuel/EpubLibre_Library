@@ -39,7 +39,12 @@ import org.joda.time.Days;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.SQLException;
 
 import static com.dmmop.vista.controllers.Alertas.*;
@@ -66,55 +71,14 @@ public final class UpdateDB implements CommonStrings {
 
     public static void updateDataBase() {
         ProgressForm progressForm = new ProgressForm();
-        Task importar = new Task() {
-            @Override
-            protected Object call() throws Exception {
-                updateProgress(0, TOTAL_PROGRESS);
-                updateMessage("Iniciando descarga de csv...");
-
-                updateMessage("Descargando csv...");
-                updateProgress(1, TOTAL_PROGRESS);
-                File zip = Utils.downloadCSVfromDropbox();
-                updateProgress(3, TOTAL_PROGRESS);
-                updateMessage("CSV Descargado.");
-
-                try {
-                    updateMessage("Comprobando validez...");
-                    int zipSize = (int) zip.length() / 2048; //Tamaño del fichero en Mb.
-                    if (zipSize < 10) {
-                        throw new NoValidCSVFile("Archivo no válido.");
-                    } else {
-                        Utils.unZip(zip);
-                    }
-                    updateProgress(4, TOTAL_PROGRESS);
-                    updateMessage("CSV válido.");
-                    Csv csv = new Csv();
-                    updateMessage("Importando CSV...");
-                    File csvFile = new File(Main.getLocation() + CSV_NAME);
-                    csv.importCSV(csvFile);
-                    updateMessage("CSV importado.");
-
-                    updateProgress(5, TOTAL_PROGRESS);
-                    updateMessage("Actualizando fecha...");
-
-                    updateMessage("Fecha actualizada...");
-                    updateProgress(6, TOTAL_PROGRESS);
-                    //Utils.deleteZip(zip, csvFile);
-                    Utils.deleteZip(zip);
-
-                } finally {
-                    updateProgress(TOTAL_PROGRESS, TOTAL_PROGRESS);
-                }
-                return null;
-            }
-        };
+        UpdateTask importar = new UpdateTask();
         progressForm.activateProgressBar(importar);
         importar.setOnSucceeded(e -> {
             updateDate();
             progressForm.getDialogStage().close();
             GetDatas.getIdiomas();
             Main.getMainTableViewController().restoreLastSearch();
-            alertUpdateOK();
+            alertUpdateOK(importar.getNumLibrosImportados());
         });
         importar.setOnFailed(e -> {
             progressForm.getDialogStage().close();

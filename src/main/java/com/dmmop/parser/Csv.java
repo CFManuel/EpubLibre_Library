@@ -18,6 +18,7 @@
 
 package com.dmmop.parser;
 
+import com.dmmop.controller.UpdateTask;
 import com.dmmop.daosqlite.InsertDatas;
 import com.dmmop.modelos.Libro;
 import org.apache.commons.io.FileUtils;
@@ -34,12 +35,12 @@ public class Csv {
      * @param csvFile Archivo csv con los datos completos.
      * @throws IOException Archivo no encontrado.
      */
-    public void importCSV(File csvFile) throws IOException {
+    public int importCSV(File csvFile, UpdateTask importar) throws IOException {
         LineIterator it = FileUtils.lineIterator(csvFile, "utf-8");
         InsertDatas idatas = new InsertDatas();
         String line;
         String[] items;
-
+        int numLibrosImportados =0;
         try {
             idatas.crearTabla();
             it.nextLine();
@@ -51,6 +52,10 @@ public class Csv {
                 Libro libro = generarLibro(items);
                 try {
                     idatas.insertarLibros(libro);
+                    if(importar!=null) {
+                        importar.updateMessage("Importando CSV... " + numLibrosImportados + " Libros");
+                    }
+                    numLibrosImportados++;
                 } catch (Exception e) {
                     //nada
                 }
@@ -71,6 +76,8 @@ public class Csv {
                 e.printStackTrace();
             }
         }
+
+        return numLibrosImportados--;
     }
 
 

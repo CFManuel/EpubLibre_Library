@@ -19,6 +19,7 @@
 package com.dmmop.vista.controllers;
 
 import com.dmmop.controller.UpdateDB;
+import com.dmmop.controller.UpdateTask;
 import com.dmmop.daosqlite.GetDatas;
 import com.dmmop.daosqlite.InsertDatas;
 import com.dmmop.modelos.CommonStrings;
@@ -29,10 +30,16 @@ import com.dmmop.parser.Csv;
 import com.dmmop.vista.Main;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -156,7 +163,7 @@ public class RootLayoutController implements CommonStrings {
     @Deprecated
     private void importDataSource() {
         FileChooser fileChooser = new FileChooser();
-        Task importar = null;
+        UpdateTask importar = null;
         fileChooser.setTitle("Open source file.");
         fileChooser
                 .getExtensionFilters()
@@ -167,7 +174,7 @@ public class RootLayoutController implements CommonStrings {
         if (datos != null) {
             if (datos.getName().endsWith("csv")) {
                 importar =
-                        new Task() {
+                        new UpdateTask() {
                             @Override
                             protected Object call() throws Exception {
                                 progressForm.getDialogStage().getScene().setCursor(Cursor.WAIT);
@@ -176,7 +183,7 @@ public class RootLayoutController implements CommonStrings {
                                 main.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
                                 updateMessage("Importando CSV...");
                                 updateProgress(2, 4);
-                                new Csv().importCSV(datos);
+                                new Csv().importCSV(datos,null);
                                 updateMessage("CSV importado.");
                                 updateProgress(3, 4);
                                 main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
@@ -188,6 +195,7 @@ public class RootLayoutController implements CommonStrings {
                         };
             }
             assert importar != null;
+            UpdateTask finalImportar = importar;
             importar.setOnSucceeded(
                     e -> {
                         InsertDatas insertDatas = new InsertDatas();
@@ -197,7 +205,7 @@ public class RootLayoutController implements CommonStrings {
                             e1.printStackTrace();
                         }
                         progressForm.getDialogStage().close();
-                        alertUpdateOK();
+                        alertUpdateOK(finalImportar.getNumLibrosImportados());
                     });
             importar.setOnFailed(
                     e -> {
@@ -268,6 +276,31 @@ public class RootLayoutController implements CommonStrings {
             insertDatas.deleteConfig(CommonStrings.WIDTH_COLUMNS);
             insertDatas.deleteConfig(CommonStrings.HEIGHT_WINDOW);
             insertDatas.deleteConfig(CommonStrings.WIDTH_WINDOW);
+        }
+    }
+
+    //@FXML
+    public void launchConfig() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            ConfigLayout controller = new ConfigLayout();
+            loader.setController(controller);
+            loader.setLocation(getClass().getClassLoader().getResource("ConfigLayout.fxml"));
+            AnchorPane pane = loader.load();
+            Scene scene = new Scene(pane);
+            Stage dialogStage = new Stage();
+            dialogStage.setWidth(580);
+            dialogStage.setHeight(450);
+            dialogStage.setScene(scene);
+            dialogStage.setTitle("Configuración");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.getIcons().add(new Image("images/EPL_Portadas_NEGRO.png"));
+            controller.setDialogStage(dialogStage);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alertas.stackTraceAlert(e);
+            throw new RuntimeException(e);
         }
     }
 }

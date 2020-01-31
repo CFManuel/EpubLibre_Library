@@ -18,28 +18,33 @@
 
 package com.dmmop.files;
 
+import com.dmmop.controller.UpdateDB;
+import com.dmmop.controller.UpdateTask;
+import com.dmmop.exceptions.NoValidCSVFile;
 import com.dmmop.modelos.CommonStrings;
 import com.dmmop.modelos.Libro;
+import com.dmmop.parser.Csv;
 import com.dmmop.vista.Main;
 import com.dmmop.vista.controllers.Alertas;
 import com.google.gson.Gson;
+import javafx.concurrent.Task;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.ini4j.Ini;
+import org.ini4j.IniPreferences;
+import org.ini4j.Wini;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.*;
+import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.prefs.Preferences;
 
 public class Utils implements CommonStrings {
+    static File destino = null;
     /**
      * Descarga el .zip de la página oficial de EpubLibre
      *
@@ -50,7 +55,7 @@ public class Utils implements CommonStrings {
         File destino = null;
         try {
             URL url = new URL("https://epublibre.org/rssweb/csv");
-            URLConnection conn = url.openConnection();
+            URLConnection conn = getConnection(url);
             conn.setRequestProperty("User-Agent", USER_AGENT);
             conn.connect();
             destino = new File(Main.getLocation() + "epub.zip");
@@ -67,22 +72,50 @@ public class Utils implements CommonStrings {
      *
      * @return File con el .zip
      */
-    public static File downloadCSVfromDropbox() {
+    public static File downloadCSVfromDropbox(UpdateTask importar) {
         File destino = null;
+        int TOTAL_PROGRESS = 7;
         try {
             String link = DROPBOX_API;
             URL url = new URL(link);
-            URLConnection uc = url.openConnection();
+            HttpURLConnection httpConnection = (HttpURLConnection) getConnection(url);
 
-            uc.setReadTimeout(120 * 1000);
-            uc.setConnectTimeout(10 * 1000);
-            uc.setRequestProperty("Authorization", "Bearer " + TOKEN_API);
-            uc.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"/csv_full_imgs.zip\"}");
+            httpConnection.setReadTimeout(120 * 1000);
+            httpConnection.setConnectTimeout(10 * 1000);
+            httpConnection.setRequestProperty("Authorization", "Bearer " + TOKEN_API);
+            httpConnection.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"/csv_full_imgs.zip\"}");
+            long completeFileSize = httpConnection.getContentLength();
+
+            java.io.BufferedInputStream in = new java.io.BufferedInputStream(httpConnection.getInputStream());
             destino = new File(Main.getLocation() + "epub.zip");
-            FileUtils.copyInputStreamToFile(uc.getInputStream(), destino);
+            java.io.FileOutputStream fos = new java.io.FileOutputStream(destino);
+            java.io.BufferedOutputStream bout = new BufferedOutputStream(
+                    fos, 1024);
+            byte[] data = new byte[1024];
+            long downloadedFileSize = 0;
+            int x = 0;
+            while ((x = in.read(data, 0, 1024)) >= 0) {
+                downloadedFileSize += x;
+
+                // calculate progress
+                int currentProgress=0;
+                int totalProgress=0;
+                double dCurrentProgress = (((double)downloadedFileSize )/1024)/1024;
+                currentProgress = (int) dCurrentProgress;
+                double dTotalProgress = (((double)completeFileSize)/1024)/1024;
+                totalProgress = (int) dTotalProgress;
+
+                importar.updateMessage("Descargando csv... "+String.format("%.2f MB",dCurrentProgress)+"/"+String.format("%.2f MB",dTotalProgress));
+                importar.updateProgress(1+currentProgress, TOTAL_PROGRESS+totalProgress);
+
+                bout.write(data, 0, x);
+            }
+            bout.close();
+            in.close();
+        } catch (FileNotFoundException e) {
         } catch (IOException e) {
-            e.printStackTrace();
         }
+
         return destino;
     }
 
@@ -93,7 +126,7 @@ public class Utils implements CommonStrings {
         String json;
         try {
             URL url = new URL(DROPBOX_API);
-            URLConnection uc = url.openConnection();
+            URLConnection uc = getConnection(url);
 
             uc.setReadTimeout(60 * 1000);
             uc.setConnectTimeout(10 * 1000);
@@ -157,5 +190,85 @@ public class Utils implements CommonStrings {
         } catch (IOException | URISyntaxException e) {
             Alertas.stackTraceAlert(e);
         }
+    }
+
+    public static Proxy getProxy(){
+        Preferences prefs = getPrefIniEpub();
+        Proxy proxy = null;
+        if(prefs!=null) {
+            boolean useProxy = prefs.node("ProxyConfig").getBoolean("useProxy",true);
+            if(useProxy) {
+                String host = prefs.node("ProxyConfig").get("Host",null);
+                int port = prefs.node("ProxyConfig").getInt("Port",0);
+                proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(host, port));
+                boolean useProxyAut = prefs.node("ProxyConfig").getBoolean("useProxyAut",true);
+                if(useProxyAut){
+                    String user = prefs.node("ProxyConfig").get("User",null);
+                    String pass = prefs.node("ProxyConfig").get("Pass",null);
+                }
+            }
+        }
+
+        return proxy;
+    }
+
+    public static Preferences getPrefIniEpub(){
+        Preferences prefs = null;
+        File iniFile = new File(Main.getLocation() + "ePLibrary.ini");
+
+        if(!iniFile.exists()) {
+            iniFile = createDefaultIni();
+        }
+
+        try {
+            Ini ini = new Ini(iniFile);
+            prefs = new IniPreferences(ini);
+        } catch (IOException e) {
+            e.printStackTrace();
+            prefs=null;
+        }
+
+        return prefs;
+    }
+
+    public static File createDefaultIni(){
+
+        File iniEpub = saveIniProxyConfig(false,"192.168.13.129",9666,false,"admin","abcde");
+
+        return iniEpub;
+    }
+
+    public static File saveIniProxyConfig(boolean useProxy,String host,int port,boolean useProxyAut,String user,String pass) {
+        File iniEpub = new File(Main.getLocation() + "ePLibrary.ini");
+        try{
+            iniEpub.createNewFile();
+            Wini ini = new Wini(iniEpub);
+
+            ini.put("ProxyConfig", "useProxy", useProxy);
+            ini.put("ProxyConfig", "Host", host);
+            ini.put("ProxyConfig", "Port", port);
+            ini.put("ProxyConfig", "useProxyAut", useProxyAut);
+            ini.put("ProxyConfig", "User", user);
+            ini.put("ProxyConfig", "Pass", pass);
+            ini.store();
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+            iniEpub = null;
+        }
+
+        return iniEpub;
+    }
+
+    public static URLConnection getConnection(URL url) throws IOException {
+        URLConnection connection = null;
+
+        Proxy proxy = getProxy();
+        if(proxy==null) {
+            connection = (HttpURLConnection) (url.openConnection());
+        }else{
+            connection = (HttpURLConnection) (url.openConnection(proxy));
+        }
+
+        return connection;
     }
 }

@@ -19,24 +19,23 @@
   -->
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.BorderPane?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0"
-            minWidth="590" prefHeight="400" prefWidth="660" xmlns="http://javafx.com/javafx/8.0.112"
-            fx:controller="com.dmmop.vista.controllers.RootLayoutController">
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="590" prefHeight="400" prefWidth="660" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dmmop.vista.controllers.RootLayoutController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu fx:id="menuFile" mnemonicParsing="false" text="Archivo">
-                <!--<MenuItem mnemonicParsing="false" onAction="#checkByName" text="Comprobar diferencia por nombre"/>-->
-                <!--<MenuItem mnemonicParsing="false" onAction="#checkByContent" text="Comprobar diferencia por contenido"/>-->
-            </Menu>
+            <items>
+               <MenuItem mnemonicParsing="false" text="Configuracion" onAction="#launchConfig"/>
+            </items></Menu>
             <Menu mnemonicParsing="false" text="Base de datos">
-                <MenuItem mnemonicParsing="false" onAction="#getLastUpdate" text="Información de la base de datos"/>
-                <MenuItem mnemonicParsing="false" onAction="#getMultiRev" text="Libros con múltiples revisiones"/>
-                <MenuItem mnemonicParsing="false" onAction="#getReadedBooks" text="Libros marcados como leidos"/>
+                <MenuItem mnemonicParsing="false" onAction="#getLastUpdate" text="Información de la base de datos" />
+                <MenuItem mnemonicParsing="false" onAction="#getMultiRev" text="Libros con múltiples revisiones" />
+                <MenuItem mnemonicParsing="false" onAction="#getReadedBooks" text="Libros marcados como leidos" />
             </Menu>
             <Menu mnemonicParsing="false" text="Ayuda">
-                <MenuItem mnemonicParsing="false" onAction="#resetGUI" text="Borrar ajustes"/>
-                <MenuItem mnemonicParsing="false" onAction="#help" text="Sobre la aplicación"/>
+                <MenuItem mnemonicParsing="false" onAction="#resetGUI" text="Borrar ajustes" />
+                <MenuItem mnemonicParsing="false" onAction="#help" text="Sobre la aplicación" />
             </Menu>
         </MenuBar>
     </top>

@@ -234,7 +234,8 @@ public class BookViewer implements CommonStrings {
                     new Task() {
                         @Override
                         protected Image call() throws Exception {
-                            URLConnection conn = new URL(libro.getImgURI()).openConnection();
+                            URL url = new URL(libro.getImgURI());
+                            URLConnection conn = Utils.getConnection(url);
                             conn.setRequestProperty("User-Agent", USER_AGENT);
 
                             try (InputStream stream = conn.getInputStream()) {

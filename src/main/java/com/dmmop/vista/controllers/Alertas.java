@@ -48,10 +48,10 @@ public class Alertas implements CommonStrings {
     /**
      * Alerta de fin de carga de datos correcta.
      */
-    public static void alertUpdateOK() {
+    public static void alertUpdateOK(int numLibrosImportados) {
         Alert ok = new Alert(Alert.AlertType.INFORMATION);
         ((Stage) ok.getDialogPane().getScene().getWindow()).getIcons().add(new Image(SIMBOLO_EPL));
-        ok.setHeaderText("Se han cargado los libros con éxito.");
+        ok.setHeaderText("Se han cargado "+numLibrosImportados+" libros con éxito.");
         ok.setContentText("Actualización finalizada.");
         ok.show();
     }
